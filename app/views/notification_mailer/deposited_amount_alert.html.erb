@@ -1,0 +1,11 @@
+<p>Hello Admin,</p>
+
+<p>User details:</br>
+  Email: <%= @user.email %><br>
+  <% if @user.instance_of?(User) %>
+		Username: <%= @user.username %> </br>
+	<% end %>
+  Credited amount: <%= @amount %>
+</p>
+</br>
+<p>Thanks</p>

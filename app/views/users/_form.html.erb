@@ -1,0 +1,93 @@
+<%= form_with model: current_user, url: user_path(current_user), local: true, method: :put, class: 'form account_setting' do |f| %>
+
+  <div class="full-width">
+    <% %I[first_name last_name].each do |column| %>
+      <div class="col-md-6 col-sm-6 col-xs-12 margin">
+        <%= f.label column.to_s + "*" %>
+        <%= f.text_field column, class: 'form-control', placeholder: column %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="full-width">
+    <div class="col-md-12 col-sm-12 col-xs-12 margin">
+      <%= f.label 'Username*' %>
+      <%= f.text_field :username, class: 'form-control', placeholder: "Username" %>
+    </div>
+  </div>
+
+  <div class="full-width">
+    <% %I[password password_confirmation].each do |column| %>
+      <div class="col-md-6 col-sm-6 col-xs-12 margin">
+        <%= f.label column %>
+        <%= f.password_field column, class: "form-control", autocomplete: "off", placeholder: column %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if current_user.email.blank? %>
+    <div class="full-width">
+      <div class="col-md-12 col-sm-12 col-xs-12 margin">
+        <%= f.label "Email*" %>
+        <%= f.text_field :email, class: 'form-control', autofocus: true, autocomplete: "email", placeholder: "Email" %>
+        <p class="blue"><%= t('users.email.email_advantage') %></p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="full-width">
+    <div class="col-md-6 col-sm-6 col-xs-12 margin">
+      <%= f.label "Street*" %>
+      <%= f.text_field :street, class: 'form-control', placeholder: "Street" %>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 margin">
+      <%= f.label :house_number %>
+      <%= f.text_field :house_number, class: 'form-control', placeholder: "House Number" %>
+    </div>
+  </div>
+
+  <div class="full-width">
+    <% %I[town_city zip_code].each do |column| %>
+      <div class="col-md-6 col-sm-6 col-xs-12 margin">
+        <%= f.label column.to_s + "*" %>
+        <%= f.text_field column, class: 'form-control', placeholder: column %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="full-width">
+    <div class="col-md-12 col-sm-12 col-xs-12 margin">
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Phone Number' %>
+    </div>
+  </div>
+
+  <div class="full-width">
+    <% %I[selfie_picture govt_id_picture].each do |column| %>
+      <div class="col-md-6 col-sm-6 col-xs-12 margin">
+        <%= f.label column %>
+        <%= f.file_field column, class: 'form-control', style: 'width: 100%;', accept: 'image/png,image/jpg,image/jpeg' %>
+        <% if current_user.send(column).attached? %>
+          <%= image_tag current_user.send(column), width: 150, height: 150 %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="full-width">
+    <div class="col-md-6 col-sm-6 col-xs-12 margin">
+      <%= f.label :kyc_status %>: 
+      <%= current_user.kyc_status %>
+    </div>
+  </div>
+
+  <div class="full-width">
+    <div class="col-md-6 col-sm-6 col-xs-12 margin">
+      <%= button_tag t('edit'), class: 'green-btn' %>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  validateEditProfilePage();
+</script>

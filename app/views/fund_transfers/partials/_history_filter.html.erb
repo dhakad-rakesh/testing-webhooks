@@ -1,0 +1,127 @@
+<div class="full-width">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    Transaction category
+  </div>
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <select id="transaction_category">
+      <option value="">
+        All Transactions
+      </option>
+      <option value="Bet">
+        Bet Transactions
+      </option>
+      <option value="ComboBet">
+        Combo Bet Transactions
+      </option>
+      <option value="User">
+        Admin Transactions
+      </option>
+      <option value="Transfer">
+        Fund Transactions
+      </option>
+    </select>
+  </div>
+</div>
+<div class="full-width">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    Transaction range
+  </div>
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="date-select">
+      <div class="start-date">
+        <span class="pull-left from">From</span>
+        <input name="min" style="float: left;">
+        <span class="fa fa-calendar"></span>
+      </div>
+      <div class="end-date">
+        <span class="pull-left from">to</span>
+        <input name="max" style="float: left;">
+        <span class="fa fa-calendar"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full-width">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+  </div>
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12 padding0">
+      <div class="show-entry">
+        <span>Show</span>
+        <select>
+          <option>
+            10
+          </option>
+          <option>
+            20
+          </option>
+          <option>
+            30
+          </option>
+        </select>
+        <span class="entry-text">entry</span>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-6 col-xs-12 padding0 align-center">
+      <button class="pull-right submit-btn filter-history">
+        Show
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function inputDate(selector) {
+    $(selector).daterangepicker({
+      singleDatePicker: true,
+      locale: {
+          format: 'DD-MM-YYYY'
+      }
+    });
+  }
+
+  function getAjax(url, data) {
+    $.ajax({
+      url: url,
+      type: 'GET',
+      data: data,
+      dataType: 'script',
+      beforeSend: function() {
+        setTimeout(function(){ 
+          show_spinner();
+        }, 0);
+      },
+      success: function(result) {
+        hide_spinner();
+      },
+      error: function(error) {
+        hide_spinner();
+      }
+    });
+  }
+
+  inputDate('.start-date input');
+  inputDate('.end-date input');
+
+  var category = "";
+  $('#transaction_category').change(function() {
+    category = $(this).children('option:selected').val();
+    per_page = $('.show-entry option:selected').val();
+    getAjax('<%= transaction_history_path %>', { category: category, per_page: per_page });
+  });
+
+  $('.show-entry').change(function() {
+   category = $('#transaction_category option:selected').val();
+   per_page = $('.show-entry option:selected').val();
+   getAjax('<%= transaction_history_path %>', { category: category, per_page: per_page });
+  });
+
+  $('#transfer-history .filter-history').click(function() {
+    min_date = $('.start-date input').val();
+    max_date = $('.end-date input').val();
+    per_page = $('.show-entry option:selected').val();
+    data = { category: category, min_date: min_date, max_date: max_date, per_page: per_page }
+    getAjax('<%= transaction_history_path %>', data)
+  });
+</script>

@@ -1,0 +1,6 @@
+set :application_name, 'bwinner'
+set :domain, '3.12.44.37'
+set :deploy_to, '/var/www/bwinner.bet'
+set :repository, 'https://gitlab.com/koorabet/bwinner.git'
+set :branch, 'develop'
+set :rails_env, 'staging'

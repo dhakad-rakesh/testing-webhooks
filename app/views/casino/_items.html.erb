@@ -1,0 +1,52 @@
+<% if @items.present? %>
+  <% if params[:live_casino] == 'true' %>
+    <%= render 'live_casino_items' %>
+  <% else %>
+    <%= render 'non_live_casino_items' %>
+  <% end %>
+<% elsif params[:page].blank? %>
+  <h4 class='text-center' style="color: #fff"> No results found...</h4>
+<% end %>
+<div class='clearfix'></div>
+<%= will_paginate @items %>
+
+<script type="text/javascript">
+  $('.info').mouseover(function () {
+    $(this).parent().addClass("stats");
+  });
+
+  $('.info').mouseleave(function () {
+    $(this).parent().removeClass("stats");
+  });
+
+  function launchCasinoModal(redirect_path, has_lobby) {
+    if (has_lobby == 'true') {
+      return window.location.href = redirect_path;
+    }
+    $.ajax(redirect_path, {
+      type: "get",
+      dataType: 'json',
+      beforeSend: function() {
+        show_spinner();
+      },
+      success: function(result) {
+        if (result.errors != null) {
+          hide_spinner();
+          return toastr.error(result.errors);
+        }
+        hide_spinner();
+        $('#init_casino_game').attr('src', result.url);
+        $("#launchCasinoModal").modal({
+          backdrop: 'static',
+          keyboard: false
+        });
+      },
+      error: function(error) {
+        toastr.error(error.responseJSON.error);
+
+        window.location.href = redirect_path;
+        hide_spinner();
+      }
+    });
+  }
+</script>

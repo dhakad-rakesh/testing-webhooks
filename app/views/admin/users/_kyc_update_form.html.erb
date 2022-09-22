@@ -1,0 +1,20 @@
+<table class="table">
+  <tbody>
+    <%= form_with model: @user, url: update_kyc_status_admin_user_path(@user), local: true, class: 'form' do |f| %>
+      <tr>
+        <td><b><%= f.label :kyc_status %>:</b></td>
+        <td>
+          <%= f.select :kyc_status, Constants::KYC_STATUS, {}, class: 'form-control', style: 'width: 100%;', default: t('pending') %>
+        </td>
+      </tr>
+      <tr>
+        <td><b><%= f.label :kyc_status_notes %>:</b></td>
+        <td><%= f.text_area :kyc_status_notes, :placeholder => "Kyc status notes", class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit t('update'), class: 'btn btn-primary' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

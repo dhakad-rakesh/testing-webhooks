@@ -1,0 +1,84 @@
+<div class="col-lg-12">
+  <div class="ibox float-e-margins listing-filter">
+    <div class="ibox-title">
+      <h5>Filter</h5>
+      <div class="ibox-tools">
+        <a class="collapse-link">
+          <i class="fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+    <div class="ibox-content" style="display: block;">
+      <table class="filter-table">
+        <tr>
+          <th>Search by date</th>
+          <th>Transaction Type</th>
+          <th>Search by reseller</th>
+          <th>Min Amount</th>
+          <th>Max Amount</th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" name="report_date_range" class='form-control date-range' value="<%= "#{@start_date.to_s} - #{@end_date.to_s}" %>" readonly>
+          </td>
+          <td>
+            <%= select_tag 'transaction_type', options_for_select([['All', 'all'],['Credit', 'credit'], ['Debit', 'debit']], params[:query]), { class: "form-control transaction_type" } %>
+          </td>
+          <td>
+            <%= select_tag :reseller_user_id, options_for_select(resellers_option), { class: 'form-control select-2', autocomplete: "off" } %>
+          </td>
+          <td>
+            <input type="search" name="min_amt" class='form-control min_amt only-numeric' placeholder="Search for min amount" value="<%= params[:min_amt] %>">
+          </td>
+          <td>
+            <input type="search" name="max_amt" class='form-control max_amt only-numeric' placeholder="Search for max amount" value="<%= params[:max_amt] %>">
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <div class="ibox-footer">
+        <div class="pull-right">
+          <button class="btn btn-sm btn-primary search_btn">Apply</button>
+          <button class="btn btn-sm btn-danger reset_btn">Reset</button>
+        </div><br/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    onlyNumeric();
+    let url = "/admin/admin_users/<%= @user.id %>/ledgers";
+    parameters = "<%= params[:wallet_type].present? ? '?wallet_type=self' : '' %>"
+    if($("#reseller_user_id").val()) {
+      parameters += `?reseller_user_id=${$('#reseller_user_id').val()}`
+    }
+    search_url = url + "/search_report" + parameters;
+    reset_url = url + "/report" + parameters;
+    searchContent(search_url);
+    resetSearch(reset_url);
+
+    $('input[name="report_date_range"]').daterangepicker({
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment()],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      },
+      locale: {
+        format: 'YYYY/MM/DD'
+      }
+    }, function(start, end, label) {
+      startDate = start.format('YYYY-MM-DD');
+      endDate = end.format('YYYY-MM-DD');
+      commonSearchCode(search_url, startDate, endDate);
+    });
+
+    $(".select-2").select2({
+      placeholder: 'Select a Reseller'
+    });
+  });
+</script>

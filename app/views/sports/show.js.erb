@@ -1,0 +1,4 @@
+$('#tournaments').html("<%= escape_javascript render(:partial => 'sports/tournaments') %>");
+<% if params[:search].present? %>
+  $('.collapse').show();
+<% end %>

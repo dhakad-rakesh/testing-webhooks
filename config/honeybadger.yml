@@ -1,0 +1,3 @@
+---
+#Slim's HB account
+api_key: <%= ENV['HONEYBADGER_API_KEY'] %>

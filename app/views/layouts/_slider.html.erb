@@ -1,0 +1,11 @@
+<section class="slider-section">
+  <% if ad_images('Header').present? %>
+    <div class='slider'>
+      <% ad_images('Header').each do |ad| %>
+        <div>
+          <%= link_to image_tag(ad.ad_image), ad.ad_url, class: 'img-responsive', target: '_blank' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</section>

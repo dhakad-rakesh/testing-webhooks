@@ -1,0 +1,325 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require ./admin/style
+ *= require font-awesome
+ *= require ./admin/tables
+ *= require ./admin/forms
+ *= require ./admin/graphs
+ *= require toastr
+ *= require ./admin/daterangepicker
+ *= require select2
+ *= require ./admin/plugins/footable.core
+ *= require ./admin/plugins/c3.min
+ *= require alertify
+ *= require alertify/default
+ *= require alertify/bootstrap
+ *= require ./admin/plugins/bootstrap-duallistbox
+ *= require ./admin/plugins/easySelectStyle
+ *= require ./admin/plugins/summernote.min
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'bootstrap/theme';
+@import 'bootstrap-datetimepicker';
+
+.light-skin {
+  background-color: #f3f3f4;
+  color: #3e5476;
+}
+
+.dash-stats td {
+  background: white;
+  border-radius: 5px;
+  height: 85px;
+  width: 19.15%;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0px 0px 10px 1px #0000001a;
+  margin: 10px 5px;
+}
+
+.dash-stats td span:nth-child(1) {
+  height: 100%;
+  width: 40%;
+  border-bottom-left-radius: 5px;
+  color: white;
+  border-top-left-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dash-stats td span:nth-child(1) img {
+  height: 45px;
+}
+
+.dash-stats td span:nth-child(2) {
+  width: 60%;
+  padding: 2px;
+}
+
+.dash-stats td span:nth-child(2) p {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dash-stats td span:nth-child(2) h5 {
+  font-size: medium;
+  color: lightslategray;
+}
+
+.dash-stats td span.left-extra:nth-child(1) img {
+  margin-left: -5px;
+}
+
+.dash-stats .sky-bg {
+  background: #daf5f8;
+}
+
+.dash-stats .red-bg {
+  background: #fedadd;
+}
+
+.dash-stats .yellow-bg {
+  background: #fff4d8;
+}
+
+.dash-stats .parrot-bg {
+  background: #f1f6d6;
+}
+
+.dash-stats .green-bg {
+  background: #d9f0dc;
+}
+
+.dash-stats .violet-bg {
+  background: #e4defb;
+}
+
+.dash-stats .lblue-bg {
+  background: #dbeefc;
+}
+
+.dash-stats .teal-bg {
+  background: #d9f5ea;
+}
+
+.dash-stats .orange-bg {
+  background: #fde4da;
+}
+
+.dash-stats .dblue-bg {
+  background: #dcdff3;
+}
+
+// filter button
+
+.dash-filter {
+  display: inline-flex;
+  margin: 10px 0px;
+}
+
+.dash-filter > * {
+  margin-right: 5px;
+}
+
+.dash-filter .date-range {
+  width: 20%;
+  border-color: #d3ebf6;
+  background: #e7f6fc;
+  color: lightslategrey;
+}
+
+.dash-filter .dash-btn-outline {
+  border-color: #d4ecf7 !important;
+  background-color: #e7f6fc !important;
+  width: 120px !important;
+  transition: all .5s !important;
+}
+
+.dash-filter .btn-primary.dash-btn-outline {
+  color: #25a0fb !important;
+}
+
+.dash-filter .dash-btn-outline.active {
+  border-color: #1b9cfb !important;
+  background-color: #1b9cfb !important;
+}
+
+.dash-filter .btn-primary.dash-btn-outline.active {
+  color: white !important;
+}
+
+.dash-filter .dash-btn-outline:hover {
+  border-color: #1b9cfb !important;
+  background-color: #1b9cfb !important;
+}
+
+.dash-filter .btn-primary.dash-btn-outline:hover {
+  color: white !important;
+}
+
+.dash-widget {
+  width: 20% !important;
+}
+
+.navbar-default #side-menu.nav > li > a {
+  background-color: #f3f3f4 !important;
+  color: #7c899a !important;
+}
+
+.navbar-default #side-menu.nav > li > a:hover {
+  color: #384d6c !important;
+}
+
+.navbar-default #side-menu.nav > li.active > a {
+  color: #384d6c !important;
+}
+
+.navbar-default {
+  box-shadow: none;
+}
+
+.banner-img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.social-icons {
+  max-height: 50px;
+  max-width: 50px;
+  align-items: center;
+  margin-left: 20%;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.filter-table {
+  border-collapse: separate !important;
+  border-spacing: 5px;
+}
+
+.filter-table td, .filter-table th {
+  width: 10%;
+}
+
+.top-sport-stats {
+  display: inline;
+  border-collapse: separate;
+  border-spacing: 10px 2px;
+}
+
+.top-sport-stats th {
+  text-align: right;
+}
+
+.top-sport-stats td {
+  text-align: left;
+}
+// .gauge-container-custom {
+//   margin-top: -35px;
+// }
+// .filter-table tr:nth-child(even) {
+  
+// }
+
+// .query, .min_amt, .max_amt, .phone_no, #amt_type, .transaction_type, .date-range, .disaplay_inline_block {
+//   display: inline-block !important;
+// }
+
+// .query {
+//   width: 30% !important;
+// }
+
+// .date-range {
+//   width: 20% !important;
+// }
+
+// .transaction_type, .min_amt, .max_amt, .phone_no, #amt_type {
+//   width: 15% !important;
+// }
+
+// .search_btn {
+//   margin-left: 10px;
+// }
+
+.select2-selection{
+  // height: 35px !important;
+  // border: 1px solid #e5e6e7;
+  // margin-top: -3px;
+  // padding: 8px;
+  border-radius: 0px !important;
+  height: 33px !important;
+}
+
+.select2-container {
+  width: 100% !important;
+}
+
+.listing-filter .ibox-content {
+  display: none;
+}
+
+.panel-body-custom {
+  padding: 15px;
+}
+
+.tabs-container .tabs-left > .nav-custom {
+  width: 12% !important;
+}
+
+.tabs-container .tabs-left .panel-body {
+  width: 88% !important;
+  margin-left: 12% !important; 
+}
+
+.panel-footer-div {
+  margin-left: 5px;
+}
+
+.btn-primary, .label-primary{
+  background-color: #636567 !important;
+}
+.dash-filter .dash-btn-outline.active{
+  border-color: #636567 !important;
+  background-color: #636567 !important;
+}
+.dash-filter .btn-primary.dash-btn-outline{
+  color: #636567 !important;
+}
+.dash-filter .dash-btn-outline:hover{
+  background-color: #636567 !important; 
+  border-color: #636567 !important; 
+}
+table .fixed-width-col {
+  column-width: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.currency-icon img{
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.currency-icon span{
+  display: inline!important;
+  color: #7b8899 !important;
+}

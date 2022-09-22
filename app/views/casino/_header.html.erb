@@ -1,0 +1,143 @@
+<div class="heading casino-heading">
+  <!-- Actual search box -->
+  <div class="search-box-casino pull-left">
+    <a href="javascript:void(0)" class="open-search"><span class="fa fa-search"></span></a>
+    <div class="search-parent">
+      <input type="text" class="form-control" placeholder="Search Games...">
+      <div class="close-search">
+      <span class="fa fa-close"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Casino Menus -->
+  <ul class="item_types">
+    <% @casino_menus.each do |casino_menu| %>
+      <li>
+        <%= link_to casino_menu.name.upcase, "#-", class: 'item-types', id: "menu_#{casino_menu.id}" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <!-- Filter button -->
+  <div class="filter-btn">
+    <a href="javascript:void(0)">Filter</a>
+  </div>
+</div>
+
+<!-- remove false to use sub filters -->
+<div class="casino-filter">
+  <!-- Filter by options -->
+  <div class="heading casino-category">
+    <ul>
+      <li>
+        <%= link_to 'Free Spins', "#-", class: 'free-spin' %>
+      </li>
+
+      <li>
+        <%= link_to 'Lobby', "#-", class: 'lobby' %>
+      </li>
+
+      <li>
+        <%= link_to 'Mobile', "#-", class: 'mobile' %>
+      </li>
+    </ul>
+  </div>
+  <!-- Filter by item providers -->
+  <div id='item_providers'>
+    <%= render 'item_providers' %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.item_types li:first a').addClass('item-type-select');
+  });
+
+  //setup before functions
+  var typingTimer;                //timer identifier
+  var doneTypingInterval = 500;  //time in ms, 5 second for example
+  var $input = $('.search-box-casino input');
+  var $providers = [];
+
+  //on keyup, start the countdown
+  $input.on('keyup', function () {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+  });
+
+  //on keydown, clear the countdown 
+  $input.on('keydown', function () {
+    clearTimeout(typingTimer);
+  });
+
+  // On free spin filter click
+  $('.free-spin').click(function() {
+    $(this).parent().toggleClass('free-spin-select');
+    doneTyping ();
+  });
+
+  // On lobby filter click
+  $('.lobby').click(function() {
+    $(this).parent().toggleClass('lobby-select');
+    doneTyping ();
+  });
+
+  // On mbile filter click
+  $('.mobile').click(function() {
+    $(this).parent().toggleClass('mobile-select');
+    doneTyping ();
+  });
+
+  // On on item types change 
+  $('.item-types').click(function() {
+    $('.provider a').removeClass('provider-select');
+    $('.item-types').removeClass('item-type-select');
+    $(this).addClass('item-type-select');
+    doneTyping ();
+  });
+
+  //user is "finished typing"
+  function doneTyping () {
+    var has_free_spin = $.trim($('.free-spin-select').text());
+    var has_lobby = $.trim($('.lobby-select').text());
+    var is_mobile = $.trim($('.mobile-select').text());
+    var provider = item_providers();
+    var item_types = $('.item-type-select').text();
+    var live_casino = window.location.search.length != 0;
+    var menu_id =  $('.item-type-select').attr('id').replace("menu_", "");
+    
+    $.ajax(`/casino`, {
+      type: "get",
+      data: { search: $input.val(), has_free_spin: has_free_spin,
+              has_lobby: has_lobby, is_mobile: is_mobile, provider: provider, item_types: item_types, live_casino: live_casino, menu_id: menu_id },
+      beforeSend: function() {
+        $('#casino_items .content').html('<div id="cover-spin-wtb"><p>Loading....</p></div>');
+        // show_spinner();
+      },
+      success: function(result) {
+        console.log('Done');
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  }
+
+  function item_providers() {
+    return $('.provider-select').map(function() { return $(this).text(); }).get();
+  }
+
+  $('.filter-btn a').click(function() {
+    $('.casino-filter').toggleClass('filter-active');
+  });
+
+  $('.open-search').click(function() {
+    $('.search-parent').toggleClass('input-active');
+    $('.search-parent input').focus();
+  });
+
+  $('.close-search').click(function() {
+    $('.search-parent').removeClass('input-active');
+  });
+</script>

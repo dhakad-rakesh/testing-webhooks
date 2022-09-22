@@ -1,0 +1,35 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('pool') %> <%= t('admin.betting_pools.new.match_title') if @match.present? %></h2>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <%= link_to t('create_title', name: t('pool')), new_admin_betting_pool_path %> |
+            <% if @match.present? %>
+              <%= link_to t('edit_title', name: t('pool')), edit_admin_match_betting_pool_path(@match, @betting_pool) %>
+            <% else %>
+              <%= link_to t('edit_title', name: t('pool')), edit_admin_betting_pool_path(@betting_pool) %>
+            <% end %> |
+            <% if @betting_pool.participants.blank? %>
+              <%= link_to t('delete'), admin_betting_pool_path(@betting_pool), method: :delete %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('edit_title', name: t('pool') %></h5>
+        </div>
+        <div class="ibox-content">
+          <%= render 'form', match: @match, betting_pool: @betting_pool %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

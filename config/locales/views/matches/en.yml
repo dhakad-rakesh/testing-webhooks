@@ -1,0 +1,7 @@
+en:
+  admin:
+    matches:
+      show:
+        no_of_users_betted: 'Number of Users that betted'
+        market_odd_info: 'Market odds Information'
+        liability: 'Liability'

@@ -1,0 +1,17 @@
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to 'Bwinner', root_path, class: 'navbar-brand' %>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Home', root_path %></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <% if admin_user_signed_in? %>
+          <%= render 'layouts/partials/admin/dropdown' %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

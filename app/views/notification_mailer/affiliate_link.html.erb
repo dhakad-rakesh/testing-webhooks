@@ -1,0 +1,9 @@
+<p>Hello <b><%= @user.full_name.titleize %></b>,</p>
+
+<p>Your <b>Betdefi</b> account has been created!</p></br>
+
+<p>Please use the below link for redirecting users to our website.</p></br>
+<p>Redirection link: <p><b><%= "#{Figaro.env.FRONTEND_URL}/af/#{@user.try(:code)}" %></b></p></br>
+
+<p>Thanks & Regards </p>
+<p>betdefi.com</p>

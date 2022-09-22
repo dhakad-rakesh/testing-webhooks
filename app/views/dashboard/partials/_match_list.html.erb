@@ -1,0 +1,93 @@
+<div class="match-data">
+  <div>
+    <% if matches.any? %>
+      <ul class="full-width line-height">
+        <li class="time"></li>
+        <li class="team-name"></li>
+        <li class="number">1</li>
+        <li class="number">X</li>
+        <li class="number">2</li>
+        <li class="plus-number"></li>
+      </ul>
+      <% matches.each do |match| %>
+        <% teams = match.title.split('vs') %>
+        <% header_markets = Constants.inplay_top_markets[match.sport.uid].slice('1') %>
+        <ul class="full-width">
+          <li class="time" id="match-<%= match.id %>-local-time">
+            <%#= current_time(match.schedule_at, 'CET', '%A - %H:%M') %>
+            <%= match.schedule_at.strftime("%Y-%d-%m %H:%M:%S") %>
+          </li>
+
+          <li class="team-name font14">
+            <span>
+              <%= teams[0] %>
+            </span>
+            <span>
+              <img src="<%= image_url "sports_icon/#{match.sport.uid}" %>" alt="f-ball" class="img-responsive">
+            </span>
+            <span>
+              <%= teams[1] %>
+            </span>
+            <p class="tool-tip">
+              <%= match.title %>
+            </p>
+            <p class="arrow"></p>
+          </li>
+          <% header_markets.each do |market_id, row| %>
+            <% data = get_selected_market_data(match, market_id) %>
+            <% if Market.markets_enable_ids.include?(market_id) && data[:market_data].present? %>
+              <% market_data = data[:market_data] %>
+              <% market_name = market_data&.first&.last[:name] %>
+              <% market_uid = market_data&.first&.last[:uid] %>
+              <% market_data.each do |identifier, value| %>
+                <% if value[:status] = 'suspended' %>
+                  <li class="number number-bg">NA</li>
+                  <li class="number number-bg">NA</li>
+                  <li class="number number-bg">NA</li>
+                  <% next %>
+                <% end %>
+                <% ["1", "X", "2"].each do |outcome_name| %>
+                  <% outcome = format_outcomes(value[:outcomes], outcome_name) %>
+                  <li class="number number-bg outcome-row" li-data-outcome-id="<%= outcome[:uid] %>">
+                    <a href="JavaScript:Void(0)">
+                      <div class="outcomes" data-name="<%= outcome[:name] %>" data-odds="<%= outcome[:odds] %>" data-market-name="<%= value[:name] %>" data-market-uid="<%= market_uid %>" data-market-id="<%= market_id %>" data-match-name="<%= match.title %>" data-match-id="<%= match.id %>" data-outcome-id="<%= outcome[:uid] %>" data-identifier="<%= outcome[:handicap].present? ? { handicap: outcome[:handicap] } : {} %>" data-identifier-id="<%= identifier %>">
+                        <%= number_with_precision(outcome[:odds], precision: 2) %>
+                      </div>
+                    </a>
+                  </li>
+                <% end %>
+              <% end %>
+            <% else %>
+              <li class="number number-bg">NA</li>
+              <li class="number number-bg">NA</li>
+              <li class="number number-bg">NA</li>  
+            <% end %>
+          <% end %>  
+          <li class="plus-number" >
+            <a class="get-match-markets" data-match-id="<%= match.id %>" href="javascript:void(0)">
+              +<span class="market_count_<%= match.id %>"><%= match.market_counts(['1']) %></span>
+              <span class="left-arrow">></span>
+            </a>
+          </li>
+          <div id="match-<%= match.id %>-markets-list"></div>
+        </ul>
+      <% end %>
+    <% else %>
+      <ul class="full-width">
+        <li class="no-match-message">No matches available.</li>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    <% matches.each do |match| %>
+      match_id = <%= match.id %>;
+      id = $(`#match-${match_id}-local-time`);
+      var time = convertUtcInToLocalTime(id.text(), "dddd - HH:mm");
+      id.html(time);
+    <% end %>
+    getMatchMarkets();
+  });
+</script>

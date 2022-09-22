@@ -1,0 +1,207 @@
+<div class="col-lg-12">
+  <div class="ibox float-e-margins listing-filter">
+    <div class="ibox-title">
+      <h5>Filter</h5>
+      <div class="ibox-tools">
+        <a class="collapse-link">
+          <i class="fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+    <div class="ibox-content" style="display: block;">
+      <table class="filter-table">
+        <tr>
+          <th>Data Range</th>
+          <th>Bet Type</th>
+          <th>Sport</th>
+          <th>Tournament</th>
+          <!-- <th>Region</th> -->
+        </tr>
+        <tr>
+          <td>
+            <%= text_field_tag :filter_date, nil, class: 'date-range form-control', placeholder: 'Select date range', data: { behavior: 'daterangepicker' }, autocomplete: "off" %>
+            <%= hidden_field_tag :start_date, nil, class: 'start-date' %>
+            <%= hidden_field_tag :end_date, nil, class: 'end-date' %>
+          </td>
+          <td>
+            <%= select_tag :bet_type, options_for_select([['Single', 'not_combo'], ['Combo', 'combo_bets']]), { class: "form-control" } %>
+          </td>
+          <td>
+            <%= select_tag 'sport_id', grouped_options_for_select(sports_options, params[:sport_id]), { class: "form-control", :prompt => "All" } %>
+          </td>
+<!--           <td>
+            <%= select_tag 'country_name', options_for_select(countries_name_options, params[:country_name]), { class: "form-control", :prompt => "All" } %>
+          </td> -->
+          <td>
+            <%#= select_tag 'tournament_id', options_for_select(tournament_options, params[:tournament_id]), { class: "form-control", :prompt => "All" } %>
+            <%= select_tag 'tournament_id', options_for_select(tournament_options, params[:tournament]), { prompt: 'All', class: "form-control select-2-tournament"} %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Match</th>
+          <th>Min Stake</th>
+          <th>Max Stake</th>
+          <th>Min Winning</th>
+        </tr>
+        <tr>
+          <td>
+            <%#= select_tag 'match_id', nil, { class: "form-control", :prompt => "All" } %>
+            <%= select_tag 'match_id', nil, { prompt: 'All', class: "form-control select-2-match"} %>
+          </td>
+          <td>
+            <input type="search" name="stake_min_amt" id="stake_min_amt" class='form-control only-numeric' placeholder="Min stake">
+          </td>
+          <td>
+            <input type="search" name="stake_max_amt" id="stake_max_amt" class='form-control only-numeric' placeholder="Max stake">
+          </td>
+          <td>
+            <input type="search" name="winning_min_amt" id="winning_min_amt" class='form-control only-numeric' placeholder="Min winning">
+          </td>
+        </tr>
+
+        <tr>
+          <th>Max Winning</th>
+        </tr>
+        <tr>
+          <td>
+            <input type="search" name="winning_max_amt" id="winning_max_amt" class='form-control only-numeric' placeholder="Max winning">
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <div class="ibox-footer">
+        <div class="pull-right">
+          <button class="btn btn-sm btn-primary search">Apply</button>
+          <button class="btn btn-sm btn-danger reset">Reset</button>
+        </div><br/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'admin/list_filter' %>
+
+<script>
+  $(".select-2-tournament").select2({
+    placeholder: "All"
+  });
+
+  $(".select-2-match").select2({
+    placeholder: "All"
+  });
+
+  $("#sport_id").on("change", function() {
+    sport_id = this.value;
+    $.ajax({
+      url: "/admin/sports/get_tournaments",
+      type: "GET",
+      data: {'sport_id': sport_id},
+      dataType: 'json',
+      error: function (xhr, ajaxOptions, thrownError){
+        toastr.error('Invalid request')
+        // $("#tournament_id option").remove();
+        // $(`<option value=''>All</option>`).appendTo("#tournament_id");
+        $(".select-2-tournament").empty();
+        $('.select-2-tournament').append(new Option('All', "", false, false)).trigger('change');
+        $("#sport_id").val('');
+      },
+      success: function(tournaments) {
+        $(".select-2-tournament").empty();
+        // $("#tournament_id option").remove();
+        if(tournaments) {
+          // $("<option value=''>All</option>").appendTo("#tournament_id")
+          $('.select-2-tournament').append(new Option('All', "", false, false));
+          tournaments.forEach((tournament) => {
+            // option = `<option value="${tournament[0]}">${tournament[1]}</option>`
+            // $(option).appendTo("#tournament_id")
+            $('.select-2-tournament').append(new Option(tournament[1], tournament[0], false, false));
+          })
+          $('.select-2-tournament').trigger('change');
+        } else {
+          // $(`<option value=''>All</option>`).appendTo("#tournament_id");
+          $('.select-2-tournament').append(new Option('All', "", false, false)).trigger('change');
+          $("#sport_id").val('');
+        }
+      }
+    });
+  });
+
+
+  $("#tournament_id").on("change", function() {
+    tournament_id = this.value;
+    $.ajax({
+      url: "/admin/tournaments/get_matches",
+      type: "GET",
+      data: {'tournament_id': tournament_id},
+      dataType: 'json',
+      error: function (xhr, ajaxOptions, thrownError){
+        toastr.error('Invalid request')
+        // $("#match_id option").remove();
+        // $(`<option value=''>All</option>`).appendTo("#match_id");
+
+        $(".select-2-match").empty();
+        $('.select-2-match').append(new Option('All', "", false, false)).trigger('change');
+        $("#tournament_id").val('');
+      },
+      success: function(matches) {
+        // $("#match_id option").remove();
+        $(".select-2-match").empty();
+        if(matches) {
+          $('.select-2-match').append(new Option('All', "", false, false)).trigger('change');
+          // $("<option value=''>All</option>").appendTo("#match_id")
+          matches.forEach((match) => {
+            // option = `<option value="${match[0]}">${match[1]}</option>`
+            // $(option).appendTo("#match_id")
+            $('.select-2-match').append(new Option(match[1], match[0], false, false));
+          })
+          $('.select-2-match').trigger('change');
+        } else {
+          // $(`<option value=''>All</option>`).appendTo("#match_id");
+          $('.select-2-match').append(new Option('All', "", false, false)).trigger('change');
+          $("#tournament_id").val('');
+        }
+      }
+    });
+  });
+
+  $('.search').on('click', () => {
+    const path = ($("#bet_type").val() == "not_combo") ? "/admin/reports/bets" : "/admin/reports/combo_bets"
+    const data = {
+      query: {
+        sport_id: $("#sport_id").val(),
+        country_name: $("#country_name").val(),
+        tournament_id: $("#tournament_id").val(),
+        match_id: $("#match_id").val(),
+        stake_min_amt: $("#stake_min_amt").val(),
+        stake_max_amt: $("#stake_max_amt").val(),
+        winning_min_amt: $("#winning_min_amt").val(),
+        winning_max_amt: $("#winning_max_amt").val(),
+        filter_date: $("#filter_date").val(),
+        start_date: $("#start_date").val(),
+        end_date: $("#end_date").val(),
+        bet_type: $("#bet_type").val()
+      }
+    }
+
+    getAjaxLoad(path, data, '.bet-report-list')
+  });
+
+  $('.reset').on('click', () => {
+    $("#sport_id").val('');
+    $("#country_name").val('');
+    $("#tournament_id").val('');
+    $("#match_id").val('');
+    $("#stake_min_amt").val('');
+    $("#stake_max_amt").val('');
+    $("#winning_min_amt").val('');
+    $("#winning_max_amt").val('');
+    $("#filter_date").val('');
+    $("#start_date").val('');
+    $("#end_date").val('');
+    $("#bet_type").val('not_combo');
+    $('.select-2-tournament').trigger('change');
+    $('.select-2-match').trigger('change');
+    $('.search').trigger('click');
+  });
+</script>

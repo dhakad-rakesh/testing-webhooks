@@ -1,0 +1,56 @@
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th>Type</th>
+      <th><%= t('name') %></th>
+      <th><%= t('category') %></th>
+      <th><%= "Visible" %></th>
+      <% if false %>
+        <th><%= t('actions') %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @markets.present? %>
+      <% @markets.each do |market| %>
+        <tr class="gradeX">
+          <td><%= market.id %></td>
+          <td><%= fetch_admin_market_type(market.uid) %></td>
+          <td><%= @match.present? ? MatchMarketOutcomeName.call(market.name, @match, market.id) : market.fancy_name %></td>
+          <td>
+            <% market.categories.each do |category| %>
+              <span class="label label-primary"><%= category.name.humanize %></span>
+            <% end %>
+          </td>
+          <td class="center">
+            <% enabled = @match.present? ? @match.supported_market_uids.include?(market.uid) : market.visible %>
+            <div class="i-checks">
+              <label>
+                <input class='enabled_market' type="checkbox" value="" <%= "checked" if enabled %> data="market_<%= market.id %>" id="<%= @match&.id %>" data-match-id="<%= @match&.id %>" >
+                <i></i>
+              </label>
+            </div>
+          </td>
+          <% if false %>
+            <td>
+              <%= link_to admin_market_path(market), class: 'btn btn-primary' do %>
+                <span class="fa fa-eye"></span>
+              <% end %>
+              <%= link_to edit_admin_market_path(market), class: 'btn btn-primary' do %>
+                <span class="fa fa-pencil"></span>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=5>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @markets, renderer: BootstrapPagination::Rails %>
+
+<%= javascript_include_tag 'admin/markets/actions' %>

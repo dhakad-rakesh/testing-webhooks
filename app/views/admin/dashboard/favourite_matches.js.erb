@@ -1,0 +1,6 @@
+<% if @matches.any? %>
+  id = 'favourite-matches';
+  $('#' + id).append("<%= j render 'layouts/partials/admin/favourite_matches', matches: @matches %>");
+  $('#' + id).removeClass('sk-loading hide');
+  $('#spinner-' + id).addClass('hide');
+<% end %>

@@ -1,0 +1,10 @@
+<% if @errors.any? %>
+  toastr.error("<%= @errors.join(', ') %>");
+<% else %>
+  username = '<%= @payee&.username %>'
+  fullName = '<%= @payee&.full_name&.titleize %>'
+  $('.amount-container #amount').data('username', username);
+  $('.user-details .username').html(username);
+  $('.user-details .full-name').html(fullName);
+  $('.fund-transfer .user-details').css('display', 'block');
+<% end %>

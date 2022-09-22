@@ -1,0 +1,68 @@
+<h4>Welcome to dashboard page.</h4>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2> Live Matches </h2>
+  </div>
+  <div class="col-lg-2">
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-9">
+        <div class="ibox-content">
+          <h4><%= @live_match.title %></h4>
+          <div class="panel-body">
+            <div class="panel-group" id="accordion">
+              <% @markets.each do |market_id, market_data| %>
+                <% market_data.each do |identifier, value| %>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= market_id %>"><%= value[:name] %></a>
+                      </h5>
+                    </div>
+                    <div id="collapse<%= market_id %>" class="panel-collapse collapse in">
+                      <div class="panel-body">
+                        <div class="row">
+                          <% value[:outcomes].each do |outcome| %>
+                            <a>
+                              <div class="col-md-4 outcomes" data-name="<%= outcome.last[:name] %>" data-odds="<%= outcome.last[:odds] %>" data-market-name="<%= value[:name] %>" data-market-id="<%= market_id %>" data-match-name="<%= @live_match.title %>" data-match-id="<%= @live_match.id %>" data-outcome-id="<%= outcome.first %>" data-identifier="<%= identifier %>"><%= outcome.last[:name] %>
+                                <span class="outcome-odd"><%= outcome.last[:odds] %></span>
+                              </div>
+                            </a>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="ibox-content bet-slip">
+        <h4>Bet Slip</h4>
+      </div>
+      <%= submit_tag 'Submit', class: 'submit-button' %>
+    </div>
+  </div>
+</div>
+
+<div class="bet-slip-entry" hidden="true">
+  <div class="bet-data">
+    <i class="fa fa-close pull-right close-button"></i>
+    <p class="outcome-name"></p>
+    <p class="odds"></p>
+    <p class="market-name"></p>
+    <p class="match-name"></p>
+    <input type='hidden' name='market_id' class='market-id'></input>
+    <input type='hidden' name='match_id' class='match-id'></input>
+    <input type='hidden' name='outcome_id' class='outcome-id'></input>
+    <input type='hidden' name='identifier' class='identifier'></input>
+    <input class="bid-value" name="stake"></input> To Returnhhh
+    <p class="total-value"></p>
+    <br/>
+  </div>
+</div>

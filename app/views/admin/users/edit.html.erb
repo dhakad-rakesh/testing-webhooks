@@ -1,0 +1,48 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('user') %></h2>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('edit_title', name: t('user')) %></h5>
+        </div>
+        <div class="ibox-content">
+          <%= render 'form' %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('wallet_management') %></h5>
+        </div>
+        <div class="ibox-content">
+          <%= render 'wallet_management_form' %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Address</h5>
+        </div>
+        <div class="ibox-content">
+          <%= render 'address_form' %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('user_kyc') %></h5>
+        </div>
+        <div class="ibox-content">
+          <%= render 'kyc_update_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

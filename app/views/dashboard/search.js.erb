@@ -1,0 +1,7 @@
+$('#sport-list, #highlight_matches, .last-minute-events, #last_minutes_matches').html("");
+$('.last-minute-events').removeClass('highlight');
+$('#sport-list').removeClass('games-tab');
+$("#tournament_fixtures").html('');
+<% @grouped_matches.each do |title, matches| %>
+  $("#tournament_fixtures").append("<%= escape_javascript(render(:partial => 'dashboard/partials/search_matches_list', locals: { matches: matches, title: title })) %>");
+<% end %>

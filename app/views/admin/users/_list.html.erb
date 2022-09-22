@@ -1,0 +1,77 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('username') %></th>
+      <th><%= t('email') %></th>
+      <th><%= t('email_status') %></th>
+      <th><%#= t('player_number') %></th>
+      <th><%= t('login_status') %></th>
+      <th><%= t('total_bets') %></th>
+      <th><%= t('wallets.available_amount') %></th>
+      <th><%= t('wallets.bonus_amount') %></th>
+      <th><%#= t('reseller') %></th>
+      <% if current_admin_user.is_super_admin? %>
+        <th><%= t('actions') %></th>
+        <th><%= t('select') %>
+      <% end %>
+        <%#= check_box_tag "all_user_ids", '', false, class: 'all_user_ids' %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @users.present? %>
+      <%= render partial: 'admin/users/user', collection: @users, current_admin_user: current_admin_user %>
+    <% else %>
+      <tr>
+        <td colspan=8>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.select_user').on('change', function(event){
+      var user_ids = []
+      $(".select_user:checkbox:checked").each(function(){
+        user_ids.push($(this).val());
+      });
+      $('.promition-send .user_ids').val(user_ids)
+    })
+  });
+
+  $('#all_user_ids').on('change', function(){
+    var user_ids = []
+    if($('#all_user_ids').prop("checked")){
+      $(".select_user").each(function(){
+        $(this).prop('checked', 'checked');
+        user_ids.push($(this).val());
+      });
+    } else {
+      $(".select_user").each(function(){
+        $(this).prop('checked', false);
+      });
+    }
+    $('.promition-send .user_ids').val(user_ids)
+  })
+
+  $('.promition-send').on('submit', function(e){
+    // e.preventDefault();
+    if ($('.promition-send .user_ids').val() == ''){
+      alert('Please select Users');
+      return false
+    }
+    if ($( "#cms_template_id" ).val() == ''){
+      alert('Please select promo template');
+      return false;
+    }
+    return true;
+  })
+</script>

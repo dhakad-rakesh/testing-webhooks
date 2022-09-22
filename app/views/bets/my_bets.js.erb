@@ -1,0 +1,6 @@
+<% selector = (params[:scope] === "resolved") ? '#close-bets .tab-content.bet-type-list-container' : '#open-bets .bet-type-list-container.tab-content' %>
+<% bet_type =  params[:combo] ? 'combo_bet_content' : 'single_bet_content' %>
+$("<%= selector %>").html("<%= escape_javascript render(:partial => "bets/partials/#{bet_type}", locals: {kind: params[:scope]}) %>");
+// var url = '<%#= "#{request.path}?#{request.params.slice('combo', 'scope', 'page').to_query}" %>';
+var url = '<%= request.url %>';
+$('.open-close-bets').data('activeURL', url);

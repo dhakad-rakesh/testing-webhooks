@@ -1,0 +1,103 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('users.users') %></h2>
+    <h3><%= "#{@admin_user&.full_name} (#{@admin_user&.email})" if @admin_user.present? %></h3>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <%= render "user_filter" %>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Players List</h5>
+          <div class="ibox-tools">
+            <%= link_to search_admin_users_path(format: :csv), class: 'btn btn-sm btn-primary pull-right', onclick: 'generateReport(this);' do %>
+                <span>CSV <i class="fa fa-download"></i></span>
+            <% end %>
+            <%= link_to "Add Player", new_admin_user_path(admin_user_id: params[:admin_user_id]), class: "btn btn-primary btn-sm" %>
+            <div class="ibox-tools" style='clear:both'>
+              <%= form_tag('/admin/cms_templates/promotion_notification', method: :post, class: 'pull-right promition-send form-inline', style: 'margin-left: 10px;') do %>
+                <%= hidden_field_tag :user_ids, nil, class: 'user_ids' %>
+                <% cms_templates = CmsTemplate.promotional_notification.order(updated_at: :desc) %>
+                <%= select_tag "cms_template_id", options_for_select(cms_templates.map{|cms_template| ["#{cms_template.id} - #{cms_template.subject}", cms_template.id]}), prompt: "Select Promotional mail", class: 'form-control', required: 'required', style: 'margin-top: -6px;' %>
+                <%= submit_tag "Send Promotional Email", class: 'btn btn-primary' %>
+              <% end %>
+              <div style="clear:both"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <%= render "admin/layouts/loader" %>
+          <div id="users_list">
+            <%= render "list" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    onlyNumeric();
+    address = '/admin/users/search';
+    searchContent(address);
+    resetSearch('/admin/users');
+    $('#arrange-items').on('change', function() {
+      commonSearchCode(address);
+    });
+  });
+</script>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.select_user').on('change', function(event){
+      var user_ids = []
+      $(".select_user:checkbox:checked").each(function(){
+        user_ids.push($(this).val());
+      });
+      $('.promition-send .user_ids').val(user_ids)
+    })
+  });
+
+  $('#all_user_ids').on('change', function(){
+    var user_ids = []
+    if($('#all_user_ids').prop("checked")){
+      $(".select_user").each(function(){
+        $(this).prop('checked', 'checked');
+        user_ids.push($(this).val());
+      });
+    } else {
+      $(".select_user").each(function(){
+        $(this).prop('checked', false);
+      });
+    }
+    $('.promition-send .user_ids').val(user_ids)
+  })
+
+  $('.promition-send').on('submit', function(e){
+    // e.preventDefault();
+    if ($('.promition-send .user_ids').val() == ''){
+      alert('Please select Users');
+      return false
+    }
+    if ($( "#cms_template_id" ).val() == ''){
+      alert('Please select promo template');
+      return false;
+    }
+    return true;
+  })
+</script>

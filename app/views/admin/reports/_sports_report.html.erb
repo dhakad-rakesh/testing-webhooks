@@ -1,0 +1,33 @@
+<%= link_to sports_admin_reports_path(request.parameters.merge(format: "csv")), class: 'btn btn-sm btn-primary pull-right' do %>
+  <span>CSV <i class="fa fa-download"></i></span>
+<% end %>
+<table class="dt-reports table table-hover sports-report" data-title="Koorabet | Bets Report">
+  <thead>
+    <tr>
+      <th><%= t('admin.reports.sports.sport') %></th>
+      <th><%= t('admin.reports.sports.stakes') %></th>
+      <th><%= t('admin.reports.sports.winning') %></th>
+      <th><%= t('admin.reports.sports.pl') %></th>
+      <th><%= t('admin.reports.sports.profitability') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if sports.present? %>
+      <% sports.each do |sport| %>
+        <tr class="gradeX">
+          <td><%= sport.sport %></td>
+          <td><%= format_currency(amount: sport.stakes) %></td>
+          <td><%= format_currency(amount: sport.winning) %></td>
+          <td><%= format_currency(amount: sport.pl) %></td>
+          <td><%= format_currency(amount: sport.profitability) %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=5>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= javascript_include_tag 'admin/reports' %>

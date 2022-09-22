@@ -1,0 +1,109 @@
+<div class="navigation">
+  <header>
+    <div id="mySidenav" class="sidenav">
+      <nav>
+        <ul>
+          <div class="divide-1">
+            <% if user_signed_in? %>
+            <li class="ac-user-detail mobile-menu">
+              <p>
+                <span>
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTkeUGBppgFbsUKNjOKENF1DPcy7nHhNcV4TDKApQjapB5PrOwi" style="width: 50px; border-radius: 50%;" class="hidden-md">
+                  <span class="hidden-xs">
+                    Account User:
+                  </span>
+                </span>
+                <span class="user-name">
+                  <%= current_user.username.capitalize %>
+                </span>
+              </p>
+
+              <p class="user-balance">
+                <span>Account Balance:</span>
+                <span class="account-balance">
+                  <%= number_with_precision(current_user.available_amount, precision: 2) %>
+                </span>
+              </p>
+              <!-- <p><span>Live casino:</span> <span>$10.00</span></p>
+              <p><span>Casino games:</span> <span>$10.00</span></p> -->
+            </li>
+            <% end %>
+          </div>
+
+          <div class=" mobile-menu divide">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          </div>
+
+          <li class=<%= active_home %>>
+            <%= link_to 'Home', root_path %>
+          </li>
+
+          <li class="mobile-menu">
+            <a id="long-term" onclick="closeNav()">
+              SPORTS
+            </a>
+          </li>
+
+          <li class="hidden-xs sport_betting_li <%= 'active' if request.url.include?('sport_bettings') %>">
+            <%= link_to 'Sports Betting', sport_bettings_path %>
+          </li>
+
+          <li class=<%= active_controller('live_bettings') %>>
+            <%= link_to 'Live Betting', live_bettings_path %>
+          </li>
+
+          <li class=<%= casino_active_class %>>
+            <a href="<%= casino_index_path %>">
+              Casino Games
+            </a>
+          </li>
+
+          <li class=<%= casino_lobby_active_class %>>
+            <a href="<%= casino_index_path(live_casino: true) %>">
+              Live Casino Games
+            </a>
+          </li>
+
+         
+
+          <%# unless mobile_device? %>
+            <div class="divide">           
+              <li class="mobile-menu">
+                <%= link_to t('privacy_policy'), privacy_policy_path %>                  
+              </li>
+              <li class="mobile-menu"><%= link_to t('rules_link'), rules_path %> </li>
+              <li class="mobile-menu"><%= link_to t('terms'), terms_path %> </li>
+              <li class="plus-image mobile-menu">
+                <span>
+                  <%= Figaro.env.project_name %>&copy; 2019-2020
+                </span>
+                <span>
+                  <%= image_tag '18plus', class: "eighteen-plus", alt: "18+" %>
+                </span>
+              </li>              
+            </div>
+          <%# end %>
+
+          <div class="divide">
+            <li class="mobile-menu">
+              <a href="<%= url_for_apk %>">
+                <!-- <img src="<%#= image_url 'app_download.png' %>" alt="app_download" style="width: 130px;"> -->
+                Download Android App Here
+              </a>
+            </li>
+          </div>
+          
+          <% if user_signed_in? %>
+            <div class="divide">
+              <li class="btn-logout mobile-menu">
+                <%= link_to users_sign_out_path(gs_session: session[:gs_session]) do %>
+                  LOGOUT
+                <% end %>
+              </li>
+            </div>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>

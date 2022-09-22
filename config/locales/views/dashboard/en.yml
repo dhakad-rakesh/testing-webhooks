@@ -1,0 +1,43 @@
+en:
+  admin:
+    dashboard:
+      summaries:
+        total_deposits: "TOTAL OF DEPOSITS"
+        total_withdrawals: "TOTAL OF WITHDRAWALS"
+        players_logged_in: "PLAYERS LOGGED IN"        
+        total_login_count: "TOTAL LOGIN COUNT"
+        players_registered: "PLAYERS REGISTERED"
+        players_balance: "PLAYERS BALANCE"
+        profit: "PROFIT"
+        players_making_deposit: "PLAYERS MAKING DEPOSIT"
+        players_making_withdrawals: "PLAYERS MAKING WITHDRAWALS"
+        bonus_balance: "TOTAL BONUS BALANCE"
+      profit:
+        percent: "Profit%"
+        name: "Profit"
+        bet_sport: "Bet Sport"
+        win_sport: "Win Sport"
+        bet_esport: "Bet Esport"
+        win_esport: "Win Esport"
+      sports_overview:
+        prematch: 'Prematch'
+        live: 'Live'
+        total: 'Total'
+        sports: 'Sports Overview'
+        esports: 'Esports Overview'
+        turnover: 'Turnover'
+        winning: 'Winning'
+        open_bets_single: 'Open Bets (Single)'
+        open_bets_combo: 'Open Bets (Combo)'
+        ggr: 'GGR'
+        profitability: 'Profitability'
+        number_of_single_bets: 'Number of Bets (Single)'
+        number_of_combo_bets: 'Number of Bets (Combo)'
+        average_bet: 'Average Bet'
+        bet_per_player: 'Bet per Player'
+        number_of_players: 'Number of Players'
+      top_sports:
+        top_5: 'Top 5'
+        bets_amount: 'Bets'
+        total_winnings: 'Winnings'
+        profit: 'Profit'

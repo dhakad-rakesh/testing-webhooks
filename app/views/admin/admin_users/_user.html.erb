@@ -1,0 +1,47 @@
+<tr class="gradeX">
+  <td><%= user.id %></td>
+  <td><%= user.email %></td>
+  <td><%= user.full_name %></td>
+  <% if false %>
+    <td>
+      <% unless user.label.eql?('default') %>
+        <span class="label label-primary"><%= "#{user.label.try(:humanize)} Manager" %></span>
+      <% else %>
+        <span class="label label-primary"><%= "Site Admin" %></span>
+      <% end %>
+    </td>
+  <% end %>
+  <% unless is_sub_admin_tab?(params[:role]) %>
+    <td><%= reselles_owner(user) %></td>
+  <% end %>
+  <td>
+    <% if user.undiscarded? %>
+      <div class="green">Active</div>
+    <% else %>
+      <div class="red">Deactive</div>
+    <% end %>
+  </td>
+  <td><%= user.users.count %></td>
+  <!-- <td><%#= user.reciever_address %></td> -->
+  <td><%= "#{Figaro.env.FRONTEND_URL}/af/#{user.try(:code)}" %></td>
+  <!-- <td><%#= user.current_wallet.available_amount %></td> -->
+  <%= render 'admin/admin_users/actions', user: user %>
+  <% if false %>
+    <% unless is_sub_admin_tab?(params[:role]) %>
+      <td><%= user.users.count %></td>
+    <% end %>
+    <% if user.is_reseller? %>
+      <td>
+        <b>Admin Credit :</b><%= number_with_precision(user.available_amount, precision: 2) %>
+        <br/>
+        <b>Self Credit :</b><%= number_with_precision(user.self_amount, precision: 2) %>
+      </td>
+      <%= render 'admin/admin_users/actions', user: user %>
+    <% elsif is_sub_admin_tab?(params[:role]) %>
+      <%= render 'admin/admin_users/actions', user: user %>
+    <% else %>
+      <td></td>
+      <td></td>
+    <% end %>
+  <% end %>
+</tr>

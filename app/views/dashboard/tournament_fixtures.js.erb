@@ -1,0 +1,7 @@
+$('#sport-list, #highlight_matches, .last-minute-events, #last_minutes_matches').html("");
+$('.last-minute-events').removeClass('highlight');
+$('#sport-list').removeClass('games-tab');
+$("#tournament_fixtures").html("<%= escape_javascript(render(:partial => 'dashboard/partials/tournament_fixtures', locals: { matches: @matches, tournament:@tournament })) %>");
+$(".new-navigation ul li.active, .navigation ul li.active").removeClass("active");
+$(".sport_betting_li").addClass("active");
+preloadActiveOutcomesFromBetslip();

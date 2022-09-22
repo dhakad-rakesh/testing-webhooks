@@ -1,0 +1,10 @@
+---
+:timeout: 30
+
+:dynamic: false
+:enabled: true
+:concurrency: <%= ENV['PUBLISH_ODDS_MAX_THREADS'] || 100 %>
+
+:queues:
+  - inplay_odds_change
+  

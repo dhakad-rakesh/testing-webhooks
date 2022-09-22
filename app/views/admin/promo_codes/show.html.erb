@@ -1,0 +1,109 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('promo_codes') %></h2>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <table class="table table-striped promo-details" data-promo-id=<%= @promo_code.id %>>
+            <tr>
+              <th><%= t('admin.promo_codes.promo_id') %></th>
+              <th><%= t('admin.promo_codes.name') %></th>
+              <th><%= t('admin.promo_codes.code') %></th>
+              <th><%= t('admin.promo_codes.status') %></th>
+              <th><%= t('admin.promo_codes.kind') %></th>
+              <th><%= t('admin.promo_codes.percent') %></th>
+              <th><%= t('admin.promo_codes.threshold_amount') %></th>
+              <th><%= t('admin.promo_codes.maximum_cashback') %></th>
+              <th><%= t('admin.promo_codes.valid_till') %></th>
+              <th><%= t('admin.promo_codes.limit_per_user') %></th>
+              <th><%= t('admin.promo_codes.usage_limit') %></th>
+            </tr>
+            <tr>
+              <td><%= @promo_code.id %></td>
+              <td><%= @promo_code.name %></td>
+              <td>
+                <span class="badge badge-info">
+                  <%= @promo_code.code %>
+                </span>
+              </td>
+              <td><%= @promo_code.status&.humanize %></td>
+              <td><%= @promo_code.kind&.humanize %></td>
+              <td><%= @promo_code.percentage? ? @promo_code.percent : 'NA' %></td>
+              <td><%= format_currency(amount: @promo_code.threshold_amount[:IQD]) %></td>
+              <td><%= format_currency(amount: @promo_code.maximum_cashback[:IQD]) %></td>
+              <td><%= short_date(@promo_code.valid_till) || "NA" %></td>
+              <td><%= @promo_code.limit_per_user || "NA" %></td>
+              <td><%= @promo_code.usage_limit || "NA" %></td>
+            </tr>
+          <table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <select class="form-control dual_select" multiple>
+          <% @users.each do |user| %>
+            <option value="<%= user.id %>"><%= "#{user.user_number} | #{user.full_name}" %></option>
+          <% end %>
+        </select>
+        <br/>
+        <button type="submit" class="btn btn-primary btn-submit">Send to seleced users</button>
+        <button type="submit" class="btn btn-success btn-submit-all">Send to all users</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var dual_select = $('.dual_select').bootstrapDualListbox({
+                      selectorMinimalHeight: 300,
+                      nonSelectedListLabel: 'Users List',
+                      selectedListLabel: 'Selected Users',
+                      preserveSelectionOnMove: 'moved',
+                      moveOnSelect: false
+                    });
+  var currPage = 1;
+  $("#bootstrap-duallistbox-nonselected-list_").scroll(function(e) {
+    if (e.currentTarget.scrollHeight - 10 < e.currentTarget.scrollTop + $(e.currentTarget).height()) {
+      var curTar = e.currentTarget;
+      var lastTop = curTar.scrollTop;
+      $.getJSON(`/admin/promo_codes/set_users?page=${++currPage}`, function(data) {
+        data['users'].forEach(function(user) {
+          $(".dual_select").append("<option value='" + user.id + "'>" + `${user.user_number} | ${user.first_name} ${user.last_name}` + "</option>");
+        })
+        $(".dual_select").bootstrapDualListbox('refresh');
+        curTar.scrollTop = lastTop;
+      });
+    }
+  });
+
+  $('.btn-submit, .btn-submit-all').on('click', function() {
+    var user_ids = $("#bootstrap-duallistbox-selected-list_ option").toArray().map((el)=> parseInt(el.value));
+    var selection = (user_ids.length == 0) ? 'blank' : 'selected'
+    selection = $(this).hasClass('btn-submit-all') ? 'all' : selection
+    var address = '/admin/promo_codes/send_promo'
+    var id = parseInt($('.promo-details').data('promo-id'));
+    var data = {
+      user_ids: user_ids,
+      selection: selection,
+      id: id
+    }
+    if(selection != 'blank')
+      postAjaxJs(address, data)
+  });
+</script>

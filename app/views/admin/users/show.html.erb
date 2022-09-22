@@ -1,0 +1,40 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('user') %></h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= admin_users_path %>"><%= t('users.users') %></a>
+      </li>
+      <li class="active">
+        <strong><%= @user.full_name %></strong>
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="tabs-container">
+        <ul class="nav nav-tabs">
+          <li class="active general_tab"><a data-toggle="tab" href="#tab-1">General</a></li>
+          <li class="financial_tab"><a data-toggle="tab" href="#tab-2">Financial</a></li>
+          <!-- <li class="reports_tab"><a data-toggle="tab" href="#tab-3">Reports</a></li> -->
+          <!-- <li class="settings_tab"><a data-toggle="tab" href="#tab-4">Settings</a></li> -->
+        </ul>
+        <div class="tab-content">
+          <%= render 'general' %>
+          <%= render 'financial' %>
+          <%#= render 'reports' %>
+          <%#= render 'settings' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

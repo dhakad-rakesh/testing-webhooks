@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    attributes:
+      advertisement:
+        name: 'Name'
+        ad_image: 'Ad image'
+        web_ad_image: 'Web Ad image'
+        app_ad_image: 'Mobile Ad image'
+        ad_url: 'Ad url'
+        enabled: 'Enabled'
+        position: 'Position'

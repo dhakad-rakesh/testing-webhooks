@@ -1,0 +1,8 @@
+Hi <%= "#{@payee&.first_name&.capitalize} (#{@payee&.username})" %>,
+<br>
+<br>
+You have recieved <%= @amount %> from <%= @payor&.full_name&.titleize %>
+<br>
+<br>
+Regards,<br>
+Bwinner Team.

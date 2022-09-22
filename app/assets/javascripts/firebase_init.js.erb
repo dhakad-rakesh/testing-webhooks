@@ -1,0 +1,232 @@
+// Used for assets compile temprary
+var _a_temp = "";
+var fcmPublicKey = "<%= ENV.fetch('FCM_PUBLIC_KEY', 'BCbh1vD8HOaMnj7WC7Y7qZLAs1PTE_CboXIISIya0Fn_rehR4lKzz8pG1jzTwxaHRbMAbSVCpaNNVFcJ_aKhbeM') %>";
+
+var config = {
+    apiKey: "<%= ENV.fetch('FIREBASE_API_KEY', 'AIzaSyBg8filP9pbMMYC07XvPp0fA2A7WTL8PUQ') %>",
+    authDomain: "<%= ENV.fetch('FIREBASE_AUTH_DOMAIN', 'koorabet-75ef9.firebaseapp.com') %>",
+    databaseURL: "<%= ENV.fetch('FIREBASE_DATABASE_URL', 'https://koorabet-75ef9.firebaseio.com') %>",
+    projectId: "<%= ENV.fetch('FIREBASE_PROJECT_ID', 'koorabet-75ef9') %>",
+    storageBucket: "<%= ENV.fetch('FIREBASE_STORAGE_BUCKET', 'koorabet-75ef9.appspot.com') %>",
+    messagingSenderId: "<%= ENV.fetch('FIREBASE_MESSAGING_SENDER_ID', '87591408182') %>",
+    appId: "<%= ENV.fetch('FIREBASE_APP_ID', '1:87591408182:web:64dbe4f61e873edfc0be97') %>",
+    measurementId: "<%= ENV.fetch('FIREBASE_MEASUREMENT_ID', 'G-TPWEE5RQ2G') %>"
+  }
+// Initialize firebase
+firebase.initializeApp(config);
+
+// Creating DB connection object
+// const realtimeDb = databaseConnection();
+
+// Connect to database
+// function databaseConnection(reference) {
+//   return firebase.database();
+// }
+
+// Connect to channel
+// function databaseChannel(database, reference) {
+//   return database.ref(reference);
+// }
+
+// Subscribe to database reference
+// function subscribeOddsChange(dbRef, matchId, load=false) {
+//   dbRef.on('value', function(snapshot) {
+//     console.log(snapshot.val());
+//     // $.each(snapshot.val(), function( matchId, value ) {
+//       var value = snapshot.val();
+
+//       if (value != null && load == true ) {
+//         // Update live score and time
+//         $('#running_score').text(value.running_score);
+//         $('#running_time').text(value.running_time);
+
+//         if (value.match_status === 'ended') {
+//           matchEndedAlert();
+//         }
+//         // Update odds data
+//         for(var marketId in value.markets || []) {
+//           for(var identifier in value.markets[marketId]) {
+//             var status = value.markets[marketId][identifier].status;
+//             var marketUid = value.markets[marketId][identifier].uid;
+//             if ( status === '0' ) {
+//               $(`a[href='#collapse${marketId}'] .bet-stopped`).html('Bet stopped!!');
+//               $(`.outcomes[data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`).parents('ul').addClass('disabled');
+//             } else {
+//               $(`a[href='#collapse${marketId}'] .bet-stopped`).html('');
+//               $(`.outcomes[data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`).parents('ul').removeClass('disabled');
+//               for(var outcomeId in value.markets[marketId][identifier].outcomes) {
+//                 outcome = value.markets[marketId][identifier].outcomes[outcomeId];
+//                 outcomeName = outcome.name;
+//                 outcomeOdd = value.markets[marketId][identifier].outcomes[outcomeId].odds;
+//                 value.markets[marketId][identifier].status 
+//                 $(`.outcomes[data-outcome-id='${outcomeId}'][data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`).attr('data-odds', outcomeOdd);
+//                 $(`.outcomes[data-outcome-id='${outcomeId}'][data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`).html(`${matchOutcomeName(outcome, marketUid)}<span class="currency"><span class="outcome-odd">${outcomeOdd}</span></span>`);
+//               }
+//             }
+//           }
+//         }
+//       } else {
+//         console.log('Data not present on firebase for this match.');
+//       }
+//       load=true
+//     // });
+//   });
+// }
+
+function subscribeOddsChange(interval, apk_version) {
+  var url = `/api/v1/matches/odds_change`;
+
+  $handleOddsChange = setInterval(function(){
+    $.ajax(url, {
+      type: "get",
+      beforeSend: function(request) {
+        request.setRequestHeader("APK-VERSION", apk_version);
+      },
+      success: function(result) {
+        updateOdds(result);
+      },
+      error: function(error) {
+      }
+    });
+  }, parseInt(interval)*1000);
+}
+
+function updateOdds(data) {
+  values = data['data'];
+  console.log(values)
+  $.each(values, function( index, value ) {
+    if (value != null && value.match_status === 'in_progress') {
+      var matchId = value.id;
+      // Update live score and time
+      $('#running_score_'+matchId+'').text(JSON.stringify(value.running_score).replace(/(^"|"$)/g, ''));
+      $('#running_time_'+matchId+'').text(JSON.stringify(value.running_time).replace(/(^"|"$)/g, ''));
+
+      // Update odds data
+      for(var marketId in value.markets || []) {
+        for(var identifier in value.markets[marketId]) {
+          var status = value.markets[marketId][identifier].status;
+          var marketUid = value.markets[marketId][identifier].uid;
+
+          if ( status.includes("open") === true ) {
+            $(`.outcomes[data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`).parents('.inner-detail-data').removeClass('disabled');
+            $(`.outcomes[data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`).parents('.inner-data').removeClass('disabled');
+            for(var outcomeId in value.markets[marketId][identifier].outcomes) {
+              outcome = value.markets[marketId][identifier].outcomes[outcomeId];
+              outcomeHandicap = outcome.handicap;
+
+              if (outcomeHandicap != null ) {
+                outcomeName = `${outcome.name} ${outcomeHandicap}`;
+              } else {
+                outcomeName = outcome.name;
+              }
+              
+              outcomeOdd = outcome.odds;
+              outcomeStatus = outcome.status;
+
+              var outcomeRow = $(`.outcomes[data-outcome-id='${outcomeId}'][data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`);
+              oldOutcomeOdd = outcomeRow.data('odds');
+              oldOutcomeStatus = outcomeRow.attr('data-status');
+
+              if (outcomeRow.parents('ul').hasClass('disabled') === true) {
+                continue;
+              }
+
+              // if (outcomeOdd == '5.0') {
+              //   debugger
+              // }
+              if (outcomeStatus != oldOutcomeStatus) {
+                if (outcomeStatus == 'open') {
+                  outcomeRow.removeClass('mark-disabled');
+                } else {
+                  outcomeRow.addClass('mark-disabled');
+                }
+                outcomeRow.attr('data-status', outcomeStatus); // set data-status
+              }
+
+              if (outcomeRow.hasClass('mark-disabled') === true) {
+                continue;
+              }
+
+              if (oldOutcomeOdd) {
+                if (oldOutcomeOdd != outcomeOdd) {
+                  outcomeRow.attr('data-odds', outcomeOdd); // set data-odds
+                  outcomeRow.parent().parent().closest('span').prev().html(outcomeName);
+                  outcomeRow.html(`${parseFloat(outcomeOdd).toFixed(2)}`); // set html for row
+                  if (parseFloat(outcomeOdd) > parseFloat(oldOutcomeOdd)) {
+                    outcomeRow.parent().parent().removeClass('smaller-val');
+                    outcomeRow.parent().parent().addClass('greater-val');
+                  } else {
+                    outcomeRow.parent().parent().removeClass('greater-val');
+                    outcomeRow.parent().parent().addClass('smaller-val');
+                  }
+                }
+              }
+            }
+          } else {
+            $(`.outcomes[data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`).parents('.inner-data').addClass('disabled');
+            $(`.outcomes[data-market-id='${marketId}'][data-identifier-id='${identifier}'][data-match-id='${matchId}']`).parents('.inner-detail-data').addClass('disabled');
+          }
+        }
+      }
+    } else {
+      clearInterval($handleOddsChange);
+      $handleOddsChange = 0;
+      // matchEndedAlert();
+    }
+  });
+}
+
+function matchOutcomeName(outcome, marketUid) {
+  outcome_name = outcome.name
+  if (outcome_name == "Home") {
+    outcome_name = '1'
+  } else if (outcome_name == "Away") { 
+    outcome_name = '2'
+  } else if (outcome_name == "Draw") {
+    outcome_name = 'X'
+  } else if (["Home - Even", "Away - Even"].includes(outcome_name)) {
+    outcome_name = 'Even'
+  } else if (["Home - Odd", "Away - Odd"].includes(outcome_name)) {
+    outcome_name = 'Odd'
+  } else if (["Home - 1st Half", "Away - 1st Half"].includes(outcome_name)) {
+    outcome_name = '1st'
+  } else if (["Home - 2nd Half", "Away - 2nd Half"].includes(outcome_name)) {
+    outcome_name = '2nd'
+  } else if (["Home - Tie", "Away - Tie"].includes(outcome_name)) {
+    outcome_name = 'Tie'
+  } else if (/\w*\s[0-9]-[0-9]/.test(outcome_name)) {
+    outcome_name = outcome_name.split(" ")[1]
+  } else if (!(/\w*\s-\s\d\w*/.test(outcome_name))) {
+    if (outcome_name.includes('Home')) {
+      outcome_name = outcome_name.replace(/Home/g, '1');
+    }
+    if (outcome_name.includes('Draw')) {
+      outcome_name = outcome_name.replace(/Draw/g, 'X');
+    }
+    if (outcome_name.includes('Away')) {
+      outcome_name = outcome_name.replace(/Away/g, '2');
+    }
+  }
+
+  // // 1778 is goal sequence market uid
+  if ( outcome.handicap !== "" && marketUid !== '1778' )
+    return _.uniq([outcome_name, outcome.handicap.toString()]).join(" ");
+  else {
+    return outcome_name;
+  }
+}
+
+// function matchEndedAlert() {
+//   alert ("Match Ended..!!");
+//   window.location.reload();
+// }
+
+// Subscribe to database reference
+// function subscribeWalletUpdate(dbRef, matchId) {
+//   dbRef.on('value', function(snapshot) {
+//     console.log(snapshot.val());
+//     if (snapshot.val() !== null) {
+//       $('#user_wallet_amount').text(snapshot.val().amount);
+//     }
+//   });
+// }

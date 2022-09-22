@@ -1,0 +1,116 @@
+<div class="col-lg-12">
+  <div class="ibox float-e-margins listing-filter">
+    <div class="ibox-title">
+      <h5>Filter</h5>
+      <div class="ibox-tools">
+        <a class="collapse-link">
+          <i class="fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+    <div class="ibox-content" style="display: block;">
+      <table class="filter-table">
+        <tr>
+          <th>Data Range</th>
+          <th>Transaction ID</th>
+          <th>Player ID</th>
+          <th>Payment Mode</th>
+          <th>Payment Type</th>
+        </tr>
+        <tr>
+          <td>
+            <%= text_field_tag :filter_date, nil, class: 'date-range form-control', placeholder: 'Select date range', data: { behavior: 'daterangepicker' }, autocomplete: "off" %>
+            <%= hidden_field_tag :start_date, nil, class: 'start-date' %>
+            <%= hidden_field_tag :end_date, nil, class: 'end-date' %>
+          </td>
+          <td>
+            <%= text_field_tag :transaction_id, nil, class: 'form-control', placeholder: 'Transaction ID', autocomplete: "off" %>
+          </td>
+          <td>
+            <%= text_field_tag :player_id, nil, class: 'form-control', placeholder: 'Player ID', autocomplete: "off" %>
+          </td>
+          <td>
+            <%= select_tag :payment_mode, options_for_select(payment_system_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+          <td>
+            <%= select_tag :payment_type, options_for_select(payment_type_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+        </tr>
+        <tr>
+          <th>Transaction Type</th>
+          <th>Status</th>
+          <!-- <th>Region</th> -->
+          <th>Min Amount</th>
+          <th>Max Amount</th>
+        </tr>
+        <tr>
+          <td>
+            <%= select_tag :transaction_type, options_for_select(transaction_type_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+          <td>
+            <%= select_tag :status, options_for_select(transaction_status_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+<!--           <td>
+            <%= select_tag :region, country_filter_options, { class: "form-control", :prompt => "All" } %>
+          </td> -->
+          <td>
+            <%= text_field_tag :min_amt, nil, class: 'form-control only-numeric', placeholder: 'Min Amount', autocomplete: "off" %>
+          </td>
+          <td>
+            <%= text_field_tag :max_amt, nil, class: 'form-control only-numeric', placeholder: 'Max Amount', autocomplete: "off" %>
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <div class="ibox-footer">
+        <div class="pull-right">
+          <button class="btn btn-sm btn-primary search">Apply</button>
+          <button class="btn btn-sm btn-danger reset">Reset</button>
+        </div><br/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'admin/list_filter' %>
+
+<script>
+
+  $('.search').on('click', () => {
+    const path = "/admin/reports/payments";
+    const data = {
+      query: {
+        filter_date: $("#filter_date").val(),
+        start_date: $("#start_date").val(),
+        end_date: $("#end_date").val(),
+        transaction_id: $("#transaction_id").val(),
+        player_id: $("#player_id").val(),
+        payment_mode: $("#payment_mode").val(),
+        payment_type: $("#payment_type").val(),
+        transaction_type: $("#transaction_type").val(),
+        status: $("#status").val(),
+        region: $("#region").val(),
+        min_amt: $("#min_amt").val(),
+        max_amt: $("#max_amt").val()
+      }
+    }
+
+    getAjaxLoad(path, data, '.payments-report')
+  });
+
+  $('.reset').on('click', () => {
+    $("#filter_date").val('');
+    $("#start_date").val('');
+    $("#end_date").val('');
+    $("#transaction_id").val('');
+    $("#player_id").val('');
+    $("#payment_mode").val('');
+    $("#payment_type").val('');
+    $("#transaction_type").val('');
+    $("#status").val('');
+    $("#region").val('');
+    $("#min_amt").val('');
+    $("#max_amt").val('');
+    $('.search').trigger('click');
+  });
+</script>

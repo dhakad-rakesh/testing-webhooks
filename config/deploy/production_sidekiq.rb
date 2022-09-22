@@ -1,0 +1,6 @@
+set :application_name, 'bwinner'
+set :domain, '3.13.229.74'
+set :deploy_to, '/var/www/bwinner.bet'
+set :repository, 'https://gitlab.com/grepruby/projects/client/bwinner.git'
+set :branch, 'production'
+set :rails_env, 'production'

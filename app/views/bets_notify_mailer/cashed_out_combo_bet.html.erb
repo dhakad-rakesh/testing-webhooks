@@ -1,0 +1,20 @@
+Hi <%= @email %>,
+<br>
+<br>
+You have successfully cashed_out your combo bet.
+<br>
+Cashout points have been added to your wallet.
+<br> 
+<!-- TODO: Add cashout amount for bets -->
+Please find the details below:
+<br>
+<br>
+ComboBet : <%= @combo.id %>
+<br>
+Stake : <%= @combo.stake %>
+<br>
+Odds : <%= @combo.odds %>
+<br>
+<br>
+Regards,<br>
+<%= Figaro.env.project_name %> Team.

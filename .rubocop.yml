@@ -1,0 +1,94 @@
+AllCops:
+  TargetRubyVersion: 2.4.1
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+  - config/routes.rb
+  - spec/**/*.rb
+  - config/routes/*.rb
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+  - config/routes.rb
+  IgnoreCopDirectives: true
+
+Metrics/MethodLength:
+  Max: 50
+  Exclude:
+  - db/migrate/*.rb
+
+Metrics/ModuleLength:
+  Max: 150
+
+Rails:
+  Enabled: true
+
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/RequestReferer:
+  EnforcedStyle: referrer # Specific to Amplify
+
+Rails/UnknownEnv:
+  Environments:
+    - staging
+    - production
+    - development
+
+Security/YAMLLoad:
+  Exclude:
+  - spec/**/*.rb
+  - app/jobs/**/*.rb
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: map
+    collect!: map!
+    inject: inject
+    detect: detect
+    find_all: select
+
+Style/Documentation:
+  Enabled: false # Specific to Amplify
+  Include:
+  - app/**/*.rb
+
+Style/DocumentationMethod:
+  Enabled: false # Specific to Amplify
+  Include:
+  - app/**/*.rb
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/YodaCondition:
+  Enabled: false
+
+Style/MultilineIfModifier:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+inherit_from: .rubocop-excludes.yml

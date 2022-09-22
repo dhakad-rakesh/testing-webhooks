@@ -1,0 +1,81 @@
+<div class="col-lg-12">
+  <div class="ibox float-e-margins listing-filter">
+    <div class="ibox-title">
+      <h5>Filter</h5>
+      <div class="ibox-tools">
+        <a class="collapse-link">
+          <i class="fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+    <div class="ibox-content" style="display: block;">
+      <table class="filter-table">
+        <tr>
+          <th>Data Range</th>
+          <th>Player Number</th>
+          <th>Game ID</th>
+          <th>Bet Type</th>
+          <th>Transaction Type</th>
+        </tr>
+        <tr>
+          <td>
+            <%= text_field_tag :filter_date, nil, class: 'date-range form-control', placeholder: 'Select date range', data: { behavior: 'daterangepicker' }, autocomplete: "off" %>
+            <%= hidden_field_tag :start_date, nil, class: 'start-date' %>
+            <%= hidden_field_tag :end_date, nil, class: 'end-date' %>
+          </td>
+          <td>
+            <%= text_field_tag :player_number, nil, class: 'form-control', placeholder: 'Player Number' %>
+          </td>
+          <td>
+            <%= select_tag :game_id, options_for_select(slot_game_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+          <td>
+            <%= select_tag :bet_type, options_for_select(bet_type_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+          <td>
+            <%= select_tag :transaction_type, options_for_select(transaction_type_enumerated_options), { prompt: 'All', class: "form-control"} %>
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <div class="ibox-footer">
+        <div class="pull-right">
+          <button class="btn btn-sm btn-primary search">Apply</button>
+          <button class="btn btn-sm btn-danger reset">Reset</button>
+        </div><br/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'admin/list_filter' %>
+
+<script>
+  $('.search').on('click', () => {
+    const path = "/admin/reports/slot_game";
+    const data = {
+      query: {
+        game_id: $("#game_id").val(),
+        player_number: $("#player_number").val(),
+        transaction_type: $("#transaction_type").val(),
+        filter_date: $("#filter_date").val(),
+        start_date: $("#start_date").val(),
+        end_date: $("#end_date").val(),
+        bet_type: $("#bet_type").val()
+      }
+    };
+
+    getAjaxLoad(path, data, '.bet-report-list');
+  });
+
+  $('.reset').on('click', () => {
+    $("#game_id").val('');
+    $("#player_number").val('');
+    $("#transaction_type").val('');
+    $("#filter_date").val('');
+    $("#start_date").val('');
+    $("#end_date").val('');
+    $("#bet_type").val('');
+    $('.search').trigger('click');
+  });
+</script>

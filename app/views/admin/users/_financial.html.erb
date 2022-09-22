@@ -1,0 +1,74 @@
+<div id="tab-2" class="tab-pane">
+  <div class="panel-body">
+ 
+    <!-- <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Player KPIs</a>
+        </h5>
+      </div>
+      <div id="collapseFour" class="player-kpis panel-collapse collapse in">
+        <div class="panel-body" data-link="<%= get_player_kpis_admin_user_path(@user) %>">
+          <%#= render 'player_kpi_records'%>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Wallet Management</a>
+        </h5>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <table class="table">
+            <% wallet = @user.current_wallet %>
+            <tr>
+              <td><b><%= t('wallets.total_amount') %></b></td>
+              <td><%= format_currency(amount: @user.available_amount) %></td>
+              <td><%= link_to t('update_wallet_funds'), edit_admin_user_wallet_path(@user, wallet), class: "btn btn-success" %></td>
+            </tr>
+            <tr>
+              <td><b><%= t('wallets.withdrawable_amount') %></b></td>
+              <td><%= format_currency(amount: wallet.withdrawable_amount) %></td>
+            </tr>
+            <tr>
+              <td><b><%= t('wallets.blocked_amount') %></b></td>
+              <td><%= format_currency(amount: wallet.blocked_amount) %></td>
+            </tr>
+            <tr>
+              <td><b><%= "Bonus Amount" %></b></td>
+              <td><%= format_currency(amount: @user.bonus_amount) %></td>
+              <td></td>
+            </tr>
+          <!--   <%#= form_with model: wallet, url: update_currency_admin_user_wallet_path(@user, wallet), local: true, class: 'form' do |f| %>
+              <tr>
+                <td><%#= f.label :currency %></td>
+                <td><%#= f.select :currency, Wallet.currencies.keys, {}, class: 'form-control', style: 'width: 100%;' %></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><%#= f.submit t('save'), class: 'btn btn-primary' %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <%# end %> -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('.financial_tab').on('click', () => {
+    const tab_selector = $('.financial_tab a').attr('href');
+    const player_kpis_body = $(`${tab_selector} .player-kpis .panel-body`);
+    const address = player_kpis_body.data('link')
+    if($(player_kpis_body).html().trim() == "") {
+      getAjaxJs(address, {'selector': `${tab_selector} .player-kpis .panel-body`});
+    }
+  });
+</script>

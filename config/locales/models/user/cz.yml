@@ -1,0 +1,44 @@
+cz:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: '无效的'
+            password:
+              bad_password: '不满足复杂性要求。长度应为6至14个字符，包括：1个字母，1个数字，1个特殊字符，但以下字符除外：<>：$％'
+              common_password: 'Must not contain parts of name or email'
+            username:
+              invalid: '只能包含字母数字字符，不能包含特殊字符。'
+              blank: '是必须的'
+              taken: '已经拿了'
+            phone:
+              taken: 'is already registered with us. Please login instead of signup.'
+              not_available: 'is not available'
+            locale:
+              not_supported: 'not supported'
+            email: 
+              blank: '是必须的'
+              taken: '已经拿了'
+            metamask_address:
+              taken: '已经拿了'
+              blank: '是必须的'          
+    attributes:
+      user:
+        first_name: 'First name'
+        last_name: 'Last name'
+        username: '用户名'
+        email: '电子邮件'
+        occupation: 'Occupation'
+        organization: 'Organization'
+        password: '密码'
+        password_confirmation: '确认密码'
+        current_password: '当前密码'
+        reality_check_timer: 'Reality check timer'
+        exclusion_time: 'Self exclusion time'
+        selfie_picture: '带有政府ID的自拍照'
+        govt_id_picture: '身份证证明'
+        kyc_status: 'KYC状态'
+        metamask_address: '元掩码地址'
+        

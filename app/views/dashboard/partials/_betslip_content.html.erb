@@ -1,0 +1,39 @@
+<% bet_slips.each_with_index do |slip, index| %>
+  <div class="first-content bet-data <%= type %>-bet-data" data-name="<%= slip[:outcome_name] %>-<%= slip[:match_name] %>-<%= slip[:market_id] %>-<%= slip[:odds] %>">
+    <input type="hidden" name="market_uid" class="market-uid" value="<%= slip[:market_uid] %>">
+    <input type="hidden" name="market_id" class="market-id" value="<%= slip[:market_id] %>">
+    <input type="hidden" name="match_id" class="match-id" value="<%= slip[:match_id] %>">
+    <input type="hidden" name="outcome_id" class="outcome-id" value="<%= slip[:outcome_id] %>">
+    <input type="hidden" name="identifier" class="identifier" value="<%= slip[:identifier] %>">
+    <div class="betslip-head">
+      <p>
+        <span class="market-name pull-left">
+          <%= slip[:market_name] %>
+        </span> @
+        <span class="odds <%= get_odds_status(slip[:odds_changed]) %>">
+          <%= slip[:odds] %>
+        </span>
+        <span class="pull-right close-button">
+          X
+        </span>
+      </p>
+    </div>
+    <p class="match-name">
+      <%= slip[:match_name] %>
+    </p>
+    <p class="outcome-name">
+      <%= slip[:outcome_name] %>
+    </p>
+    <div class="bottom-section">
+      <p class="match-price">
+      <!-- <span>
+          <input class="bid-value only-numeric" name="stake" value="<%#= type.eql?('single') ? slip[:stake]  : '' %>" <%#= type.eql?('combo') ? 'disabled' : '' %>/>
+        </span> -->
+        <!-- <span>
+          Return<br/>
+          <span class="total-value"><%#= type.eql?('single') ? slip[:total_value]  : 0.00 %></span>
+        </span> -->
+      </p>
+    </div>
+  </div>
+<% end %>

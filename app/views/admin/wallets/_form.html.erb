@@ -1,0 +1,36 @@
+<% path = params[:admin_user_id].present? ? admin_admin_user_wallet_path(@user, @wallet) : admin_user_wallet_path(@user, @wallet) %>
+
+<%= form_with model: @wallet, url: path, local: true, class: 'form' do |f| %>
+
+  <div class="form-group col-lg-10">
+    <h4><%= t('wallets.available_amount') %>: <%= format_currency(amount: @user.available_amount) %></h4>
+  </div>
+
+  <div class="form-group col-lg-10 amountBtnGroup">
+    <button type="button" class="btn btn-info btn-sm" value="0.5">0.5</button>
+    <button type="button" class="btn btn-info btn-sm" value="1">1</button>
+    <button type="button" class="btn btn-info btn-sm" value="1.5">1.5</button>
+  </div>
+
+  <div class="form-group col-lg-10 amountBtnGroup">
+    <button type="button" class="btn btn-info btn-sm" value="2">2</button>
+    <button type="button" class="btn btn-info btn-sm" value="2.5">2.5</button>
+    <button type="button" class="btn btn-info btn-sm" value="3">3</button>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= label_tag :amount %>
+    <%= number_field_tag :amount, nil, class: 'form-control', id: 'wallet_amount', style: 'width: 100%;', step: 0.000001, min:0, required: true, max: 10 %>
+  </div>
+
+  <div class="form-group col-lg-10 walletBtnGroup">
+    <%= button_tag(type: 'submit', class: 'btn btn-primary', name: 'commit', value: 'credit') do %>
+      <%= t('deposit') %>
+      <span class="fa fa-arrow-circle-o-down"></span>
+    <% end %>
+    <%= button_tag(type: 'submit', class: 'btn btn-success', name: 'commit', value: 'debit') do %>
+      <%= t('withdraw') %>
+      <span class="fa fa-arrow-circle-o-up"></span>
+    <% end %>
+  </div>
+<% end %>

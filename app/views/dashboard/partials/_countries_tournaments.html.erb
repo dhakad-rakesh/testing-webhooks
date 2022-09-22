@@ -1,0 +1,52 @@
+<div>
+  <% countries_list(countries, params[:kind]).each do |country| %>
+    <%# cache(country) do %>
+      <% sport_country = SportCountry.find_by(sport_id: sport.id, country_id: country.id) %>
+      <%# if (sport_country.number_of_matches > 0) %>
+        <p id="sport-<%= sport.id %>-country-<%= country.id %>" class="abc">
+          <span class="pull-left">
+            <%= country&.name&.upcase %>
+          </span>
+          <span class="pull-right game-number">
+            <%= sport_country&.number_of_matches %>
+          </span>
+        </p>
+        <div class="country-game-list" id="sport-<%= sport.id %>-country-<%= country.id %>-list-show">
+          <% sport_country_tournaments(sport.id, country.id).each do |tournament| %>
+            <%# cache(tournament) do %>
+              <a href="#" class="get-tournament-matches" data-url="<%= tournament_fixtures_dashboard_index_path(tournament_id: tournament.id) %>">
+                <p class="">
+                  <span class="pull-left">
+                    <img src="<%= image_url 'match-icon-black.png' %>" alt="match-icon" class="img-responsive pull-left match-icon">
+                    <%= tournament&.name&.upcase %>
+                  </span>
+                  <span class="pull-right game-number">
+                    <%= tournament&.number_of_matches %>
+                  </span>
+                </p>
+              </a>
+            <%# end %>
+          <% end %>
+        </div>
+      <%# end %>
+    <%# end %>
+    <script type="text/javascript">
+      toggleCountryDropdown("<%= sport.id %>", "<%= country.id %>");
+    </script>
+  <% end %>
+</div>
+
+<% if show_link.present? && countries.any? && countries.length > 10 %>
+  <div class="show-all">
+    <a href="#" class="get-show-all-list" data-url="<%= countries_list_dashboard_index_path(sport_id: sport.id, kind: show_link) %>">
+      <%= show_link.capitalize %>
+    </a>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $( document ).ready(function () {
+    getTournamentMatches();
+    getShowAllList();
+  });
+</script>

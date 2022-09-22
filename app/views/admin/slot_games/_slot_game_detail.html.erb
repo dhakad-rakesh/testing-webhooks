@@ -1,0 +1,23 @@
+<tr class="gradeX">
+  <td><%= slot_game.id %></td>
+  <td><%= image_tag(slot_game.image, class: 'casino-item-image.png') if slot_game.image.present? %></td>
+  <td><%= slot_game.name %></td>
+  <td><%= slot_game.provider %></td>
+  <td><%= short_date(slot_game.created_at) %></td>
+  <td class="center">
+    <div class="i-checks">
+      <label>
+        <input class='featured_slot_game' type="checkbox" value="" <%= "checked" if slot_game.is_featured %> data="slot_game_<%= slot_game.id %>">
+        <i></i>
+      </label>
+    </div>
+  </td>
+  <td class="center">
+    <div class="i-checks">
+      <label>
+        <input class='enabled_slot_game' type="checkbox" value="" <%= "checked" if slot_game.active %> data="slot_game_<%= slot_game.id %>">
+        <i></i>
+      </label>
+    </div>
+  </td>
+</tr>

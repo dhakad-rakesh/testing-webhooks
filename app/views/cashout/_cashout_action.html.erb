@@ -1,0 +1,8 @@
+<% if bet.cashoutable? %>
+  <% cashout_amount = bet.cashoutable[:amount].nan? ? nil : bet.cashoutable[:amount].round(2) %>
+  <%= button_tag "Cashout #{cashout_amount}", class: 'btn btn-warning block m-b', onclick: "cashout({ id: #{bet.id}, cashoutable: #{bet.cashoutable.to_json }})" %>
+<% else %>
+  <span class="<%= bet.status %>-match">
+    <%= bet_settlement_amount(bet) %> <%= bet.status.gsub("_", " ").capitalize %>
+  </span>
+<% end %>

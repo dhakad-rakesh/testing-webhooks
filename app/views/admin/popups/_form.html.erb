@@ -1,0 +1,122 @@
+<% url = @popup.persisted? ? admin_popup_path(@popup) : admin_popups_path %>
+<%= form_with model: @popup, url: url, local: true, class: 'form' do |f| %>
+  <table class="filter-table">
+    <tr>
+      <th>Title</th>
+      <th>Screen</th>
+      <th>Platform</th>
+      <th>Repeat Type</th>
+      <th>Repeat Duration (in minutes)</th>
+    </tr>
+    <tr>
+      <td>
+        <%= f.text_field :title, class: 'form-control', style: 'width: 100%;', required: true %>
+      </td>
+      <td>
+        <%= f.select :screen, options_for_select(popup_screen_options, f.object.screen), {}, class: 'form-control', style: 'width: 100%;' %>
+      </td>
+      <td>
+        <%= f.select :platform, options_for_select(popup_platform_options, f.object.platform), {}, class: 'form-control', style: 'width: 100%;' %>
+      </td>
+      <td>
+        <%= f.select :repeat_type, options_for_select(popup_repeat_type_options, f.object.repeat_type), {}, class: 'form-control', style: 'width: 100%;' %>
+      </td>
+      <td>
+        <%= f.number_field :repeat_duration, value: f.object.repeat_duration, min: 0, class: 'form-control', style: 'width: 100%;', required: true, data: { duration: f.object.repeat_duration } %>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Link</th>
+      <th>New Window</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>
+        <%= f.url_field :link, value: f.object.link, class: 'form-control', style: 'width: 100%;' %>
+      </td>
+      <td>
+        <%= f.select :redirection, options_for_select(yes_no_options, f.object.redirection), {}, class: 'form-control', style: 'width: 100%;' %>
+      </td>
+      <td>
+        <%= f.date_field :start_date, class: 'form-control', style: 'width: 100%;', required: true %>
+      </td>
+      <td>
+        <%= f.date_field :end_date, class: 'form-control', style: 'width: 100%;', max: "9999-12-31", required: true %>
+      </td>
+      <td>
+        <%= f.select :status, options_for_select(popup_status_options, f.object.status), {}, class: 'form-control', style: 'width: 100%;' %>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Show only for countries</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td colspan=2>
+        <%= f.select :country_ids, options_for_select(countries_options, f.object.country_ids), {}, class: 'form-control', style: 'width: 100%;', multiple: true, required: true %>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <tr>
+    <td colspan=5>
+      <%= f.text_area :structure, data: { provider: 'summernote' }, class: 'form-control' %>
+    </td>
+  </tr>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit (f.object.new_record? ? t('create') : t('update')), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+
+    $("#popup_country_ids").easySelect({
+      search: true,
+      buttons: true,
+      placeholder: 'Select countries',
+      dropdownMaxHeight: 250
+    });
+
+    nowDate = new Date();
+    mm = nowDate.getMonth()+1;
+    mm = mm < 10 ? `0${mm}` : mm;
+    dd = nowDate.getDate();
+    dd = dd < 10 ? `0${dd}` : dd;
+    date = `${nowDate.getFullYear()}-${mm}-${dd}`;
+    $("#popup_start_date").attr('min', date);
+    $("#popup_end_date").attr('min', date);
+
+    $("#popup_start_date").on('change', function(data) {
+      $("#popup_end_date").attr('min', data.target.value);
+      if($("#popup_end_date").val()) {
+        $("#popup_end_date").val(data.target.value);
+      }
+    });
+
+    toggleInputs();
+    $('#popup_repeat_type').on('change', function() {
+      toggleInputs();
+    });
+  });
+
+  function toggleInputs() {
+    if($('#popup_repeat_type').val() != "custom") {
+      $("#popup_repeat_duration").prop('disabled', true);
+      $("#popup_repeat_duration").val('');
+    } else {
+      $("#popup_repeat_duration").prop('disabled', false);
+      $("#popup_repeat_duration").val($("#popup_repeat_duration").data('duration'));
+    }
+  }
+</script>

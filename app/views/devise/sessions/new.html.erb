@@ -1,0 +1,66 @@
+<div class="login-page">
+  <div class="form">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "register-form", style: 'display:none' }) do |f| %>
+      <h2>Sign up</h2>
+      <%#= devise_error_messages! %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :username, placeholder: "Username or Email" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :first_name, placeholder: "First Name" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :last_name, placeholder: "Last Name" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation" %>
+      </div>
+
+      <div class="actions">
+        <%= button_tag "Sign up", class: 'btn btn-primary block full-width m-b' %>
+      </div>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    <% end %>
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
+      <h2>Sign In</h2>
+      <div class="form-group">
+        <%= f.text_field :login, autofocus: true, autocomplete: "login", class: "form-control", placeholder: "Username or Email" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder: "Password" %>
+      </div>
+      <% if devise_mapping.rememberable? -%>
+        <div class="form-group remember-me">
+          <span class="text">Remember me</span><span class="input"><%= f.check_box :remember_me %></span>
+        </div>
+      <% end -%>
+      <div class="actions">
+        <%= button_tag "Login", class: 'btn btn-primary block full-width m-b' %>
+      </div>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+      <p class="message"><%= render "devise/shared/links" %></p>
+    <% end -%>
+  </div>
+</div>
+<script>
+  if (window.location.pathname == "/users") {
+    $('.form .login-form').hide();
+    $('.form .register-form').show();
+  }
+
+  $('.message a').click(function() {
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+</script>

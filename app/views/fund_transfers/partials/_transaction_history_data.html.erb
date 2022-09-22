@@ -1,0 +1,26 @@
+<% transaction_history&.each_with_index do |record, index| %>
+  <ul class="<%= even_odd(index) %>-color">
+    <li class='local-date-time'>
+      <%= record&.created_at.strftime("%Y-%d-%m %H:%M:%S") %>
+    </li>
+
+    <li>
+      <td><%= record&.transaction_type&.capitalize %></td>
+    </li>
+
+    <li>
+      <%= record&.remark %>
+    </li>
+
+    <li>
+      <%= record&.amount&.round(8) %>
+    </li>
+  </ul>
+<% end %>
+<script type="text/javascript">
+  $('.local-date-time').each(function function_name(i) {
+    var date = convertUtcInToLocalTime($(this).text(), "LLL");
+    $(this).html(date);
+  });
+</script>
+<%= will_paginate @transaction_history %>

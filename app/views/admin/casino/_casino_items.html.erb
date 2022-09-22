@@ -1,0 +1,22 @@
+<%= will_paginate @casino_items, renderer: BootstrapPagination::Rails %>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('image') %></th>
+      <th><%= t('name') %></th>
+      <th><%= t('menu_type') %></th>
+      <th><%= t('item_type') %></th>
+     <!--  <th><%#= t('provider') %></th>
+      <th><%#= t('free_spin') %></th> -->
+      <th><%= t('created_at') %></th>
+<!--       <th><%#= t('mobile') %></th>
+      <th><%#= t('lobby') %></th> -->
+      <th><%= t('active') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'admin/casino/casino_item', collection: @casino_items, current_admin_user: current_admin_user %>
+  </tbody>
+</table>
+<%= will_paginate @casino_items, renderer: BootstrapPagination::Rails %>

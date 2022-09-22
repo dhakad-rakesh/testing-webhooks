@@ -1,0 +1,21 @@
+Hi <%= @email %>,
+<br>
+<br>
+Your Hold Bet of <%= @match_title %> match on '<%= @bet.market_name %>' market has been successfully stored.
+<br>
+Please find the details below:
+<br>
+Match : <%= @match_title %>
+<br>
+Market : '<%= @bet.market_name %>'
+<br>
+Outcome : '<%= @bet.outcome_name %>'
+<br>
+Stake : <%= @bet.stake %>
+<br>
+<br>
+<b>Note:</b> Hold bet will be destroyed if the market is being closed, match is over or perticular event is gone. Please ensure to process them before they laps. In order to do that go to "Parlay On Hold" in application.
+<br>
+Regards,
+<br>
+<%= Figaro.env.project_name %> Team.

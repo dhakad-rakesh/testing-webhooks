@@ -1,0 +1,6 @@
+$("#sport-<%= @sport.id %>-country-list").html("<%= escape_javascript(render(:partial => 'dashboard/partials/countries_tournaments', locals: { countries: @countries, sport: @sport, show_link: @show_link })) %>");
+<% if params[:kind] == "show less" %>
+  $('#sport-<%= @sport.id %>-country-list').removeClass('add-list-height');
+<% else %>
+  $('#sport-<%= @sport.id %>-country-list').addClass('add-list-height');
+<% end %>

@@ -1,0 +1,31 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('email') %></th>
+      <th><%= t('name') %></th>
+      <!-- <th><%#= t('role') %></th> -->
+      <% unless is_sub_admin_tab?(params[:role]) %>
+        <th><%= t('manager') %></th>
+      <% end %>
+      <th><%= t('status') %></th>
+      <% unless is_sub_admin_tab?(params[:role]) %>
+        <th><%= t('players') %></th>
+        <!-- <th><%#= t('balance') %></th> -->
+        <!-- <th><%#= t('reciever_address') %></th> -->
+        <th><%= t('link') %></th>
+      <% end %>
+      <th><%= t('action') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @users.present? %>
+      <%= render partial: 'admin/admin_users/user', collection: @users %>
+    <% else %>
+      <tr class="gradeX">
+        <td colspan=10>No data found</td>
+      <tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>

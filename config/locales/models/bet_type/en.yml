@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      bet_type:
+        name: 'Name'
+        play_types: 'Bet Types'

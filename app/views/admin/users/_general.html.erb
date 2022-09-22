@@ -1,0 +1,203 @@
+<div id="tab-1" class="tab-pane active">
+  <div class="panel-body">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Personal Information</a>
+        </h5>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <%= form_with model: @user, url: admin_user_path(@user), local: true, class: 'form' do |f| %>
+            <table class="table">
+              <tr>
+                <td><%= f.label :username %></td>
+                <td><%= f.text_field :username, class: 'form-control', style: 'width: 100%;' %></td>
+              </tr>
+<!--               <tr>
+                <td><%#= f.label :first_name %></td>
+                <td><%#= f.text_field :first_name, class: 'form-control', style: 'width: 100%;' %></td>
+              </tr>
+              <tr>
+                <td><%#= f.label :last_name %></td>
+                <td><%#= f.text_field :last_name, class: 'form-control', style: 'width: 100%;' %></td>
+              </tr>
+              <tr>
+                <td><%#= f.label :phone %></td>
+                <td>
+                  <div class="form-group">
+                    <%# country_code, phone = parse_phone_number(f.object.phone) %>
+                    <%#= select_tag :country_code, options_for_select(country_with_code_options, country_code), class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%#= text_field_tag :phone_number, phone, class: 'form-control only-numeric-omit-zero', required: true %>
+                  </div>
+                </td>
+              </tr> -->
+              <tr>
+                <td><%= f.label :password %><br/>(<%= t('admin.note_password') %>)</td>
+                <td><%= f.text_field :password, class: 'form-control', style: 'width: 100%;' %></td>
+                <td><a class="reset-pwd-link btn btn-danger" >Generate Password</a><td>
+              </tr>
+          <!--     <tr>
+                <td><%#= f.label :bank_name %></td>
+                <td><%#= f.text_field :bank_name, class: 'form-control', style: 'width: 100%;' %></td>
+              </tr>
+              <tr>
+                <td><%#= f.label :account_number %></td>
+                <td><%#= f.text_field :account_number, class: 'form-control', style: 'width: 100%;' %></td>
+              </tr>
+              <tr>
+                <td><%#= f.label :account_holder_name %></td>
+                <td><%#= f.text_field :account_holder_name, class: 'form-control', style: 'width: 100%;' %></td>
+              </tr>
+              <tr>
+                <td><%#= f.label :date_of_birth %></td>
+                <td><%#= f.date_field :date_of_birth, class: 'form-control', style: 'width: 100%;' %></td>
+              </tr> -->
+              <tr>
+                <td><%= f.submit t('save'), class: 'btn btn-primary' %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+ <!--    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Address Information</a>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse in">
+        <div class="panel-body">
+           <%#= form_with model: @user, url: admin_user_path(@user), local: true, class: 'form' do |f| %>
+            <%#= f.fields_for :address do |address_form| %>
+              <table class="table">
+                <tr>
+                  <td><%#= address_form.label :country %></td>
+                  <td><%#= address_form.text_field :country, class: 'form-control', style: 'width: 100%;', disabled: true %></td>
+                </tr>
+                <tr>
+                  <td><%#= address_form.label :state %></td>
+                  <td><%#= address_form.text_field :state, class: 'form-control', style: 'width: 100%;' %></td>
+                </tr>
+                <tr>
+                  <td><%#= address_form.label :city %></td>
+                  <td><%#= address_form.text_field :city, class: 'form-control', style: 'width: 100%;' %></td>
+                </tr>
+                <tr>
+                  <td><%#= address_form.label :street_address %></td>
+                  <td><%#= address_form.text_field :street_address, class: 'form-control', style: 'width: 100%;' %></td>
+                </tr>
+                <tr>
+                  <td><%#= f.submit t('save'), class: 'btn btn-primary' %></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+            <%# end %>
+          <%# end %>
+        </div>
+      </div>
+    </div>
+ -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Account Information</a>
+        </h5>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <table class="table">
+  <!--           <tr>
+              <td><b><%#= "Player Number" %></b></td>
+              <td><%#= @user.user_number || "NA" %></td>
+            </tr> -->
+
+            <tr>
+              <td> <b>Email</b> </td>
+              <td><%= @user.email.present? ? @user.email : @user.unconfirmed_email %></td>
+            </tr>
+            <tr>
+              <td> <b>Email Status</b> </td>
+              <td><%= @user.email.present? ? 'Verified' : 'Verification Pending' %></td>
+            </tr>
+
+            <% %w[created_at sign_in_count current_sign_in_at current_sign_in_ip last_sign_in_at last_sign_in_ip].each do |field| %>
+              <tr>
+                <td><b><%= t(field) %></b></td>
+                <td><%= @user.send(field) || "NA" %></td>
+              </tr>
+            <% end %>
+            <%= form_with model: @user, url: update_kyc_status_admin_user_path(@user), local: true, class: 'form' do |f| %>
+              <tr>
+                <td><%= f.label :kyc_status %></td>
+                <% if @user.kyc_status.eql?('Processing') %>
+                  <td>Approval initiated</td>
+                <% else %>
+                 <td><%= f.select(:kyc_status, options_for_select(Constants::KYC_STATUS.map{|x| [x, x]}, f.object&.kyc_status),{}, {class: 'form-control', style: 'width: 100%;'}) %>
+                <% end %>
+                <!-- <td><%#= f.select :kyc_status, Constants::KYC_STATUS, {}, class: 'form-control', style: 'width: 100%;', default: t('pending') %></td> -->
+              </tr>
+              <tr>
+                <td><%= f.label :kyc_status_notes %></td>
+                <td><%= f.text_area :kyc_status_notes, :placeholder => "Kyc status notes", class: 'form-control' %></td>
+              </tr>
+              <tr>
+                <td><%= f.submit t('save'), class: 'btn btn-primary' %></td>
+                <td><h5 style="color: grey">Note: KYC Status will update on block chain, please wait till we receive an response from block chain. Response depends on network speed.</h5></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">KYC Documents</a>
+        </h5>
+      </div>
+      <div id="collapseFour" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <th>Selfie picture</th>
+              <th>Government id picture</th>
+              <th>Id picture</th>
+            </tr>
+              <% if @user.selfie_picture_url %>
+                <td>
+                  <% if is_file_image?( @user.selfie_picture) %>
+                    <img src="<%= @user.selfie_picture_url %>" width="260" height="190">
+                  <% else %>
+                    <a href="<%= @user.selfie_picture_url %>" target="_blank"> View Document </a>
+                  <% end%>
+                </td>
+                <td>
+                  <% if is_file_image?( @user.govt_id_picture) %>
+                    <img src="<%= @user.govt_id_picture_url %>" width="260" height="190" >
+                  <% else %>
+                    <a href="<%= @user.govt_id_picture_url %>" target="_blank" > View Document </a>
+                  <% end%>
+                </td>
+                <td>
+                  <% if is_file_image?( @user.id_picture) %>
+                    <img src="<%= @user.id_picture_url %>" width="260" height="190">
+                  <% else %>
+                    <a href="<%= @user.id_picture_url %>" target="_blank"> View document </a>
+                  <% end%>
+                </td>
+              <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

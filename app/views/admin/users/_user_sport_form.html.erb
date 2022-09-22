@@ -1,0 +1,39 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Visible</th>
+    </tr>
+  </thead>
+  <tbody data-user-id="<%= @user.id %>">
+    <% sports.each do |sport| %>
+      <tr>
+        <th><%= sport.id %></th>
+        <th><%= sport.name %></th>
+        <th>
+          <input class='enable_user_sport' type="checkbox" value="" <%= "checked" unless @user.disabled_sports&.include? sport.id %> data-sport-id="<%= sport.id %>">
+        </th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  $('.enable_user_sport').on('click', function(event){
+    elem = $(this);
+    var result = confirm("Are you sure?");
+    if (result) {
+      sport_id = elem.attr("data-sport-id");
+      user_id = elem.closest("tbody").data("user-id");
+      enabled =  elem.is(":checked");
+      disableUserSport(user_id, {'sport_id': sport_id, 'enabled': enabled});
+    } else {
+      if (elem.prop('checked') == true) {
+        elem.prop("checked", false)
+      } else {
+        elem.prop("checked", true)
+      }
+    }
+  });
+</script>

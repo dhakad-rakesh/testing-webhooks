@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    attributes:
+      betting_pool:
+        name: 'Name'
+        match_id: 'Matches'
+        entry_amount: 'Entry amount'
+        points_per_user: 'Points per user'
+        minimum_participants: 'Minimum participants'
+        winnings_distribution_method: 'Winnings distribution method'

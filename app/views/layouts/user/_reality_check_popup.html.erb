@@ -1,0 +1,20 @@
+<!-- Modal -->
+<div class="modal fade" id="rcModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%= t('alert') %>!</h4>
+      </div>
+      <div class="modal-body">
+        <p><%= t('reality_check_msg') %></p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'No, I\'ll continue a bit more time.', set_rc_timestamp_user_path(current_user.id), class: 'btn btn-default', data_dismiss: 'modal', method: :post, remote: true %>
+        <%= link_to 'Logout', users_sign_out_path(gs_session: session[:gs_session]), class: 'btn btn-default', data_dismiss: 'modal' %>
+      </div>
+    </div>
+  </div>
+</div>

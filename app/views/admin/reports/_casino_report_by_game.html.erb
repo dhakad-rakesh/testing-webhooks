@@ -1,0 +1,44 @@
+<%= link_to casino_report_by_games_admin_reports_path(request.parameters.merge(format: "csv", page: 'all')), class: 'btn btn-sm btn-primary pull-right' do %>
+  <span>CSV <i class="fa fa-download"></i></span>
+<% end %>
+<table class="dt-reports table table-hover bet-report-list">
+  <thead>
+    <tr>
+      <th><%= t('admin.reports.casino.game_name') %></th>
+      <th><%= t('admin.reports.casino.provider') %></th>
+      <th><%= t('admin.reports.casino.total_bet') %></th>
+      <th><%= t('admin.reports.casino.winnings') %></th>
+      <th><%= "P/L" %></th>
+      <th><%= "GGR" %></th>
+      <th><%= t('admin.reports.casino.average_bet_stake') %></th>
+      <th><%= t('admin.reports.casino.bonus_utilized') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @games.present? %>
+      <% @games.each do |game| %>
+        <tr class="gradeX">
+          <td><%= game.name %></td>
+          <td><%= game.provider %></td>
+          <td><%= format_currency(amount: game.stakes) %></td>
+          <td><%= format_currency(amount: game.winning) %></td>
+          <td><%= format_currency(amount: game.pl) %></td>
+          <td><%= format_currency(amount: game.ggr) %></td>
+          <td><%= format_currency(amount: game.average_stake) %></td>
+          <td><%= format_currency(amount: game.bonus_utilized) %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=9>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @games, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>
+
+<%= javascript_include_tag 'admin/reports' %>

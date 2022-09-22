@@ -1,0 +1,310 @@
+---
+:timeout: 30
+
+:dynamic: false
+:enabled: true
+:scheduler:
+  :listened_queues_only: false
+
+development:
+  :concurrency: <%= ENV['RAILS_SIDEKIQ_MAX_THREADS'] || 50 %>
+  :schedule:
+    ls_amqp_prematch_listners:
+      cron: '0 * * * * *' # At every minutes minute.
+      class: Lsports::AMQP::PrematchListenerWorker
+
+    schedule_matches:
+      cron:  '15 01 * * *' # Runs every day at 1:15 AM.
+      class: ScheduleMatchesJob
+
+    monitor_schedule_matches:
+      cron:  '*/10 * * * *' # At every 10th minute.
+      args: "monitor"
+      class: ScheduleMatchesJob
+
+    update_match_count_job:
+      cron: '*/45 * * * *' # At every 45 minute.
+      class: UpdateNumberOfMatchesJob
+
+    bet_resolution:
+      every: 1h
+      class: LS::FeedResultJob # At every every hour.
+
+    refund_pending_bets:
+      cron: '0 1 * * *' # Every day at 1 am
+      class: LS::RefundPendingBetsJob
+
+    # inplay_bet_resolution:
+    #   cron: '*/13 * * * *' # At every 13 minute.
+    #   class: LS::Inplay::FeedResultJob # At every every hour.
+
+    markets_odds_change:
+      cron:  '30 */3 * * *' # At minute 30 past every 3rd hour.
+      class: LS::OddsChangeJob
+
+    # clear_logs:
+    #   cron: '19 */6 * * *' # At minute 19 past every 6th hour.
+    #   class: ClearLogsJob
+
+    # casino_items:
+    #   cron: '23 03 * * *' # Runs every day at 3:23 AM.
+    #   class: Casino::CreateItemsJob
+
+    # wallet_reports:  
+    #   cron: '55 03 * * *' # Runs every day at 3:55 AM.
+    #   class: Users::Wallet::ReportsJob      
+
+    # disable_matches:
+    #   cron: '*/5 * * * *' # At every 5th minute.
+    #   class: LS::Inplay::DisableMatchJob
+
+    update_subscribed_inplay_matches:
+      cron: '*/15 * * * *'
+      class: LS::Inplay::UpdateInplaySubscribedMatchesJob
+
+    time_and_score_update:
+      cron: '*/17 * * * *' # At every 17th minutes.
+      class: LS::TimeAndScoreUpdate
+
+    update_popups_status:
+      cron: '0 0 * * *'
+      class: UpdatePopupsStatusJob
+
+    update_market_translations_ru:
+      cron:  '3 3 * * 3' # At 03:03 every Wednesday
+      args: "ru"
+      class: Translations::MarketTranslationsJob
+    
+    update_market_translations_tr:
+      cron:  '3 9 * * 3' # At 03:09 every Wednesday
+      args: "cz"
+      class: Translations::MarketTranslationsJob
+
+    update_schedule_translations_ru:
+      cron:  '45 01 * * *' # Runs every day at 1:45 AM.
+      args: "ru"
+      class: Translations::ScheduleTranslationsJob
+
+    update_schedule_translations_cz:
+      cron:  '50 01 * * *' # Runs every day at 1:50 AM.
+      args: "cz"
+      class: Translations::ScheduleTranslationsJob
+
+staging:
+  :concurrency: <%= ENV['RAILS_SIDEKIQ_MAX_THREADS'] || 50 %>
+  :schedule:
+    # ls_amqp_listners:
+    #   cron: '0 * * * * *' # At every minutes minute.
+    #   class: Lsports::AMQP::InplayListenerWorker
+
+    disable_matches:
+      cron: '*/5 * * * *' # At every 5th minute.
+      class: LS::Inplay::DisableMatchJob
+
+    ls_amqp_prematch_listners:
+      cron: '0 * * * * *' # At every minutes minute.
+      class: Lsports::AMQP::PrematchListenerWorker
+
+    schedule_matches:
+      cron:  '15 01 * * *' # Runs every day at 1:15 AM.
+      class: ScheduleMatchesJob
+
+    monitor_schedule_matches:
+      cron:  '*/10 * * * *' # At every 10th minute.
+      args: "monitor"
+      class: ScheduleMatchesJob
+
+    update_match_count_job:
+      cron: '*/45 * * * *' # At every 45 minute.
+      class: UpdateNumberOfMatchesJob
+
+    bet_resolution:
+      every: 1h
+      class: LS::FeedResultJob # At every every hour.
+
+    inplay_bet_resolution:
+      cron: '*/13 * * * *' # At every 13 minute.
+      class: LS::Inplay::FeedResultJob # At every every hour.
+
+    markets_odds_change:
+      cron:  '30 */3 * * *' # At minute 30 past every 3rd hour.
+      class: LS::OddsChangeJob
+
+    clear_logs:
+      cron: '19 */6 * * *' # At minute 19 past every 6th hour.
+      class: ClearLogsJob
+
+    # casino_items:
+    #   cron: '23 03 * * *' # Runs every day at 3:23 AM.
+    #   class: Casino::CreateItemsJob
+
+    # wallet_reports:  
+    #   cron: '55 03 * * *' # Runs every day at 3:55 AM.
+    #   class: Users::Wallet::ReportsJob      
+
+    # disable_matches:
+    #   cron: '*/5 * * * *' # At every 5th minute.
+    #   class: LS::Inplay::DisableMatchJob
+
+    time_and_score_update:
+      cron: '*/17 * * * *' # At every 17h minutes.
+      class: LS::TimeAndScoreUpdate
+
+    update_popups_status:
+      cron: '0 0 * * *'
+      class: UpdatePopupsStatusJob
+
+    update_market_translations_ru:
+      cron:  '3 3 * * 3' # At 03:03 every Wednesday
+      args: "ru"
+      class: Translations::MarketTranslationsJob
+    
+    update_market_translations_tr:
+      cron:  '3 9 * * 3' # At 03:09 every Wednesday
+      args: "cz"
+      class: Translations::MarketTranslationsJob
+
+    update_schedule_translations_ru:
+      cron:  '45 01 * * *' # Runs every day at 1:45 AM.
+      args: "ru"
+      class: Translations::ScheduleTranslationsJob
+
+    update_schedule_translations_cz:
+      cron:  '50 01 * * *' # Runs every day at 1:50 AM.
+      args: "cz"
+      class: Translations::ScheduleTranslationsJob
+
+production:
+  :concurrency: <%= ENV['RAILS_SIDEKIQ_MAX_THREADS'] || 50 %>
+  :schedule:
+    # ls_amqp_prematch_listners:
+    #   cron: '0 * * * * *' # At every minutes minute.
+    #   class: Lsports::AMQP::PrematchListenerWorker
+
+    # schedule_matches:
+    #   cron:  '15 01 * * *' # Runs every day at 1:15 AM.
+    #   class: ScheduleMatchesJob
+
+    # monitor_schedule_matches:
+    #   cron:  '*/10 * * * *' # At every 10th minute.
+    #   args: "monitor"
+    #   class: ScheduleMatchesJob
+
+    # update_match_count_job:
+    #   cron: '*/45 * * * *' # At every 45 minute.
+    #   class: UpdateNumberOfMatchesJob
+
+    # bet_resolution:
+    #   every: 1h
+    #   class: LS::FeedResultJob # At every every hour.
+
+    # refund_pending_bets:
+    #   cron: '0 1 * * *' # Every day at 1 am
+    #   class: LS::RefundPendingBetsJob
+
+    # inplay_bet_resolution:
+    #   cron: '*/13 * * * *' # At every 13 minute.
+    #   class: LS::Inplay::FeedResultJob # At every every hour.
+
+    # markets_odds_change:
+    #   # cron: '*/30 * * * *' # At every 30 minutes. Need to set this cron on production
+    #   cron: '30 */3 * * *' # Temporary changed for staging.
+    #   class: LS::OddsChangeJob
+
+    # clear_logs:
+    #   cron: '19 */6 * * *' # At minute 19 past every 6th hour.
+    #   class: ClearLogsJob
+
+    # remove_old_odds_data:
+    #   cron: '0 03 * * 1' # Every Monday at 3:00 AM
+    #   class: ClearOldOddsDataJob
+
+    # # casino_items:
+    # #   cron: '23 03 * * *' # Runs every day at 3:23 AM.
+    # #   class: Casino::CreateItemsJob
+
+    # # wallet_reports:  
+    # #   cron: '55 03 * * *' # Runs every day at 3:55 AM.
+    # #   class: Users::Wallet::ReportsJob      
+
+    # # disable_matches:
+    # #   cron: '*/5 * * * *' # At every 5th minute. Need to check requirement of this job, as match will be disable from RMQ 
+    # #   class: LS::Inplay::DisableMatchJob
+
+    # update_subscribed_inplay_matches:
+    #   cron: '*/15 * * * *' # At every 15 minute
+    #   class: LS::Inplay::UpdateInplaySubscribedMatchesJob
+
+    # time_and_score_update:
+    #   cron: '*/17 * * * *' # At every 17th minutes.
+    #   class: LS::TimeAndScoreUpdate
+    
+    # update_popups_status:
+    #   cron: '0 0 * * *'
+    #   class: UpdatePopupsStatusJob
+
+    # update_inplay_matches_translations:
+    #   cron: '* * * * *' # At every minutes.
+    #   class: Translations::InplayMatchesTranslationsJob
+
+    # update_market_translations_ru:
+    #   cron:  '3 3 * * 3' # At 03:03 every Wednesday
+    #   args: "ru"
+    #   class: Translations::MarketTranslationsJob
+    
+    # update_market_translations_tr:
+    #   cron:  '3 9 * * 3' # At 03:09 every Wednesday
+    #   args: "cz"
+    #   class: Translations::MarketTranslationsJob
+
+    # update_schedule_translations_ru:
+    #   cron:  '45 01 * * *' # Runs every day at 1:45 AM.
+    #   args: "ru"
+    #   class: Translations::ScheduleTranslationsJob
+
+    # update_schedule_translations_cz:
+    #   cron:  '50 01 * * *' # Runs every day at 1:50 AM.
+    #   args: "cz"
+    #   class: Translations::ScheduleTranslationsJob
+
+    # check_withdraw_transaction_status:
+    #   cron: '*/10 * * * *'
+    #   class: Metamask::CheckWithdrawStatusJob
+
+    # site_maintenance_notification:
+    #   cron: '0 * * * *' #every hour
+    #   class: CmsTemplates::SiteMaintenanceNotificationJob
+
+    # upcoming_event_notification:
+    #   cron: '0 * * * *' #every hour
+    #   class: CmsTemplates::UpcomingEventNotificationJob
+
+    # batch_transfer:
+    #   cron: '0 0 * * *' # Every day at 12 am
+    #   class: Blockchain::BatchTransferJob
+
+:queues:
+  - high
+  - amqp_client
+  - amqp_prematch_client
+  - disable_match
+  - inplay_odds_change
+  - update_single_market
+  - inplay_score_change
+  - amqp_watcher
+  - amqp_processes
+  - result_process
+  - prematch_odds_change
+  - odds_change
+  - bet_stop
+  - odds_summary_job
+  - default
+  - low
+  - market_list_job
+  - mailers
+  - disable_matches
+  - clear_logs
+  - game_sessions
+  - wallet_update
+  - notifications
+  - stats_update

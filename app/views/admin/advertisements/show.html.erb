@@ -1,0 +1,75 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('ad') %></h2>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('type_info', name: t('ad')) %></h5>
+          <div class="pull-right">
+            <%= link_to t('edit'), edit_admin_advertisement_path(@ad), class: 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <table class="table">
+            <tbody>
+              <% %w[name ad_url enabled].each do |field| %>
+                <tr>
+                  <td><b><%= "#{t(field)}:" %></b></td>
+                  <td><%= @ad[field] %></td>
+                </tr>
+              <% end %>
+              <tr>
+                <td><b><%= t('per_click_cost')%></b></td>
+                <td><%= format_currency(amount: @ad&.per_click_cost) %></td>
+              </tr>
+
+              <tr>
+                <td><b><%= t('web_ad_image') %>:</b></td>
+                <% if @ad.web_ad_image.attached? %>
+                  <td>
+                    <%= link_to image_tag(@ad.web_ad_image, class: 'ad-image'), @ad.web_ad_image %>
+                    <%= link_to rails_blob_path(@ad.web_ad_image, disposition: :attachment) do %>
+                      <i class="fa fa-download" aria-hidden="true"></i>
+                    <% end %>
+                  </td>
+                <% else %>
+                  <td><%= t('no_data') %></td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td><b><%= t('app_ad_image') %>:</b></td>
+                <% if @ad.app_ad_image.attached? %>
+                  <td>
+                    <%= link_to image_tag(@ad.app_ad_image, class: 'ad-image'), @ad.app_ad_image %>
+                    <%= link_to rails_blob_path(@ad.app_ad_image, disposition: :attachment) do %>
+                      <i class="fa fa-download" aria-hidden="true"></i>
+                    <% end %>
+                  </td>
+                <% else %>
+                  <td><%= t('no_data') %></td>
+                <% end %>
+              </tr>
+
+<!--               <tr>
+                <td><b><%#= t('position') %>:</b></td>
+                <td><%= @ad.position %></td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

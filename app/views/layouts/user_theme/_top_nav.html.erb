@@ -1,0 +1,219 @@
+<div class="top-strip">
+  <div class="dots" onclick="openNav()">
+    <span class="fa fa-ellipsis-v">
+      
+    </span>
+  </div>
+  <div class="container">
+    <p class="pull-left">
+      <span>
+        <span class="pull-left time-icon">
+          <img src="<%= image_url 'sports_icon/6046.png' %>" class="img-responsive" alt="f-ball">
+        </span>
+        <span class="gmt-time"><span>
+      </span>
+    </p>
+    <form class="pull-right">
+      <div>
+        <div id="advanced"
+             data-input-name="country3"
+             data-selected-country="TUN"
+             data-button-size="btn-lg"
+             data-button-type="btn-warning"
+             data-scrollable="true"
+             data-scrollable-height="250px"
+             data-countries='{"TUN": "Tunisia"}'>
+        </div>
+      </div>
+    </form>
+    <div class="mobile-logo">
+      <a href="#">
+        <% unless session[:gs_session] %>
+          <img src="<%= image_url 'logo.png' %>">
+        <% else %>
+          <img src="<%= image_url 'gs_logo.png' %>">
+        <% end %>
+      </a>
+    </div>
+  </div>
+  <div class="new-navigation">
+    <header>
+      <div class="container">
+        <nav>
+          <ul>
+            <li class=<%= active_home %>>
+              <%= link_to 'Home', root_path %>
+            </li>
+
+            <li class="sport_betting_li <%= 'active' if request.url.include?('sport_bettings') %>">
+              <%= link_to 'Sports Betting', sport_bettings_path %>
+            </li>
+            <li class=<%= active_controller('live_bettings') %>>
+              <%= link_to 'Live Betting', live_bettings_path %>
+            </li>
+            <li class=<%= casino_active_class %>>
+              <a href="<%= casino_index_path %>">
+                Casino Games
+              </a>
+            </li>
+            <li class=<%= casino_lobby_active_class %>>
+              <a href="<%= casino_index_path(live_casino: true) %>">
+                Live Casino Games
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </div>
+</div>
+
+<div class="logo-input ">
+  <div class="container">
+    <div class="vertical-alignment">
+      <div class="logo hidden-xs">
+        <div>
+          <a href="#">
+            <% unless session[:gs_session] %>
+              <img src="<%= image_url 'logo.png' %>">
+            <% else %>
+              <img src="<%= image_url 'gs_logo.png' %>">
+            <% end %>
+          </a>
+        </div>
+      </div>
+      <% if current_user.present? %>
+        <div class="account-detail hidden-xs">
+          <ul>
+            <li class="my-bets <%= my_bets_page? ? 'selected' : '' %>">
+              <%= link_to my_bets_bets_path(scope: 'pending', match_id: @live_match&.id) do %>
+                <%= image_tag "h1.png", :class => "normal-img" %>
+                <%= image_tag "my-bets.png", :class => "select-hover"%>
+                <p>
+                  My Bets
+                </p>
+              <% end %>
+            </li>
+            <% if funds_transfer_allowed? %>
+              <li class="fund-transfer <%= fund_transfer_page? ? 'selected' : '' %>">
+                <%= link_to fund_transfers_path do %>
+                  <%= image_tag "h2.png", :class => "normal-img"%>
+                  <%= image_tag "statment.png", :class => "select-hover"%>
+                  <p>
+                    Funds Transfer
+                  </p>
+                <% end %>
+              </li>
+            <% end %>
+
+            <li class="ac-statement <%= statement_page? ? 'selected' : '' %>">
+              <%= link_to transaction_history_path do %>
+                <%= image_tag "h4.png", :class => "normal-img" %>
+                <%= image_tag "scroll.png", :class => "select-hover"%>
+                <p>
+                  Account Statement
+                </p>
+              <% end %>
+            </li>
+
+            <li class="ac-setting <%= profile_page? ? 'selected' : '' %>">
+              <%= link_to edit_user_path(current_user) do %>
+                <%= image_tag "h3.png", :class => "normal-img" %>
+                <%= image_tag "settings.png", :class => "select-hover"%>
+                <p>
+                  Account Setting
+                </p>
+              <% end %>
+            </li>
+
+            <li class="ac-user-detail">
+              <p><span>Account User:</span> <span><%= current_user.username.capitalize %></span></p><br>
+              <p><span>Account Balance:</span> <span class="account-balance"><%= number_with_precision(current_user.available_amount, precision: 2) %></span></p>
+              <!-- <p><span>Live casino:</span> <span>$10.00</span></p>
+              <p><span>Casino games:</span> <span>$10.00</span></p> -->
+            </li>
+            <li class="btn-logout">
+              <%= link_to users_sign_out_path(gs_session: session[:gs_session]) do %>
+                <button>LOGOUT</button>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <div class="sign-in-up" >
+          <div class="close-btn">
+            <span class="sign-in-close">&times;</span>
+          </div>
+          <div class="sign-in-form">
+            <%= form_for(:user, url: session_path(:user)) do |f| %>
+              <ul>
+                <li>
+                  <%= f.text_field :login, autofocus: true, placeholder: "Enter your username", required: true %>
+                </li>
+                <li>
+                  <%= f.password_field :password, placeholder: "Enter your password", required: true %>
+                </li>
+                <li>
+                  <%= button_tag "LOGIN" %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
+          <div class="forgot-password">
+            <div class="pull-right">
+              <ul>
+                <li>
+                  <%= link_to "Forgot your password?", new_password_path(:user) %>
+                </li>
+                <li>
+                  <%= link_to "Sign Up", new_user_registration_path, class: 'sign-in-btn' %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="navigation">
+    <header>
+      <!-- <div class="mob-menu-btn">
+        <button>
+          Menu
+        </button>
+      </div> -->
+      <!-- <nav>
+        <ul>
+          <li class=<%= active_home %>>
+            <a href="<%#= root_path %>">Home</a>
+          </li>
+
+          <li>
+            <a href="#">
+              Sports Betting
+            </a>
+          </li>
+
+          <li class=<%#= active_controller('live_bettings') %>>
+            <a href="<%= live_bettings_path %>">
+              Live Betting
+            </a>
+          </li>
+
+          <li class=<%= casino_active_class %>>
+            <a href="<%#= casino_index_path %>">
+              Casino Games
+            </a>
+          </li>
+          <li class=<%= casino_lobby_active_class %>>
+            <a href="<%#= casino_index_path(live_casino: true) %>">
+              Live Casino Games
+            </a>
+          </li>
+        </ul>
+      </nav> -->
+    </header>
+  </div>
+</div>

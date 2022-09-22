@@ -1,0 +1,997 @@
+ku:
+  show: نیشاندان
+  create: درووستکردن
+  currency: دراو
+  edit: دەستکاریکردن
+  save: پاشەکەوت
+  update: نوێکردنەوە
+  delete: سڕینەوە
+  back: گەڕانەوە
+  amount: بڕ
+  bet: گرەو
+  bet_type: جۆری گرەو
+  bet_types: جۆرەکانی گرەو
+  big_image: تکایە وێنەیەك بەرزبکەرەوە لە ٨ مێگا کەمتر بێت
+  combo: "گرەوی کۆمبۆ # %{combo_bet_id}"
+  group: گروپ
+  groups: گروپەکان
+  language: زمان
+  market: مارکێت
+  markets: مارکێتەکان
+  match: یاری
+  play_type: جۆری یاری
+  play_types: جۆرەکانی یاری
+  phone: مۆبایل
+  settings: ڕێکخستن
+  sport: وەرزش
+  sports: وەرزشەکان
+  success_create: "%{name} بە سەرکەوتوویی درووستکرا"
+  success_update: "%{name} بە سەرکەوتوویی نوێکرایەوە"
+  success_destroy: "%{name} بە سەرکەوتوویی سڕدرایەوە"
+  odds_changed: >-
+    خاڵەکان گۆڕانکاری بەسەرهاتووە، تکایە دووبارە بە گرەوەکەتدا بچۆرەوە پێش
+    ئەوەی دایبنێیت
+  tournament: پاڵەوانێتی
+  tournaments: پاڵەوانێتییەکان
+  user: بەکارهێنەر
+  record: تۆمار
+  not_found: "%{name} نەدۆزرایەوە"
+  went_wrong: شتێکی هەڵە ڕوویدا
+  wallet: جزدان
+  deposit: پارە زیادکردن
+  withdraw: پارە ڕاکێشان
+  report: ڕاپۆرت
+  recipient: وەرگر
+  wrong_img_format: تکایە وێنەیەك دابنێ لە جۆرەکانی jpg/jpeg/png/pdf
+  url_update_success: لینك بە سەرکەوتویی نوێکرایەوە
+  user_number: ژمارەی بەکارهێنەر
+  single_bet_limit_exceeded: "سنووری تاکە گرەوی تێپەڕاند"
+  daily_bet_limit_exceeded: "سنووری گرەوی ڕۆژانە تێپەڕیوە"
+  weekly_bet_limit_exceeded: "سنووری گرەوی هەفتانە ی تێپەڕاند"
+  monthly_bet_limit_exceeded: "سنووری گرەوی مانگانە ی تێپەڕاند"
+  max_amount_limit_exceeded: "زۆرترین سنووری بڕی تێپەڕبوو"
+  single_deposit_limit_exceeded: "سنووری دانانی تاک تێپەڕێنرا"
+  daily_deposit_limit_exceeded: "سنووری دانانی ڕۆژانە تێپەڕێنرا"
+  weekly_deposit_limit_exceeded: "سنووری دانانی هەفتانە ی تێپەڕاند"
+  monthly_deposit_limit_exceeded: "سنووری دانانی مانگانە ی تێپەڕاند"
+  should_be_greater_eq: "%{current} دەبێت گەورەتر یان یەکسان بێت بە %{comparator}"
+  cant_exceed_global: "بەکارهێنەر %{attribute} ناتوانێت گەورەتر بێت لە گشتی %{attribute}"
+  max_monthly_bet_amount: "زۆرترین بڕی مانگانەی گرەو"
+  max_weekly_bet_amount: "زۆرترین بڕی هەفتانەی گرەو"
+  max_daily_bet_amount: "زۆرترین بڕی رۆژانەی گرەو"
+  max_one_bet_amount: "زۆرترین بڕی یەک گرەو"
+  max_monthly_deposit_amount: "زۆرترین بڕی پارەدانانی مانگانە"
+  max_weekly_deposit_amount: "زۆرترین بڕی پارەدانانی هەفتانە"
+  max_day_deposit_amount: "زۆرترین بڕی پارەدانانی ڕۆژانە"
+  max_single_amount: "زۆرترین بڕی پارەدانان لە جارێکدا"
+  balance_amount_limit: "سنوری بڕی بالانس"
+  confirmation_mail_sent: "نامەی دووپاتکردنەوە بۆ ئیمەیلەکەت نێردرا"
+  upgrade_apk: "تکایە APK نوێ بکەوە دەتوانیت ئەو APKی ئێستا ڕەشبکەیتەوە و دانە نوێکە لە ماڵپەڕەکەمان دابەزێنیت"
+  country_betting_disabled: "وڵاتەکەت رێگە بە گرەو کردن نادات"
+  invalid_country: "وڵاتی نادروست"
+  bet_limit_message: "ناتوانیت لە %{limit} گرەو زیاتر لە یەک کاتدا دابنێیت"
+  invalid_time_period: "کاتی دانبینکراو درووست نییە"
+  currency_cant_change: "بەتاڵ نییە، ناکرێت دراو بگۆڕدرێت"
+  currency_not_valid: "دراو دروست نیە"
+  invalid_state_transition: "گواستنەوەی دۆخی نادروست"
+  cant_verify_otp: "OTP ناتوانرێت پشتڕاست بکرێتەوە"
+  success: "سەرکەوتن"
+  rank: "پلە"
+  dispute_stats: "ئاماری ناکۆکی"
+  not_found_msg: "نەدۆزرایەوە"
+  preferences: 
+    notification: "ڕێکبەندەکانی بەرجەستەکراو نوێکرایەوە"
+    password: "تێپەڕە ووشە بەسەرکەوتوویی نوێکرایەوە"
+    address: "ناونیشانەکە بە سەرکەوتوویی نوێکرایەوە"
+  betting_stopped: "گرەو کردن ڕاگیرا بۆ ئەم یاریە"
+  maximum_amount: "زۆرترین بڕی پارەدان بریتیە لە %{amount}"
+  bets:
+    bets: گرەوەکان
+    combo_bets: گرەوی کۆمبۆ
+    not_found: گرەو نەدۆزرایەوە
+    slips_required: "لیستی گرەو داواکراوە"
+    suspend: 
+        invalid: "گرەو ناکرێت ڕاپەسێردرێ"
+    errors:
+      bet_limit_exceeded: >-
+        سنووری بردنەوە بەزێندرا. هەر ڕۆژێك بۆت هەیە %{max_win_limit}.
+        ببەیتەوە. ئەمڕۆ دەتوانی هەتا %{remaining_wining} ببەیتەوە
+    remarks:
+      won: "بڕی بردنەوە: %{amount} لە یاری %{match} لە مارکێت: %{market}"
+      lost: "بڕی دۆڕان: %{amount} لە یاری %{match} لە مارکێت: %{market}"
+      refunded: "بڕی گەڕاوە: %{amount} لە یاری %{match} لە مارکێت: %{market}"
+      half_lost: "بڕی نیوە گەڕاوە: %{amount} لە یاری %{match} لە مارکێت: %{market}"
+      half_won: "بڕی نیوە گەڕاوە: %{amount} لە یاری %{match} لە مارکێت: %{market}"
+    index:
+      my_bets: گرەوەکانم
+      created_at: بەروار
+      type: جۆر
+      stake: بڕ
+      odds: خاڵ
+      status: دۆخ
+    show:
+      title: زانیاری گرەو
+      id: ئایدی
+      type: جۆر
+      tournament: پاڵەوانێتی
+      market: مارکێت
+      outcome: بەرهەم
+      odds: خاڵ
+      stake: بڕ
+      status: دۆخ
+    create:
+      message: گرەو دانرا
+      matches_response: >-
+        یاری نەدۆزرایەوە. تکایە هەندێک لەو یارییانەی ئامادەنین لایانبە لە
+        لیستەکەت
+    cashout:
+      success: کاشئاوتی گرەوەکەت سەرکەوتووبوو
+      failed: هەندێك لە گرەوەکان ناتوانرێت کاشئاوت بکرێن
+      validation_failed: گرەوەکان ناتوانن کاشئاوت بکرێن
+      mistmatch_error: بڕی کاشئاوت گۆڕدراوە، تکایە دووبارە خاڵەکان نوێبکەرەوە
+  combo_bets:
+    create:
+      message: گرەوی کۆمبۆ درووستکرا!
+    won: "بڕی بردنەوە: %{amount} لە گرەوی کۆمبۆی # %{combo_bet_id}"
+    lost: "بڕی دۆڕاندن: %{amount} لە گرەوی کۆمبۆی # %{combo_bet_id}"
+    refunded: "بڕی پارەی گەڕاوە: %{amount} لە گرەوی کۆمبۆی # %{combo_bet_id}"
+    errors:
+      stake: تکایە بڕێکی ڕاست بنووسە
+  users:
+    users: بەکارهێنەرەکان
+    delete: 
+        success: "بەکارهێنەر بە سەرکەوتوویی سڕایەوە"
+    invitations:
+      create:
+        success: بانگهێشت نێردرا!
+        exists: ئەم بەکارهێنەرە پێشتر هەیە
+    email:
+      not_confirmed: تکایە سەرەتا ئیمێڵەکەت دڵنیابکەرەوە
+      email_advantage: >-
+        ئەم ئیمێڵە یارمەتیت دەدات بۆ نوێکردنەوەی وشەی نهینی و ئاگاداری
+        گرەوەکان
+      not_found: هیچ هەژمارێك لەسەر ئەم ئیمیڵە نییە
+    phone:
+      invalid: ژمارە تەلەفۆن هەڵەیە
+      not_confirmed: تکایە سەرەتا ژمارە تەلەفۆنەکەت دڵنیابکەرەوە
+      registered: ئەم ژمارەیە پێشتر لەگەڵ ئێمە هەژماری هەیە
+      available: ژمارە تەلەفۆنەکەت بەردەستە
+      verification:
+        success: بە سەرکەوتوویی کۆدەکەت دڵنیاکردەوە
+        failed: کۆدەکە نەتوانرا دڵنیابکرێتەوە
+    password:
+      edit:
+        success: وشەی نهێنی بە سەرکەوتوویی نوێبوویەوە
+      confirmation_mismatch: پاسۆردی دووبارە وەك ئەوەی پێشوو نییە
+      instructions_sent: "ڕێنمایی نوێکردنەوەی پاسۆرد نێردراوە بۆ %{email}"
+      reset_success: پاسۆرد بە سەرکەوتوویی نوێبوویەوە
+    provider:
+      error: بەهۆی ڕێکخستنی زانیاری کەسی نەتوانرا زانیاری داواکراو وەربگیرێت
+      message: "ناوی هەژمارەکەت %{username} . دەتوانی دواتر لە بەشی بەکارهێنەر بیگۆڕیت"
+    confirmation_sent: ئیمێڵی دڵنیایی نێردرا بۆ ئیمێڵەکەت
+    sign_in: بە سەرکەوتویی هاتیتە ژوورەوە
+    sign_out: بە سەرکەوتویی چوویتە دەرەوە
+    not_found: ئەم هەژمارە نییە
+    unverified: تکایە دڵنیابوونەوەکانت دڵنیابکەرەوە
+    invalid_action: هەڵە هەیە لە بەکارهێنەر
+  wallets:
+    not_enough_amount: باڵانسی پێویستت نییە
+    id: ئایدی
+    available_amount: بڕی بەردەست
+    add: زیادکردن
+    point: خاڵ
+    update:
+      by_admin: "جزدان نوێکرایەوە - لە admin ـەوە بۆ %{user} %{user_email}."
+      by_reseller: >-
+        جزدان نوێکرایەوە - لە فرۆشیار %{reseller} ـەوە بۆ %{user}
+        %{user_email}.
+    errors:
+      insufficient_amount: بڕی پارەکەت کەمە لەناو جزدان
+      debit_limit: "ناتوانین زیاتر لە %{amount} زیادبکەیت"
+      invalid_amount: بڕ دەبێ زیاتربێت لە سفر
+    transaction:
+      transactions: ئاڵوگۆڕەکان
+      bet_id: ئایدی گرەو
+      type: جۆر
+      amount: بڕ
+      remark: تێبینی
+      date: بەروار
+  favourite:
+    marked: وەك دڵخوازی خۆت نیشانکرا
+    resource_not_found: چاوگەکان نەدۆزرایەوە
+    not_found: دڵخوازەکان نەدۆزرایەوە
+    destroy: بە سەرکەوتویی دڵخوازەکەت لەناوبرد
+    not_found_key: "%{key}ی پەسەندکراو نەدۆزرایەوە"
+  betting:
+    suspended: گرەو لەم کاتەدا ئامادەنییە تکایە پاش ماوەیەکی کورت هەوڵ بدەرەوە
+    invalid_status: دۆخ ئامادە نییە
+    approve_kyc: |-
+      تکایە فۆرمی KYC دڵنیابکەرەوە پێش ئەوەی بتەوێ گرەو بکەیت بە دانانی
+      پێویست لە بەشی پرۆفایل & نامە بۆ ئەدمین بنێرە بۆ ئەوەی قبوڵ بکرێ.
+  something_went_wrong: شتێکی هەڵە ڕوویدا
+  hold:
+    confirm:
+      success: گرەو جێبەجێکرا!
+      failure: ئەم گرەوە ناتوانرێ جێبەجێبکرێت
+    create:
+      failure: ئەم گرەوە ناتوانرێ درووستبکرێت
+    delete:
+      success: گرەوەکان سڕدراونەتەوە
+      error: هەندێك لە گرەوەکان ناسڕدرێنەوە
+    current_odds:
+      no_odds_found: هیچ خاڵێك ئامادە نییە بۆ ئەم گرەوە
+    invalid: گرەوی هەڵە
+    odds:
+      not_found: هیچ خاڵێك ئامادە نییە بۆ ئەم گرەوە
+  account:
+    disabled: هەژمارەکەت بە شێوەیەکی کاتی لەکارخراوە
+  user_limit:
+    not_set: ببورە، هیچ سنووری بەکارهێنانت نییە.
+    success: سنوور بە سەرکەوتوویی نوێکرایەوە
+  methods:
+    deposit:
+      not_found: هیچ ڕێگایەکی ئامادە نییە
+    withdrawal:
+      not_found: هیچ ڕێگایەکی ئامادە نییە
+  messages:
+    deposit:
+      success: پارەزیادکردن بە سەرکەوتویی چووە پرۆسەوە
+    payout:
+      pending: داواکاری سەرکەوتووبوو، پاش ماوەیەك ئاگاداردەکرێیتەوە دوای قبوڵکردن
+      success: داواکاری بە سەرکەوتویی چووە پرۆسەوە
+  errors:
+    messages:
+      betting_not_allowed: وڵاتەکەت ڕێگە بە گرەوکردن نادات
+      upgrade_api: |-
+        تکایە ئەپەکەت نوێبکەرەوە. دەتوانی ئەمەیان بسڕیتەوە و لە وێبسایتەکەمان
+        وەشانی نوێ دابگریت
+      currency_not_supported: جۆری دراوەکەت پشتگیری ئەم جۆرە پارەدانە ناکات
+      deposit:
+        cancelled: پارەزیادکردن هەڵوەشایەوە
+        failed: |-
+          ئاڵوگۆڕی پارە رەت کرایەوە لەلایەن بەڵێندەری پارەکانت
+          تکایە ڕێگایەکی تری پارەزیادکردن هەڵبژێرە
+        malformed: داواکاری دەگمەنە
+        not_found: ئاڵوگۆڕ نەدۆزرایەوە
+        processed: ئاڵوگۆڕ لە پرۆسەدایە
+        minimum_amount: "کەمترین بڕی پارەزیادکردن بریتییە لە %{amount}"
+      payout:
+        failed: داواکاری ڕاکێشان شکستی هێنا
+        insufficient_amount: جزدانەکەت پارەی پێویستی تێدانییە
+        minimum_amount: "کەمترین بڕی پارەڕاکێشان بریتییە لە %{amount}"
+      technical_error_happened: هەڵەیەکی تەکنیکی ڕوویداوە
+      sports:
+        not_found: وەرزش نییە
+        not_available: وەرزش ئامادە نییە. تکایە پەیوەندی بکە بە تیمی تەکنیکی
+      bets:
+        slip_limit: "ناتوانی زیاتر لە %{limit} گرەو بکەی لە یەك کاتدا"
+        slips_required: لیستی گرەو پێویستە
+      matches:
+        no_live_matches: هیچ یاری ڕاستەوخۆ نییە
+        scores:
+          not_found: تۆمار ئامادە نییە
+        not_found: >-
+          یاری نەدۆزرایەوە. تکایە هەندێک لەو یارییانەی ئامادەنین لایانبە لە
+          لیستەکەت
+        not_found_count: "%{count} یاری نەدۆزرایەوە"
+        already_favourite: یارییەکە پێشتر دڵخوازە
+        not_favourite: یارییەکە لە لیستی دڵخواز سڕدرایەوە
+      countries:
+        invalid: وڵاتەکەت هەڵەیە
+        not_found: وڵاتەکە نییە
+      tournaments:
+        not_found: پاڵەوانێتییەکە نییە
+      not_authorized: تۆ ڕێگەپێنەدراوی بۆ ئەم جۆرە کردارە
+      invalid_timeout_limit: "سنووری کات: هیچ کاتێك نییە لەم مەودایەدا"
+      already_confirmed: پێشتر دڵنیاکرابۆوە، تکایە بچۆ ژوورەوە
+      confirmation_period_expired: "دەبێ دڵنیابکرێتەوە لە %{period}, تکایە داوای دانەیەکی نوێ بکە"
+      expired: ئێکسپایەر بووە، تکایە داوای دانەیەکی نوێ بکە
+      not_found: نەدۆزرایەوە
+      not_locked: قوفڵ نەکراوە
+      not_saved:
+        one: "هەڵەیەك ڕێگری لەم %{resource} کرد بۆ ئەوەی پاشەکەوت بێت"
+        other: >-
+          بڕی %{count} ئیرۆر ڕوویدا و ڕێگەی گرت لە %{resource} بۆ
+          پاشەکەوتکردن:
+      reseller_disable: >-
+        تۆ هەژمارەکەت لەکارخراوە بە شێوەیەکی کاتی. تکایە پەیوەندی بە ئەدمین
+        بکە
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            age:
+              must_be_greater: تەمەن دەبێ لە ١٨ ساڵ زیاتر بێت
+              must_be_lesser: تەمەن دەبێ ١٠٠ یان کەمتر بێت
+            password:
+              too_short: "(minimum is %{count} characters) زۆر کورتە"
+              bad_password: >-
+                وشە نهێنییەکەت دەبێ ئاڵۆز بێت. لە نێوان ٦-١٤ ڕەنووس بیت و
+                ئەمانەی تێدابێت:
+
+                ١ پیت، ١ ژمارە، ١ هێما بێجگە لە <> : $ ٪
+              common_password: نابێ وشە نهێنییەکە ناوی خۆت یان ئیمێڵ بێت
+            phone:
+              invalid_for_country: ژمارە تەلەفۆن ڕاست نییە بۆ وڵاتەکەت
+              taken: ئەم ناوە پێشتر هەیە لەگەڵمان، تکایە هەوڵبدە بچۆ ژوورەوە
+              not_available: بەردەست نییە
+            username:
+              invalid: دەبێ تەنها پیتە ڕێگەپێدراوەکان بێت و هێمای تایبەت نەبێت
+            locale:
+              not_supported: پشتگیری ناکات
+        combo_bet:
+          attributes:
+            base:
+              duplicate_matches: تکایە خاڵەکانت هەڵبژێرە بۆ چەند یارییەك
+        address:
+          attributes:
+            country:
+              not_valid: وڵاتەکەت ڕاست نییە
+        gammabet_setting:
+          attributes:
+            cashout_commision:
+              invalid_range: کاشئاوت دەبێ لە نێوان ٠ بۆ ١٠٠ بێت
+              must_be_present: نرخی کاشئاوت دەبێ ئامادەبێت
+            api_version:
+              must_be_positive: وەشانی API دەبێ ژمارەیەکی ئەرێنی بیت
+        wallet:
+          attributes:
+            base:
+              wallet_not_empty: جزدان بەتاڵ نییە، بۆیە دراو ناتوانی بگۆڕیت.
+        sport:
+          attributes:
+            rank:
+              inclusion: دەبێ لە نێوان مەودای ١-١٠٠ بێت
+    models:
+      address: ناونیشان
+      admin_user: هەژماری ئەدمین
+      advertisement: ڕاگەیاندن و ڕێکلام
+      amqp_audit_log: Amqp audit log
+      bet: گرەو
+      bet_type: جۆری گرەو
+      casino_item: بڕگەی گازینۆ
+      casino_menu: لیستی گازینۆ
+      category: جۆر
+      category_join: بەژداری جۆر
+      combo_bet: گرەوی کۆمبۆ
+      competitor: پێشبڕکێکار
+      country: وڵات
+      favourite: دڵخواز
+      game_session: کۆبەندی یاری
+      gammabet_setting: ڕێکخستنی گرەوی گاما
+      language: زمان
+      ledger: تۆماری پارە
+      market: مارکێت
+      match: یاری
+      match_outcome: بەرهەمی یاری
+      outcome: بەرهەم
+      participant: بەژداربوو
+      play_type: جۆری یاریکردن
+      role: ڕۆڵ
+      session_log: تۆماری کۆبەند
+      session_transaction: ئاڵوگۆڕی کۆبەند
+      sport: وەرزش
+      sport_country: وڵاتی وەرزش
+      sport_market: مارکێتی وەرزش
+      team: تیم
+      team_player: یاریزانی تیم
+      team_tournament: پاڵەوانێتی تیم
+      tennis_match_score: تۆماری یاری تێنس
+      topic: بابەت
+      tournament: پاڵەوانیتی
+      transfer_record: تۆماری گواستنەوە
+      user: بەکارهێنەر
+      venue: هۆڵ
+      wallet: جزدان
+    attributes:
+      address:
+        city: شار
+        country: وڵات
+        roles: ڕۆڵەکان
+        state: بڕ
+        street_address: ناونیشانی شەقام
+        zip_code: ژمارەی شەقام
+      admin_user:
+        current_sign_in_at: چوونە ژوورەوەی ئێستات لە
+        current_sign_in_ip: چوونە ژوورەوەی ئێستات بە ئایپی
+        email: ئیمێڵ
+        enable: کاربکات
+        encrypted_password: وشەی نهێنی بەهێما کراو
+        first_name: ناوی یەکەم
+        last_name: ناوی دووەم
+        last_sign_in_at: کۆتا چوونەژوورەوە لە
+        last_sign_in_ip: کۆتا چوونەژوورەوە بە ئایپی
+        ledgers: تۆماری پارەکان
+        remember_created_at: بیرخستنەوە درووستکرا لە
+        reseller_percentage: ڕێژەی فرۆشیار
+        resellers: فرۆشیارەکان
+        reset_password_sent_at: لینکی پاسۆرد نوێکردنەوە نێردرا بۆ
+        reset_password_token: کۆدی پاسۆرد نوێکردنەوە
+        roles: ڕۆڵەکان
+        status: دۆخ
+        sub_admins: نیمچە ئەدمئین
+        users: بەکارهێنەرەکان
+        users_ledger: تۆماری پارەی بەکارهێنەرەکان
+        wallets: جزدانەکان
+      advertisement:
+        ad_url: لینکی ڕێکلام
+        enabled: کاردەکات
+        name: ناو
+        roles: ڕۆڵەکان
+        settings: ڕێکخستنەکان
+        ad_image: وێنەی ڕێکلام
+        position: پلە
+      amqp_audit_log:
+        log_type: جۆری تۆمار
+        roles: ڕۆڵەکان
+        routing_key: کلیلی ئاڕاستەکان
+        routing_type: جۆری ئاراستەکان
+        timestamp_in_ms: کاتە دیاریکراوەکان بە میلیچرکە
+        xml_data: زانیاری بە XML
+      bet:
+        bet_type: جۆری گرەو
+        cashed_out_amount: بڕی کاشئاوت کراو
+        continent: کانتۆن
+        country: وڵات
+        information: زانیاری
+        ledgers: تۆماری پارەکان
+        odds: خاڵەکان
+        period: مەودا
+        play_number: ژمارەی یاری
+        play_type: جۆری یاری
+        player_name: ناوی یاریزان
+        rake: دانراوەکان
+        roles: ڕۆڵەکان
+        specifier_text: نوسینی تایبەت
+        stake: بڕ
+        status: دۆخ
+        team_name: ناوی تیم
+        total: کۆی گشتی
+      bet_type:
+        market_type: جۆری مارکێت
+        name: ناو
+        play_types: جۆرەکانی گرەو
+        roles: ڕۆڵەکان
+      category:
+        category_joins: بەژداری جۆر
+        kind: جۆر
+        markets: مارکێتەکان
+        name: ناو
+        roles: ڕۆڵەکان
+      category_join:
+        categorizable_type: ئەو جۆرانەی تایبەت دەکرێن
+        roles: ڕۆڵەکان
+      combo_bet:
+        bets: گرەوەکان
+        cashout_amount: بڕی کاشئاوت
+        ledgers: تۆماری پارەکان
+        odds: خاڵەکان
+        roles: ڕۆڵەکان
+        stake: بڕ
+        status: دۆخ
+      competitor:
+        qualifier: شایستەکان
+        roles: ڕۆڵەکان
+      country:
+        enabled: کاردەکات
+        name: ناو
+        rank: پلە
+        roles: ڕۆڵەکان
+        sport_countries: وڵاتە وەرزشییەکان
+        sports: وەرزشەکان
+        tournaments: پاڵەوانێتییەکان
+        uid: Uid
+      doorkeeper:
+        access_grant:
+          expires_in: ئێکسپایەر دەبێت لە
+          redirect_uri: "دەنێردرێتەوە "
+          revoked_at: هەڵوەشێنرایەوە لە
+          scopes: بوارەکان
+          token: تۆکێن
+        access_token:
+          expires_in: ئێکسپایەر دەبێت لە
+          previous_refresh_token: تۆکێنەکانی پێشوو کە نوێکرابوونەوە
+          refresh_token: نوێکردنەوەی تۆکێن
+          revoked_at: هەڵوەشێنرایەوە لە
+          scopes: بوارەکان
+          token: تۆکێن
+        application:
+          access_grants: دەسەڵاتی ڕێگەپێدراو
+          access_tokens: تۆکێنە ڕێگەپێدراوەکان
+          authorized_applications: ئەپە ڕێگەپێدراوەکان
+          authorized_tokens: تۆکێنە ڕێگەپێدراوەکان
+          name: ناو
+          redirect_uri: لینکی ناردنەوە
+          scopes: بوارەکان
+          secret: نهێنی
+          uid: Uid
+      favourite:
+        favouriteable_type: جۆری دڵخوازەکان
+        is_default: بنەڕەتییە
+      game_session:
+        balance: باڵانس
+        bet: گرەو
+        currency: دراو
+        end_time: کاتی کۆتایی
+        game_type: جۆری یاری
+        game_uuid: uuid ـی یاری
+        refund: پارەدانەوە
+        return_url: لینکی ناردنەوە
+        roles: رۆڵەکان
+        session_transactions: ئاڵوگۆڕەکانی کۆبەند
+        start_time: کاتی دەستپێکردن
+        status: دۆخ
+        wallet_amount: بڕی جزدان
+        win: بردنەوە
+      gammabet_setting:
+        allow_betting: ڕێگەدان بە گرەو
+        balance_amount_limit: بڕی سنووری باڵانس
+        max_daily_bet_amount: زۆرترین بڕی گرەو لە ڕۆژێکدا
+        max_day_deposit_amount: زۆرترین بڕی زیادکردن لە ڕۆژێکدا
+        max_monthly_bet_amount: زۆرترین بڕی گرەو لە مانگێکدا
+        max_monthly_deposit_amount: زۆرترین بڕی زیادکردن لە مانگێکدا
+        max_one_bet_amount: زۆرترین بڕ لەسەر یەك گرەو
+        max_single_amount: زۆرترین بڕ لەسەر تاك
+        max_weekly_bet_amount: زۆرترین بڕی گرەو لە هەفتەیەکدا
+        max_weekly_deposit_amount: زۆرترین بری زیادکردن لە هەفتەیەكدا
+        reseller_withdrawal_limit: سنووری ڕاکێشانی فرۆشیار
+        roles: ڕۆڵەکان
+        setting_of: ڕێکخستنەکانی
+        settings: ڕێکخستنەکانی
+        url: لینك
+        user_wallet_limit: سنووری جزدانی بەکارهێنەر
+      group:
+        name: ناو
+        roles: ڕۆڵەکان
+        users: بەکارهێنەرەکان
+      language:
+        enabled: کاردەکات
+        name: ناو
+        roles: ڕۆلەکان
+        users: بەکارهێنەرەکان
+      ledger:
+        account_details: زانیاری هەژمار
+        amount: بڕ
+        approved: قبوڵکرا
+        betable_type: جۆرەکانی گرەوەکان
+        mode: جۆر
+        remark: تێبینی
+        roles: ڕۆڵەکان
+        status: دۆخ
+        transaction_type: جۆری ئاڵوگۆڕ
+        users_ledger: تۆماری جزدانی بەکارهێنەر
+      market:
+        bets: گرەوەکان
+        categories: جۆرەکان
+        category: جۆرەکان
+        category_joins: بەژداری جۆرەکان
+        display_name: ناوی نیشاندراو
+        enabled: کاردەکات
+        is_specifier_market: مارکیتی هەڵبژێردراوە
+        match_outcomes: بەرهەمی یاری
+        name: ناو
+        outcomes: بەرهەم
+        priority: ڕیزبەندی
+        rank: پلە
+        roles: ڕۆڵەکان
+        settings: ڕێکخستنەکان
+        specifier_text: نوسینی هەڵبژێردراو
+        status: دۆخ
+        uid: uid
+        bet_type: جۆری گرەو
+        play_type: جۆری یاری
+      match:
+        active_markets: مارکێتە چالاكکراوەکان
+        actual_status: دۆخی ڕاست
+        bets: گرەوەکان
+        booking_status: دۆخی گرتن
+        competitors: پێشبڕکێکارەکان
+        cricket_match_scores: تۆماری یارییەکانی کریکێت
+        enabled: کاردەکات
+        highlight: گرنگەکان
+        inplay_subscribed: بەژداربووی لە ئاگاداری یاری
+        markets: مارکێتەکان
+        match_outcomes: بەرهەمەکانی یاری
+        name: ناو
+        outcomes: بەرهەم
+        results: ئەنجامەکان
+        roles: ڕۆڵەکان
+        schedule_at: دەکرێت لە
+        settings: ڕێکخستنەکان
+        soccer_match_scores: تۆماری یارییەکانی تۆپی پێ
+        status: دۆخ
+        team_players: یاریزانی تیم
+        teams: تیمەکان
+        tennis_match_scores: تۆماری یارییەکانی تێنس
+        uid: Uid
+        users: بەکارهێنەرەکان
+      match_outcome:
+        bets: گرەوەکان
+        market_uid: uid مارکێت
+        match_uid: uid یاری
+        odd_type: جۆری خاڵەکان
+        odds: خاڵەکان
+        outcome: بەرهەم
+        outcomeable_type: جۆرەکانی بەرهەم
+        outcomeable_uid: uid بەرهەمەکان
+        probabilities: ئەگەرەکان
+        roles: ڕۆڵەکان
+        settings: ڕێکخستنەکان
+        specifier_text: نوسینی هەڵبژێردراو
+        status: دۆخ
+        team_players: یاریزانەکانی تیم
+        teams: تیمەکان
+      occupation:
+        name: ناو
+        roles: ڕۆڵەکان
+        users: بەکارهێنەرەکان
+      organization:
+        name: ناو
+        roles: ڕۆڵەکان
+        users: بەکارهێنەرەکان
+      outcome:
+        markets: مارکێتەکان
+        matches: یارییەکان
+        name: ناو
+        roles: ڕۆڵەکان
+        status: دۆخ
+        uid: Uid
+      participant:
+        roles: ڕۆڵەکان
+      play_type:
+        bet_types: جۆرەکانی گرەو
+        name: ناو
+        roles: ڕۆڵەکان
+      role:
+        admin_users: ئەدمینەکان
+        name: ناو
+        resource_type: جۆری چاوگەکان
+        roles: ڕۆڵەکان
+      season:
+        acronym: ئەکرۆنیم
+        end_time: کاتی کۆتایی
+        matches: یارییەکان
+        name: ناو
+        roles: ڕۆڵەکان
+        start_time: کاتی دەستپێکردن
+        uid: Uid
+      session_log:
+        roles: ڕۆڵەکان
+      session_transaction:
+        amount: بڕ
+        bet_type: جۆری گرەو
+        currency: دراو
+        game_type: جۆری یاری
+        game_uuid: uid یاری
+        ledgers: تۆماری پارەکان
+        quantity: دانە
+        roles: ڕۆڵەکان
+        status: دۆخ
+        wallet_balance: باڵانسی جزدان
+      soccer_match_score:
+        away_corners: کۆڕنەری یاریگای دەرەوە
+        away_score: ئەنجامی یاریگای دەرەوە
+        clock: کاتژمێر
+        home_corners: کۆڕنەری یاریگای ماڵەوە
+        home_score: ئەنجامی یاریگای ماڵەوە
+        match_status: دۆخی یاری
+        period_scores: ئەنجامی مەودا
+        roles: ڕۆڵەکان
+        statistics: ئامارەکان
+      sport:
+        acronym: ئەکرۆنیم
+        bets: گرەوەکان
+        countries: وڵاتەکان
+        enabled: کاردەکات
+        favourites: دڵخوازەکان
+        kind: جۆر
+        markets: مارکێتەکان
+        matches: یارییەکان
+        name: ناو
+        number_of_matches: ژمارەی یارییەکان
+        rank: پلە
+        roles: ڕۆڵەکان
+        seasons: وەرزەکان
+        sport_countries: وڵاتە وەرزشییەکان
+        sport_markets: مارکێتە وەرزشییەکان
+        status: دۆخی یاری
+        teams: تیمەکان
+        tournaments: پاڵەوانیتییەکان
+        uid: Uid
+      sport_country:
+        number_of_matches: ژمارەی یارییەکان
+        roles: ڕۆڵەکان
+      sport_market:
+        priority: ڕیزبەندی
+        roles: ڕۆڵەکان
+        visible: دەرخستن
+      team:
+        acronym: ئەکرۆنیم
+        competitors: پێشبڕكێکارەکان
+        country_name: ناوی وڵات
+        favourites: دڵخوازەکان
+        matches: یارییەکان
+        name: ناوی وڵات
+        roles: ڕۆڵەکان
+        team_players: یاریزانەکانی تیم
+        team_tournaments: پاڵەوانێتی تیم
+        tournaments: پاڵەوانیتییەکان
+        uid: Uid
+      team_player:
+        age: تەمەن
+        country_code: کۆدی وڵات
+        dob: دۆب
+        full_name: ناوی سیانی
+        gender: ڕەگەز
+        jersey_number: ژمارەی بلوس
+        match_outcomes: بەرهەمەکانی یاری
+        name: ناو
+        nationality: ڕەگەزنامە
+        player_type: جۆری یاریزان
+        roles: ڕۆڵەکان
+        uid: Uid
+      team_tournament:
+        roles: ڕۆڵەکان
+      tennis_match_score:
+        away_gamescore: ئەنجامی یاریگای دەرەوە
+        away_score: ئەنجامی یاریگای دەرەوە
+        current_server: سێرڤەری ئیستا
+        home_gamescore: ئەنجامی یاریگای ماڵەوە
+        home_score: ئەنجامی یاریگای ماڵەوە
+        match_status: دۆخی یاری
+        period_scores: ئەنجامی مەودا
+        reporting: ڕاپۆرت
+        roles: ڕۆلەکان
+        status: دۆخ
+        tiebreak: پشووی یەکسان
+      topic:
+        enabled: کاردەکات
+        name: ناو
+        roles: ڕۆڵەکان
+        users: بەکارهێنەرەکان
+      tournament:
+        bets: گرەوەکان
+        category_name: ناوی جۆر
+        display_name: ناوی نیشاندراو
+        enabled: کاردەکات
+        favourites: دڵخوازەکان
+        matches: یارییەکان
+        name: ناو
+        number_of_matches: ژمارەی یارییەکان
+        rank: پلە
+        roles: ڕۆلەکان
+        seasons: وەرزەکان
+        settings: ڕێکخستنەکان
+        team_tournaments: پاڵەوانێتی تیمەکان
+        teams: تیمەکان
+        tournament_type: جۆری پاڵەوانێتی
+        uid: Uid
+      user:
+        access_grants: دەسەڵاتی پێدراو
+        access_tokens: دەسەڵاتی تۆکێن
+        bets: گرەوەکان
+        combo_bets: گرەوە کۆمبۆکان
+        confirmation_sent_at: دڵنیابوونەوە نێردرا لە
+        confirmation_token: تۆکێنی دڵنیابوونەوە
+        confirmed_at: دڵنیاکرایەوە لە
+        current_sign_in_at: چوونەژوورەوە ئێستات لە
+        current_sign_in_ip: چوونەژوورەوەی ئێستات بە ئایپی
+        date_of_birth: بەرواری لەدایكبوون
+        disabled_sport_ids: یاری وەرزشی لەکارخراو
+        email: ئیمێڵ
+        enabled: کاردەکات
+        enabled_by: کاردەکات لەلایەن
+        encrypted_password: وشەی نهێنی کۆدکراو
+        exclusion_time: خۆ سنووردارکردن
+        favourite_sports: وەرزشی دڵخواز
+        favourite_teams: تیمی دڵخواز
+        favourite_tournaments: پاڵەوانێتی دڵخواز
+        favourites: دڵخوازەکان
+        first_name: ناوی یەکەم
+        game_sessions: کۆبەندی یاری
+        groups: گروپەکان
+        invitation_accepted_at: بانگهێشتکردن قبوڵکرا لە
+        invitation_created_at: بانگهێشتکردن درووستکرا لە
+        invitation_limit: سنووری بانگهێشتکردن
+        invitation_sent_at: بانگهێشتکردن نێردرا لە
+        invitation_token: تۆکێنی بانگهێشتکردن
+        invited_by_type: بانگهێشتکردن بە جۆر
+        is_betting_allowed: گرەوکردن ڕێگەپێدراوە
+        kyc_status: دۆخی KYC
+        languages: زمانەکان
+        last_activity_at: کۆتا چالاکی لە
+        last_name: ناوی دووەم
+        last_sign_in_at: کۆتا چوونە ژوورەوە لە
+        last_sign_in_ip: کۆتا چوونەژوورەوە بە ئایپی
+        ledgers: تۆماری پارە
+        occupations: دانراوەکان
+        organizations: ڕێکخراوەکان
+        participants: بەژداربووەکان
+        payees: پارەدانەکان
+        pending_friends: هاوڕێی وەرنەگیراو
+        phone: تەلەفۆن
+        phone_number: ژمارەی تەلەفۆن
+        reality_check_timer: کاتژمێری ڕاستی
+        remember_created_at: بیرهێنانەوە درووستکرا لە
+        reset_password_sent_at: وشەی نهێنی نوێ نێردرا لە
+        reset_password_token: تۆکێنی پاسۆردی نوێ
+        roles: ڕۆڵەکان
+        security_answers: وەڵامەکانی پارێزگاری
+        security_questions: پرسیارەکانی پارێزگاری
+        session_logs: تۆماری کۆبەند
+        session_transactions: ئاڵوگۆڕی کۆبەند
+        settings: ڕێکخستنەکان
+        state: دۆخ
+        topics: بابەتەکان
+        transfer_records: تۆماری گواستنەوە
+        unconfirmed_email: ئیمێڵ دڵنیانەکراوەتەوە
+        unverified_phone: ژمارەی تەلەفۆن دڵنیانەکراوەتەوە
+        user_number: ژمارەی بەکارهێنەر
+        username: ناوی بەکارهێنەر
+        wallets: جزدانەکان
+        zone_name: ناوی زۆن
+        occupation: پیشە
+        organization: ڕێکخراو
+        password: وشەی نهێنی
+        password_confirmation: وشەی نهێنی دووبارە
+        selfie_picture: سێڵفی بە پاسپۆرتەوە
+        govt_id_picture: بەڵگەی پاسپۆرت
+      venue:
+        city_name: ناوی شار
+        continent: کانتۆن
+        country_code: کۆدی وڵات
+        country_name: ناوی وڵات
+        name: ناو
+        roles: ڕۆڵەکان
+      wallet:
+        available_amount: بڕی بەردەست
+        currency: دراو
+        is_current: ئێستا هەیە
+        ledgers: تۆماری پارە
+        roles: ڕۆڵەکان
+        usable_type: جۆرەکانی بەکارهێنان
+        wallet_type: جۆری جزدان
+  active_interaction:
+    errors:
+      messages:
+        match:
+          not_valid: یارییەکە نییە
+          betting_timeout: یارییەکە کاتی نەما
+          no_data: زانیاری بۆ ئەم یارییە بەردەست نییە
+          not_found: یاری نییە
+          betting_disabled: گرەوکردن بۆ ئەم یارییە لەکارخراوە
+          invalid_odds: خاڵەکان ڕاست نین
+          odds_changed: خاڵەکان گۆڕانکارییان بەسەرداهاتووە
+        market:
+          not_found: مارکیت نییە
+          disabled: مارکێت لەکارخراوە لەم کاتەدا
+        specifier:
+          not_valid: تایبەتەکان ڕاست نین
+        bet:
+          invalid: "گرەوەکە %{status} ـە لەم کاتەدا"
+          invalid_min_stake: بڕی گرەو گەورەترە لە سنوور
+          invalid_max_stake: گەشتوویتەتە کۆتا سنووری گرەو
+          stake_not_positive: بڕی گرەو دەبێ گەورەتر بێ لە سفر
+        base:
+          cashout_not_eligible: گرەوەکە بۆ کاشئاوت نابێت
+          refund_not_cashoutable: پارەی گەڕاوە بۆ کاشئاوت نابێت
+          no_cashout_available: هیچ کاشئاوتێك نییە بۆ ئەم یارییە/لیستە
+          cashout_not_allowed: کاشاوت ڕێگەپێنەدراوە لەم کاتەدا، تکایە دواتر هەوڵبدەرەوە
+  devise:
+    confirmations:
+      confirmed: ئیمێڵەکەت بە سەرکەوتوویی دڵنیاکرایەوە
+      send_instructions: |-
+        ئیمێڵێك وەردەگریت بە ڕێنماییەوە کە چۆن ئیمێڵەکەت
+        دڵنیابکەیتەوە لە چەند خولەکێکی کەمدا
+      send_paranoid_instructions: >-
+        ئەگەر ئیمێڵەکەت لە داتابەیسی ئێمە هەبێت، ئیمێڵێك وەردەگریت بە
+        ڕێنماییەوە
+
+        کە چۆن دڵنیای بکەیتەوە لە چەند خولەکێکی کەمدا.
+    failure:
+      already_authenticated: تۆ ئێستا لە ژوورەوەیت
+      inactive: هەژمارەکەت هێشتا چالاك نەکراوە
+      exclusion_period: >-
+        ببورە، ناتوانی لەکاتی سنووری خۆت بچیتە ژوورەوە. بۆ نموونە هەتا
+        %{time}.
+
+        ئەگەر بە هەڵە داتناوە، تکایە پەیوەندی بکە بە تیمی تەکنیکییەوە
+      invalid: "%{authentication_keys} هەڵەیە یان وشەی نهێنی"
+      locked: هەژمارەکەت قوفڵ کراوە
+      last_attempt: یەك هەوڵدانی ترت ماوە پێش ئەوەی هەژمارەکەت قوفڵ بکرێت
+      not_found_in_database: "%{authentication_keys} هەڵەیە یان وشەی نهێنی"
+      timeout: کۆبەندەکەت ئێکسپایەر بوو. تکایە دووبارە بچۆ ژوورەوە
+      unauthenticated: بچۆ ژوورەوە یان خۆت تۆماربکە بۆ بەردەوامبوون
+      unconfirmed: دەبێ ئیمێڵەکەت دڵنیابکەیتەوە پێش بەردەوامبوون
+      invited: >-
+        بانگهێشتکردنێکی وەڵام نەدراوەت هەیە، قبوڵی بکە بۆ تەواوکردنی
+        درووستبونی هەژمارەکەت
+    mailer:
+      confirmation_instructions:
+        subject: ڕێنمایی دڵنیابوونەوە
+      reset_password_instructions:
+        subject: ڕێنمایی پاسۆرد نوێکردنەوە
+      unlock_instructions:
+        subject: ڕێنمایی لابردنی قوفڵ
+      email_changed:
+        subject: ئیمێڵ گۆڕدرا
+      password_change:
+        subject: پاسۆرد گۆڕدرا
+      invitation_instructions:
+        subject: ڕێنماییەکان ھەڵەن
+        hello: "سڵاو %{email}"
+        someone_invited_you: >-
+          کەسێك بانگهێشتی ناردووە بە لینکی %{url} دەتوانی بەم لینکە قبوڵی
+          بکەیت
+        accept: قبوڵکردنی بانگهێشتکردن
+        accept_until: "ماوەی بانگهێشتکردنەکەت %{due_date}."
+        ignore: >-
+          ئەگەر ناتەوێ بانگهێشتکردنەکەت قبوڵ بکەی، تکایە ئەم ئیمێڵە پشتگوێبخە
+          <br />
+
+          هەژمارەکەت درووستناکرێ هەتا لینکەکە نەکەیتەوە و پاسۆرد دانەنێیت
+    omniauth_callbacks:
+      failure: 'نەتوانرا لە تۆ دڵنیاببینەوە لە %{kind} لەبەر "%{reason}".'
+      success: "بە سەرکەوتوویی دڵنابووینەوە لە %{kind} هەژمار"
+    passwords:
+      no_token: >-
+        ناتوانی ئەم پەڕەیە ببینی بەبێ ئەوەی لە ئیمێڵی ڕێنمایی پاسۆرد
+        نوێکردنەوەوە
+
+        هاتبیت. ئەگەر لەوێوە هاتوویت، تکایە دڵنیابە لینکەکەت تەواوە.
+      send_instructions: |-
+        ئیمێڵێك وەردەگریت بە ڕێنماییەوە کە چۆن ئیمێڵەکەت
+        دڵنیابکەیتەوە لە چەند خولەکێکی کەمدا
+      send_paranoid_instructions: >-
+        ئەگەر ئیمێڵەکەت لە داتابەیسی ئێمە هەبێت، ئیمێڵێك وەردەگریت بە
+        ڕێنماییەوە
+
+        کە چۆن دڵنیای بکەیتەوە لە چەند خولەکێکی کەمدا.
+      updated: وشەی نهێنییەکەت گۆڕدرا. ئێستا دەتوانی بچیتە ژوورەوە
+      updated_not_active: وشەی نهێنییەکەت گۆڕدرا
+    registrations:
+      destroyed: |-
+        کاتێکی خۆش! هەژمارەکەت بە سەرکەوتویی هەڵوەشایەوە.
+        بە نیازی دیدار
+      signed_up: بەخێربییت! بە سەرکەوتویی خۆت تۆمارکرد
+      signed_up_but_inactive: |-
+        ئێستا بە سەرکەوتویی خۆت تۆمارکرد. بەڵام نەمانتوانی بتخەینە ژوورەوە
+        چونکە هێشتا هەژمارەکەت چالاك نییە
+      signed_up_but_locked: |-
+        ئێستا بە سەرکەوتویی خۆت تۆمارکرد. بەڵام نەمانتوانی بتخەینە ژوورەوە
+        چونکە هەژمارەکەت قوفڵە.
+      signed_up_but_unconfirmed: >-
+        نامەیەك بە لینکێکی دڵنیاییەوە نێردراوە بۆ ئیمێڵەکەت. تکایە لینکەکەی
+        ناو
+
+        ئیمێڵەکە بکەرەوە بۆ چالاكکردنی ئەکاونتەکەت
+      update_needs_confirmation: |-
+        بە سەرکەوتویی هەژمارەکەت نوێکرایەوە. بەڵام دەبێت ئیمێلە نوێکەت
+        دڵنیابکەینەوە. ئیمێڵمان ناردووە بە لینکەوە تکایە بیکەرەوە
+      updated: بە سەرکەوتوویی هەژمارەکەت نوێکرایەوە
+    sessions:
+      signed_in: هاتیتە ژوورەوە
+      signed_out: چوویتە دەرەوە
+      already_signed_out: چوویتە دەرەوە
+    unlocks:
+      send_instructions: |-
+        ئیمێڵێک وەردەگریت بە زانیارییەوە بۆ چۆنیەتی لابردنی قوفڵی
+        هەژمارەکەت لە چەند خولەکێکی کەمدا
+      send_paranoid_instructions: |-
+        ئەگەر هەژمارەکەت پێشتر هەبێت، ئیمێڵێك وەردەگریت بە زانیارییەوە
+        لەسەر چۆنیەتی لابردنی قوفڵی ئەکاونتەکەت لە چەند خولەکێکدا
+      unlocked: ئەکاونتەکەت بە سەرکەوتویی کرایەوە. تکایە بچۆ ژوورەوە بۆ بەردەوامبوون
+    invitations:
+      send_instructions: "ئیمێڵێکی بانگهێشت نێردرا بۆ %{email}."
+      invitation_token_invalid: تۆکێنی بانگهێشت ڕاست نییە
+      updated: پاسۆردەکەت بە سەرکەوتوویی دانرا. ئێستا دەتوانی بچیتە ژوورەوە
+      updated_not_active: پاسۆردەکەت بە سەرکەوتوویی دانرا.
+      no_invitations_remaining: هیچ بانهێشتێك نەماوەتەوە
+      invitation_removed: بانگهێشتەکەت سڕدرایەوە
+      new:
+        header: ناردنی بانگهێشت
+        submit_button: بانگهێشتکردنێك بنێرە
+      edit:
+        header: وشەی نهێنی دابنێ
+      submit_button: وشەی نهێنی من

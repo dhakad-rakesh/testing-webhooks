@@ -1,0 +1,78 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th><%= t('admin.dashboard.sports_overview.prematch') %></th>
+      <th><%= t('admin.dashboard.sports_overview.live') %></th>
+      <th><%= t('admin.dashboard.sports_overview.total') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.turnover') %></b></td>
+      <td class="center"><%= format_currency(amount: filter.finance.turnover.prematch) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.turnover.live) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.turnover.total) %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.winning') %></b></td>
+      <td class="center"><%= format_currency(amount: filter.finance.winning_amount.prematch) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.winning_amount.live) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.winning_amount.total) %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.open_bets_single') %></b></td>
+      <td class="center"><%= filter.finance.open_bets_single.prematch %></td>
+      <td class="center"><%= filter.finance.open_bets_single.live %></td>
+      <td class="center"><%= filter.finance.open_bets_single.total %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.open_bets_combo') %></b></td>
+      <td class="center"><%= filter.finance.open_bets_combo.prematch %></td>
+      <td class="center"><%= filter.finance.open_bets_combo.live %></td>
+      <td class="center"><%= filter.finance.open_bets_combo.total %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.ggr') %></b></td>
+      <td class="center"><%= format_currency(amount: filter.finance.ggr.prematch) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.ggr.live) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.ggr.total) %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.profitability') %></b></td>
+      <td class="center"><%= format_currency(amount: filter.finance.profitability.prematch) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.profitability.live) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.profitability.total) %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.number_of_single_bets') %></b></td>
+      <td class="center"><%= filter.finance.number_of_single_bets.prematch %></td>
+      <td class="center"><%= filter.finance.number_of_single_bets.live %></td>
+      <td class="center"><%= filter.finance.number_of_single_bets.total %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.number_of_combo_bets') %></b></td>
+      <td class="center"><%= filter.finance.number_of_combo_bets.prematch %></td>
+      <td class="center"><%= filter.finance.number_of_combo_bets.live %></td>
+      <td class="center"><%= filter.finance.number_of_combo_bets.total %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.average_bet') %></b></td>
+      <td class="center"><%= format_currency(amount: filter.finance.average_bet.prematch) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.average_bet.live) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.average_bet.total) %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.bet_per_player') %></b></td>
+      <td class="center"><%= format_currency(amount: filter.finance.bets_per_player.prematch) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.bets_per_player.live) %></td>
+      <td class="center"><%= format_currency(amount: filter.finance.bets_per_player.total) %></td>
+    </tr>
+    <tr class="gradeX">
+      <td class="center"><b><%= t('admin.dashboard.sports_overview.number_of_players') %></b></td>
+      <td class="center"><%= filter.finance.number_of_players.prematch %></td>
+      <td class="center"><%= filter.finance.number_of_players.live %></td>
+      <td class="center"><%= filter.finance.number_of_players.total %></td>
+    </tr>
+  </tbody>
+</table>

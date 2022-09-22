@@ -1,0 +1,37 @@
+<table class="dt-reports table table-hover requests-list">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('reciever address') %></th>
+      <th><%= t('transaction_id') %></th>
+      <th><%= t('admin.withdrawals.created_at') %></th>
+      <th><%= t('admin.withdrawals.amount') %></th>
+      <th><%= t('admin.withdrawals.remarks') %></th>
+      <th><%= t('admin.withdrawals.status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @ledgers.present? %>
+      <% @ledgers.each do |ledger| %>
+        <tr class="gradeX" id="lid_<%= ledger.id %>">
+          <td><%= ledger&.id %></td>
+          <td><%= ledger&.account_details %></td>
+          <td style="overflow: auto; max-width: 20em;"><%= ledger.tracking_id %></td>
+          <td><%= short_date_time(ledger&.created_at) %></td>
+          <td><%= format_currency(amount: ledger&.amount) %></td>
+          <td><%= ledger&.remark %></td>
+          <% if ledger.pending? %>
+            <td class="status">Failed</td>
+          <% else %>
+            <td class="status"><%= ledger&.status&.humanize %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=9>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @ledgers, renderer: BootstrapPagination::Rails %>

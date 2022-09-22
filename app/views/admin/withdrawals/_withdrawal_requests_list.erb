@@ -1,0 +1,79 @@
+<table class="dt-reports table table-hover requests-list">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('user') %></th>
+      <th><%= t('admin.withdrawals.created_at') %></th>
+      <th><%= t('admin.withdrawals.amount') %></th>
+      <!-- <th><%#= t('admin.withdrawals.payment_method') %></th> -->
+      <th><%= t('admin.withdrawals.remarks') %></th>
+      <th><%= t('admin.withdrawals.status') %></th>
+      <th><%= t('admin.withdrawals.comments') %></th>
+      <th colspan=2><%= t('actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if ledgers.present? %>
+      <% ledgers.each do |ledger| %>
+        <tr class="gradeX" id="lid_<%= ledger.id %>">
+          <td><%= ledger&.id %></td>
+          <td><%= link_to ledger&.betable&.username, admin_user_path(ledger&.betable) %></td>
+          <td><%= short_date_time(ledger&.created_at) %></td>
+          <td><%= format_currency(amount: ledger&.amount) %></td>
+          <!-- <td><%#= ledger&.mode&.humanize %></td> -->
+          <td><%= ledger&.remark %></td>
+          <td class="status"><%= ledger&.status&.humanize %></td>
+          <td class="comment"><%= ledger&.comment&.humanize || 'NA' %></td>
+          <% if ledger&.pending? %>
+            <td class="action"><%= link_to t('admin.withdrawals.approve'),
+                    confirm_admin_withdrawal_path(ledger),
+                    method: :post,
+                    data: { confirm: t('admin.withdrawals.approve_sure') },
+                    class: 'btn btn-success' %></td>
+            <td class="action">
+              <a data-ledger-id="<%= ledger.id %>" data-action-path="<%= reject_admin_withdrawal_path(ledger) %>" class="btn btn-danger reject-btn"><%= t('admin.withdrawals.reject') %></a>
+            </td>
+          <% else %>
+            <td colspan=2><%= t('admin.withdrawals.actioned') %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=9>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate ledgers, renderer: BootstrapPagination::Rails %>
+
+<script>
+
+  $('.reject-btn').on('click', function() {
+    var url = $(this).data('action-path');
+    var comment = prompt('Enter rejection reason (optional)');
+    var ledger_id = $(this).data('ledger-id');
+    if(comment != null) {
+      $.ajax({
+        type: 'POST',
+        url: url,
+        dataType: 'json',
+        data: { comment: comment, ledger_id: ledger_id },
+        success(data) {
+          toastr.success(data.message);
+          $(`#lid_${data.ledger_id} .status`).html("Rejected");
+          $(`#lid_${data.ledger_id} .comment`).html(data.comment);
+          $(`#lid_${data.ledger_id} .action`).remove();
+          $(`#lid_${data.ledger_id}`).append("<td colspan=2>Actioned</td>");
+        },
+        error(data) {
+          toastr.error(data.message);
+        }
+      });
+    } else {
+      toastr.error('Action aborted.!')
+    }
+  });
+
+  $('.pagination a').attr('data-remote', 'true');
+</script>

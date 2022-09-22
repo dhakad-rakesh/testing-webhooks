@@ -1,0 +1,106 @@
+<% if @sport.present? %>
+  <div class="heading">
+    <ul>
+      <li>
+        <%= @sport.name %>
+      </li>
+      <!-- <li class="next">
+        Next 48 Hours | Next 48 Hours | <span class="all">All</span>
+      </li>
+      <li>
+        <%#= image_tag 'icons', class: "img-responsive", alt: "icons" %>
+      </li> -->
+      <li class="search-box">
+        <!-- Actual search box -->
+        <div class="form-group has-feedback has-search">
+          <span class="fa fa-search form-control-feedback"></span>
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9 col-sm-9 col-xs-12 padding-right0 padding-left0">
+    <div class="tab-content scrollator" id="middle-content">
+      <div id="menu" class="tab-pane fade active in">
+        <div class="panel-group" id='tournaments'>
+          <%= render 'tournaments' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'matches/bet_slip', locals: { bets:  @bets } %>
+  <div class="col-sm-3 col-md-3 col-xs-12 padding-right0 padding-left0">
+    <div class="right-menu-bg">
+      <div class="right-tab-section">
+        <%#= render 'layouts/offers'%>
+      </div>
+    </div>
+  </div>
+<% else %>
+  Please select Sport from left side.
+<% end %>
+
+
+<script type="text/javascript">
+  //setup before functions
+  var typingTimer;                //timer identifier
+  var doneTypingInterval = 500;  //time in ms, 5 second for example
+  var $input = $('.search-box input');
+  var sport_id = '<%= params[:id] %>';
+  var scope = '<%= params[:scope] %>';
+  //on keyup, start the countdown
+  $input.on('keyup', function () {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+  });
+
+  //on keydown, clear the countdown 
+  $input.on('keydown', function () {
+    clearTimeout(typingTimer);
+  });
+
+  //user is "finished typing"
+  function doneTyping () {
+    $.ajax(`/sports/${sport_id}`, {
+      type: "get",
+      data: { search: $input.val(), scope: scope },
+      beforeSend: function() {
+        $('#tournaments').html('<center><img src="/assets/loader.gif" style="width: 70px; line-height: 10;"></center>');
+      },
+      success: function(result) {
+        console.log('Done')
+      },
+      error: function(error) {
+        console.log(error)
+      }
+    });
+  }
+</script>
+
+<% if url_present_for_mobile? %> 
+  <!-- Modal -->
+  <div class="modal fade" id="APKModal" tabindex="-1" role="dialog" aria-labelledby="APKModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="APKModalLabel">Want to play with app!!</h5>
+        </div>
+        <div class="modal-body">
+          Download our android APK from <a href=<%= url_for_apk %>>here</a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var no_display = localStorage.getItem('no_display');
+    if (no_display !== 'true') {
+      $(document).ready(function(){
+      $('#APKModal').modal('show');
+      });
+    }
+    localStorage.setItem('no_display', 'true');
+  </script>
+<% end %>

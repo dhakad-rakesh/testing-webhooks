@@ -1,0 +1,33 @@
+<div class="col-lg-4">
+  <div class="ibox ">
+    <div class="ibox-title">
+      <h5>Income</h5>
+    </div>
+    <div class="ibox-content">
+      <h1 class="no-margins"><%= number_with_precision(@total_income, precision: 2) %></h1>
+      <small>Total Income</small>
+    </div>
+  </div>
+</div>
+<div class="col-lg-4">
+  <div class="ibox ">
+    <div class="ibox-title">
+      <h5>Users</h5>
+    </div>
+    <div class="ibox-content">
+      <h1 class="no-margins"><%= @total_users %></h1>
+      <small>Total Users Registered</small>
+    </div>
+  </div>
+</div>
+<div class="col-lg-4">
+  <div class="ibox ">
+    <div class="ibox-title">
+      <h5>Bets</h5>
+    </div>
+    <div class="ibox-content">
+      <h1 class="no-margins"><%= @total_bets %></h1>
+      <small>Total Bets</small>
+    </div>
+  </div>
+</div>

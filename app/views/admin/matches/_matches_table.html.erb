@@ -1,0 +1,71 @@
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('start_time') %></th>
+      <th><%= t('sport') %></th>
+      <th><%= t('participants') %></th>
+      <th><%= t('tournament') %></th>
+      <% unless @is_live_filter%>
+        <th><%= t('enabled') %></th>
+      <%end%>
+      <!-- <th><%#= t('highlighted') %></th> -->
+      <th><%= t('status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @matches.present? %>
+      <% @matches.each do |match| %>
+        <tr class="gradeX">
+          <td><%= match.id %></td>
+          <td><%= schedule_time(match.schedule_at) %></td>
+          <td><%= Utility::Sport.info(match).name %></td>
+          <td><%= link_to match.title, admin_match_path(match.id) %></td>
+          <td><%= match.tournament_name %></td>
+          <% unless @is_live_filter%>
+            <td>
+              <% unless match.is_live? %>
+                <label>
+                  <input class='enabled_match' type="checkbox" value="" <%= "checked" if match.visible %> data="tournament_<%= match.id %>">
+                  <i></i>
+                </label>
+              <%end%>
+            </td>
+          <% end %>
+          <!-- <td>
+            <label>
+              <input class='highlight_match' type="checkbox" value="" <%#= "checked" if match.highlight %> data="tournament_<%#= match.id %>" <%#= "disabled" unless match.is_highlightable? %>>
+              <i></i>
+            </label>
+          </td> -->
+          <td><%= match.status.humanize %></td>
+          <% if false %>
+            <td>
+              <%= link_to admin_match_markets_path(match), class: 'btn btn-primary' do %>
+                <%= t('markets') %>
+              <% end %>
+              <%= link_to admin_match_bets_path(match), class: 'btn btn-danger' do %>
+                Bets
+              <% end %>
+            </td>
+          <% end %>
+          <!-- <td><%#= link_to t('view_title', name: t('details')), admin_match_path(match) %></td> -->
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="gradeX">
+        <td colspan=8>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @matches, renderer: BootstrapPagination::Rails %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    enabledOrDisabledMatch();
+    setOrUnsetHighlightMatch();
+    // search_url = "<%= params[:tournament_id].present? ? ('/admin/tournaments/'+ params[:tournament_id] +'/matches/search') : '/admin/matches/search' %>";
+    // searchContent(search_url);
+  });
+</script>

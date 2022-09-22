@@ -1,0 +1,485 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <% unless session[:gs_session] %>
+                          <img alt="image" class="img-logo" src="<%= image_url 'adminLogo.png' %>"/>
+                        <% else %>
+                          <img style="height: auto;width: 175px;" alt="image" class="img-logo" src="<%= image_url 'gs_logo.png' %>"/>
+                        <% end %>
+                    </span>
+                    <span class="block m-t-xs">
+                        <strong class="font-bold">
+                        <%= current_admin_user.first_name || "#{Figaro.env.project_name} Admin" %>
+                        </strong>
+                    </span>
+                </div>
+            </li>
+            <% if current_admin_user.is_sub_admin? %>
+              <li class="<%= active_controller('admin/admin_users') %>">
+                <%= link_to admin_admin_user_path(current_admin_user) do %>
+                  <i class="fa fa-home">
+                  </i> <span class="nav-label" data-i18n="nav.wallet">Home</span>
+                <% end %>
+              </li>
+              <li class="<%= active_controller('admin/ledgers') %>">
+                <%= link_to admin_admin_user_ledgers_path(admin_user_id: current_admin_user.id) do %>
+                  <i class="fa fa-money">
+                  </i> <span class="nav-label" data-i18n="nav.wallet">Transactions</span>
+                <% end %>
+              </li>
+            <% end %>
+            <% unless current_admin_user.is_sub_admin? %>
+              <li class="<%= active_controller('admin/dashboard') %>">
+                <%= link_to admin_dashboard_index_path do %>
+                  <i class="fa fa-th-large">
+                  </i> <span class="nav-label" data-i18n="nav.dashboard">Dashboard</span>
+                <% end %>
+              </li>
+            <% end %>
+            
+           <% if true %> 
+            <% if current_admin_user.is_super_admin? %>
+              <li class="<%= active_controller('admin/reports') %>">
+                <a href="#">
+                  <i class="fa fa-database"></i> 
+                  <span class="nav-label">
+                    <%= t('report') %>
+                  </span> 
+                  <span class="fa arrow"></span>
+                </a>
+                
+                <ul class="nav nav-second-level collapse">
+                  <li class="<%= active_controller_actions('admin/reports', %w(sports bets))%>">
+                    <a href="#">SportsBook <span class="fa arrow"></span></a>
+                    <ul class="nav nav-third-level">
+                      <li class="<%= active_controller_actions('admin/reports', %w(bets))%>">
+                        <a href="<%= bets_admin_reports_path %>">Bet Reports</a>
+                      </li>
+                      <li class="<%= active_controller_actions('admin/reports', %w(sports))%>">
+                        <a href="<%= sports_admin_reports_path %>">Sports Reports</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="<%= active_controller_actions('admin/reports', %w(payments payments_by_region deposits))%>">
+                    <a href="#">Financial <span class="fa arrow"></span></a>
+                    <ul class="nav nav-third-level">
+                      <li class="<%= active_controller_actions('admin/reports', %w(payments))%>">
+                        <a href="<%= payments_admin_reports_path %>">Payments Report</a>
+                      </li>
+                      <% if false %>
+                        <li class="<%= active_controller_actions('admin/reports', %w(payments_by_region))%>">
+                          <a href="<%= payments_by_region_admin_reports_path %>">Payments Report by Region</a>
+                        </li>
+                        <li class="<%= active_controller_actions('admin/reports', %w(deposits))%>">
+                          <a href="<%= deposits_admin_reports_path %>">Deposit Report</a>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </li>
+
+                  <li class="<%= active_controller_actions('admin/reports', %w(casino))%>">
+                    <a href="#">Casino <span class="fa arrow"></span></a>
+                    <ul class="nav nav-third-level">
+                      <li class="<%= active_controller_actions('admin/reports', %w(casino))%>">
+                        <a href="<%= casino_admin_reports_path %>">Transactions</a>
+                      </li>
+                      <li class="<%= active_controller_actions('admin/casino_report_by_games', %w(casino))%>">
+                        <a href="<%= casino_report_by_games_admin_reports_path %>">Reports by Game</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="<%= active_controller_actions('admin/reports', %w(slot_game))%>">
+                    <a href="#">Slot Game <span class="fa arrow"></span></a>
+                    <ul class="nav nav-third-level">
+                      <li class="<%= active_controller_actions('admin/reports', %w(slot_game))%>">
+                        <a href="<%= slot_game_admin_reports_path %>">Transactions</a>
+                      </li>
+                      <li class="<%= active_controller_actions('admin/slot_game_report_by_games', %w(slot_game))%>">
+                        <a href="<%= slot_game_report_by_games_admin_reports_path %>">Reports by Game</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            <% end %>
+          <% end %>
+
+            <% if current_admin_user.is_super_admin? %>
+              <li class="<%= active_controller(['admin/sports', 'admin/tournaments', 'admin/matches', 'admin/markets', 'admin/countries']) %>">
+                <a href="#">
+                  <i class="fa fa-book"></i> 
+                  <span class="nav-label">
+                    <%= t('navigation.sportsbook_admin') %>
+                  </span> 
+                  <span class="fa arrow"></span>
+                </a>
+                
+                <ul class="nav nav-second-level collapse">
+                  <li class="<%= active_controller('admin/sports')%>">
+                    <%= link_to t('navigation.sports') ,admin_sports_path %>
+                  </li>
+                  <li class="<%= active_controller('admin/countries')%>">
+                    <%= link_to t('navigation.countries') ,admin_countries_path %>
+                  </li>
+                  <li class="<%= active_controller('admin/tournaments')%>">
+                    <%= link_to t('navigation.tournaments') ,admin_tournaments_path %>
+                  </li>
+                  <li class="<%= active_controller('admin/matches')%>">
+                    <%= link_to t('navigation.matches') ,admin_matches_path %>
+                  </li>
+                  <li class="<%= active_controller('admin/markets')%>">
+                    <%= link_to t('navigation.markets') ,admin_markets_path %>
+                  </li>
+                </ul>
+              </li>
+            <% end %>
+
+            <% if can? :read, AdminUser %>
+              <% if current_admin_user.is_super_admin? %>
+                <li class="<%= active_controller('admin/admin_users') %>">
+                <a href="#">
+                  <i class="fa fa-user"></i> 
+                  <span class="nav-label">
+                    <%= t('admin.affiliates') %>
+                  </span> 
+                  <span class="fa arrow"></span>
+                </a>
+              <ul class="nav nav-second-level collapse">
+                  <li class="<%= active_controller('admin/admin_users')%>">
+                    <%= link_to t('admin.affiliates') ,admin_admin_users_path %>
+                  </li>
+                  <li class="<%= active_controller('admin/ledgers')%>">
+                    <%= link_to t('admin.transactions') , affiliate_ledgers_admin_admin_user_ledgers_path(current_admin_user) %>
+                  </li>
+                </ul>
+              </li>
+              <% end %>
+              <% if false%>
+                <li class="<%= active_controller('admin/admin_users') %>">
+                  <%= link_to admin_admin_users_path do %>
+                      <i class="fa fa-ticket"></i>
+                      <span class="nav-label">
+                        Agents
+                      </span>
+                </li>
+                <% end %>
+              
+              <% if current_admin_user.is_super_admin? %>
+                <li class="<%= active_controller('admin/admin_users') %>">
+                  <%= link_to admin_admin_users_path(role: 'sub_admin') do %>
+                      <i class="fa fa-ticket"></i>
+                      <span class="nav-label">
+                        Sub Admin
+                      </span>
+                  <% end %>
+                </li>
+              <% end %>
+            <% end %>
+            <% end %>
+
+              <% if false %>
+              <% if can? :read, Sport %>
+                <li class="<%= active_controller('admin/sports') %>">
+                  <%= link_to admin_sports_path do %>
+                    <i class="fa fa-soccer-ball-o"></i>
+                    <span class="nav-label">
+                      Sports
+                    </span>
+                  <% end %>
+                </li>
+            <% end %>
+
+              <% if false %>
+                <% if can? :read, Country %>
+                  <li class="<%= active_controller('admin/countries') %>">
+                    <%= link_to admin_countries_path do %>
+                      <i class="fa fa-genderless"></i>
+                      <span class="nav-label">
+                        Countries
+                      </span>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% end %>
+
+              <% if can? :read, Tournament %>
+                <li class="<%= active_controller('admin/tournaments') %>">
+                    <%= link_to admin_tournaments_path do %>
+                        <i class="fa fa-random"></i>
+                        <span class="nav-label">
+                            Tournaments
+                        </span>
+                    <% end %>
+                </li>
+              <% end %>
+
+              <% if can? :read, Match %>
+                <li class="<%= active_controller('admin/matches') %>">
+                    <%= link_to admin_matches_path do %>
+                        <i class="fa fa-arrows-alt"></i>
+                        <span class="nav-label">
+                            Matches
+                        </span>
+                    <% end %>
+                </li>
+              <% end %>
+            <% end %>
+            <%# if can? :read, Team %>
+              <!-- <li class="<%#= active_controller('admin/teams') %>">
+                  <%= link_to admin_teams_path do %>
+                      <i class="fa fa-steam"></i>
+                      <span class="nav-label">
+                          Teams
+                      </span>
+                  <% end %>
+              </li> -->
+            <%# end %>
+            <% if can? :read, User %>
+            <li class="<%= active_controller('admin/users') %>">
+              <%= link_to admin_users_path do %>
+                <i class="fa fa-user"></i>
+                <span class="nav-label">
+                  <%= t('navigation.players') %>
+                </span>
+              <% end %>
+            </li>
+            <% end %>
+            <%# if can? :read, Group %>
+              <!-- <li class="<%#= active_controller('admin/groups') %>">
+                <%= link_to admin_groups_path do %>
+                  <i class="fa fa-group"></i>
+                  <span class="nav-label">
+                      Groups
+                  </span>
+                <% end %>
+              </li> -->
+            <%# end %>
+            <%# if can? :read, SecurityQuestion %>
+            <!--<li class="<%#= active_controller('admin/security_questions') %>">
+                <%#= link_to admin_security_questions_path do %>
+                    <i class="fa fa-lock"></i>
+                    <span class="nav-label">
+                        Security Questions
+                    </span>
+                <%# end %>
+            </li>-->
+            <%# end %>
+            <% if false %>
+              <% if can? :read, Market %>
+                <li class="<%= active_controller('admin/markets') %>">
+                  <%= link_to admin_markets_path do %>
+                    <i class="fa fa-genderless"></i>
+                    <span class="nav-label">
+                      Markets
+                    </span>
+                  <% end %>
+                </li>
+              <% end %>
+            <% end %>
+            <%# if can? :read, BetType %>
+             <!-- <li class="<%#= active_controller('admin/bet_types') %>">
+                <%#= link_to admin_bet_types_path do %>
+                    <i class="fa fa-filter"></i>
+                    <span class="nav-label">
+                        Bet Types
+                    </span>
+                <%# end %>
+            </li> -->
+            <%# end %>
+            <%# if can? :read, PlayType %>
+            <!-- <li class="<%#= active_controller('admin/play_types') %>">
+                <%#= link_to admin_play_types_path do %>
+                    <i class="fa fa-fire"></i>
+                    <span class="nav-label">
+                        Play Types
+                    </span>
+                <%# end %>
+            </li> -->
+            <%# end %>
+            <% if current_admin_user.is_super_admin? %>
+              <li class="<%= active_controller('admin/withdrawals') %>">
+                <%= link_to admin_withdrawals_path do %>
+                  <i class="fa fa-money"></i>
+                  <span class="nav-label">
+                    Withdrawal Requests
+                  </span>
+                <% end %>
+              </li>
+            <% if false %>
+              <li class="<%= active_controller('admin/withdrawals') %>">
+                <%= link_to admin_deposits_path do %>
+                  <i class="fa fa-money"></i>
+                  <span class="nav-label">
+                    deposits Requests
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
+
+            <% if can? :manage, Casino %>
+              <li class="<%= active_controller('/admin/casino') %>">
+                <%= link_to admin_casino_index_path do %>
+                  <i class="fa fa-gamepad"></i>
+                  <span class="nav-label">
+                    Casino Management
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if can? :manage, SlotGame %>
+              <li class="<%= active_controller('/admin/slot_games') %>">
+                <%= link_to admin_slot_games_path do %>
+                  <i class="fa fa-gamepad"></i>
+                  <span class="nav-label">
+                    Slot Game Management
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if can? :read, CmsTemplate %>
+              <li class="<%= active_controller('/admin/cms_template') %>">
+                <%= link_to admin_cms_templates_path do %>
+                  <i class="fa fa-envelope-o "></i>
+                  <span class="nav-label">
+                    CMS
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if can? :read, Advertisement %>
+              <li class="<%= active_controller('/admin/advertisements') %>">
+                <%= link_to admin_advertisements_path do %>
+                  <i class="fa fa-adn "></i>
+                  <span class="nav-label">
+                    Advertisement
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
+
+            <%# if current_admin_user.is_reseller? %>
+<!--               <li class="<%#= active_controller('admin/ledgers') %>">
+                <a href="">
+                  <i class="fa fa-bar-chart"></i>
+                  <span class="nav-label">
+                    <%#= t('report') %>
+                  </span>
+                  <span class="fa arrow"></span>
+                </a>
+
+                <ul class="nav nav-second-level collapse">
+                  <li class="<%#= params[:wallet_type] != 'self' ? 'active' : '' %>"><%#= link_to 'Admin Wallet', report_admin_admin_user_ledgers_path(admin_user_id: current_admin_user.id) %></li>
+                  <li class="<%#= params[:wallet_type] == 'self' ? 'active' : '' %>"><%#= link_to 'Self Wallet', report_admin_admin_user_ledgers_path(admin_user_id: current_admin_user.id, wallet_type: 'self') %></li>
+                </ul>
+              </li>
+            <%# end %> -->
+
+            <%# if can? :read, TransferRecord %>
+              <!-- <li class="<%#= active_controller('admin/transfer_records') %>">
+                <a href="#">
+                  <i class="fa fa-hand-peace-o"></i> 
+                  <span class="nav-label">
+                    <%#= "Referral Management" %>
+                  </span> 
+                  <span class="fa arrow"></span>
+                </a>
+                
+                <ul class="nav nav-second-level collapse">
+                  <li class="<%#= active_controller_actions('admin/transfer_records', %w(index)) %>">
+                    <%#= link_to "Referral Records" ,admin_transfer_records_path %>
+                  </li>
+                  <li class="<%#= active_controller_actions('admin/transfer_records', %w(user_records)) %>">
+                    <%#= link_to "User Report" , user_records_admin_transfer_records_path %>
+                  </li>
+                </ul>
+              </li> -->
+            <%# end %>
+
+            <%# if false && can?(:read, PromoCode) %>
+              <!-- <li class="<%#= active_controller('admin/promo_codes') %>">
+                <%#= link_to admin_promo_codes_path do %>
+                  <i class="fa fa-gift"></i>
+                  <span class="nav-label">
+                    Manage Promo Codes
+                  </span>
+                <%# end %>
+              </li> -->
+            <%# end %>
+          <% if false %>
+            <% if can?(:read, [PromoCode, Advertisement, Popup]) #unless current_admin_user.is_reseller? %>
+              <li class="<%= active_controller(['admin/promo_codes', 'admin/advertisements', 'admin/popups']) %>">
+                <a href="#">
+                  <i class="fa fa-life-buoy"></i> 
+                  <span class="nav-label">
+                    <%= t('navigation.cms') %>
+                  </span> 
+                  <span class="fa arrow"></span>
+                </a>
+                
+                <ul class="nav nav-second-level collapse">
+                  <!-- <li class="<%#= active_controller('admin/promo_codes')%>">
+                    <%#= link_to "Manage Promo Codes" ,admin_promo_codes_path %>
+                  </li> -->
+                  <li class="<%= active_controller('admin/advertisements')%>">
+                    <%= link_to "Advertisements" ,admin_advertisements_path %>
+                  </li>
+                  <li class="<%= active_controller('admin/popups')%>">
+                    <%= link_to "Popups" ,admin_popups_path %>
+                  </li>
+                </ul>
+              </li>
+            <% end %>
+            
+            <% unless current_admin_user.is_reseller? %>
+              <li class="<%= active_controller('admin/disputes') %>">
+                <%= link_to admin_disputes_path do %>
+                  <i class="fa fa-area-chart"></i>
+                  <span class="nav-label">
+                    Dispute Management
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
+            
+        <% if can? :read, GammabetSetting %>
+          <li class="<%= active_controller('admin/gammabet_settings') %>">
+            <%= link_to settings_page_path do %>
+              <i class="fa fa-cogs"></i>
+              <span class="nav-label">
+                Settings
+              </span>
+            <% end %>
+          </li>
+        <% end %>
+        
+        <% if current_admin_user.is_super_admin? %>
+          <li class="<%= active_controller('admin/pool_wallets') %>">
+            <%= link_to admin_admin_user_pool_wallets_path(current_admin_user) do %>
+              <i class="fa fa-money">
+              </i> <span class="nav-label" data-i18n="nav.wallet">Wallet</span>
+            <% end %>
+          </li>
+        <% end %>
+
+        <% if current_admin_user.is_super_admin? %>
+          <li class="<%= active_controller('admin/q_tech_free_rounds') %>">
+            <%= link_to admin_q_tech_free_rounds_path do %>
+              <i class="fa fa-gamepad">
+              </i> <span class="nav-label">Create Free Spin</span>
+            <% end %>
+          </li>
+        <% end %>
+
+        </ul>
+    </div>
+</nav>

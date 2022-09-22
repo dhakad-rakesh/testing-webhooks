@@ -1,0 +1,9 @@
+<% if params[:page].present? %>
+  $('#casino_items .content').append("<%= escape_javascript render(:partial => 'casino/items') %>");
+  $('#casino_items .casino-loader').html('');
+<% else %>
+  $('#casino_items .content').html("<%= escape_javascript render(:partial => 'casino/items') %>");
+  $('#item_providers').html("<%= escape_javascript render(:partial => 'casino/item_providers') %>");
+<% end %>
+
+$('.pagination').replaceWith('<%= j will_paginate(@items) %>');

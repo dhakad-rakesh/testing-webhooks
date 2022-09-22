@@ -1,0 +1,36 @@
+<% if ledgers.present? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t('admin.histories.user_details') %></th>
+        <th><%= t('transaction_id') %></th>
+        <th><%= t('amount') %></th>
+        <th><%= t('transaction_type') %></th>
+        <th><%= t('remark') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% ledgers.each do |ledger| %>
+        <tr>
+          <td>
+            <%= ledger.wallet&.user&.username %>
+          </td>
+          <td>
+            <%= ledger.tracking_id %>
+          </td>
+          <td>
+            <%= ledger.amount %>
+          </td>
+          <td>
+            <%= ledger.transaction_type %>
+          </td>
+          <td>
+            <%= ledger.remark %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%= t('no_data')%>
+<% end %>

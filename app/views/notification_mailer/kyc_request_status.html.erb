@@ -1,0 +1,8 @@
+<p>Hello <%= @user.username %>,</p>
+
+<p>Your KYC request is <b><%= @user.kyc_status %></b></br>
+
+<% if @user.kyc_status_notes.present? %>
+  <p> <%= "Reason: #{@user.kyc_status_notes}"%></p>
+<% end %>
+<p>Thanks</p>

@@ -1,0 +1,35 @@
+<% url = @casino_menu.persisted? ? admin_casino_menu_path(@casino_menu) : admin_casino_menus_path %>
+<%= form_with model: @casino_menu, url: url, local: true, class: 'form' do |f| %>
+ 
+  <div class="form-group col-lg-10">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', style: 'width: 100%;' %>
+  </div>
+  
+  <div class='form-group col-lg-10'>
+    <%= f.label :type %>
+    <%= f.select :menu_type, options_for_select(Constants::CASINO_TYPE, f.object&.menu_type), {}, {class: 'form-control', style: 'width: 100%;' } %>
+  </div>
+
+  <!-- <div class="form-group col-lg-10">
+    <%#= f.label :order %>
+    <%#= f.number_field :menu_order, class: 'form-control', style: 'width: 100%;' %>
+  </div> -->
+
+  <div class="form-group col-lg-10">
+    <div class="i-checks">
+      <%= f.label :enabled %>
+      <label>
+        <%= f.check_box :enabled %>
+        <i></i>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit (f.object.new_record? ? t('create') : t('update')), class: 'btn btn-primary' %>
+    <%= link_to :back, class: 'btn btn-primary' do %>
+      <span class="fa fa-arrow-circle-o-left"></span> Back
+    <% end %>
+  </div>
+<% end %>

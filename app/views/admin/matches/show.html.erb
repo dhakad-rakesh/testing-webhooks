@@ -1,0 +1,99 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('match') %></h2>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('type_info', name: t('match')) %></h5>
+        </div>
+        <div class="ibox-content">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><b><%= t('id') %>:</b></td>
+                <td><%= @match.id %></td>
+              </tr>
+              <tr>
+                <td><b><%= t('status') %>:</b></td>
+                <td><%= @match.status.titleize %></td>
+              </tr>
+              <tr>
+                <td><b><%= t('scheduled_at') %>:</b></td>
+                <td><%= @match.schedule_at.to_date %></td>
+              </tr>
+              <tr>
+                <td><b><%= t('sport') %>:</b></td>
+                <td><%= Utility::Sport.info(@match).name %></td>
+              </tr>
+              <tr>
+                <td><b><%= t('title') %>:</b></td>
+                <td><%= @match.title %></td>
+              </tr>
+              <tr>
+                <td><b><%= t('tournament') %>:</b></td>
+                <td><%= @match.tournament_name %></td>
+              </tr>
+
+              <tr>
+                <%= form_with model: @match, url: update_match_details_admin_match_path(@match), remote: true, class: 'form' do |f| %>
+                  <td><b><%= t('streaming_url') %>:</b></td>
+                  <td><%= f.url_field :streaming_url, class: 'form-control' %></td>
+                  <td><button class='btn btn-sm btn-success'><i class="fa fa-save"></i></button></td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('statistics') %></h5>
+        </div>
+        <div class="ibox-content">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><b><%= t('bets.bets') %>:</b></td>
+                <td><%= @match.bets.count %></td>
+                <td><%= link_to t('view'), admin_match_bets_path(@match) %></td>
+              </tr>
+              <tr>
+                <td><b><%= t('.no_of_users_betted') %>:</b></td>
+                <td><%= @match.users.count || 0 %></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b><%= t('.liability') %>:</b></td>
+                <td><%= @match.liability || 0 %></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  .faq-item {
+    padding: 20px;
+    margin-bottom: 2px;
+    background: #fff;
+  }
+  .clear{
+    clear: both;
+  }
+</style>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% unless session[:gs_session] %>
+      <link rel="icon" href="<%= image_url 'favicon.png' %>" type="image/x-icon" sizes="16x16">
+    <% else %>
+      <link rel="icon" href="<%= image_url 'gs_favicon.png' %>" type="image/x-icon" sizes="16x16">
+    <% end %>
+    <title><%= Figaro.env.project_name %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= stylesheet_link_tag 'bwinner', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'user_application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navabr-bg">
+        <div class="container-fluid">
+          <div>
+            <div class="navbar-header">
+              <a class="" href="#">
+                <% unless session[:gs_session] %>
+                  <%= image_tag 'logo', class: "img-responsive logo-img", alt: "logo" %>
+                <% else %>
+                  <%= image_tag 'gs_logo', class: "img-responsive logo-img", alt: "logo" %>
+                <% end %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="tab-section">
+      <%= render 'layouts/flash_message' %>
+      <div class="parent-section">
+        <div class="right-part">
+          <div class='body-container'>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </section>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

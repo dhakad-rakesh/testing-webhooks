@@ -1,0 +1,8 @@
+Hi <%= "#{@payor&.first_name&.capitalize} (#{@payor&.username})" %>,
+<br>
+<br>
+You have successfully transferred <%= @amount %> to <%= @payee&.full_name&.titleize %>
+<br>
+<br>
+Regards,<br>
+Bwinner Team.

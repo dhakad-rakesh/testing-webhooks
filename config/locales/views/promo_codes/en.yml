@@ -1,0 +1,16 @@
+en:
+  admin:
+    popups:
+      created_at: 'Created at'
+      id: 'ID'
+      title: 'Title'
+      screen: 'Screen'
+      platform: 'Platform'
+      repeat_type: 'Repeat type'
+      repeat_duration: 'Repeat duration'
+      link: 'Link'
+      new_window: 'New window'
+      start_date: 'Start Date'
+      end_date: 'End Date'
+      status: 'Status'
+      type: 'Promo Type'

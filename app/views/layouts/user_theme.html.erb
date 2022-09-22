@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% unless session[:gs_session] %>
+      <link rel="icon" href="<%= image_url 'favicon.png' %>" type="image/x-icon" sizes="16x16">
+    <% else %>
+      <link rel="icon" href="<%= image_url 'gs_favicon.png' %>" type="image/x-icon" sizes="16x16">
+    <% end %>
+    <title><%= Figaro.env.project_name %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <%= stylesheet_link_tag 'user_theme', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'user_theme', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="bg-image">
+      <%= render 'layouts/user_theme/top_nav' %>
+      <%= render 'layouts/flash_message' %>
+      <div class="container">
+        <!-- Navigation -->
+        <%= render 'layouts/user_theme/navigation' %>
+        <%= yield %>
+        <div id="cover-spin">
+          <p>Loading....</p>
+        </div>
+      </div>
+      <%= render 'layouts/casino_modal_popup' %>
+      <%= render 'layouts/user_theme/footer' %>
+    </div>
+  </body>
+</html>

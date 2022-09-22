@@ -1,0 +1,27 @@
+<div class="row border-bottom">
+  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+    </div>
+
+    <% if current_admin_user.has_role? :reseller %>
+      <div class='header-wallet-balance'>
+        <b>Admin Credit: <%= number_with_precision(current_admin_user.available_amount, precision: 2) %></b></br>
+        <b>Self Credit: <%= number_with_precision(current_admin_user.self_amount, precision: 2) %></b>
+      </div>
+    <% end %>
+
+    <ul class="nav navbar-top-links navbar-right">
+      <!-- <li>
+        <span class="m-r-sm text-muted welcome-message" data-i18n="topnav.welcometext">Welcome to Gammabet Admin Dashboard.</span>
+      </li> -->
+      <% if current_admin_user %>
+        <li>
+          <a onclick='setTokenSentToServer(false);' href="<%= destroy_admin_user_session_path(gs_session: session[:gs_session]) %>" data-method="delete" rel="nofollow">
+            <i class="fa fa-sign-out"></i> Log out
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>

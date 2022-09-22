@@ -1,0 +1,15 @@
+Hi <%= @email %>,
+<br>
+<br>
+You have unfortunately lost your combo bet # <%= @combo_bet.id %>.
+<br>
+Please find the details of your bets below:
+<br>
+<br>
+Stake : <%= @combo_bet.stake %>
+<br>
+Status: Lost
+<br><br>
+Regards,
+<br>
+<%= Figaro.env.project_name %> Team.

@@ -1,0 +1,32 @@
+<% url = @round.persisted? ? admin_q_tech_free_rounds_path(@round) : admin_q_tech_free_rounds_path %>
+<%= form_with model: @round, url: url, local: true, class: 'form' do |f| %>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :users %>
+    <%= f.select :user_id, options_for_select(User.all.collect { |c| [c.username, c.id] }.sort), {prompt: "Please select User"}, class: 'form-control', style: 'width: 100%;', required: true %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :QTech_casino_games %>
+    <%= f.select :q_tech_casino_game_id, options_for_select(QTechCasinoGame.has_freespins.all.collect { |c| [c.name, c.id] }.sort), {prompt: "Please select User"}, class: 'form-control', style: 'width: 100%;', required: true %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :validity_days %>
+    <%= f.number_field :validity_days, class: 'form-controlo', style: 'width: 100%', value: 1 %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :total_bet_value %>
+    <%= f.number_field :total_bet_value, class: 'form-controlo', style: 'width: 100%', step: :any, value: 10 %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :currency %>
+    <%= f.select :currency, Wallet.currencies.keys, {}, class: 'form-control', style: 'width: 100%;' %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit t('save'), class: 'btn btn-primary' %>
+  </div>
+<% end %>

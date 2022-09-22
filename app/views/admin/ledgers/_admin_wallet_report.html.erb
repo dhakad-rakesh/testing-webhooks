@@ -1,0 +1,52 @@
+<table class="table table-bordered">
+    <tr>
+      <th>Wagered by Users</th>
+      <th>Due Wagered</th>
+      <th>Payout percentage</th>
+    </tr>
+    <tr>
+      <td><%= format_currency(amount: @user_wegered_amount) %></td>
+      <td><%= format_currency(amount: @due_wegered_amount) %></td>
+      <td><%= @payout_percentage %></td>
+    </tr>
+    <tr>
+      <th>Total Amount Paid</th>
+      <th>Due Amount</th>
+    </tr>
+    <tr>
+      <td><%= format_currency(amount: @credited_amount) %></td>
+      <td><%= format_currency(amount: @due_amount) %></td>
+      <% if @due_amount > 0 && current_admin_user.is_super_admin?%>
+        <td>
+          <%= link_to manaul_transfer_admin_transfer_funds_path(admin_user_id: @user.id, amount: @due_amount, wagered_amount: @due_wegered_amount ), method: :post, class: 'btn btn-success' do %>
+            Pay now
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% if false %>
+    <tr>
+      <!-- <th><%#= t('transaction.date') %></th> -->
+      <% reseller_percentage = reseller_percentage_calc @reseller_stats[:wagered_amount], @user %>
+      <th>Total Amount Credited</th>
+      <th>Total Amount Distributed</th>
+      <th>Payout To Admin (<%= "#{reseller_percentage}%" %>)</th>
+    </tr>
+    <tr>
+      <td><%= format_currency(amount: @credited_amount) %></td>
+      <td><%= format_currency(amount: @debited_amount) %></td>
+      <td><%= format_currency(amount: payout_to_admin(@debited_amount, reseller_percentage)) %></td>
+    </tr>
+    <tr>
+      <th>Wagered by Users</th>
+      <th>Won by Users</th>
+      <th>Lost by Users</th>
+    </tr>
+    <tr>
+      <td><%= format_currency(amount: @reseller_stats[:wagered_amount]) %></td>
+      <td><%= format_currency(amount: @reseller_stats[:won_amount]) %></td>
+      <td><%= format_currency(amount: @reseller_stats[:lost_amount])%></td>
+    </tr>
+  <% end %>
+
+</table>

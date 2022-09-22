@@ -1,0 +1,298 @@
+<% unless mobile_device? %>
+  <% header_markets = ['live', 'favorite'].include?(kind) ? Constants.inplay_top_markets : Constants.prematch_top_markets %>
+  <div id="live-events" class="tab-pane fade in active">
+    <div id="live-event-content" class="accordion">
+      <div class="card mb-0">
+        <% events.each do |sport, s_matches| %>
+          <% name = sport.name %>
+          <% uid = sport.uid %>
+          <div>
+            <div class="games-heading" data-toggle="collapse" href="#<%= name.downcase %>" aria-expanded="false">
+              <ul class="games-heading-ul">
+                <li class="live-match-name">
+                  <span>
+                    <img src="<%= image_url "sports_icon/default" %>" class="pull-left" class="img-responsive" style="width: 30px; padding-right: 10px;">
+                    <%= name.upcase %>(<%= s_matches.count %>)
+                  </span>
+                </li>
+                <% header_markets[uid]&.each do |id, row| %>
+                  <li class="<%= row[:name].downcase %> width15">
+                    <%= row[:name].upcase %>
+                  </li>
+                <% end %>
+                  
+                <li class="plus-data"></li>
+              </ul>
+            </div>
+            <div id="<%= name.downcase %>" class="card-body collapse in" data-parent="#live-event-content" aria-expanded="false">
+              <ul class="show-data">
+                <li class="live-match-name"></li>
+                <% header_markets[uid]&.each do |id, row| %>
+                  <li class="width15">
+                    <ul class="inner-data">
+                      <% row[:outcomes_name].each do |d_name| %>
+                        <li><%= d_name %></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
+              <% s_matches.group_by { |m| m&.tournament&.name }.each do |league, l_matches| %>
+                <div class="games-heading league-heading" data-toggle="collapse" href="#<%= league.downcase.gsub(' ', '_') %>" aria-expanded="false">
+                  <ul class="games-heading-ul">
+                    <li class="live-match-name">
+                      <span>
+                        <%= league.upcase %>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div id="<%= league.downcase.gsub(' ', '_') %>" class="card-body collapse in" data-parent="#live-event-content" aria-expanded="false">
+                  <% if l_matches.any? %>
+                    <% l_matches.each_with_index do |match, index| %>
+                      <% teams = match.title.split('vs') %>
+                      <% markets = match.arrange_markets_by_ranking %>
+                      <ul class="show-detail-data <%= index%2 == 1 ? 'betting-odd-color' : 'betting-even-color' %>">
+                        <li class="live-match-name <%= 'upcoming-match-name' if kind == "upcoming" %>">
+                          <% unless kind == 'upcoming' %>
+                            <span class="pull-left inch-number">
+                              <span id="running_time_<%= match.id %>"><%= match.running_time %></span>
+                            </span>
+                          <% else %>
+                            <span class="upcoming-match-time">
+                              <%#= current_time(match.schedule_at, 'CET', '%a %H:%M') %>
+                              <%= match.schedule_at.strftime("%Y-%d-%m %H:%M:%S") %>
+                            </span>
+                          <% end %>
+                          <% if kind == 'live' %>
+                            <span class="show-data-img add_live_favorite_matches" data-match-id="<%= match.id %>">
+                              <img src="<%= image_url 'b-star.png' %>" style="float: left;width: 20px;" class="img-responsive">
+                              <div class="star-tool-tip">
+                                <p class="tool-tip">
+                                  Add to your favourite
+                                </p>
+                                <p class="arrow"></p>
+                              </div>
+                            </span>
+                          <% end %>
+                          <span style="display: inline-block;" class="text-ellipes">
+                            <span class="match-hover">
+                              <% if kind == 'favorite' %>
+                                <span class="show-data-img remove_live_favorite_matches" data-match-id="<%= match.id %>">
+                                  <img src="<%= image_url 'star.png' %>" style="float: left;width: 20px;" class="img-responsive">
+                                </span>
+                              <% end %>
+                              <span class="pull-left second-sport"><%= teams[0] %></span>
+                              <% if kind == 'upcoming' %>
+                                <span class="show-data-img upcoming-img">
+                                  <img src="<%= image_url "sports_icon/default" %>" style="display: inline-block;width: 20px;" class="img-responsive">
+                                </span>
+                              <% else %>
+                                <span class="bold-color" id="running_score_<%= match.id %>"><%= match.score %> </span>
+                              <% end %>
+                              <span class="second-sport"><%= teams[1] %></span>
+                              <div class="">
+                                <p class="tool-tip">
+                                  <span><%= teams[0] %></span>
+                                  <span style="padding: 0 5px; float: none;display: inline-block;">VS</span>
+                                  <span><%= teams[1] %></span>
+                                </p>
+                                <p class="arrow"></p>
+                              </div>
+                            </span>
+                          </span>
+                        </li>
+                        <% header_markets[uid]&.each do |market_id, row| %>
+                          <% data = get_selected_market_data(match, market_id) %>
+                          <% unless Market.markets_enable_ids.include?(market_id) %>
+                            <li class="width15 <%= kind %>">
+                              <ul class="inner-data">
+                                <li>-</li>
+                                <li>-</li>
+                                <li>-</li>
+                              </ul>
+                            </li>
+                          <% else %>
+                            <% if data[:market_data].present? %>
+                              <% market_data = data[:market_data] %>
+                              <% market_name = market_data&.first&.last[:name] %>
+                              <% market_uid = market_data&.first&.last[:uid] %>
+                              <% market_data.each do |identifier, value| %>
+                                <% if value[:status] == 'suspended' %>
+                                  <li class="width15 <%= kind %>">
+                                    NA
+                                  </li>
+                                  <% next %>
+                                <% end %>
+
+                                <% if ["2", "166"].include?(market_id) #Over/Under%>
+                                  <li class="width15 <%= kind %>">
+                                    <ul class="inner-data">
+                                      <% specifier = value[:outcomes].first.last[:handicap] %>
+                                      <li><%= specifier %></li>
+                                      <% row[:ls_outcomes_name].each do |name| %>
+                                        <% outcome = format_outcomes_handicap(value[:outcomes], name, specifier) %>
+                                        <% if outcome.blank? || outcome[:handicap] != specifier || outcome[:status] != 'open' %>
+                                          <li class="outcome-row"> NA </li>
+                                          <% next %>
+                                        <% end %>
+                                        <li class="outcome-row" li-data-outcome-id="<%= outcome[:uid] %>">
+                                          <a href="JavaScript:Void(0)">
+                                            <div class="outcomes" data-name="<%= outcome[:name] %>" data-odds="<%= outcome[:odds] %>" data-market-name="<%= value[:name] %>" data-market-uid="<%= market_uid %>" data-market-id="<%= market_id %>" data-match-name="<%= match.title %>" data-match-id="<%= match.id %>" data-outcome-id="<%= outcome[:uid] %>" data-identifier="<%= outcome.select { |k,v| k == :handicap } %>" data-identifier-id="<%= identifier %>" data-status='<%= outcome[:status]%>'>
+                                              <%= outcome[:odds].present? ? number_with_precision(outcome[:odds], precision: 2) : 'NA' %>
+                                            </div>
+                                          </a>
+                                        </li>
+                                      <% end %>  
+                                    </ul>
+                                  </li>
+                                <% else %>
+                                  <li class="width15 <%= kind %>">
+                                    <ul class="inner-data">
+                                      <% if market_uid == '2' %>
+                                        <li><%= value[:specifier].present? ? value[:specifier] : "NA" %></li>
+                                      <% end %>
+                                      <% row[:ls_outcomes_name].each do |name| %>
+                                        <% outcome = format_outcomes(value[:outcomes], name) %>
+                                        <% if outcome.blank? || outcome[:status] != 'open' %>
+                                          <li class="outcome-row"> NA </li>
+                                        <% next %>
+                                        <% end %>
+                                        <li class="outcome-row" li-data-outcome-id="<%= outcome[:uid] %>">
+                                          <a href="JavaScript:Void(0)">
+                                            <div class="outcomes" data-name="<%= outcome[:name] %>" data-odds="<%= outcome[:odds] %>" data-market-name="<%= value[:name] %>" data-market-uid="<%= market_uid %>" data-market-id="<%= market_id %>" data-match-name="<%= match.title %>" data-match-id="<%= match.id %>" data-outcome-id="<%= outcome[:uid] %>" data-identifier="<%= outcome.select { |k,v| k == :handicap } %>" data-identifier-id="<%= identifier %>" data-status='<%= outcome[:status]%>'>
+                                              <%= outcome[:odds].present? ? number_with_precision(outcome[:odds], precision: 2) : 'NA' %>
+                                            </div>
+                                          </a>
+                                        </li>
+                                      <% end %>
+                                    </ul>
+                                  </li>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                                <li class="width15 <%= kind %>">
+                                  <ul class="inner-data">
+                                    <li>NA</li>
+                                    <li>NA</li>
+                                    <li>NA</li>
+                                  </ul>
+                                </li>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                        <li class="plus-data">
+                          <a data-toggle="collapse" href="#collapse-<%= match.id %>">
+                            +<%= match.market_counts(header_markets[uid]&.keys) %>
+                            <span class="left-arrow fa fa-angle-right"></span>
+                          </a>
+                        </li>
+                        <div class="table-collapse <%= kind %>">
+                          <div id="collapse-<%= match.id %>" class="panel-collapse collapse">
+                            <ul class="border-none inner-detail">
+                              <% if markets.present? %>
+                                <% bet_slips = Rails.cache.fetch(Utility::Cache.player_bet_slips_cache_key(current_user&.id)) { [] } %>
+                                <% markets.each do |market_id, market_data| %>
+                                  <!-- Over/under market -->
+                                  <% next if header_markets[uid]&.keys&.reject {|n| n == '2'}&.include?(market_id) || market_data.blank? %>
+                                  <% market_name = market_data.first.last[:name] %>
+                                  <% market_uid = market_data.first.last[:uid] %>
+
+                                  <%# next unless enabled_market? market_uid.to_s %>
+                                  <% market_data.each do |identifier, value| %>
+                                    <% if !value[:status].include?('open') %>
+                                      <% next %>
+                                    <% end %>
+                                    <% if ["2", "166"].include?(market_id) %>
+                                      <% specifier = value[:outcomes].first.last[:handicap] %>
+                                      <%# if get_match_goals_outcomes(value[:outcomes], specifier).any? %>
+                                        <div class="inner-detail-div">
+                                          <li class="pull-left inner-detail-text"><%= market_name %></li>
+                                          <li class="pull-right inner-detail-data">
+                                            <% value[:outcomes].each do |outcome| %>
+                                              <% next if specifier == outcome.last[:handicap] || outcome.last[:status] != 'open' %>
+                                              <span class="market_outcome_name">
+                                                <%= match_outcome_name(outcome.last, market_uid) %>
+                                              </span>
+                                              <span class="outcome-row" li-data-outcome-id="<%= outcome.first %>">
+                                                <a href="JavaScript:Void(0)">
+                                                  <div class="outcomes" data-name="<%= outcome.last[:name] %>" data-odds="<%= outcome.last[:odds] %>" data-market-name="<%= value[:name] %>" data-market-uid="<%= market_uid %>" data-market-id="<%= market_id %>" data-match-name="<%= match.title %>" data-match-id="<%= match.id %>" data-outcome-id="<%= outcome.first %>" data-identifier="<%= outcome.last[:handicap].present? ? { handicap: outcome.last[:handicap] } : {} %>" data-identifier-id="<%= identifier %>" data-status='<%= outcome.last[:status]%>'>
+                                                    <%= number_with_precision(outcome.last[:odds], precision: 2) %>
+                                                  </div>
+                                                </a>
+                                              </span>
+                                            <% end %>
+                                          </li>
+                                        </div>
+                                      <%# else %>
+                                        <!-- <center>No odds available for betting.</center> -->
+                                      <%# end %>
+                                    <% else %>
+                                      <div class="inner-detail-div">
+                                        <li class="pull-left inner-detail-text"><%= market_name %></li>
+                                        <li class="pull-right inner-detail-data">
+                                          <% value[:outcomes].each do |outcome| %>
+                                            <% next if outcome.last[:status] != 'open' %>
+                                            <span class="market_outcome_name">
+                                              <%= match_outcome_name(outcome.last, market_uid) %>
+                                            </span>
+                                            <span class="outcome-row" li-data-outcome-id="<%= outcome.first %>">
+                                              <a href="JavaScript:Void(0)">
+                                                <div class="outcomes" data-name="<%= outcome.last[:name] %>" data-odds="<%= outcome.last[:odds] %>" data-market-name="<%= value[:name] %>" data-market-uid="<%= market_uid %>" data-market-id="<%= market_id %>" data-match-name="<%= match.title %>" data-match-id="<%= match.id %>" data-outcome-id="<%= outcome.first %>" data-identifier="<%= outcome.last[:handicap].present? ? { handicap: outcome.last[:handicap] } : {} %>" data-identifier-id="<%= identifier %>"  data-status='<%= outcome.last[:status]%>'>
+                                                  <%= number_with_precision(outcome.last[:odds], precision: 2) %>
+                                                </div>
+                                              </a>
+                                            </span>
+                                          <% end %>
+                                        </li>
+                                      </div>
+                                    <% end %>
+                                  <% end %>
+                                <% end %>
+                              <% else %>
+                                <center>No odds available for betting.</center>
+                              <% end %>
+                            </ul>
+                          </div>
+                        </div>
+                      </ul>
+                    <% end %>
+                  <% else %>
+                    <ul class="show-detail-data">
+                      <li>No matches available.</li>
+                    </ul>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= render partial: "live_matches_mobile", locals: { events: events, kind: kind } %>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    <% if kind == 'live' %>
+      addLiveFavoriteMatches();
+    <% elsif kind == 'favorite' %>
+      removeLiveFavoriteMatches();
+    <% else %>
+      $('.upcoming-match-time').each(function(i) {
+        var time = convertUtcInToLocalTime($(this).text(), "ddd HH:mm");
+        $(this).html(time);
+      });
+    <% end %>
+    <% if (kind == 'live' || kind == 'favorite') && events.count > 0 %>
+      var interval = "<%= Figaro.env.ODDS_CHANGE_INTERVAL %>";
+      var apk_version = "<%= GammabetSetting.apk_version %>";
+      subscribeOddsChange(interval, apk_version);
+      setInterval(function() {
+        $('.outcome-row ').removeClass('greater-val').removeClass('smaller-val');
+      }, 4000);
+    <% end %>
+  });
+</script>

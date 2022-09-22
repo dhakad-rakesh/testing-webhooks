@@ -1,0 +1,34 @@
+<section class="search-section">
+  <div class="container-fluid">
+    <div class="search-strip">
+      <!-- <ul class="pull-left">
+        <li><a href="#">Live Streaming</a></li>
+        <li><a href="#">Odds</a></li>
+        <li class="decimal">
+          <a href="#" >Decimal
+            <span class="fa fa-angle-down "></span>
+          </a>
+        </li>
+        <li class="search-border"><a href="#"><span class="fa fa-search"></span>Search</a></li>
+      </ul> -->
+      <ul class="pull-right">
+        <li>
+          <%= link_to t('responsible_gambling'), responsive_gambling_user_path(current_user) if current_user %>
+        </li>
+        <li>
+          <%= link_to 'My Bets', my_bets_bets_path(match_id: @live_match&.id) if current_user %>
+        </li>
+        <!-- <li>
+          <a href="#">
+            Pool Betting
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Help
+          </a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</section>

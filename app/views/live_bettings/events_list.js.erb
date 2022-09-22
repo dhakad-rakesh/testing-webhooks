@@ -1,0 +1,1 @@
+$(".events-listing").html("<%= escape_javascript(render(:partial => 'live_bettings/events', locals: { events: @events, kind: params[:kind] })) %>");

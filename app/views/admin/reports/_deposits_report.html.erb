@@ -1,0 +1,46 @@
+<%= link_to deposits_admin_reports_path(request.parameters.merge(format: "csv")), class: 'btn btn-sm btn-primary pull-right' do %>
+  <span>CSV <i class="fa fa-download"></i></span>
+<% end %>
+<table class="dt-reports table table-hover deposits-report" data-title="Koorabet | Bets Report">
+  <thead>
+    <tr>
+      <th><%= t('admin.reports.deposits.transaction_id') %></th>
+      <th><%= t('admin.reports.deposits.date_time') %></th>
+      <th><%= t('admin.reports.deposits.player_id') %></th>
+      <th><%= t('admin.reports.deposits.currency') %></th>
+      <th><%= t('admin.reports.deposits.amount') %></th>
+      <th><%= t('admin.reports.deposits.remark') %></th>
+      <th><%= t('admin.reports.deposits.region') %></th>
+      <th><%= t('admin.reports.deposits.status') %></th>
+      <th><%= t('admin.reports.deposits.payment_system') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if ledgers.present? %>
+      <% ledgers.each do |ledger| %>
+        <tr class="gradeX">
+          <td><%= ledger.id %></td>
+          <td><%= short_date_time(ledger.created_at) %></td>
+          <td><%= link_to ledger.user_number, admin_user_path(ledger.user_id) %></td>
+          <td><%= ledger.wallet.currency %></td>
+          <td><%= ledger.amount %></td>
+          <td><%= ledger.remark %></td>
+          <td><%= ledger.region %></td>
+          <td><%= ledger.status&.humanize %></td>
+          <td><%= ledger.mode&.humanize || 'NA' %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=5>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate ledgers, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>
+
+<%= javascript_include_tag 'admin/reports' %>

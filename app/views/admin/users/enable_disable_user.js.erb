@@ -1,0 +1,6 @@
+if (<%= @user.errors.count > 0 %>) {
+  toastr.error(<%= @user.errors.full_messages.join('\n') %>);
+} else {
+  toastr.success('Successfully updated user.');
+  $("#user_<%= @user.id %>").html("<%= escape_javascript(render(partial: 'admin/users/detail', locals: { user: @user })) %>");
+}

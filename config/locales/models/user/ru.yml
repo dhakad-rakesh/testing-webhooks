@@ -1,0 +1,44 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: 'инвалид'
+            password:
+              bad_password: 'Требование сложности не выполнено. Длина должна быть 6–14 символов и включать: 1 букву, 1 цифру, 1 специальный символ, кроме: <>: $%'
+              common_password: 'Не должно содержать части имени или адреса электронной почты'
+            username:
+              invalid: 'должны содержать только буквенно-цифровые символы и не должны содержать специальных символов.'
+              blank: 'требуется'
+              taken: 'уже занят'
+            phone:
+              taken: 'is already registered with us. Please login instead of signup.'
+              not_available: 'is not available'
+            locale:
+              not_supported: 'not supported'
+            email: 
+              blank: 'требуется'
+              taken: 'уже занят'
+            metamask_address:
+              taken: 'уже занят'
+              blank: 'требуется'          
+    attributes:
+      user:
+        first_name: 'First name'
+        last_name: 'Last name'
+        username: 'Имя пользователя'
+        email: 'Электронное письмо'
+        occupation: 'Occupation'
+        organization: 'Organization'
+        password: 'Пароль'
+        current_password: 'Текущий пароль'
+        password_confirmation: 'Подтверждение пароля'
+        reality_check_timer: 'Reality check timer'
+        exclusion_time: 'Self exclusion time'
+        selfie_picture: 'Селфи-фотография с правительственным удостоверением личности'
+        govt_id_picture: 'правительственное удостоверение личности'
+        kyc_status: 'Статус KYC'
+        metamask_address: 'Адрес метамаска'
+        

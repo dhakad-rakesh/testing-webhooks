@@ -1,0 +1,88 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="panel-title">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseCasinoFilter">Filter</a>
+    </h5>
+  </div>
+  <div id="collapseCasinoFilter" class="panel-collapse collapse">
+    <div class="panel-body-custom">
+      <table class="filter-table">
+        <tr>
+          <th>Data Range</th>
+          <th>Game ID</th>
+          <th>Bet Type</th>
+          <th>Transaction Type</th>
+        </tr>
+        <tr>
+          <td>
+            <%= text_field_tag :filter_date, nil, class: 'date-range form-control', placeholder: 'Select date range', data: { behavior: 'daterangepicker' }, autocomplete: "off" %>
+            <%= hidden_field_tag :start_date, nil, class: 'start-date' %>
+            <%= hidden_field_tag :end_date, nil, class: 'end-date' %>
+          </td>
+          <%= hidden_field_tag :player_number, @user.user_number, class: 'form-control', placeholder: 'Player Number', autocomplete: "off" %>
+          <td>
+            <%= select_tag :game_id, options_for_select(game_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+          <td>
+            <%= select_tag :bet_type, options_for_select(bet_type_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+          <td>
+            <%= select_tag :transaction_type, options_for_select(transaction_type_enumerated_options), { prompt: 'All', class: "form-control"} %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="panel-footer">
+      <div class="col-sm-offset-10">
+        <button class="btn btn-sm btn-primary search">Apply</button>
+        <button class="btn btn-sm btn-danger reset">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'admin/list_filter' %>
+
+<script>
+  $(".only-numeric").bind("keypress", function (e) {
+    var keyCode = e.which ? e.which : e.keyCode
+    if (!(keyCode >= 48 && keyCode <= 57)) {
+      return false;
+    }       
+  });
+
+  $("#collapseBetsFilter .search").on("click", function() {
+    // const bet_id = $("#bet_id").val();
+    // const sport_kind = $("#sport_kind").val();
+    // const sport_id = $("#sport_id").val();
+    // const bet_created_at = $("#bet_created_at").val();
+    // const bet_created_at_start_date = $("#bet_created_at_start_date").val();
+    // const bet_created_at_end_date = $("#bet_created_at_end_date").val();
+    // const bet_type = $("#bet_type").val();
+    // const bet_min_amt = $("#bet_min_amt").val();
+    // const bet_max_amt = $("#bet_max_amt").val();
+    // const bet_status = $("#bet_status").val();
+    // const address = $("#bet_type :selected").data('link');
+    const data = {
+      game_id: $("#game_id").val(),
+      player_number: $("#player_number").val(),
+      transaction_type: $("#transaction_type").val(),
+      filter_date: $("#filter_date").val(),
+      start_date: $("#start_date").val(),
+      end_date: $("#end_date").val(),
+      bet_type: $("#bet_type").val()
+    }
+
+    getAjaxJs("/admin/reports/casino", data)
+  });
+
+  $('.reset').on('click', () => {
+    $("#game_id").val('');
+    $("#transaction_type").val('');
+    $("#filter_date").val('');
+    $("#start_date").val('');
+    $("#end_date").val('');
+    $("#bet_type").val('');
+    $('.search').trigger('click');
+  });
+</script>

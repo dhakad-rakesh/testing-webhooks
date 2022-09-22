@@ -1,0 +1,13 @@
+<tr class="gradeX">
+  <td><%= resource.id %></td>
+  <td><%= resource.name %></td>
+  <td class="center">
+    <% favourite = @user_favourites.select{|fav| fav.favouriteable_id == resource.id } %>
+		<% if favourite.blank? %>
+	    <%= link_to 'Favourite', favourites_path(resource_id: resource.id, favourite_id: favourite.first&.id, favouriteable_type: resource.class.name, is_default: false), method: :post, remote: true, class: 'btn btn-primary', id: 'resource_' + resource.id.to_s %>
+   	<% else %>
+	    <%= link_to 'Unfavourite', favourite_path(id: resource.id, favourite_id: favourite.first&.id, favouriteable_type: resource.class.name, is_default: false), method: :delete, remote: true, class: 'btn btn-danger', id: 'resource_' + resource.id.to_s %>
+	 	<% end %>
+  </td>
+  <td><%= link_to 'matches', matches_path("#{resource.class.name.downcase}_id" => resource.id) %></td>
+</tr>

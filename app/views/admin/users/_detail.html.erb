@@ -1,0 +1,54 @@
+<td><%= user.id %></td>
+<td><%= link_to user.username, admin_user_path(user) %></td>
+<td><%= user.email.present? ? user.email : user.unconfirmed_email %></td>
+<td><%= user.email.present? ? 'Verified' : 'Verification Pending' %></td>
+<td><%#= user.user_number %></td>
+<td>
+  <% if user.undiscarded? %>
+    <div class="green">Active</div>
+  <% else %>
+    <div class="red">Deactive</div>
+  <% end %>
+</td>
+<td><%= user.total_bets %></td>
+<td><%= format_currency(amount: user.available_amount) %></td>
+<td><%= format_currency(amount: user.bonus_amount) %></td>
+<td><%#= user_type(user) %></td>
+<td>
+  <% if false %>
+    <%= link_to edit_admin_user_path(user), class: 'btn btn-primary' do %>
+      <span class="fa fa-pencil"></span>
+    <% end %>
+    <%= link_to admin_user_path(user), class: 'btn btn-primary' do %>
+      <span class="fa fa-eye"></span>
+    <% end %>
+  <% end %>
+  <% if user.undiscarded? %>
+    <%= link_to '#', class: 'btn btn-sm btn-danger', data: { path: enable_disable_user_admin_user_path(user), message: 'Do you want to disable the user?' }, id: "change_user_#{user.id}_state" do %>
+      <span class="fa fa-remove"></span> Disable
+    <% end %>
+  <% else %>
+    <%= link_to '#', class: 'btn btn-sm btn-primary change_user_state', data: { path: enable_disable_user_admin_user_path(user), message: 'Do you want to enable the user?' }, id: "change_user_#{user.id}_state" do %>
+      <span class="fa fa-check"></span> Enable
+    <% end %>
+  <% end %>
+</td>
+<td>
+  <%= check_box_tag "select_user", user.id , false, class: 'select_user' %>
+</td>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#change_user_<%= user.id %>_state").on('click', function() {
+      let url = $(this).data('path');
+      var r = confirm($(this).data('message'));
+      if (r) {
+        $.ajax({
+          url: url,
+          type: 'PATCH',
+          success: function () {}
+        });
+      }
+    });
+  });
+</script>

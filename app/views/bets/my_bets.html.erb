@@ -1,0 +1,133 @@
+<section class="main-section">
+  <div class="width90">
+    <div class="heading">
+      <h3>MY BETS</h3>
+    </div>
+    <div class="open-close-bets" data-activeURL="<%= my_bets_bets_path(scope: 'pending') %>">
+      <div class="both-bets">
+        <div class="parent-bets">
+          <ul class="nav nav-tabs">
+            <li id='open-bets-tab' class=<%= "active" if params[:scope] === "pending" %>><a data-toggle="tab" href="#open-bets">Open bets</a></li>
+            <li id='close-bets-tab' class=<%= "active" if params[:scope] === "resolved" %>><a data-toggle="tab" href="#close-bets">Close bets</a></li>
+          </ul>
+        </div>
+        <div class="tab-content">
+          <div id="open-bets" class="tab-pane fade in active">
+            <div class="sub-bets">
+              <div class="child-bets">
+                <ul class="nav nav-tabs single-combo-tab">
+                  <li class=<%= "active" unless params[:combo] %>><a data-toggle="tab" href="#single" data-bets_path="<%= my_bets_bets_path(scope: 'pending') %>">Single</a></li>
+                  <li class=<%= "active" if params[:combo] %>><a data-toggle="tab" href="#combination" data-bets_path="<%= my_bets_bets_path(scope: 'pending', combo: 'true') %>">Combination</a></li>
+                </ul>
+              </div>
+              <div class="filter">
+                <input class="form-control" type="text" name="daterange">
+              </div>
+            </div>
+            <br><br>
+            <div class="tab-content bet-type-list-container">
+            <% unless params[:combo] %>
+              <%= render 'bets/partials/single_bet_content', bets: @bets, kind: params[:scope] %>
+            <% else %>
+              <%= render 'bets/partials/combo_bet_content', bets: @bets, kind: params[:scope] %>
+            <% end %>
+            </div>
+          </div>
+
+          <div id="close-bets" class="tab-pane fade">
+            <div class="sub-bets">
+              <div class="child-bets">
+                <ul class="nav nav-tabs single-combo-tab">
+                  <li class="active"><a data-toggle="tab" href="#single" data-bets_path="<%= my_bets_bets_path(scope: 'resolved') %>">Single</a></li>
+                  <li><a data-toggle="tab" href="#combination" data-bets_path="<%= my_bets_bets_path(scope: 'resolved', combo: 'true') %>"">Combination</a></li>
+                </ul>
+              </div>
+              <div class="filter">
+                <input class="form-control" type="text" name="daterange">
+              </div>
+            </div>
+            <br><br>
+            <div class="tab-content bet-type-list-container">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  function getAjax(address, data) {
+    return $.ajax({
+      url: address,
+      type: "GET",
+      data: data,
+      dataType: 'script',
+    });
+  }
+
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    // parent_selector = $(this).closest('.tab-pane').attr('id');
+    var address = $("#open-bets .single-combo-tab li.active a").data('bets_path');
+    getAjax(address, { range_from: start.format('YYYY-MM-DD'), range_to: end.format('YYYY-MM-DD') });
+  });
+
+  $('#open-bets .single-combo-tab a, #close-bets .single-combo-tab a').click(function() {
+    // getAjax($(this).data('bets_path'));
+    $.ajax($(this).data('bets_path'), {
+      type: "GET",
+      dataType: 'script',
+      beforeSend: function() {
+        setTimeout(function(){ 
+          show_spinner();
+        }, 0);
+      },
+      success: function(result) {
+        hide_spinner();
+      },
+      error: function(error) {
+        hide_spinner();
+      }
+    });
+  });
+
+  $('.open-close-bets .nav-tabs a').click(function() {
+    $(`${$(this).attr('href')} .single-combo-tab`).find('.active a').first().click();
+  });
+
+  function refreshBets() {
+    let url = $('.open-close-bets').data('activeURL');
+    $.ajax(url, {
+      type: "GET",
+      dataType: 'script',
+      beforeSend: function() {
+        $('#refresh-spinner').show();
+      },
+      success: function(result) {
+        $('#refresh-spinner').hide();
+      },
+      error: function(error) {
+        $('#refresh-spinner').hide();
+      }
+    });
+  }
+
+  function subscribeBetsRefresh() {
+    let interval = "<%= Figaro.env.ODDS_CHANGE_INTERVAL %>";
+    $handleOddsChange = setInterval(function() {
+      if ( $('#open-bets-tab').hasClass('active') === true ){
+        refreshBets();
+        console.log('Refreshing...!')
+      }
+    }, parseInt(interval)*1000);
+
+    // clearInterval($handleOddsChange);
+    // $handleOddsChange = 0;
+    // matchEndedAlert();
+  }
+
+  subscribeBetsRefresh();
+</script>

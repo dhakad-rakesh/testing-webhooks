@@ -1,0 +1,36 @@
+<div class="left-part" id="left-bar">
+  <div class="left-menu-bg scrollator" >
+    <ul class="nav nav-tabs left-tabs scrollbar" id="scrollbar">
+      <!-- <li class=<%= active_home %>>
+        <%#= link_to 'Home', root_path %>
+      </li> -->
+      <li class="active" style="background-color:#14805E !important;"><a href="#-"><h4>Sports</h4></a></li>
+      <% Sport.all.order(created_at: :asc).each do |sport| %>
+          <% if sport.enabled %>
+            <li class="<%= sport_active_class(sport) %>">
+              <%= link_to title_with_match_count(sport), sport_path(sport) %>
+            </li>
+          <% else %>
+            <li class=""><a href="javascript:CommingSoonAlert();"><%= sport.name.titleize %></a></li>
+          <% end %>
+        </li>
+      <% end %>
+      <!-- <li class="<%= casino_active_class %>">
+        <%#= link_to "Casino", casino_index_path %>
+      </li> -->
+      <% ad_images('Left').each do |ad| %>
+        <li><%= link_to image_tag(ad.ad_image), ad.ad_url, class: 'img-responsive left-images', target: '_blank' %></li>
+      <% end %>
+
+      <li class="active" style="background-color:#14805E !important;"><a href="#-"><h4>Latest Matches</h4></a></li>
+      <% @latest_matches&.each do |match| %>
+       <li><%= link_to match.title, sport_match_path(@sport.id, match.id) %></li>
+      <% end %>
+
+      <li class="active" style="background-color:#14805E !important;"><a href="#-"><h4>Latest Leages</h4></a></li>
+      <% @latest_leagues&.each do |league| %>
+        <li><%= link_to "#{league.name} (#{league.matches.count})", sport_path(@sport.id, league_id: league.id) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

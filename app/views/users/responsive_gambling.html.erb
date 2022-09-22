@@ -1,0 +1,47 @@
+<div class="heading">
+  <ul>
+    <li>
+      <h4><%= t('responsible_gambling') %></h4>
+    </li>
+  </ul>
+</div>
+<div class="col-md-9 col-sm-9 col-xs-12 padding-right0 padding-left0">
+  <%= form_with model: current_user, url: update_responsive_gambling_user_path(current_user), local: true, method: :post, class: 'form', data: {confirm: t('data_confirm_dialog')} do |f| %>
+
+  <div class="row row-margin">
+    <div class="form-group col-sm-4">
+      <%= f.label :reality_check_timer %>
+      <%= f.text_field :reality_check_timer, class: 'form-control', id: 'datetimepicker3', value: hours_minutes_format(current_user.reality_check_timer) %>
+      <p>
+        <strong><%= t('reality_check_note') %></strong>
+      </p>
+      <%= f.label t('disable_rc') %>
+      <%= f.check_box :disable_rc_timer, checked: current_user.reality_check_timer.nil? %>
+    </div>
+  </div>
+  <div class="row row-margin">
+    <div class="form-group col-lg-4"> 
+      <%= f.label :exclusion_time %>
+      <%= f.text_field :exclusion_time, class: 'form-control', id: 'datetimepicker4', data: { date_format: 'YYYY-MM-DD hh:mm A'}, value: self_exclusion_format(current_user.exclusion_time&.in_time_zone(current_user.zone_name)) %>
+
+      <p>
+        <strong><%= t('self_exclusion_warning') %></strong>
+      </p>
+    </div>
+    <div class="form-group col-lg-10">
+      <%= f.submit t('update'), class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <%= f.hidden_field :'zone_name' %>
+  <% end %>
+</div>
+<div class="col-sm-3 col-md-3 col-xs-12 padding-right0 padding-left0">
+  <div class="right-menu-bg">
+    <div class="right-tab-section">
+    </div>
+  </div>
+  <%= render 'layouts/offers'%>
+</div>
+<script>
+  $('#zone_name').val(Intl.DateTimeFormat().resolvedOptions().timeZone);
+</script>

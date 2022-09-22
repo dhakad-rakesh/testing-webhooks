@@ -1,0 +1,50 @@
+<div class="row" style="margin-right: -10px;">
+  <div class="col-lg-offset-2 dash-filter">
+    <% current_date_time =  Time.zone.now %>
+    <%= hidden_field_tag :current_date, "", data: { current_date: current_date_time } %>
+    <%= button_tag "All Time", class: "btn dash-btn-outline btn-primary reset_counter active" %>
+    <%= button_tag "Today", data: { start_date: current_date_time, end_date: current_date_time }, class: "btn dash-btn-outline btn-primary reset_counter" %>
+    <%= button_tag "Yesterday", data: { start_date: Time.zone.yesterday, end_date: Time.zone.yesterday, interval: false }, class: "btn dash-btn-outline btn-primary reset_counter" %>
+    <%= button_tag "This Week", data: { start_date: current_date_time.beginning_of_week, end_date: current_date_time }, class: "btn dash-btn-outline btn-primary reset_counter" %>
+    <% last_week_start = (Date.today.beginning_of_week - 7).to_date %>
+    <%= button_tag "Last Week", data: { start_date: last_week_start, end_date: last_week_start.end_of_week, interval: false }, class: "btn dash-btn-outline btn-primary reset_counter" %>
+    <%= button_tag "This Month", data: { start_date: current_date_time.beginning_of_month, end_date: current_date_time }, class: "btn dash-btn-outline btn-primary reset_counter" %>
+    <% last_month_end = (Date.today.beginning_of_month - 1).to_date %>
+    <%= button_tag "Last Month", data: { start_date: last_month_end.beginning_of_month, end_date: last_month_end, interval: false }, class: "btn dash-btn-outline btn-primary reset_counter" %>
+    <input type="text" style="width: 20%;" name="info_date_range" class='form-control date-range' readonly>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.reset_counter').on('click', function() {
+      $('.reset_counter.active').removeClass('active');
+      $(this).addClass('active');
+      startDate = this.dataset.startDate;
+      endDate = this.dataset.endDate;
+      interval = this.dataset.interval == "false" ? false : true
+      getDashboardDataFiltered({'start_date': startDate, 'end_date': endDate}, interval);
+    });
+
+    $('input[name="info_date_range"]').daterangepicker({
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment()],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      },
+      locale: {
+        format: 'YYYY/MM/DD'
+      }
+    }, function(start, end, label) {
+      startDate = start.format('YYYY-MM-DD');
+      endDate = end.format('YYYY-MM-DD');
+      $('.reset_counter.active').removeClass('active');
+      getDashboardDataFiltered({'start_date': startDate, 'end_date': endDate}, false);
+    });
+    
+    // $(".date-range").daterangepicker();
+  });
+</script>

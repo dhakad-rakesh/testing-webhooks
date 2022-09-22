@@ -1,0 +1,30 @@
+<%= render 'header' %>
+<div id='casino_items' class='casino-item'>
+  <div class="content">
+    <%= render 'items' %>
+  </div>
+  <div class="casino-loader">
+  </div>  
+</div>
+
+<script type="text/javascript">
+  $('.item-image').click(function(){
+    show_spinner();
+  });
+
+  $(function() {
+    if ($('.pagination').length && $('#casino_items .content').length) {
+      $(window).scroll(function() {
+        var url;
+        url = $('.pagination .next_page').attr('href');
+        if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+          $('.pagination').text("Loading more items...");
+          $('#casino_items .casino-loader').html('<div id="cover-spin-wtb"><p>Loading....</p></div>');
+          return $.getScript(url);
+        }
+      });
+      return $(window).scroll();
+    }
+  });
+
+</script>

@@ -1,0 +1,32 @@
+<% url = @match.present? ? admin_match_market_path(@match, @market) : admin_market_path(@market) %>
+<%= form_with model: @market, url: url, local: true do |f| %>
+  <div class="form-group col-lg-10">
+    <%= f.label :name %>: 
+    <b><%= @market.name %></b>
+    <br>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :display_name %>
+    <%= f.text_field :display_name, class: 'form-control', style: 'width: 100%;' %>
+    <br>
+  </div>
+<!-- 
+  <div class="form-group col-lg-10">
+    <%#= f.label :bet_type %>
+    <%#= f.select :bet_type_id, BetType.all.collect { |bt| [ bt.name, bt.id ] }, include_blank: true %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%#= f.label :play_type %>
+    <%#= f.select :play_type_id, PlayType.all.collect { |bt| [ bt.name, bt.id ] }, include_blank: true %>
+    <br>
+  </div> -->
+
+  <div class="form-group col-lg-10">
+    <%= f.submit t('update'), class: 'btn btn-primary' %>
+    <%= link_to :back, class: 'btn btn-primary' do %>
+      <span class="fa fa-arrow-circle-o-left"></span> Back
+    <% end %>
+  </div>
+<% end %>

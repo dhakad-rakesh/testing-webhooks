@@ -1,0 +1,14 @@
+<section class="main-section">
+  <div class="ac-heading">
+    <h2 class="text-center">
+      <%= t('edit_title', name: t('user')) %><%= " (#{current_user.email})" if current_user.email.present? %>
+    </h2>
+  </div>
+  <div class="account-fields width60">
+    <%= render 'form' %>
+  </div>
+</section>
+
+<script>
+  validateSignup();
+</script>

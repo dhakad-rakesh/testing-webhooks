@@ -1,0 +1,21 @@
+Hi <%= @email %>,
+<br>
+<br>
+You have refunded your combo bet # <%= @combo_bet.id %>
+<br>
+Your total refunded amount is : <%= @total_winning_amount %>
+Please find the details of your bets below:
+<br>
+<br>
+Stake : <%= @combo_bet.stake %>
+<br>
+Odds: <%= @combo_bet.odds %>
+<br>
+Refunded Amount: <%= @total_winning_amount %>
+<br>
+Status: Refunded
+<br>
+<br>
+Regards,
+<br>
+<%= Figaro.env.project_name %> Team.

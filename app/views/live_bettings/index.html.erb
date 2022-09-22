@@ -1,0 +1,63 @@
+<!-- ipad view manu buttons -->
+<!-- <div class="ipad-men-btn">
+  <ul class="bet-slip-btn">
+    <li>
+      <a id="bet-slip">
+        BET SLIP
+      </a>
+    </li>
+  </ul>
+</div> -->
+<section class="main-section">
+  <div class="live-betting">
+    <div class="live-center-section">
+      <div>
+        <h3 class="betting-heading">
+          LIVE SPORTS BETTING
+        </h3>
+      </div>
+
+      <!-- three games tabs live upcomming favorites --> 
+      <div class="betting-tabs">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-kind="live" href="#">Live events(<span id="live_match_count"><%= @live_event_count %></span>)</a></li>
+          <li><a data-kind="upcoming" href="#">Upcoming events(<%= @upcoming_event_count %>)</a></li>
+          <li><a data-kind="favorite" href="#">My live favorites(<span id="favorite_match_count"><%= @favorite_event_count %></span>)</a></li>
+        </ul>
+      </div>
+      <div class="betting-tabs-content">
+        <div class="events-listing accordion">
+          <%= render 'live_bettings/events', events: @live_matches, kind: 'live' %>
+        </div>
+        <div id="cover-spin">
+          <p>Loading....</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bet_slip_partial">
+      <%= render 'dashboard/partials/betslip' %>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    liveTabsSwitching();
+  });
+
+  $(window).on('resize',function() {
+    if ($(window).width() <= 992) {
+      $("#bet-slip").click(function (){
+        $("#bet-slip-modal").fadeIn("slow");
+      });
+
+      $(".close").click(function (){
+        $("#bet-slip-modal").fadeOut("slow");
+      });
+    }
+    else {
+      $("#bet-slip-modal").show();
+    }
+  });
+</script>

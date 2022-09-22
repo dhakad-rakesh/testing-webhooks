@@ -1,0 +1,11 @@
+<% @transfer_records.each do |transfer_record| %>
+  <tr class="gradeX">
+    <td><%= transfer_record&.id %></td>
+    <td><%= transfer_record&.payor_name&.titleize %></td>
+    <td><%= transfer_record&.payee_name&.titleize %></td>
+    <td><%= transfer_record&.amount&.round(2) %></td>
+    <td><%= transfer_record&.actual_transfer&.round(2) %></td>
+    <td><%= transfer_record&.commision_earned&.round(2) %></td>
+    <td><%= schedule_time transfer_record&.created_at %></td>
+  </tr>
+<% end %>

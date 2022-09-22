@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    attributes:
+      market:
+        display_name: 'Display name'
+        bet_type: 'Bet type'
+        play_type: 'Play type'

@@ -1,0 +1,66 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('created') %></th>
+      <th><%= t('sport') %></th>
+      <th><%= t('tournament') %></th>
+      <th><%= t('match') %></th>
+      <th><%= t('market') %></th>
+      <th><%= t('outcome') %></th>
+      <th><%= t('stake') %></th>
+      <th><%= t('odds') %></th>
+      <th><%= t('status') %></th>
+      <th><%= t('winning') %></th>
+      <th><%= t('actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @bets.present? %>
+      <% @bets.each do |bet| %>
+        <tr>
+          <td><%= bet.id %></td>
+          <td><%= current_time(bet.created_at) %></td>
+          <td><%= bet.sport_name %></td>
+          <td><%= bet.tournament_name %></td>
+          <td><%= bet.match.title %></td>
+          <td><%= bet.market_name %></td>
+          <td><%= bet.outcome_name %></td>
+          <td><%= format_currency(amount: bet.stake) %></td>
+          <td><%= bet.odds %></td>
+          <td><%= bet.status&.humanize %></td>
+          <td><%= format_currency(amount: bet.winnings) %></td>
+          <td>
+            <% if bet.pending? %>
+              <%= button_tag 'Suspend', class: 'btn btn-sm btn-danger suspend-btn',
+                                        data: { address: suspend_bet_admin_bets_path(id: bet.id),
+                                                type: 'single' } %>
+            <% else %>
+              <span><%= bet.cancelled? ? "Cancelled" : "NA" %></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=12>No data found.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @bets, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+
+  $('.suspend-btn').on('click', function() {
+    if(confirm('Suspend bet, are you sure?')) {
+      const address = this.dataset.address
+      const type = this.dataset.type
+      const data = {
+        type: type
+      }
+      deleteAjax(address, data, this)
+    }
+  });
+</script>

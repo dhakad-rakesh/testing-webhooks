@@ -1,0 +1,14 @@
+Hi <%= @email %>,
+<br>
+<br>
+Your Combo bet # <%= @combo_bet.id %> has been successfully placed. Please find the details below:
+<br>
+<br>
+Stake : <%= @combo_bet.stake %>
+<br>
+Odds : <%= @combo_bet.odds %>
+<br>
+<br>
+Regards,
+<br>
+<%= Figaro.env.project_name %> Team.

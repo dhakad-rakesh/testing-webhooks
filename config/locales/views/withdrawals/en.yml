@@ -1,0 +1,17 @@
+en:
+  admin:
+    withdrawals:
+      amount: 'Amount'
+      currency: 'Currency'
+      payment_method: 'Payment Method'
+      remarks: 'Remarks'
+      status: 'Status'
+      created_at: 'Created at'
+      approve: 'Approve'
+      reject: 'Reject'
+      approve_sure: 'Approve Request ?'
+      reject_sure: 'Reject Request ?'
+      approved: 'Approved Successfully'
+      processing: 'Withdrawal request is processing on block chain'
+      rejected: 'Rejected Successfully'
+      initiated: 'Withdrawal request approval is Initiated Successfully'

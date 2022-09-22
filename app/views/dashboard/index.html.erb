@@ -1,0 +1,228 @@
+<!-- ipad view manu buttons -->
+<!-- <div class="ipad-men-btn">
+  <ul>
+    <li>
+      <a id="long-term">
+        SPORTS
+      </a>
+    </li> -->
+    <!-- <li>
+      <a id="bet-slip" onclick="closeNav()">
+        BET SLIP
+      </a>
+    </li>
+  </ul>
+</div> -->
+
+<section class="main-section">
+  <div>
+    <div id="long-term-modal" class="long-term-popup">
+      <div class="bg-color">
+        <div class="close-btn">
+          <span class="close">&times;</span>
+        </div>
+        <div>
+          <div class="left-section">
+            <div class="search-input">
+              <input type="text" name="query" placeholder="Search by match name" class="search_matches" min="4" max="20">
+              <div class="search-icon">
+                <%= image_tag "search-icon.png", :class => "saerch-icon-img"%>
+              </div>
+            </div>
+            <div>
+              <div id="accordion" class="accordion">
+                <div class="card mb-0">
+                  <div class="card-header collapsed long-term-bg" data-toggle="" href="">
+                    <a class="card-title"> Sports </a>
+                  </div>
+                  <div id="collapseOne" class="card-body collapse in" data-parent="#accordion">
+                    <div class="game-list">
+                      <ul>
+                        <% @sports.each_with_index do |sport, index| %>
+                          <%# cache(sport) do %>
+                            <li id="sport-<%= sport.id %>">
+                              <span class="pull-left">
+                                <span class="pull-left">
+                                  <img src="<%= image_url "sports_icon/default" %>" alt="f-ball" class="img-responsive">
+                                </span>
+                                <span>
+                                  <%= sport&.name&.upcase %>
+                                </span>
+                              </span>
+                              <span class="pull-right game-number">
+                                <%= sport&.number_of_matches %>
+                              </span>
+                            </li>
+
+                            <div id="sport-<%= sport.id %>-country-list" class="scrollator country-list-name <%= sport.id == @sports.first.id ? 'default-active-list-element' : '' %>" data-scrollator-prevent-propagation="true" style="<%= index == 0 ? 'display: block' : 'display: none' %>">
+                              <%= render 'dashboard/partials/countries_tournaments', countries: sport.available_countries_with_matches, sport: sport, show_link: 'show all' %>
+                            </div>
+                          <% end %>
+                        <%# end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="center-section">
+      <section id="demos">
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="owl-carousel owl-theme">
+              <div class="item">
+                <img src="<%= image_url 'slider.png' %>" alt="" class="img-responsive">
+              </div>
+              <div class="item">
+                <img src="<%= image_url 'slider2.jpg' %>" alt="" class="img-responsive">
+              </div>
+              <div class="item">
+                <img src="<%= image_url 'slider3.jpg' %>" alt="" class="img-responsive">
+              </div>
+              <div class="item">
+                <img src="<%= image_url 'slider4.png' %>" alt="" class="img-responsive">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="games-tab" id="sport-list">
+        <ul class="nav nav-tabs">
+          <% @sports.each_with_index do |sport, index| %>
+            <li class="<%= index== 0 ? 'active' : '' %>">
+              <a data-toggle="tab" href="#football" onClick='selectSport("sport-<%= sport.id %>")'>
+                <img src="<%= image_url "sports_icon/default" %>" alt="f-ball" class="img-responsive">
+                <%= sport.name %>
+              </a>
+            </li>
+          <% end %>  
+        </ul>
+        <div class="highlight">
+          <p>
+            <span class="pull-left">
+              HIGHLIGHTS
+            </span>
+            <span class="pull-right">
+              <img src="<%= image_url 'star.png' %>" alt="star" class="img-responsive">
+            </span>
+          </p>
+        </div>
+      </div>
+      <div id="highlight_matches">
+        <%= render 'dashboard/partials/match_list', matches: @highlighted_matches %>
+      </div>
+
+      <div class="highlight last-minute-events">
+        <p>
+          <span class="pull-left">
+            LAST MINUTE EVENTS
+          </span>
+        </p>
+      </div>
+
+      <div id="last_minutes_matches">
+        <%= render 'dashboard/partials/match_list', matches: @last_minutes_matches %>
+      </div>
+
+      <div id="tournament_fixtures"></div>
+    </div>
+
+    <div class="bet_slip_partial">
+      <%= render 'dashboard/partials/betslip' %>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  $( document ).ready(function () {
+    <%# @sports.each do |sport| %>
+      // toggleSportsDropwon("<%#= sport.id %>");
+    <%# end %>
+
+    searchMatches();
+  });
+
+  $(window).on('resize',function() {
+    if ($(window).width() <= 992) {
+      $("#long-term").click(function (){
+        $("#long-term-modal").fadeIn("slow");
+      });      
+      $("#bet-slip").click(function (){
+        $("#bet-slip-modal").fadeIn("slow");
+      });
+
+      $(".close").click(function (){
+        $("#long-term-modal, #bet-slip-modal").fadeOut("slow");
+      });
+    }
+    else {
+      $("#long-term-modal").show();
+      $("#bet-slip-modal").show();
+    }
+  });
+
+  $(document).ready(function() {
+    $(window).trigger('resize');
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  $( document ).ready(function () {
+    <% @sports.each do |sport| %>
+      toggleSportsDropwon("<%= sport.id %>");
+    <% end %>
+
+    searchMatches();
+  });
+
+  $(window).on('resize',function() {
+    if ($(window).width() <= 992) {
+
+      $("#login").click(function (){
+         $(".sign-in-up").show("slide", { direction: "up" }, 1000);
+      });
+
+      $(".sign-in-close").click(function (){
+        $(".sign-in-up").hide("slide", { direction: "up" }, 1000);
+      });
+    }
+    else {
+      $(".sign-in-up").show();
+    }
+  });
+
+  $(document).ready(function() {
+    $(window).trigger('resize');
+  });
+
+  function selectSport(sport_id) {
+    $('.country-list-name').css('display', 'none');
+    $(`#${sport_id}`).click();
+
+    $.ajax({
+      url: '/dashboard/highlight_and_last_minutes_matches',
+      type: "GET",
+      data: { sport_id: sport_id.split('-')[1] },
+      dataType: 'script',
+      beforeSend: function() {
+        setTimeout(function(){ 
+          show_spinner();
+        }, 0);
+      },
+      success: function(result) {
+        hide_spinner();
+        update_bets_count(($('.bet-data').length-1));
+      },
+      error: function(error) {
+        console.log('error...', error)
+      }
+    });
+  }
+</script>

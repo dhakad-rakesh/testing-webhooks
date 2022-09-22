@@ -1,0 +1,7 @@
+<tr class="gradeX" id="user_<%= user.id %>">
+  <% if current_admin_user.is_super_admin? %>
+    <%= render 'admin/users/detail', user: user %>
+  <% else %>
+    <%= render 'admin/users/affiliate_users_detail', user: user %>
+  <% end %>
+</tr>

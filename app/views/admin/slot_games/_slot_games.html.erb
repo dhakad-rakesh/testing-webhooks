@@ -1,0 +1,18 @@
+<%= will_paginate @slot_games, renderer: BootstrapPagination::Rails %>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('image') %></th>
+      <th><%= t('name') %></th>
+      <th><%= t('provider') %></th>
+      <th><%= t('created_at') %></th>
+      <th><%= t('featured') %></th>
+      <th><%= t('active') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'admin/slot_games/slot_game', collection: @slot_games, current_admin_user: current_admin_user %>
+  </tbody>
+</table>
+<%= will_paginate @slot_games, renderer: BootstrapPagination::Rails %>

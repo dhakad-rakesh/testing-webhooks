@@ -1,0 +1,19 @@
+<% if combo_bet.cashoutable? %>
+  <% cashout_amount = combo_bet.cashoutable[:amount].nan? ? nil : combo_bet.cashoutable[:amount].round(8) %>
+  <%= button_tag "Cashout #{cashout_amount}", class: 'btn btn-warning block m-b', onclick: "cashout({ combo_id: #{combo_bet.id}, cashoutable: #{combo_bet.cashoutable.to_json }})" %>
+<% elsif combo_bet.pending? %>
+  <% if combo_bet.custom_status == 'lost' %>
+    <span class="lost-match">
+      Lost
+    </span>
+  <% else %>
+    <span class="pending-match">
+      <%= 'pending'.capitalize %>
+    </span>
+  <% end %>
+<% else %>
+  <span class="<%= combo_bet.lost? ? 'lost' : 'won' %>-match">
+    <%= combo_bet.amount.round(8) %>
+    (<%= combo_bet.status.gsub("_", " ").capitalize %>)
+  </span>
+<% end %>

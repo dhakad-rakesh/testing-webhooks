@@ -1,0 +1,19 @@
+Hi <%= @email %>,
+<br>
+<br>
+You have unfortunately lost your bet for <%= @match_title %> match on '<%= @bet.market_name %>' market. Please find the details below:
+<br>
+Match : <%= @match_title %>
+<br>
+Market : '<%= @bet.market_name %>'
+<br>
+Outcome : '<%= @bet.outcome_name %>'
+<br>
+Stake : <%= @bet.stake %>
+<br>
+Status: Lost
+<br>
+<br>
+Regards,
+<br>
+Bwinner Team.

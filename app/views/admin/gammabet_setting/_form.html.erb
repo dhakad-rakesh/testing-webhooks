@@ -1,0 +1,691 @@
+<div class="tabs-container">
+  <div class="tabs-left">
+    <ul class="nav nav-tabs nav-custom">
+      <li class="active"><a data-toggle="tab" href="#socialPreferences">Global Limits</a></li>
+      <li class=""><a data-toggle="tab" href="#betSettings">Betting Preferences</a></li>
+      <li class=""><a data-toggle="tab" href="#bonusSettings">Bonus Preferences</a></li>
+      <li class=""><a data-toggle="tab" href="#agentPreferences">Affiliate Preferences</a></li>
+<!--       <li class=""><a data-toggle="tab" href="#referralSettings">Referral Preferences</a></li> -->
+      <!-- 
+      <li class=""><a data-toggle="tab" href="#notificationSettings">Notification Preferences</a></li>
+
+      <li class=""><a data-toggle="tab" href="#languagePreferences">Language Preferences</a></li> -->
+      <!-- <li class="active"><a data-toggle="tab" href="#convertionSettings">Conversion rate</a></li> -->
+    </ul>
+    <div class="tab-content">
+
+        <div id="socialPreferences" class="tab-pane active" data-partial="transactions_list">
+          <div class="panel-body">
+
+            <%# bet limits tab %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#betLimits">Bet Limits</a>
+                </h5>
+              </div>
+              <div id="betLimits" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                    <table class="filter-table">
+                      <tr>
+                        <th>Max One Bet Amount</th>
+                        <th>Max Daily Bet Amount</th>
+                        <th>Max Weekly Bet Amount</th>
+                        <th>Max Monthly Bet Amount</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <%= f.number_field :max_one_bet_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                        </td>
+                        <td>
+                          <%= f.number_field :max_daily_bet_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                        </td>
+                        <td>
+                          <%= f.number_field :max_weekly_bet_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                        </td>
+                        <td>
+                          <%= f.number_field :max_monthly_bet_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="panel-footer-div">
+                      <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <% if false %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#casinoLimits">Casino Limits</a>
+                  </h5>
+                </div>
+                <div id="casinoLimits" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content">
+                    <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                      <table class="filter-table">
+                        <tr>
+                          <th>Max Single Stake</th>
+                          <th>Max Daily Stake</th>
+                          <th>Max Weekly Stake</th>
+                          <th>Max Monthly Stake</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= f.number_field :max_single_casino_stake, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_daily_casino_stake, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_weekly_casino_stake, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_monthly_casino_stake, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                        </tr>
+                      </table>
+                      <div class="panel-footer-div">
+                        <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                        <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <%# deposit limits tab %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#depositLimits">Deposit Limits</a>
+                  </h5>
+                </div>
+
+                <div id="depositLimits" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content">
+                    <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                      <table class="filter-table">
+                        <tr>
+                          <th>Max Single Amount</th>
+                          <th>Max Day Deposit Amount</th>
+                          <th>Max Weekly Deposit Amount</th>
+                          <th>Max Monthly Deposit Amount</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= f.number_field :max_single_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_day_deposit_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_weekly_deposit_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_monthly_deposit_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Min Deposit Amount</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= f.number_field :minimum_deposit_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                          </td>
+                        </tr>
+                      </table>
+                      <div class="panel-footer-div">
+                        <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                        <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <%# balance limits tab %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#balanceLimits">Balance Limit</a>
+                  </h5>
+                </div>
+
+                <div id="balanceLimits" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content">
+                    <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                      <table class="filter-table">
+                        <tr>
+                          <th>Balance Amount</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= f.number_field :balance_amount_limit, class: 'form-control editable only-numeric', min: 0, style: 'width: 25%;', autocomplete: "off", step: 0.000001 %>
+                          </td>
+                        </tr>
+                      </table>
+                      <div class="panel-footer-div">
+                        <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                        <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <%# auto withdrawal limit tab %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#autoWithdrawalAmount">Withdrawal Limit</a>
+                </h5>
+              </div>
+
+              <div id="autoWithdrawalAmount" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                    <table class="filter-table">
+                      <tr>
+                        <!-- <th>Auto Withdrawal Amount</th> -->
+                        <th>Min Withdrawal Amount</th>
+                        <!-- <th>Max Withdrawal Amount</th> -->
+                        <th></th>
+                      </tr>
+                      <tr>
+<!--                         <td>
+                          <%#= f.number_field :auto_withdrawal_limit, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                        </td> -->
+                        <td>
+                          <%= f.number_field :minimum_withdrawal_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                        </td>
+                     <!--    <td>
+                          <%#= f.number_field :maximum_withdrawal_amount, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.000001 %>
+                        </td> -->
+                        <td></td>
+                      </tr>
+                    </table>
+                    <div class="panel-footer-div">
+                      <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="betSettings" class="tab-pane">
+          <div class="panel-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#cashoutCommision">Cashout Commision</a>
+                </h5>
+              </div>
+
+              <div id="cashoutCommision" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                    <div class="i-checks" style="margin-left: 4px;"><label> <i></i> Cashout enable </label>
+                     <%= f.check_box :cashout_allowed, class: 'cashout-chechbox'%></div>
+                    <table class="filter-table">
+                      <tr>
+                        <th>Cashout Commision Percentage</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <%= f.number_field :cashout_commision, class: 'form-control editable only-numeric', id: 'cashout-commision', min: 0, style: 'width: 25%;', autocomplete: "off", step: 0.000001, disabled: !GammabetSetting.cashout_allowed? %>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="panel-footer-div">
+                      <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+<!--             <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#liabilityPreferences">Liability</a>
+                </h5>
+              </div>
+
+              <div id="liabilityPreferences" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <%#= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                    <table class="filter-table">
+                      <tr>
+                        <th>Max match liability amount</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <%#= f.number_field :max_liability_amount, class: 'form-control editable only-numeric', min: 0, style: 'width: 25%;', autocomplete: "off", step: 0.000001 %>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="panel-footer-div">
+                      <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                    </div>
+                  <%# end %>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+       <!--  <div id="referralSettings" class="tab-pane">
+          <div class="panel-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#referralsSetting">Referrals</a>
+                </h5>
+              </div>
+
+              <div id="referralsSetting" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <%#= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                       <div class="i-checks" style="margin-left: 4px;"><label> <i></i> Enable </label>
+                     <%#= f.check_box :referral_bonus_allowed, class: 'ref-bonus-chechbox'%></div>
+                    <table class="filter-table">
+                      <tr>
+                        <th>Referral Reward Amount</th>
+                        <th>Referral Threshold Amount</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                      <tr>
+                        <td>
+                           <%#= f.number_field :referral_reward_amount, class: 'form-control editable only-numeric', id: 'ref-deposit-bonus', min: 0, style: 'width: 60%;', autocomplete: "off", step: 0.000001 , disabled: !GammabetSetting.referral_bonus_allowed? %>
+                        </td>
+                        <td>
+                          <%#= f.number_field :referral_threshold_amount, class: 'form-control editable only-numeric', id: 'ref-bonus-limit', min: 0, style: 'width: 62%;', autocomplete: "off", step: 0.000001, disabled: !GammabetSetting.referral_bonus_allowed? %>
+                      </td>
+                      </tr>
+                    </table>
+                    <div class="panel-footer-div">
+                      <%## <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                    </div>
+                  <%# end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div id="notificationSettings" class="tab-pane">
+          <div class="panel-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#notPref">Notification Preferences</a>
+                </h5>
+              </div>
+
+              <div id="notPref" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <% NotificationType::KINDS.keys.each do |kind|%>
+                        <% notification_type = NotificationType.send(kind)&.last %>
+                        <div class="i-checks"><label> <input class="notification-checkbox" type="checkbox" data-input-attribute="<%= notification_type.kind %>" <%= "checked" if notification_type.enabled? %>> <i></i> <%= notification_type&.name&.humanize %> </label></div>
+                      <% end %>
+                    </div>
+                  </div><br/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="languagePreferences" class="tab-pane">
+          <div class="panel-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#languagePreferencesContent">Language Preferences</a>
+                </h5>
+              </div>
+
+              <div id="languagePreferencesContent" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                    <table class="filter-table">
+                      <tr>
+                        <th>Name</th>
+                        <th>Symbol</th>
+                        <th>Enabled</th>
+                        <th></th>
+                      </tr>
+                      <% @launguages.each do |language| %>
+                        <tr id="<%= language.id %>">
+                          <td><%= language.name.humanize %></td>
+                          <td><%= language.symbol %></td>
+                          <td>
+                            <% if language.is_default %>
+                              <span class="label label-sm">Default</span>
+                            <% else %>
+                              <input class="enabled_checkbox" type="checkbox" <%= "checked" if language.enabled %>>
+                            <% end %>
+                          </td>
+                          <td></td>
+                        </tr>
+                      <% end %>
+                    </table><br/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="agentPreferences" class="tab-pane">
+          <div class="panel-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#agentPreferencesContent">Commision Ranges</a>
+                </h5>
+              </div>
+
+              <div id="agentPreferencesContent" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                    <table class="filter-table">
+                      <tr>
+                        <th>Min Wagered</th>
+                        <th>Max Wagered</th>
+                        <th>Percentage Commision(%)</th>
+                        <th></th>
+                      </tr>
+                      <tr class="range_1">
+                        <td>
+                          <%= number_field_tag :initial_amount, Constants::RANGE_0, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", disabled: true %>
+                        </td>
+                        <td>
+                          <%= number_field_tag :amount, @setting.agent_commision.dig(:range_1, :amount), class: 'amount form-control editable only-numeric', min: 0, autocomplete: "off" %>
+                        </td>
+                        <td>
+                          <%= number_field_tag :percentage, @setting.agent_commision.dig(:range_1, :percentage), class: 'percentage form-control editable only-numeric', min: 0, autocomplete: "off" %>
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr class="range_2">
+                        <td>
+                          <%= number_field_tag :initial_amount, @setting.agent_commision.dig(:range_1, :amount)+1, class: 'initial-amount form-control editable only-numeric', min: 0, autocomplete: "off", disabled: true %>
+                        </td>
+                        <td>
+                          <%= number_field_tag :amount, @setting.agent_commision.dig(:range_2, :amount), class: 'amount form-control editable only-numeric', min: 0, autocomplete: "off" %>
+                        </td>
+                        <td>
+                          <%= number_field_tag :percentage, @setting.agent_commision.dig(:range_2, :percentage), class: 'percentage form-control editable only-numeric', min: 0, autocomplete: "off" %>
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr class="range_3">
+                        <td>
+                          <%= number_field_tag :initial_amount, @setting.agent_commision.dig(:range_2, :amount)+1, class: 'initial-amount form-control editable only-numeric', min: 0, autocomplete: "off", disabled: true %>
+                        </td>
+                        <td>
+                          <%= text_field_tag :amount, Float::INFINITY, class: 'amount form-control editable only-numeric', min: 0, autocomplete: "off", disabled: true %>
+                        </td>
+                        <td>
+                          <%= number_field_tag :percentage, @setting.agent_commision.dig(:range_3, :percentage), class: 'percentage form-control editable only-numeric', min: 0, autocomplete: "off" %>
+                        </td>
+                        <td></td>
+                      </tr>
+                    </table><br/>
+                    <div class="panel-footer-div">
+                      <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <a class= 'btn btn-sm btn-success range-save'><i class="fa fa-save"></i> Save</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="bonusSettings" class="tab-pane">
+          <div class="panel-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#depositBonus">Deposit Bonus <span style="color: grey;">(Applicable for first deposit)</span></a>
+                </h5>
+              </div>
+
+              <div id="depositBonus" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                    <div class="i-checks" style="margin-left: 4px;"><label> <i></i> Enable </label>
+                     <%= f.check_box :deposit_bonus_allowed, class: 'bonus-chechbox'%></div>
+                    <table class="filter-table">
+                      <tr>
+                       <th>Deposit Bonus Reward Amount</th> 
+                       <th>Deposit Threshold Amount</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <%= f.number_field :deposit_bonus_amount, class: 'form-control editable only-numeric', id: 'deposit-bonus', min: 0, style: 'width: 62%;', autocomplete: "off", step: 0.000001, disabled: !GammabetSetting.deposit_bonus_allowed? %>
+                        </td>
+                        <td>
+                          <%= f.number_field :deposit_bonus_limit, class: 'form-control editable only-numeric', id: 'bonus-limit', min: 0, style: 'width: 62%;', autocomplete: "off", step: 0.000001, disabled: !GammabetSetting.deposit_bonus_allowed? %>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="panel-footer-div">
+                      <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+                        <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#referralsSetting">Referral Bonus</a>
+                </h5>
+              </div>
+
+              <div id="referralsSetting" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                       <div class="i-checks" style="margin-left: 4px;"><label> <i></i> Enable </label>
+                     <%= f.check_box :referral_bonus_allowed, class: 'ref-bonus-chechbox'%></div>
+                    <table class="filter-table">
+                      <tr>
+                        <th>Referral Reward Amount</th>
+                        <th>Referral Threshold Amount</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                      <tr>
+                        <td>
+                           <%= f.number_field :referral_reward_amount, class: 'form-control editable only-numeric', id: 'ref-deposit-bonus', min: 0, style: 'width: 60%;', autocomplete: "off", step: 0.000001 , disabled: !GammabetSetting.referral_bonus_allowed? %>
+                        </td>
+                        <td>
+                          <%= f.number_field :referral_threshold_amount, class: 'form-control editable only-numeric', id: 'ref-bonus-limit', min: 0, style: 'width: 62%;', autocomplete: "off", step: 0.000001, disabled: !GammabetSetting.referral_bonus_allowed? %>
+                      </td>
+                      </tr>
+                    </table>
+                    <div class="panel-footer-div">
+                      <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#bettingBonus">Betting Bonus</a>
+                </h5>
+              </div>
+
+              <div id="bettingBonus" class="panel-collapse collapse in">
+                <div class="panel-body-custom panel-content">
+                  <%= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                    <div class="i-checks" style="margin-left: 4px;"><label> <i></i> Enable </label>
+                     <%= f.check_box :betting_bonus_allowed, class: 'betting-bonus-chechbox'%></div>
+                    <div class="panel-footer-div">
+                      <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                      <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+   <!--    <div id="convertionSettings" class="tab-pane active">
+        <div class="panel-body">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h5 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#cashoutCommision">Conversion rate</a>
+              </h5>
+            </div>
+             <div id="cashoutCommision" class="panel-collapse collapse in">
+              <div class="panel-body-custom panel-content">
+                <%#= form_with model: @setting, url: admin_gammabet_setting_path(@setting), remote: true, class: 'form' do |f| %>
+                  <table class="filter-table">
+                    <tr>
+                      <th>Ethereum to USD </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <%#= f.number_field :conversion_rate, class: 'form-control editable only-numeric conversion_field', min: 0, style: 'width: 25%;', autocomplete: "off", step: 0.000001 %>
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="panel-footer-div">
+                    <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+                    <button class= 'btn btn-sm btn-success conversion-save'><i class="fa fa-save"></i> Save</button>
+                  </div>
+                <%# end %>
+              </div>
+            </div> 
+          </div>    
+    </div> -->
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var data = {}
+    $('.notification-checkbox').change(function() {
+      data['kind'] = this.dataset.inputAttribute
+      if(this.checked) {
+        data['status'] = 'enabled'
+      } else {
+        data['status'] = 'disabled'
+      }
+
+      $.ajax({
+        type: 'PATCH',
+        url: '/admin/gammabet_setting/update_notification_settings',
+        dataType: 'script',
+        data: data,
+        success() {
+          toastr.success('Settings updated');
+        },
+        error() {
+          toastr.error('Something went wrong');
+        }
+      });
+    });
+  });
+
+  $('.cashout-chechbox').change(function() {
+    if(this.checked) {
+      $("#cashout-commision").prop('disabled', false)
+    } else {
+      $("#cashout-commision").prop('disabled', true)
+    }
+  });
+
+  $('.bonus-chechbox').change(function() {
+    if(this.checked) {
+      $("#deposit-bonus, #bonus-limit").prop('disabled', false)
+    } else {
+      $("#deposit-bonus, #bonus-limit").prop('disabled', true)
+    }
+  });
+
+  $('.ref-bonus-chechbox').change(function() {
+    if(this.checked) {
+      $("#ref-deposit-bonus, #ref-bonus-limit").prop('disabled', false)
+    } else {
+      $("#ref-deposit-bonus, #ref-bonus-limit").prop('disabled', true)
+    }
+  });
+
+  $('.range_1 input, .range_2 input, range_3 input').on('keyup', function() {
+    if($(this).hasClass('amount')) {
+      if($(this).closest('tr').hasClass('range_1'))
+        $('.range_2 .initial-amount').val(parseFloat($(this).val())+1)
+      if($(this).closest('tr').hasClass('range_2'))
+        $('.range_3 .initial-amount').val(parseFloat($(this).val())+1)
+    }
+  });
+
+  $('.range-save').on('click', function() {
+    var a1 = parseInt($('.range_1 .amount').val());
+    var a2 = parseInt($('.range_2 .amount').val());
+    var p1 = parseInt($('.range_1 .percentage').val());
+    var p2 = parseInt($('.range_2 .percentage').val());
+    var p3 = parseInt($('.range_3 .percentage').val());
+
+    if(isNaN(a1) || isNaN(a2) || isNaN(p1) || isNaN(p2) || isNaN(p3)) {
+      toastr.error('Fields cant be empty')
+      return false;
+    }
+
+    if(a1 > a2) {
+      toastr.error('Min wagered amount cant be greater than max wagered amount')
+      return false
+    }
+      
+    var data = {
+      agent_commision: {
+        range_1: {
+          amount: a1,
+          percentage: p1
+        },
+        range_2: {
+          amount: a2,
+          percentage: p2
+        },
+        range_3: {
+          amount: 'Infinity',
+          percentage: p3
+        }
+      }
+    }
+
+    $.ajax({
+      type: 'PATCH',
+      url: '/admin/gammabet_setting/update_commision_settings',
+      dataType: 'script',
+      data: data
+    });
+  }) 
+
+  $('.enabled_checkbox').on('change', function(){
+    patchAjaxJs(`/admin/languages/${$(this).closest('tr').attr('id')}/toggle_enabled`);
+  });
+</script>

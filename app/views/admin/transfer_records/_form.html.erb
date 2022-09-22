@@ -1,0 +1,18 @@
+<%= form_with model: @settings, url: admin_update_transfer_settings_path, local: true, class: 'form' do |f| %>
+  <div class="form-group col-lg-10">
+    <%= f.label :fund_transfer_commision, "Commision Percentage" %>
+    <%= f.number_field :fund_transfer_commision, placeholder: number_with_precision(@settings&.fund_transfer_commision, precision: 2), class: 'form-control', style: 'width: 100%;', required: true %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :fund_transfer_allowed, "Fund Transfer Allowed" %>
+    <%= f.check_box :fund_transfer_allowed %> <br/>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit "Update", class: 'btn btn-primary' %>
+    <%= link_to :back, class: 'btn btn-primary' do %>
+      <span class="fa fa-arrow-circle-o-left"></span> Back
+    <% end %>
+  </div>
+<% end %>

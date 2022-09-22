@@ -1,0 +1,11 @@
+<% unless @status %>
+  toastr.error("<%= @errors.join(', ') %>");
+<% else %>
+  $('.account-balance').html("<%= number_with_precision(@balance, precision: 2) %>");
+  $('.amount-container #amount').data('username', "");
+  $('.amount-container #amount').val("");
+  $('.user-details .username').html("");
+  $('.user-details .full-name').html("");
+  $('.fund-transfer .user-details').css('display', 'none');
+  toastr.success("<%= @message %>");
+<% end %>

@@ -1,0 +1,433 @@
+.live-betting .live-center-section {
+  float: left;
+  width: calc(100% - 297px);
+  padding: 0 10px;
+}
+
+.live-betting {
+  display: inline-block;
+  width: 100%;
+}
+
+.betting-heading {
+  margin-top: 0;
+}
+
+.betting-tabs ul {
+  border: none;
+}
+
+.betting-tabs ul li a,
+.betting-tabs ul li a:hover,
+.betting-tabs ul li a:focus {
+  border: none;
+  background-color: inherit;
+}
+
+.betting-tabs .nav-tabs>li.active>a,
+.betting-tabs .nav-tabs>li.active>a:focus,
+.betting-tabs .nav-tabs>li.active>a:hover {
+  background: #002886; /* Old browsers */
+  background: -moz-linear-gradient(top,  #0091ff 0%,  #002886 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #0091ff 0%,#002886 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #0091ff 0%,#002886 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  display: table;
+  width: 100%;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 0;
+}
+
+.betting-tabs .nav-tabs>li>a,
+.betting-tabs .nav-tabs>li>a:focus,
+.betting-tabs .nav-tabs>li>a:hover {
+  background: #bcbcbc; /* Old browsers */
+  background: -moz-linear-gradient(top, #bbbbbb 0%,  #bcbcbc 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #bbbbbb 0%,#bcbcbc 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #bbbbbb 0%,#bcbcbc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  color: #000;
+  font-size: 15px;
+  border-radius: 0;
+  border: none;
+}
+
+.betting-tabs ul li {
+  width: calc(100% / 3 - 5px);
+  margin-right: 5px;
+  text-align: center;
+}
+
+.accordion .games-heading:after {
+  content:"\f0dd";
+  float: right;
+  font-family: 'FontAwesome';
+  font-size: 20px;
+  position: absolute;
+  top: 18%;
+  right: 10px;
+}
+
+.accordion .league-heading:after {
+  top: 0% !important;
+}
+
+.accordion .games-heading.collapsed:after {
+  content:"\f0da";
+  font-size: 20px;
+  position: absolute;
+  top: 18%;
+  right: 10px;
+}
+
+.games-heading {
+  background: #002886; /* Old browsers */
+  background: -moz-linear-gradient(top,  #0091ff 0%,  #002886 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #0091ff 0%,#002886 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #0091ff 0%,#002886 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  display: table;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  color: #fff;
+  position: relative;
+}
+
+.league-heading {
+  padding: 5px 10px !important;
+  margin-top: 0px !important;
+}
+
+.games-heading-ul li{
+  display: table;
+  list-style: none;
+}
+
+li.live-match-name {
+  width: 35%;
+  display: inline-block;
+}
+
+li.width15 {
+  width: 15%;
+  display: inline-block;
+  text-align: center;
+  line-height: 49px;
+}
+
+li.plus-data {
+  text-align: center;
+  display: inline-block;
+}
+
+ul.show-data {
+  display: inline-block;
+  list-style: none;
+  border-bottom: 1px solid #b8b8b8;
+  line-height: 45px;
+  width: 100%;
+}
+
+/*ul.show-data li:nth-child(2) {
+  width: 23.4%;
+}
+ul.show-data li:nth-child(3){width: 23.2%;}
+ul.show-data li:nth-child(4){width: 23.4%;}
+ul.show-data li:nth-child(5){width: 22.7%;}*/
+
+
+
+ul.show-data li {
+  list-style: none;
+}
+
+.width15 .inner-data li{
+  display: inline-block;
+  width: calc(100% / 3 - 3px);
+  text-align: center;
+  color: #002886;
+}
+
+span.inch-number {
+  background-color: #0144de;
+  color: #fff;
+  padding: 2px 10px;
+  text-align: center;
+  width: 60px;
+  float: left;
+}
+
+.bold-color {
+  color: #0144de;
+}
+
+.show-detail-data {
+  border-bottom: 1px solid #b8b8b8;
+  display: inline-block;
+  width: 100%;
+  line-height: 47px;
+}
+
+.show-detail-data li.width15 .inner-data li {
+  background-color: #e2e2e2;
+  color: #000;
+  border: 1px solid transparent;
+}
+
+.show-detail-data li.width15 .inner-data li a,
+.show-detail-data li.width15 .inner-data li a:hover,
+.show-detail-data li.width15 .inner-data li a:focus {
+  color: #000;
+  text-decoration: unset;
+}
+
+.betting-even-color {
+  background-color: #fff;
+}
+
+.betting-odd-color {
+  background-color: #f2f2f2;
+}
+
+
+li.width15:last-child .inner-data, .right-corner-border {
+  border-right: 2px solid  #b8b8b8 !important;
+}
+
+.show-detail-data li.width15:nth-child(5) .inner-data {
+  border-right: 2px solid  #b8b8b8;
+}
+
+/*.show-detail-data li.upcoming:nth-child(5) .inner-data {
+  border-right: unset;
+}*/
+
+.show-detail-data li.upcoming:nth-child(6) .inner-data {
+  border-right: 2px solid  #b8b8b8;
+}
+
+.inner-data {
+  border-left: 2px solid #b8b8b8;
+}
+
+li.plus-data a,
+li.plus-data a:hover,
+li.plus-data a:focus{
+  color: #000;
+  text-decoration: none;
+}
+
+li.plus-data a span {
+  color: #0144de;
+  font-size: 18px;
+}
+
+.show-data-img {
+  cursor: pointer;
+  padding-top: 15px;
+  display: inline-block;
+  float: left;
+}
+
+.upcoming-match-time {
+  float: left;
+  padding-right: 10px;
+  padding-top: 4px;
+}
+
+.disabled, .mark-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 1499px) {
+  li.live-match-name {
+    width: 34%;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .live-betting .live-center-section {
+    width: calc(100% - 27.1%);
+  }
+
+  .main-section .right-section, #sidebar {
+    width: 250px;
+  }
+
+  .games-heading-ul li, li.width15,
+  li.live-match-name,  li.plus-data {
+    font-size: 12px;
+  }
+  li.live-match-name {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .live-betting .live-center-section {
+    width: 100%;
+  }
+  li.live-match-name {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .live-betting .live-center-section {
+    width: 100%;
+  }
+  .betting-tabs .nav-tabs>li>a {
+    font-size: 11px !important;
+  }
+  #soccer  {
+    display: flex;
+    overflow-x: scroll;
+    flex-wrap: inherit;
+    flex-direction: column;
+  }
+
+  /*.card-body ul.show-detail-data,
+  .card-body ul.show-data,*/
+  .games-heading-ul  {
+    display: flex;
+  }
+
+  #live-event-content .card {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: scroll;
+  }
+
+  li.live-match-name{
+    width: 316px;
+    display: initial;
+    float: left;
+  }
+
+  li.width15{
+    width: 200px;
+    display: initial;
+    float: left;
+  }
+
+  li.plus-data {
+    width: 100px;
+    display: initial;
+    float: left;
+  }
+
+  li.live-match-name span:nth-child(2) {
+    display: table;
+    float: left;
+  }
+
+  .show-detail-data ul .inner-detail-div  li.inner-detail-text {
+    width: inherit !important;
+  }
+  .show-detail-data ul .inner-detail-div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.show-data li.blank-li {
+  display: inline-block;
+}
+
+body .upcoming-img {
+  float: none;
+  padding-top: 0;
+}
+
+.upcoming-inner-data span{
+  margin: 1px 0;
+}
+
+
+/*.tool-tip {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  opacity: 0;
+  visibility: hidden;
+}*/
+
+.match-hover {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.match-hover:hover .tool-tip,
+.match-hover:hover .arrow,
+.add_live_favorite_matches:hover .tool-tip,
+.add_live_favorite_matches:hover .arrow {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  cursor: pointer;
+}
+
+
+.match-hover  .tool-tip, .add_live_favorite_matches  .tool-tip{
+  position: absolute;
+  background: #fff;
+  border-radius: 5px;
+  color: #000;
+  border: 2px solid #005dc2;
+  padding: 10px;
+  font-weight: 600;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  line-height: normal;
+  opacity: 0;
+  transition: opacity 0.5s;
+  top: 40px;
+  z-index: 1;
+  box-shadow: 0px 3px 8px #000;
+  visibility: hidden;
+  display: none;
+  overflow: visible;
+  white-space: initial;
+}
+
+.match-hover:hover .text-ellipes {
+  overflow: visible;
+}
+
+.match-hover .arrow, .add_live_favorite_matches .arrow {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  margin-left: -9px;
+  border-width: 9px;
+  border-style: solid;
+  border-color: transparent transparent #005dc2 transparent;
+  opacity: 0;
+  transition: opacity 0.5s;
+  visibility: hidden;
+  display: none;
+}
+
+.add_live_favorite_matches {
+  position: relative;
+}
+
+
+.star-tool-tip .tool-tip {
+  width: 120px;
+  left: -45px;
+  padding: 5px 0;
+}
+
+.second-sport {
+  width: 70px;
+  display: inline-flex;
+  overflow: hidden;
+  margin: 0 5px;
+}

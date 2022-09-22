@@ -1,0 +1,188 @@
+<section class="main-section fund-transfer">
+  <div class="width90">
+    <div class="heading">
+      <h3>FUND TRANSFER</h3>
+    </div>
+    <div class="open-close-bets">
+      <div class="both-bets">
+        <div class="parent-bets">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" id="transfer-tab-link" href="#transfer-fund">Transfer fund</a></li>
+            <li><a data-toggle="tab" href="#recent_transfers">Recent Payees</a></li>
+          </ul>
+        </div>
+
+        <div class="tab-content">
+          <div id="transfer-fund" class="tab-pane fade in active">
+            <div class="border">
+              <div class="close-bets-content">
+                <div class="full-width">
+                  <div class="col-md-3 col-sm-3 col-xs-12">
+                    Username
+                  </div>
+                  <div class="col-md-5 col-sm-5 col-xs-12">
+                    <input type="text" class="username" placeholder="Enter username here">
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <button class="verify">
+                      Verify
+                    </button>
+                  </div>
+                </div>
+                <div class="full-width">
+                  <div class="col-md-3 col-sm-3 col-xs-12">
+                    Note:
+                  </div>
+                  <div class="col-sm-9 col-md-9 col-xs-12">
+                    <b>A transfer fee of <%= fund_transfer_commision %>% will be charged. Please verify the details before payment.<br>
+                    Maximum limit per day is <%= fund_transfer_limit %></b>
+                  </div>
+                </div>
+                <div class="user-details">
+                  <div class="full-width">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      Username:
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                      <p class="username">
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="full-width">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      Name:
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                      <p class="full-name">
+                      </p>
+                    </div>
+                  </div>
+                  <div class="full-width amount-container">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      Amount
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                      <input type="text" name="amount" required="" id="amount" placeholder="Enter amount">
+                    </div>
+                  </div>
+                  <div class="full-width">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                      <div class="pay-button">
+                        <button>
+                          Pay
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="recent_transfers" class="tab-pane fade">
+            <div class="transfer-detail">
+              <div class="transfer-heading-text">
+                <ul>
+                  <li>
+                    Name
+                  </li>
+
+                  <li>
+                    Username
+                  </li>
+
+                  <li>
+                  </li>
+                </ul>
+              </div>
+              <div class="transfer-heading-content">
+                <% @frequent_payees.each_with_index do |payee, index| %>
+                  <% username = payee&.username %>
+                  <ul class="<%= even_odd(index) %>-color">
+                    <%= hidden_field_tag :username, username, class: "recent-payee-username" %>
+                    <li>
+                      <%= payee&.full_name&.titleize %>
+                    </li>
+
+                    <li>
+                      <%= username %>
+                    </li>
+
+                    <li style="float:right;">
+                      <button class="btn btn-warning transfer-recent">Transfer Funds</button>
+                    </li>
+                  </ul>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function getAjax(address, data) {
+    $.ajax({
+      url: address,
+      type: "GET",
+      data: data,
+      dataType: 'script',
+      beforeSend: function() {
+        setTimeout(function(){ 
+          show_spinner();
+        }, 0);
+      },
+      success: function(result) {
+        hide_spinner();
+      },
+      error: function(error) {
+        hide_spinner();
+      }
+    });
+  }
+
+  $('.fund-transfer .verify').click(function() {
+    username = $('#transfer-fund input.username').val();
+    getAjax('<%= get_user_details_path %>', {username: username});
+  });
+
+  $('.transfer-recent').click(function() {
+    username = $(this).closest('ul').find('.recent-payee-username').val();
+    $('#transfer-tab-link').click();
+    $('#transfer-fund input.username').val(username);
+    $('.fund-transfer .verify').click();
+  });
+
+  $('.pay-button').click(function() {
+    inputAmount = $('input#amount').val();
+    username = $('.amount-container #amount').data('username');
+    if(confirm(`Send ${inputAmount} to (${username}). Sure?`)) {
+      data = {
+        username: username,
+        amount: inputAmount
+      }
+      $.ajax({
+        url: '<%= initiate_transfer_path %>',
+        type: "POST",
+        data: data,
+        dataType: 'script',
+        beforeSend: function() {
+          setTimeout(function(){ 
+            show_spinner();
+          }, 0);
+        },
+        success: function(result) {
+          hide_spinner();
+        },
+        error: function(error) {
+          hide_spinner();
+        }
+      });
+    }
+  });
+</script>

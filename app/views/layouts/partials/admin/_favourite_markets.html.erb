@@ -1,0 +1,27 @@
+<div class="col-lg-6">
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+      <h5>Favourite Markets</h5>
+    </div>
+    <div class="ibox-content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Market ID</th>
+            <th>Name</th>
+            <th>Bet Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% markets.each do |market| %>
+            <tr>
+              <td><%= link_to market.id, admin_market_path(market.id) %></td>
+              <td><%= market.name %></td>
+              <td><%= market.bet_count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

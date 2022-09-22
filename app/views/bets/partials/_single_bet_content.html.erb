@@ -1,0 +1,82 @@
+<div id="single" class="tab-pane fade in active">
+  <div class="data-list">
+    <div class="data-list-heading">
+      <% if @bets.present? %>
+        <ul>
+          <li class="date">DATE</li>
+          <li class="match">MATCH</li>
+          <li class="out-come">TIP</li>
+          <li class="odds">ODDS/CURR ODDS</li>
+          <li class="amt">AMT</li>
+          <li class="out-come">TO RETURN</li>
+          <% if kind == 'resolved' %>
+            <li class="score">FINAL SCORE</li>
+          <% else %>
+            <li class="score">LIVE SCORE</li>
+          <% end %>
+          <li class="match-status">
+            <div><%= image_tag 'spinner.gif', id: 'refresh-spinner' %></div>
+            STATUS
+          </li>
+        </ul>
+      <% end %>
+    </div>
+    <% if @bets.blank? %>
+      No single bet placed
+    <% end %>
+    <% @bets.each_with_index do |bet, index| %>
+      <% running_time = {} %>
+      <% match = bet.match %>
+      <% if match.in_progress? %>
+        <% running_time = match.running_time %>
+      <% end %>
+      <div class="data-list-content" id="single-<%= bet.id %>">
+        <ul class="<%= even_odd(index) %>-color">
+          <li class="date">
+            <p><%= image_tag("sports_icon/#{match.sport.uid}") %></p>
+            <% if match.in_progress? %>
+              <p class="running-time"><%= custom_running_time(match.running_time) %></p>
+            <% end %>
+            <p class='single-bet-date'><%= bet.created_at.strftime("%Y-%d-%m %H:%M:%S") %></p>
+          </li>
+          <li class="match">
+            <%= match.title %>
+          </li>
+          <li class="out-come">
+            <%= bet.market.name %>
+            <span class="match_score">
+              (<%= bet.sort_outcome_name_with_handicap %>)
+            </span>
+          </li>
+          <li class="odds">
+            <%= number_with_precision(bet.odds, precision: 2) %>
+            /
+            <%= number_with_precision(bet.cashoutable[:odds], precision: 2) %>
+          </li>
+          <li class="amt"><%= "#{number_with_precision(bet.stake, precision: 2)} #{Constants::CURRENCY}" %></li>
+          <li class="out-come">
+            <%# if bet.cashoutable? %>
+              <%= bet.to_return != 'NA' ? "#{bet.to_return} #{Constants::CURRENCY}" : 'NA'  %>
+            <%# end %>
+          </li>
+          <li class="score"><%= bet.final_score %></li>
+          <% bet_status = bet.status %>
+          <li class="match-status">
+            <%= render 'cashout/cashout_action', bet: bet %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= will_paginate @bets, :params => { :my_excluded_param => nil }  %>
+
+<script type="text/javascript">
+  $('.pagination a').attr('data-remote', 'true');
+  $(document).ready( function () {
+    $('.single-bet-date').each(function(i) {
+      var date = convertUtcInToLocalTime($(this).text(), "LLL");
+      $(this).html(date);
+    });
+  });
+</script>

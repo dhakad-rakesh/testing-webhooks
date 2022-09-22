@@ -1,0 +1,6 @@
+en:
+  admin:
+    histories:
+      payment_history: 'Payment Histories'
+      transaction_list: 'All Transactions listings'
+      user_details: 'User Details'

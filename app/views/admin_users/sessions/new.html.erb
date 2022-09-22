@@ -1,0 +1,23 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div style="padding-top: 70px;">
+        <h3>Welcome to <%= Figaro.env.project_name %></h3>
+        <p>
+            Perfectly designed and precisely prepared admin dashboard.
+        </p>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="form-group">
+                <%= f.email_field :email, placeholder: 'Username or Email', autofocus: true, autocomplete: "email", class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= f.password_field :password, placeholder: 'Password', autocomplete: "off", class: 'form-control' %>
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+            <%= render "devise/shared/links" %>
+        <% end %>
+    </div>
+</div>
+
+
+

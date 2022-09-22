@@ -1,0 +1,16 @@
+<div class="footer">
+   <% unless mobile_device? %>
+     <ul>
+      <li><strong><%= link_to t('privacy_policy'), privacy_policy_path %></strong> </li>
+      <li><strong><%= link_to t('rules_link'), rules_path %></strong> </li>
+      <li><strong><%= link_to t('terms'), terms_path %></strong> </li>
+      <li><%= Figaro.env.project_name %>&copy; 2019-2020</li>
+      <li><%= image_tag '18plus', class: "eighteen-plus", alt: "18+" %></li>
+     </ul>
+   <% end %>
+</div>
+<script>
+  $(".r-m-icon").click(function(){
+  $(".left-part").toggle(500);
+});
+</script>

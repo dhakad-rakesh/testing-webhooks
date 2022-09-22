@@ -1,0 +1,1 @@
+navigator.serviceWorker&&navigator.serviceWorker.register("/firebase-messaging-sw.js",{scope:"./"}).then(function(){console.log("[Companion]","Service worker registered!")});

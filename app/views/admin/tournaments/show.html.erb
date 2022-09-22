@@ -1,0 +1,63 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= @tournament.fancy_name.titleize  %></h2>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to admin_tournaments_path, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('information') %></h5>
+        </div>
+        <div class="ibox-content">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><b>Name:</b></td>
+                <td><%= @tournament.name %></td>
+              </tr>
+              <tr>
+                <td><b>Display Name:</b></td>
+                <td><%= @tournament.fancy_name %></td>
+              </tr>
+              <% %w[enabled country_name tournament_type rank].each do |field| %>
+                <tr>
+                  <td><b><%= "#{t(field)}:" %></b></td>
+                  <td><%= @tournament[field] || '-' %></td>
+                </tr>
+              <% end %>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('statistics') %></h5>
+        </div>
+        <div class="ibox-content">
+          <table class="table">
+            <tbody>
+                <tr>
+                  <td><b><%= t('.number_of_matches') %></b></td>
+                  <td><%= @tournament.matches.schedulable.count %></td>
+                  <td><%= link_to t('view'), admin_tournament_matches_path(@tournament) %></td>
+                </tr>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

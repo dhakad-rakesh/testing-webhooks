@@ -1,0 +1,7 @@
+<p>Executed successfully at <%= Time.zone.now %></p>
+<%= @exception if @exception.present? %>
+<p>on match id: <%= @match_id %> </p>
+<p>Exception backtrace: <br/>
+  <%= @exception_backtrace[0].join("<br>").html_safe %>
+</p>
+

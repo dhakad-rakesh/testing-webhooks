@@ -1,0 +1,8 @@
+<p>Hello <%= @ledger.betable.username %>,</p>
+
+<p>Your withdrawal request of amount <%= '%.10f' % @ledger.amount %> is <b><%= @ledger.status.titleize %></b></br>
+
+<p> Request date: <%= @ledger.created_at.strftime('%^A %d %^B %Y') %></p>
+
+<p> <%= "Reason: #{@ledger.comment}" if @ledger.comment %></p>
+<p>Thanks</p>

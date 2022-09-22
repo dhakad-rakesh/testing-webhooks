@@ -1,0 +1,41 @@
+<section class="main-section">
+  <div class="ac-heading">
+    <h2 class="text-center">
+      Forgot your password?
+    </h2>
+  </div>
+  <div class="account-fields width60">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'forgot_password_form', method: :post }) do |f| %>
+
+      <% if resource.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="full-width">
+        <div class="col-md-12 col-sm-12 col-xs-12 margin">
+          <label>Email * </label>
+          <%= f.text_field :email, class: 'form-control', autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
+
+      <div class="full-width">
+        <div class="col-md-12 col-sm-12 col-xs-12 margin">
+          <div>
+            <%= button_tag "Send Instructions", class: 'green-btn' %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</section>
+
+<script>
+  validateForgotPassword();
+</script>

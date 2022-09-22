@@ -1,0 +1,10 @@
+---
+:timeout: 30
+
+:dynamic: false
+:enabled: true
+:concurrency: <%= ENV['LIVESCORE_MAX_THREADS'] || 50 %>
+
+:queues:
+  - inplay_score_change
+  

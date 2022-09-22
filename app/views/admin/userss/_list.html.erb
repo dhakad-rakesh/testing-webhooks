@@ -1,0 +1,35 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('player_number') %></th>
+      <th><%= t('email') %></th>
+      <th><%= t('phone') %></th>
+      <th><%= t('account_status') %></th>
+      <th><%= t('total_bets') %></th>
+      <th><%= t('wallets.available_amount') %></th>
+      <th><%= t('wallets.bonus_amount') %></th>
+      <th><%= t('agent') %></th>
+      <th><%= t('kyc_status') %></th>
+      <th><%= t('actions') %></th>
+
+      <th><%= t('select_all') %>
+        <%= check_box_tag "all_user_ids", '', false, class: 'all_user_ids' %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @users.present? %>
+      <%= render partial: 'admin/users/user', collection: @users, current_admin_user: current_admin_user %>
+    <% else %>
+      <tr>
+        <td colspan=8>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>

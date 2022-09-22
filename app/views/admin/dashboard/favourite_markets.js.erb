@@ -1,0 +1,6 @@
+<% if @markets.any? %>
+  id = 'favourite-markets';
+  $('#' + id).append("<%= j render 'layouts/partials/admin/favourite_markets', markets: @markets %>");
+  $('#' + id).removeClass('sk-loading hide');
+  $('#spinner-' + id).addClass('hide');
+<% end %>

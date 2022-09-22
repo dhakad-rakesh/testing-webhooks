@@ -1,0 +1,5 @@
+en:
+  admin:
+    wallets:
+      edit:
+        add_amount_text: 'Add amount to user (%{name_or_email}) wallet'

@@ -1,0 +1,10 @@
+en:
+  admin:
+    transfer_records:
+      created_at: 'Created at'
+      referral_id: 'Referral ID'
+      referrer_name: 'Referrer Name'
+      referee_name: 'Referee Name'
+      transaction_type: 'Transaction Type'
+      reward_amount: 'Reward Amount'
+      threshold_amount: 'Threshold Amount'

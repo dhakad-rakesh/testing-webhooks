@@ -1,0 +1,19 @@
+<tr class="gradeX" id="<%= casino_menu.id %>">
+  <td><%= casino_menu.id %></td>
+  <td><%= casino_menu.name %></td>
+  <td><%= casino_menu.menu_type.humanize %></td>
+  <td id="rank_<%= casino_menu.id %>"><%= casino_menu.menu_order %></td>
+  <td><input class="featured_checkbox" type="checkbox" <%= casino_menu.is_featured ? "checked" : "" %>></td>
+  <td>
+    <% if casino_menu.enabled %>
+      <div class="green">Active</div>
+    <% else %>
+      <div class="red">Deactive</div>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to edit_admin_casino_menu_path(casino_menu), class: 'btn btn-primary' do %>
+      <span class="fa fa-pencil"></span>
+    <% end %>
+  </td>
+</tr>

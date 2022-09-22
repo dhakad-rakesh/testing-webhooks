@@ -1,0 +1,79 @@
+<div id='casino_items' class='casino-item'>
+  <% if @lobby_items['lobby'].present? %>
+    <% @lobby_items['lobby'].each_with_index do |item, index| %>
+      <div class='col-md-2 border'>
+        <div class='item-parent'>
+          <div class="casino-game">
+            <div class="info">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </div>
+            <%= link_to image_tag(item['dealerAvatar'], border: 0),"#-", { class: 'item-image' } %>
+            <div class="game-stats">
+              <p class='free-spins'><span>Open : </span>
+                <%= item['isOpen'] == true ? 'Yes' : 'No' %>
+              </p>
+              <p class='open-time'><span>Open Time : </span><%= item['openTime'] %></p>
+              <p class='open-time'><span>Close Time : </span><%= item['closeTime'] %></p>
+              <p class='min-max'><span>Min, Max : </span><%= item['limits'][0]['min'] %>, <%= item['limits'][0]['max'] %></p>
+              <p class='currency-1'><span>Currency : </span><%= item['limits'][0]['currency'] %></p>
+              <% if item['dealerName'].present? %>
+                <p class='dealer-name'><span>Dealer Name : </span><%= item['dealerName'] %></p>
+              <% end %>
+            </div>
+            <div class="play-options">
+              <button class="casino-play-button" onclick="launchCasinoModal('<%= init_game_session_casino_path(params[:id], lobby_data: item['lobbyData'] ) %>')">Play Now</button>
+              <!-- <button class="casino-play-button demo" >Free Play</button> -->
+            </div>
+            <div class="game-data">
+            <div class="game-data-options">
+              <div class="name"><%= item['name'] %></div>
+              <div class="rating rating3 "></div> 
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% if (index+1)%6 == 0 %>
+        <div class='clearfix'></div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <h4 class='text-center' style="color: #fff"> No results found...</h4>
+  <% end %>  
+  <div class='clearfix'></div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".info").hover(function(){            
+      $(this).parent().toggleClass("stats");
+    });
+  });
+
+  function launchCasinoModal(redirect_path) {
+    $.ajax(redirect_path, {
+      type: "get",
+      dataType: 'json',
+      beforeSend: function() {
+        show_spinner();
+      },
+      success: function(result) {
+        if (result.errors != null) {
+          hide_spinner();
+          return toastr.error(result.errors);
+        }
+        hide_spinner();
+        $('#init_casino_game').attr('src', result.url);
+        $("#launchCasinoModal").modal({
+          backdrop: 'static',
+          keyboard: false
+        });
+      },
+      error: function(error) {
+        toastr.error(error.responseJSON.error);
+        window.location.href = '/users/sign_in';
+        hide_spinner();
+      }
+    });
+  }
+</script>

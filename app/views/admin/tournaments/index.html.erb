@@ -1,0 +1,26 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('tournaments') %></h2>
+  </div>
+  <div class="col-lg-10-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <%= render "tournaments_filter" %>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <div id="tournament_table">
+          <%= render partial: 'tournament_table' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<%= form_with url: normal_user_withdraw_admin_admin_user_pool_wallets_path(current_admin_user), local: true, class: 'form' do |f| %>
+
+  <div class="form-group col-lg-10 walletBtnGroup normal_user_withdraw">
+    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+      <%= t('withdraw_all') %>
+      <span class="fa fa-arrow-circle-o-down"></span>
+    <% end %>
+  </div>
+<% end %>

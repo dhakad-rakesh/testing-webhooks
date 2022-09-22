@@ -1,0 +1,90 @@
+<div id="tab-3" class="tab-pane">
+  <div class="panel-body">
+    <div class="tabs-container">
+      <div class="tabs-left">
+        <ul class="nav nav-tabs nav-custom">
+          <li class="active"><a data-toggle="tab" data-link="<%= admin_user_ledgers_path(@user) %>" href="#transactionsList">Transactions</a></li>
+          <li class=""><a data-toggle="tab" data-link="<%= admin_user_bets_path(@user) %>" href="#sportBetsList">Sport Bets</a></li>
+          <li class=""><a data-toggle="tab" data-link="<%= casino_admin_reports_path(player_number: @user.user_number) %>" href="#casinoTransactionList">Casino Transactions</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="transactionsList" class="tab-pane active" data-partial="transactions_list">
+            <div class="panel-body">
+              <%= render 'admin/ledgers/transactions_filter' %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTransactionList">Transactions</a>
+                  </h5>
+                </div>
+                <div id="collapseTransactionList" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content" style="overflow-x:auto;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="sportBetsList" class="tab-pane" data-partial="bets_list">
+            <div class="panel-body">
+              <%= render 'admin/bets/bets_filter' %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseBetsList">Sport Bets</a>
+                  </h5>
+                </div>
+                <div id="collapseBetsList" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content" style="overflow-x:auto;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="casinoTransactionList" class="tab-pane" data-partial="casino_report">
+            <div class="panel-body">
+              <%= render 'admin/casino/casino_filter' %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseCasinoTransactionList">Casino Transactions</a>
+                  </h5>
+                </div>
+                <div id="collapseCasinoTransactionList" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content" style="overflow-x:auto;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.reports_tab').on('click', () => {
+    const tab_selector = $('.reports_tab a').attr('href');
+    const active_nav = $(`${tab_selector} .nav li.active a`);
+    loadPanelData(active_nav);
+  });
+
+  $("#tab-3 .nav-tabs li a").on("click", function() {
+    loadPanelData($(this));
+  });
+
+  function loadPanelData(active_nav) {
+    const active_panel =  active_nav.attr('href');
+    const address = active_nav.data('link');
+    const partial = $(active_panel).data('partial');
+    const content_div = `${active_panel} .panel-content`;
+    const data = {
+      'partial': partial,
+      'content_div': content_div,
+      'query': {
+        'player_number': "<%= @user.user_number %>"
+      }
+    }
+    getAjaxJs(address, data);
+  }
+</script>

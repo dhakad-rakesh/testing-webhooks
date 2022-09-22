@@ -1,0 +1,15 @@
+<h4>Frequent Payees</h4>
+<% frequent_payees.each do |payee| %>
+  <div class="row" data-username="<%= payee&.username %>">
+    <div class="col-lg-6"><a><%= payee&.full_name&.titleize %></a></div>
+    <div class="col-lg-6"><button class="btn btn-success pay-frequent">Pay</button></div>
+  </div>
+<% end %>
+
+<script>
+  $('.pay-frequent').click(function() {
+    username = $(this).parent().parent().data('username');
+    $('.fund-transfer .username').val(username);
+    $('.fund-transfer .verify').click();
+  });
+</script>

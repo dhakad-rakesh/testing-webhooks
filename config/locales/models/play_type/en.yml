@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      play_type:
+        name: 'Name'
+        

@@ -1,0 +1,59 @@
+---
+:timeout: 30
+
+:dynamic: false
+:enabled: true
+:scheduler:
+  :listened_queues_only: false
+
+development:
+  :concurrency: <%= ENV['ODDS_FEED_MAX_THREADS'] || 50 %>
+  :schedule:
+    # ls_amqp_listners:
+    #   cron: '0 * * * * *' # At every minutes minute.
+    #   class: Lsports::AMQP::InplayListenerWorker
+
+    # ls_amqp_prematch_listners:
+    #   cron: '0 * * * * *' # At every minutes minute.
+    #   class: Lsports::AMQP::PrematchListenerWorker
+    # enabled: <%= ENV.fetch("PREMATCH_REALTIME_UPDATES", "true") == "true" %>
+
+    disable_matches:
+      cron: '*/5 * * * *' # At every 5th minute.
+      class: LS::Inplay::DisableMatchJob
+
+staging:
+  :concurrency: <%= ENV['ODDS_FEED_MAX_THREADS'] || 50 %>
+  :schedule:
+    # ls_amqp_listners:
+    #   cron: '0 * * * * *' # At every minutes minute.
+    #   class: Lsports::AMQP::InplayListenerWorker
+
+    # ls_amqp_prematch_listners:
+    #   cron: '0 * * * * *' # At every minutes minute.
+    #   class: Lsports::AMQP::PrematchListenerWorker
+    #   enabled: <%= ENV.fetch("PREMATCH_REALTIME_UPDATES", "true") == "true" %>
+
+    disable_matches:
+      cron: '*/5 * * * *' # At every 5th minute.
+      class: LS::Inplay::DisableMatchJob
+
+production:
+  :concurrency: <%= ENV['ODDS_FEED_MAX_THREADS'] || 50 %>
+  :schedule:
+    # ls_amqp_listners:
+    #   cron: '0 * * * * *' # At every minutes minute.
+    #   class: Lsports::AMQP::InplayListenerWorker
+
+    # ls_amqp_prematch_listners:
+    #   cron: '0 * * * * *' # At every minutes minute.
+    #   class: Lsports::AMQP::PrematchListenerWorker
+    # enabled: <%= ENV.fetch("PREMATCH_REALTIME_UPDATES", "true") == "true" %>
+
+    disable_matches:
+      cron: '*/5 * * * *' # At every 5th minute.
+      class: LS::Inplay::DisableMatchJob
+
+:queues:
+  - amqp_client
+  - disable_match

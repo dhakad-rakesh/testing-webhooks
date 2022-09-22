@@ -1,0 +1,72 @@
+<%= link_to combo_bets_admin_reports_path(request.parameters.merge(format: "csv")), class: 'btn btn-sm btn-primary pull-right' do %>
+  <span>CSV <i class="fa fa-download"></i></span>
+<% end %>
+<table class="dt-reports table table-hover bet-report-list" data-title="Koorabet | Bets Report">
+  <thead>
+    <tr>
+      <th><%= t('admin.reports.bets.id') %></th>
+      <th><%= t('admin.reports.bets.player_id') %></th>
+      <th><%= t('admin.reports.bets.currency') %></th>
+      <th><%= t('admin.reports.bets.tournament') %></th>
+      <th><%= t('admin.reports.bets.match') %></th>
+      <th><%= t('admin.reports.bets.stake') %></th>
+      <th><%= t('admin.reports.bets.odds') %></th>
+      <th><%= t('admin.reports.bets.status') %></th>
+      <th><%= t('admin.reports.bets.winning') %></th>
+      <th><%= t('admin.reports.bets.bonus') %></th>
+      <th><%= t('admin.reports.bets.created') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if combo_bets.present? %>
+      <% combo_bets.each do |combo_bet| %>
+        <tr class="gradeX">
+          <td><%= combo_bet.id %></td>
+          <td><%= link_to combo_bet.user.user_number,  admin_user_path(combo_bet.user) %></td>
+          <td><%= combo_bet.user.current_wallet.currency %></td>
+          <td></td>
+          <td></td>
+          <td><%= combo_bet.stake.round(8) %></td>
+          <td><%= combo_bet.odds %></td>
+          <td>
+            <span class="label label-<%= bet_label(combo_bet.status) %>">
+              <%= combo_bet.status.titleize %>
+            <span>
+          </td>
+          <td><%= combo_bet.winning_amount.round(8) %></td>
+          <td><%= combo_bet.betting_bonus.round(8) %></td>
+          <td><%= current_time(combo_bet.created_at) %></td>
+        </tr>
+        <% combo_bet.bets.each do |bet| %>
+          <tr class="gradeX" style="background: #80808017">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= link_to bet.tournament.name, admin_tournament_path(bet.tournament) %></td>
+            <td><%= link_to bet.match.name, admin_match_path(bet.match) %></td>
+            <td><%= bet.stake.round(8) %></td>
+            <td><%= bet.odds %></td>
+            <td>
+              <span class="label label-<%= bet_label(bet.status) %>">
+                <%= bet.status.titleize %>
+              <span>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=9>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate combo_bets, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>
+
+<%= javascript_include_tag 'admin/reports' %>

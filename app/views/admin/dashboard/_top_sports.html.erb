@@ -1,0 +1,193 @@
+<% filter.stats.each do |sport_kind, sports| %>
+  <div class="col-md-12">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+          <h5><%= "#{t('admin.dashboard.top_sports.top_5')} #{sport_kind.capitalize}" %></h5>
+      </div>
+      <div class="ibox-content">
+        <div class="row">
+        <% unless sports.blank? %>
+          <% sports.each_with_index do |sport, index|%>
+            <div class="col-md-2 dash-widget">
+              <div class="text-center">
+                <div class="">
+                  <h3 class="font-bold no-margins">
+                    <%= sport.name %>
+                  </h3>
+                  <small><%= t('admin.dashboard.profit.percent') %></small>
+                </div>
+                <div class="gauge-container-custom">
+                  <div class="gauge-<%= "#{sport_kind}-#{index}" %>" data-profit="<%= number_with_precision(sport.profit_percentage, precision: 2) %>"></div>
+                </div>
+                <!--<h1 class="font-bold"><%#= "#{sport.win_percentage}" %></h1>-->
+                <table class="top-sport-stats">
+                  <tr>
+                    <th><%= t('admin.dashboard.top_sports.bets_amount') %>:</th>
+                    <td><%= format_currency(amount: sport.total_bets_amount) %></td>
+                  </tr>
+                  <tr>
+                    <th><%= t('admin.dashboard.top_sports.total_winnings') %>:</th>
+                    <td><%= format_currency(amount: sport.total_winnings) %></td>
+                  </tr>
+                  <tr>
+                    <th><%= t('admin.dashboard.top_sports.profit') %>:</th>
+                    <td><%= format_currency(amount: sport.profit) %></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <h5 class="text-center"><%= t('no_data_available') %></h5>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+
+$( document ).ready(function() {
+  const sports_0 = $('.gauge-sports-0').data('profit') || 0;
+  const sports_1 = $('.gauge-sports-1').data('profit') || 0;
+  const sports_2 = $('.gauge-sports-2').data('profit') || 0;
+  const sports_3 = $('.gauge-sports-3').data('profit') || 0;
+  const sports_4 = $('.gauge-sports-4').data('profit') || 0;
+  const esports_0 = $('.gauge-esports-0').data('profit') || 0;
+  const esports_1 = $('.gauge-esports-1').data('profit') || 0;
+  const esports_2 = $('.gauge-esports-2').data('profit') || 0;
+  const esports_3 = $('.gauge-esports-3').data('profit') || 0;
+  const esports_4 = $('.gauge-esports-4').data('profit') || 0;
+  
+  c3.generate({
+    bindto: '.gauge-sports-0',
+    data:{
+      columns: [
+          ['Profit', sports_0]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#3cccdd', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-sports-1',
+    data:{
+      columns: [
+          ['Profit', sports_1]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#f8454c', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-sports-2',
+    data:{
+      columns: [
+          ['Profit', sports_2]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#feca3c', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-sports-3',
+    data:{
+      columns: [
+          ['Profit', sports_3]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#b9cd25', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-sports-4',
+    data:{
+      columns: [
+          ['Profit', sports_4]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#47b450', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-esports-0',
+    data:{
+      columns: [
+          ['Profit', esports_0]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#3cccdd', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-esports-1',
+    data:{
+      columns: [
+          ['Profit', esports_1]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#f8454c', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-esports-2',
+    data:{
+      columns: [
+          ['Profit', esports_2]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#feca3c', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-esports-3',
+    data:{
+      columns: [
+          ['Profit', esports_3]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#b9cd25', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-esports-4',
+    data:{
+      columns: [
+          ['Profit', esports_4]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#47b450', '#BABABA']
+    }
+  });
+});
+</script>

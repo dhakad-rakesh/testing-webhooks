@@ -1,0 +1,101 @@
+<footer>
+  <div class="container">
+    <ul class="hidden-xs">
+      <li><%= link_to t('privacy_policy'), privacy_policy_path %></li>
+      <li><%= link_to t('rules_link'), rules_path %></li>
+      <li><%= link_to t('terms_of_use'), terms_path %></li>
+      <li>
+        <%= link_to root_path do %>
+          <%= Figaro.env.project_name %>
+        <% end %>
+        @ 2019-2020
+        <img src="<%= image_url 'footer-img.png' %>" alt="footer-img" class="img-responsive pull-right footer-img">
+      </li>
+      <li>
+        <a href="<%= url_for_apk %>">
+          <img src="<%= image_url 'app_download.png' %>" alt="app_download" style="width: 130px;">
+        </a>
+      </li>
+    </ul>
+    <div class="footer-navigation">
+      <div class="account-detail">
+        <ul class="hidden-sm hidden-md">
+          <% unless user_signed_in? %>
+            <li class="ac-setting <%#= profile_page? ? 'selected' : '' %>">
+              <a href="#" id="login">
+                <%= image_tag "login-nav.png", :class => "normal-img" %>
+                <%#= image_tag "settings.png", :class => "select-hover"%>
+              </a>
+            </li>
+          <% else %>
+            <li class="bet-slip-img" onclick="openNav()">
+              <%= image_tag "about-us.png", :class => "normal-img" %>
+              <% if current_user.present? %>
+                <span class="badge badge-pill badge-danger">
+                  <%= user_balance %>
+                </span>
+              <% end %>
+            </li>
+          <%end%>
+
+          <li class="ac-statement <%#= statement_page? ? 'selected' : '' %>">
+            <%= link_to transaction_history_path do %>
+              <%= image_tag "h4.png", :class => "normal-img" %>
+              <%#= image_tag "scroll.png", :class => "select-hover"%>
+            <% end %>
+          </li>
+          
+          <li class="my-bets <%= my_bets_page? ? 'selected' : '' %>">
+            <%= link_to my_bets_bets_path(scope: 'pending', match_id: @live_match&.id) do %>
+              <%= image_tag "h1.png", :class => "normal-img" %>
+              <%= image_tag "my-bets.png", :class => "select-hover"%>
+            <% end %>
+          </li>
+
+          
+          <li class="ac-setting <%= profile_page? ? 'selected' : '' %>">
+            <% if current_user.present? %>
+              <%= link_to edit_user_path(current_user) do %>
+                <%= image_tag "h3.png", :class => "normal-img" %>
+                <%= image_tag "settings.png", :class => "select-hover"%>
+              <% end %>
+            <% else %>
+              <%= image_tag "h3.png", :class => "normal-img" %>
+            <% end %>
+          </li>
+
+          <li class="bet-slip-img<%#= statement_page? ? 'selected' : '' %>">
+            <a id="bet-slip" onclick="closeNav()">
+              <%= image_tag "betslip.png", :class => "normal-img" %>
+              <%#= image_tag "https://img.glyphs.co/img?src=aHR0cHM6Ly9zMy5tZWRpYWxvb3QuY29tL3Jlc291cmNlcy9BcHAtSWNvbnMtUGFjay0zLVByZXZpZXctMS5qcGc&q=90&enlarge=true&h=1036&w=1600", :class => "select-hover"%>
+            </a>
+            <span class="bet-slip-count badge badge-pill badge-danger">
+              <%= bet_slip_count %>
+            </span> 
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">
+  
+  $(window).on('resize',function() {
+    if ($(window).width() <= 992) {      
+      $("#bet-slip").click(function (){
+        $("#bet-slip-modal").fadeIn("slow");
+      });
+
+      $(".close").click(function (){
+        $("#bet-slip-modal").fadeOut("slow");
+      });
+    }
+    else {      
+      $("#bet-slip-modal").show();
+    }
+  });
+
+  $(document).ready(function() {
+    $(window).trigger('resize');
+  });
+</script>

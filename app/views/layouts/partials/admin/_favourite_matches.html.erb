@@ -1,0 +1,27 @@
+<div class="col-lg-6">
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+      <h5>Favourite Matches</h5>
+    </div>
+    <div class="ibox-content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Match ID</th>
+            <th>Sport</th>
+            <th>Bet Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% matches.each do |match| %>
+            <tr>
+              <td><%= link_to "#{match.id} - #{match.title}", admin_match_path(match.id) %></td>
+              <td><%= match.sport.name %></td>
+              <td><%= match.bet_count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

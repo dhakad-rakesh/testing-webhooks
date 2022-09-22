@@ -1,0 +1,17 @@
+<td><%= user.id %></td>
+<td><%= user.username %></td>
+<td><%= user.email.present? ? user.email : user.unconfirmed_email %></td>
+<td><%= user.email.present? ? 'Verified' : 'Verification Pending' %></td>
+<td><%#= user.user_number %></td>
+<td>
+  <% if user.undiscarded? %>
+    <div class="green">Active</div>
+  <% else %>
+    <div class="red">Deactive</div>
+  <% end %>
+</td>
+<td><%= user.total_bets %></td>
+<td><%= format_currency(amount: user.available_amount) %></td>
+<td><%= format_currency(amount: user.bonus_amount) %></td>
+<td><%#= user_type(user) %></td>
+<td>

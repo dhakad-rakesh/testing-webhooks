@@ -1,0 +1,296 @@
+<div id="tab-4" class="tab-pane">
+  <div class="panel-body">
+    <div class="tabs-container">
+      <div class="tabs-left">
+        <ul class="nav nav-tabs nav-custom">
+          <li class="active"><a data-toggle="tab" href="#socialPreferences">Social Preferences</a></li>
+          <%
+=begin%>
+ <li class=""><a data-toggle="tab" href="#sportsbookSettings">SportsBook Settings</a></li> 
+<%
+=end%>
+          <% if current_admin_user.is_super_admin? %>
+            <li class=""><a data-toggle="tab" href="#manageReseller">Manage Reseller</a></li>
+          <% end %>
+        </ul>
+        <div class="tab-content">
+          <div id="socialPreferences" class="tab-pane active" data-partial="transactions_list">
+            <div class="panel-body">
+
+              <%# bet limits tab %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#betLimits">Bet Limits</a>
+                  </h5>
+                </div>
+                <div id="betLimits" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content">
+                    <%= form_with model: @user, url: update_settings_admin_user_path(@user), remote: true, class: 'form' do |f| %>
+                      <table class="filter-table">
+                        <tr>
+                          <th>Max One Bet Amount</th>
+                          <th>Max Daily Bet Amount</th>
+                          <th>Max Weekly Bet Amount</th>
+                          <th>Max Monthly Bet Amount</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= f.number_field :max_one_bet_amount, class: 'form-control editable', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_daily_bet_amount, class: 'form-control editable', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_weekly_bet_amount, class: 'form-control editable', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_monthly_bet_amount, class: 'form-control editable', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                          <%= hidden_field_tag :limit_selector, 'bet' %>
+                        </tr>
+                      </table>
+                      <div class="panel-footer-div">
+                        <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a>
+                        <button class= 'btn btn-sm btn-success' disabled><i class="fa fa-save"></i></button>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#casinoLimits">Casino Limits</a>
+                  </h5>
+                </div>
+                <div id="casinoLimits" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content">
+                    <%= form_with model: @user, url: update_settings_admin_user_path(@user), remote: true, class: 'form' do |f| %>
+                      <table class="filter-table">
+                        <tr>
+                          <th>Max Single Stake</th>
+                          <th>Max Daily Stake</th>
+                          <th>Max Weekly Stake</th>
+                          <th>Max Monthly Stake</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= f.number_field :max_single_casino_stake, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.01, disabled: true %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_daily_casino_stake, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.01, disabled: true %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_weekly_casino_stake, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.01, disabled: true %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_monthly_casino_stake, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", step: 0.01, disabled: true %>
+                          </td>
+                        </tr>
+                      </table>
+                      <div class="panel-footer-div">
+                        <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a>
+                        <button class= 'btn btn-sm btn-success' disabled><i class="fa fa-save"></i></button>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <%# deposit limits tab %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#depositLimits">Deposit Limits</a>
+                  </h5>
+                </div>
+
+                <div id="depositLimits" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content">
+                    <%= form_with model: @user, url: update_settings_admin_user_path(@user), remote: true, class: 'form' do |f| %>
+                      <table class="filter-table">
+                        <tr>
+                          <th>Max Single Amount</th>
+                          <th>Max Day Deposit Amount</th>
+                          <th>Max Weekly Deposit Amount</th>
+                          <th>Max Monthly Deposit Amount</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= f.number_field :max_single_amount, class: 'form-control editable', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_day_deposit_amount, class: 'form-control editable', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_weekly_deposit_amount, class: 'form-control editable', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                          <td>
+                            <%= f.number_field :max_monthly_deposit_amount, class: 'form-control editable', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                          <%= hidden_field_tag :limit_selector, 'deposit' %>
+                        </tr>
+                      </table>
+                      <div class="panel-footer-div">
+                        <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a>
+                        <button class= 'btn btn-sm btn-success' disabled><i class="fa fa-save"></i></button>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <%# balance limits tab %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#balanceLimits">Balance Limit</a>
+                  </h5>
+                </div>
+
+                <div id="balanceLimits" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content">
+                    <%= form_with model: @user, url: update_settings_admin_user_path(@user), remote: true, class: 'form' do |f| %>
+                      <table class="filter-table">
+                        <tr>
+                          <th>Balance Amount</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= f.number_field :balance_amount_limit, class: 'form-control editable', style: 'width: 25%;', autocomplete: "off", disabled: true, step: 0.01 %>
+                          </td>
+                        </tr>
+                      </table>
+                      <div class="panel-footer-div">
+                        <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a>
+                        <button class= 'btn btn-sm btn-success' disabled><i class="fa fa-save"></i></button>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%
+=begin%>
+ <div id="sportsbookSettings" class="tab-pane" data-partial="bets_list">
+            <div class="panel-body">
+              <%# sport preferences %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#sportPreferences">Sport Preferences</a>
+                  </h5>
+                </div>
+
+                <div id="sportPreferences" class="panel-collapse collapse in">
+                  <div class="panel-body-custom panel-content">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th><%= t('id') %></th>
+                          <th><%= t('sport') %></th>
+                          <th><%= t('visible') %></th>
+                        </tr>
+                      </thead>
+                      <tbody data-user-id="<%= @user.id %>">
+                        <% @sports.each do |sport| %>
+                          <tr>
+                            <td><%= sport.id %></td>
+                            <td><%= sport.name %></td>
+                            <td>
+                              <input class='enable_user_sport' type="checkbox" value="" <%= "checked" unless @user.disabled_sports&.include? sport.id %> data-sport-id="<%= sport.id %>">
+                            </td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+<%
+=end%>
+          <% if current_admin_user.is_super_admin? %>
+            <div id="manageReseller" class="tab-pane" data-partial="bets_list">
+              <div class="panel-body">
+                <%# sport preferences %>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#manageResellerPanel">Manage Reseller</a>
+                    </h5>
+                  </div>
+
+                  <div id="manageResellerPanel" class="panel-collapse collapse in">
+                    <div class="panel-body-custom panel-content">
+                      <%= form_with model: @user, url: admin_user_path(@user), local: true, class: 'form' do |f| %>
+                        <%= f.fields_for :address do |address_form| %>
+                          <table class="filter-table">
+                            <tr>
+                              <th>Assign Reseller</th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                            <tr>
+                              <td>
+                                <%= f.select :admin_user_id, reseller_options, {}, class: 'form-control select-2', autocomplete: "off" %>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          </table>
+                          <div class="panel-footer-div">
+                            <button class= 'btn btn-sm btn-success'><i class="fa fa-save"></i> Save</button>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".only-numeric").bind("keypress", function (e) {
+    var keyCode = e.which ? e.which : e.keyCode
+    if (!(keyCode >= 48 && keyCode <= 57)) {
+      return false;
+    }       
+  });
+  $('#tab-4 .edit').click(function() {
+    $(this).closest('.panel-content').find('input.editable').attr('disabled', false);
+    $(this).parent().find('.btn-success').attr('disabled', false)
+  });
+
+  $('.enable_user_sport').on('click', function(event){
+    elem = $(this);
+    var result = confirm("Are you sure?");
+    if (result) {
+      sport_id = elem.attr("data-sport-id");
+      user_id = elem.closest("tbody").data("user-id");
+      enabled =  elem.is(":checked");
+      userAjaxCall(user_id, {'sport_id': sport_id, 'enabled': enabled});
+    } else {
+      if (elem.prop('checked') == true) {
+        elem.prop("checked", false)
+      } else {
+        elem.prop("checked", true)
+      }
+    }
+  });
+
+  $(".select-2").select2();
+</script>

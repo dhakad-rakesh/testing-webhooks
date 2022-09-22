@@ -1,0 +1,974 @@
+ar:
+  show: اظهار
+  create: انشاء
+  currency: عملة
+  edit: تعديل
+  save: تعديل
+  update: تحديث
+  delete: حذف
+  back: عودة
+  amount: مبلغ
+  bet: رهان
+  bet_type: نوع الرهان
+  bet_types: أنواع الرهان
+  big_image: يرجى تحميل الصورة بحجم أقل من 8 ميغا بايت
+  combo: "رهان متعدد # %{combo_bet_id}"
+  group: مجموعة
+  groups: مجموعات
+  language: لغة
+  market: سوق
+  markets: الأسواق
+  match: مباراة
+  matches: المباريات
+  play_type: نوع اللعب
+  play_types: أنواع اللعب
+  phone: هاتف
+  settings: إعدادات
+  sport: رياضة
+  sports: العاب
+  success_create: "تم إنشاء %{name}  بنجاح"
+  success_update: "تم تحديث %{name}  بنجاح"
+  success_destroy: "تم حذف %{name}  بنجاح"
+  odds_changed: تم تغيير الاحتمالات ، يرجى مراجعة قسائم الرهان قبل وضع الرهان
+  tournament: المسابقة
+  tournaments: البطولات
+  user: المستخدم
+  record: سجل
+  not_found: " %{name} غير موجود"
+  went_wrong: هناك خطأ ما
+  wallet: محفظة نقود
+  deposit: ايداع
+  withdraw: سحب
+  report: الابلاغ
+  recipient: مستلم
+  wrong_img_format: يرجى تحميل الصورة بتنسيق jpg / jpeg / png / pdf
+  url_update_success: تم تحديث URL بنجاح
+  user_number: رقم المستخدم
+  single_bet_limit_exceeded: "تجاوز حد الرهان الواحد"
+  daily_bet_limit_exceeded: "تجاوز حد الرهان اليومي"
+  weekly_bet_limit_exceeded: "تجاوز حد الرهان الأسبوعي"
+  monthly_bet_limit_exceeded: "تجاوز حد الرهان الشهري"
+  max_amount_limit_exceeded: "الحد الأقصى للمبلغ تم تجاوزه"
+  single_deposit_limit_exceeded: "تجاوز حد الإيداع الواحد"
+  daily_deposit_limit_exceeded: "تجاوز حد الإيداع اليومي"
+  weekly_deposit_limit_exceeded: "تجاوز حد الإيداع الأسبوعي"
+  monthly_deposit_limit_exceeded: "تجاوز حد الإيداع الشهري"
+  should_be_greater_eq: "يجب أن يكون %{current} أكبر من أو يساوي %{comparator}"
+  cant_exceed_global: "لا يمكن أن يكون المستخدم %{attribute} أكبر من %{attribute}"
+  max_monthly_bet_amount: "الحد الأقصى للمراهنة الشهرية"
+  max_weekly_bet_amount: "الحد الأقصى للمراهنة الأسبوعية"
+  max_daily_bet_amount: "الحد الأقصى للمراهنة اليومية"
+  max_one_bet_amount: "الحد الأقصى للمبلغ رهان واحد"
+  max_monthly_deposit_amount: "الحد الأقصى لمبلغ الإيداع الشهري"
+  max_weekly_deposit_amount: "الحد الأقصى لمبلغ الإيداع الأسبوعي"
+  max_day_deposit_amount: "الحد الأقصى لمبلغ الإيداع اليومي"
+  max_single_amount: "الحد الأقصى لمبلغ الإيداع الواحد"
+  balance_amount_limit: "حد مبلغ الرصيد"
+  confirmation_mail_sent: "يتم إرسال رسالة تأكيد إلى بريدك الإلكتروني"
+  upgrade_apk: "الرجاء ترقية APK. يمكنك إلغاء تثبيت APK الحالي وتحميل واحدة جديدة من موقعنا على الانترنت"
+  country_betting_disabled: "بلدك لا يسمح بالمراهنة"
+  invalid_country: "بلد غير صالح"
+  bet_limit_message: "لا يمكنك وضع أكثر من %{limit} الرهانات في كل مرة"
+  invalid_time_period: "فترة زمنية غير صالحة"
+  currency_cant_change: "غير فارغ، لا يمكن تغيير العملة"
+  currency_not_valid: "العملة غير صالحة"
+  invalid_state_transition: "انتقال حالة غير صالح"
+  cant_verify_otp: "تعذر التحقق من OTP"
+  success: "نجاح"
+  rank: "مرتبة"
+  dispute_stats: "إحصائيات المنازعات"
+  not_found_msg: "لم يتم العثور "
+  preferences: 
+    notification: "تحديث إعداد التطبيق"
+    password: "تم تحديث كلمة المرور بنجاح"
+    address: "تم تحديث العنوان بنجاح"
+  betting_stopped: "تم إيقاف المراهنة لهذه المباراة"
+  maximum_amount: "الحد الأقصى لمبلغ الدفع هو %{المبلغ}"
+  bets:
+    bets: الرهانات
+    combo_bets: رهانات متعددة
+    not_found: الرهان غير موجود
+    slips_required: "قسائم الرهان مطلوبة"
+    suspend: 
+      invalid: "الرهان لا يمكن تعليقه"
+    errors:
+      bet_limit_exceeded: >-
+        الفوز تجاوز حد. في الفوز حد اليوم هو %{max_win_limit}. حد المتبقية
+        لليوم هو %{remaining_wining}.
+    remarks:
+      won: "مبلغ الفوز هي %{amount} من المباراة %{match} . من سوق: %{market} "
+      lost: "مبلغ الخسارة هي %{amount} من المباراة %{match} . من سوق: %{market} "
+      refunded: "المبلغ المسترد: %{amount} في مبارات: %{match} في السوق: %{market}"
+      half_lost: "نص مبلغ المعاد هي %{amount} من المباراة %{match} . من سوق: %{market} "
+      half_won: "نص مبلغ المعاد هي %{amount} من المباراة %{match} . من سوق: %{market} "
+    index:
+      my_bets: رهاناتي
+      created_at: تاريخ
+      type: نوع
+      stake: حصة
+      odds: احتمالات
+      status: الحالة
+    show:
+      title: معلومات الرهان
+      id: هوية شخصية
+      type: نوع
+      tournament: المسابقة
+      market: سوق
+      outcome: نتيجة
+      odds: احتمالات
+      stake: حصة
+      status: الحالة
+    create:
+      message: تم إنشاء الرهان!
+      matches_response: مباراة غير موجود. الرجاء إزالة الرهانات من المباريات غير متوفرة.
+    cashout:
+      success: تم صرف قيمة الرهانات بنجاح.
+      failed: لا يمكن صرف بعض الرهانات.
+      validation_failed: لا يمكن صرف الرهانات.
+      mistmatch_error: تم تغيير الاحتمالات القابلة للسحب ، يرجى المحاولة مع احتمالات محدثة.
+  combo_bets:
+    create:
+      message: تم إنشاء مجموعة رهانات!
+    won: "مبلغ الفوز: %{amount} في مجموعة الرهانات # %{combo_bet_id}"
+    lost: "مبلغ الخسارة: %{amount} في مجموعة الرهانات # %{combo_bet_id}"
+    refunded: "المبلغ المسترد: %{amount} في الرهان المتعدد # %{combo_bet_id}"
+    errors:
+      stake: أدخل حصة صالحة.
+  users:
+    users: المستخدمين
+    delete: 
+        success: "تم حذف المستخدم بنجاح"
+    invitations:
+      create:
+        success: تم ارسال الدعوة!
+        exists: المستخدم موجود اصلا.
+    email:
+      not_confirmed: الرجاء التأكد من أن البريد الإلكتروني لأول مرة
+      email_advantage: >-
+        سيساعدك هذا البريد الإلكتروني على إعادة إنشاء كلمة المرور وإشعارات
+        الرهان
+      not_found: لا يوجد حساب مسجل بهذا البريد الإلكتروني
+    phone:
+      invalid: الهاتف غير صالح
+      not_confirmed: الرجاء التأكد من رقم الهاتف الخاص بك أولا
+      registered: الهاتف مسجل معنا مسبقا.
+      available: الهاتف متوفر
+      verification:
+        success: تم التاكد رمز التفعيل بنجاح
+        failed: لم يتم التاكد رمز التفعيل
+    password:
+      edit:
+        success: تم تحديث كلمة السر بنجاح.
+      confirmation_mismatch: لا يطابق تأكيد كلمة المرور
+      instructions_sent: "تم إرسال تعليمات إعادة تعيين كلمة المرور إلى  %{email}."
+      reset_success: تم إعادة تعيين كلمة السر بنجاح
+    provider:
+      error: بسبب إعدادات الخصوصية لم يتم اخذ المعلومات المطلوبة.
+      message: >-
+        اسم المستخدم الخاص بك هو %{username}، يمكنك تغييره في قسم ملف تعريف
+        المستخدم
+    confirmation_sent: يتم إرسال رسالة التأكيد إلى بريدك الإلكتروني
+    sign_in: تم تسجيل الدخول بنجاح.
+    sign_out: تم تسجيل الخروج بنجاح
+    not_found: لم يتم العثور على المستخدم
+    unverified: يرجى إكمال عملية التحقق
+    invalid_action: إجراء مستخدم غير صالح
+  wallets:
+    not_enough_amount: لا يوجد رصيد كاف.
+    id: الهوية الشخصية
+    available_amount: المبلغ المتاح
+    add: أضف
+    point: نقطة
+    update:
+      by_admin: "تم تحديث المحفظة - من المسؤول إلى %{user} %{user_email}"
+      by_reseller: "تم تحديث المحفظة - من الموزع %{reseller} إلى %{user} %{user_email}."
+    errors:
+      insufficient_amount: المبلغ غير كافية في محافظك.
+      debit_limit: "لا يمكنك خصم أكثر من٪ {amount}"
+      invalid_amount: يجب أن يكون المبلغ أكبر من 0.
+    transaction:
+      transactions: المعاملات
+      bet_id: تعريف الرهان
+      type: النوع
+      amount: مبلغ
+      remark: تعليق
+      date: تاريخ
+  favourite:
+    marked: تم وضع كمفضلة
+    resource_not_found: الموارد غير موجود
+    not_found: لم يتم العثور المفضلة
+    destroy: تم إزالة المفضلة بنجاح
+    not_found_key: "%{المفتاح} المفضل غير موجود"
+  betting:
+    suspended: تم تعليق الرهان حاليا الرجاء المحاولة مرة أخرى بعد مرور بعض الوقت.
+    invalid_status: الحالة غير صحيحة
+    approve_kyc: >-
+      يرجى الحصول على الموافقة على KYC الخاص بك قبل وضع الرهان، عن طريق تحميل
+      الصور المطلوبة في قسم الملف الشخصي، والاتصال بالمسؤول للحصول على
+      الموافقة عليه
+  something_went_wrong: هناك خطأ ما
+  hold:
+    confirm:
+      success: تم تأكيد الرهان!
+      failure: لا يمكن تأكيد هذا الرهان.
+    create:
+      failure: لا يمكن إنشاء هذا الرهان.
+    delete:
+      success: يتم حذف الرهانات.
+      error: لا يمكن حذف بعض الرهانات
+    current_odds:
+      no_odds_found: لا يمكن العثور على احتمالات لهذا الرهان.
+    invalid: رهان غير صحيح
+    odds:
+      not_found: الاحتمالات غير موجودة.
+  account:
+    disabled: حسابك مؤقتا المعوقين.
+  user_limit:
+    not_set: عذراً، لا يوجد حد للمستخدم
+    success: تم تحديث الحد بنجاح
+  methods:
+    deposit:
+      not_found: لا توجد طرق ايداع متاحة
+    withdrawal:
+      not_found: لا توجد طرق دفع متاحة
+  messages:
+    deposit:
+      success: تمت عملية الإيداع بنجاح
+    payout:
+      pending: تم قبول طلب الدفع، وسيتم إعلامك بعد الموافقة
+      success: تمت معالجة المدفوعات بنجاح
+  errors:
+    messages:
+      betting_not_allowed: بلدك لا يسمح بالمراهنة.
+      upgrade_api: >-
+        الرجاء ترقية APK. يمكنك إلغاء تثبيت APK الحالي وتحميل واحدة جديدة من
+        موقعنا على الانترنت.
+      currency_not_supported: العملة غير مدعومة لطريقة الدفع هذه
+      deposit:
+        cancelled: تم إلغاء إيداع
+        failed: |-
+          تم رفض المعاملة من قبل المؤسسة المالية الخاصة بك.
+          الرجاء محاولة استخدام طريقة إيداع أخرى
+        malformed: الطلب تالف
+        not_found: لم يتم العثور على المعاملة
+        processed: المعاملة تمت معالجتها سابقا
+        minimum_amount: "مبلغ الإيداع الأدنى المطلوب هو %{amount}"
+      payout:
+        failed: فشل طلب المدفوعات
+        insufficient_amount: المحفظة لا تحتوي على كمية كافية
+        minimum_amount: "الحد الأدنى لسحب المدفوعات المطلوب هو %{amount}"
+      technical_error_happened: حدث خطأ فني
+      sports:
+        not_found: لم يتم العثور على الرياضة
+        not_available: الرياضة غير متوفرة. يرجى الاتصال بالدعم لمزيد من التفاصيل
+      bets:
+        slip_limit: "لا يمكنك وضع أكثر من %{limit} الرهانات في كل مرة"
+        slips_required: قسائم الرهان مطلوبة
+      matches:
+        no_live_matches: لا توجد مباريات حية
+        scores:
+          not_found: النقاط غير متوفرة
+        not_found: لم يتم العثور على المبارات
+        not_found_count: " لم يتم العثور على %{count} من مباريات"
+        already_favourite: المباراة هي المفضلة سابقا
+        not_favourite: تمت ازالة المباراة من المفضلة بنجاح
+      countries:
+        invalid: بلد غير صحيح
+        not_found: لم يتم العثورعلى البلد
+      tournaments:
+        not_found: لم يتم العثور على البطولة
+      not_authorized: أنت غير مخول لتنفيذ مثل هذا الإجراء.
+      invalid_timeout_limit: "حد المهلة : فترة زمنية غير صالحة"
+      already_confirmed: تم تأكيدها مسبقا، يرجى محاولة تسجيل الدخول
+      confirmation_period_expired: "يجب تأكيدها في حدود %{period}، الرجاء طلب واحدة جديدة"
+      expired: منتهية الصلاحية، الرجاء طلب واحدة جديدة
+      not_found: لم يتم العثور على اي رسالة
+      not_locked: لم يتم تأمين
+      not_saved:
+        one: "منعت خطاء واحد هذا %{resource} من عملية الحفظ."
+        other: "منعت %{count} اخطاء هذا %{resource} من عملية الحفظ."
+      reseller_disable: >-
+        يتم تعطيلك مؤقتًا من الأنشطة الأخرى. يرجى الاتصال بالمشرف للحصول على
+        الموافقة
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            age:
+              must_be_greater: يجب أن يكون عمر أكبر من 18
+              must_be_lesser: يجب أن يكون عمر 100 أو أقل
+            password:
+              too_short: "قصيرة جداً (الحد الأدنى هو %{count} أحرف)"
+              bad_password: >-
+                متطلبات التعقيد لم تتحقق. يجب أن يكون طول 6-14 حرفا وتشمل: 1
+                حرف، 1 رقم، 1 حرف خاص باستثناء: <> : $ ٪
+              common_password: يجب ألا تحتوي على أجزاء من الاسم أو البريد الإلكتروني
+            phone:
+              invalid_for_country: رقم الهاتف غير صحيح للبلد
+              taken: مسجل لدينا سابقا. يرجى تسجيل الدخول بدلا من الاشتراك.
+              not_available: غير متاح
+            username:
+              invalid: يجب أن تحتوي فقط على أحرف أبجدية رقمية ولا أحرف خاصة.
+            locale:
+              not_supported: غير معتمد
+        combo_bet:
+          attributes:
+            base:
+              duplicate_matches: الرجاء تحديد الاحتمالات من عدة مباريات
+        address:
+          attributes:
+            country:
+              not_valid: بلد غير صالح
+        gammabet_setting:
+          attributes:
+            cashout_commision:
+              invalid_range: يجب أن تكون عمولة الدفع بين 0-100
+              must_be_present: "يجب ان تكون عمولة الدفع متوفرة "
+            api_version:
+              must_be_positive: يجب أن يكون إصدار API رقم موجب
+        wallet:
+          attributes:
+            base:
+              wallet_not_empty: المحفظة ليست فارغة، لا يمكن تغيير العملة
+        sport:
+          attributes:
+            rank:
+              inclusion: يجب أن يكون بين نطاق 1-100
+    models:
+      address: عنوان
+      admin_user: المستخدم مشرف
+      advertisement: الإعلانات
+      amqp_audit_log: سجل التدقيق Amqp
+      bet: رهان
+      bet_type: نوع الرهان
+      casino_item: عناصر كازينو
+      casino_menu: القائمة كازينو
+      category: التصنيف
+      category_join: انضمام التصنيف
+      combo_bet: رهان متعدد
+      competitor: منافس
+      country: بلد
+      favourite: مفضل
+      game_session: جلسة لعبة
+      gammabet_setting: إعداد Gammabet
+      language: لغة
+      ledger: سجل الجلسة
+      market: سوق
+      match: مباراة
+      match_outcome: نتيجة مباراة
+      outcome: نتيجة
+      participant: مشارك
+      play_type: نوع اللعب
+      role: دور
+      session_log: سجل الجلسة
+      session_transaction: معاملة في الدورة
+      sport: رياضة
+      sport_country: بلد الرياضة
+      sport_market: سوق الرياضة
+      team: الفريق
+      team_player: لاعب فريق
+      team_tournament: البطولة فريق
+      tennis_match_score: نتيجة مباراة التنس
+      topic: موضوع
+      tournament: المسابقة
+      transfer_record: سجل التحويل
+      user: المستخدم
+      venue: الملعب
+      wallet: محفظة نقود
+    attributes:
+      address:
+        city: مدينة
+        country: بلد
+        roles: ادوار
+        state: حالة
+        street_address: عنوان الشارع
+        zip_code: الرمز البريدي
+      admin_user:
+        current_sign_in_at: جاري تسجيل الدخول في
+        current_sign_in_ip: رقم IP لتسجيل الدخول الحالي
+        email: البريد الإلكتروني
+        enable: تفعيل
+        encrypted_password: كلمة مرور مشفرة
+        first_name: الاسم الاول
+        last_name: اسم الاب او كنية
+        last_sign_in_at: آخر تسجيل دخول في
+        last_sign_in_ip: آخر تسجيل دخول بواسطة IP
+        ledgers: سجل الجلسات
+        remember_created_at: تذكر تم إنشاؤها في
+        reseller_percentage: نسبة الموزعين
+        resellers: الموزعين
+        reset_password_sent_at: إعادة تعيين كلمة المرور المرسلة في
+        reset_password_token: رمز إعادة تعيين كلمة المرور
+        roles: الأدوار
+        status: الحالة
+        sub_admins: مدراء فرعية
+        users: المستخدمين
+        users_ledger: دفتر الأستاذ المستخدمين
+        wallets: محافظ
+      advertisement:
+        ad_url: رابط الإعلان
+        enabled: مفعل
+        name: الاسم
+        roles: الأدوار
+        settings: إعدادات
+        ad_image: صورة الإعلان
+        position: موضع
+      amqp_audit_log:
+        log_type: نوع السجل
+        roles: الأدوار
+        routing_key: مفتاح التوجيه
+        routing_type: نوع التوجيه
+        timestamp_in_ms: الطابع الزمني في اجزائ الثانية
+        xml_data: بيانات XML
+      bet:
+        bet_type: نوع الرهان
+        cashed_out_amount: " المبلغ المصروف"
+        continent: قارة
+        country: بلد
+        information: المعلومات
+        ledgers: سجل الجلسات
+        odds: احتمالات
+        period: فترة
+        play_number: عدد اللعب
+        play_type: نوع اللعب
+        player_name: اسم اللاعب
+        rake: حرق
+        roles: الأدوار
+        specifier_text: نص المحدد
+        stake: حصة
+        status: الحالة
+        team_name: اسم الفريق
+        total: مجموع
+      bet_type:
+        market_type: نوع السوق
+        name: الاسم
+        play_types: أنواع الرهان
+        roles: الأدوار
+      category:
+        category_joins: انضمام التصنيف
+        kind: نوع
+        markets: الأسواق
+        name: الاسم
+        roles: الأدوار
+      category_join:
+        categorizable_type: نوع المصنفات
+        roles: الأدوار
+      combo_bet:
+        bets: الرهانات
+        cashout_amount: مبلغ للصرف
+        ledgers: سجل الجلسات
+        odds: احتمالات
+        roles: الأدوار
+        stake: حصة
+        status: الحالة
+      competitor:
+        qualifier: مؤهل
+        roles: الأدوار
+      country:
+        enabled: مفعل
+        name: الاسم
+        rank: مرتبة
+        roles: الأدوار
+        sport_countries: بلدان الرياضة
+        sports: العاب
+        tournaments: البطولات
+        uid: معرف الخاص
+      doorkeeper:
+        access_grant:
+          expires_in: تنتهي في
+          redirect_uri: إعادة توجيه الرابط
+          revoked_at: ملغاة في
+          scopes: نطاقات
+          token: الرمز المميز
+        access_token:
+          expires_in: تنتهي في
+          previous_refresh_token: الرمز المميز للتحديث السابق
+          refresh_token: تحديث الرمز المميز
+          revoked_at: ملغاة في
+          scopes: نطاقات
+          token: الرمز المميز
+        application:
+          access_grants: تم منح الدخول
+          access_tokens: رموز منح الدخول
+          authorized_applications: التطبيقات المعتمدة
+          authorized_tokens: الرموز المعتمدة
+          name: الاسم
+          redirect_uri: إعادة توجيه الرابط
+          scopes: نطاقات
+          secret: السريه
+          uid: معرف الخاص
+      favourite:
+        favouriteable_type: نوع المفضلة
+        is_default: الافتراضي
+      game_session:
+        balance: رصيد
+        bet: رهان
+        currency: عملة
+        end_time: وقت النهاية
+        game_type: نوع اللعبة
+        game_uuid: معرفات اللعب
+        refund: استرداد
+        return_url: رابط للعودة
+        roles: الأدوار
+        session_transactions: المعاملات في الدورة
+        start_time: وقت البدء
+        status: الحالة
+        wallet_amount: مبلغ المحفظة
+        win: الفوز
+      gammabet_setting:
+        allow_betting: السماح بالرهان
+        balance_amount_limit: حد مبلغ الرصيد
+        max_daily_bet_amount: الحد الأقصى للمراهنة اليومية
+        max_day_deposit_amount: الحد الأقصى لمبلغ الإيداع اليومي
+        max_monthly_bet_amount: الحد الأقصى للمراهنة الشهرية
+        max_monthly_deposit_amount: الحد الأقصى لمبلغ الإيداع الشهري
+        max_one_bet_amount: الحد الأقصى للمبلغ رهان واحد
+        max_single_amount: الحد الأقصى للمبلغ الواحد
+        max_weekly_bet_amount: الحد الأقصى للمراهنة الأسبوعية
+        max_weekly_deposit_amount: الحد الأقصى لمبلغ الإيداع الأسبوعي
+        reseller_withdrawal_limit: حد السحب موزع
+        roles: الأدوار
+        setting_of: تجهيز ال
+        settings: إعدادات
+        url: رابط
+        user_wallet_limit: حد محفظة المستخدم
+      group:
+        name: الاسم
+        roles: الأدوار
+        users: المستخدمين
+      language:
+        enabled: مفعل
+        name: الاسم
+        roles: الأدوار
+        users: المستخدمين
+      ledger:
+        account_details: تفاصيل الحساب
+        amount: مبلغ
+        approved: تمت الموافقة عليها
+        betable_type: نوع الرهانات
+        mode: نوعية
+        remark: تعليق
+        roles: الأدوار
+        status: الحالة
+        transaction_type: نوع المعاملة
+        users_ledger: دفتر الأستاذ المستخدمين
+      market:
+        bets: الرهانات
+        categories: التصنيفات
+        category: التصنيف
+        category_joins: انضمام التصنيف
+        display_name: اسم العرض
+        enabled: مفعل
+        is_specifier_market: محدد السوق
+        match_outcomes: نتائج المباريات
+        name: الاسم
+        outcomes: النتائج
+        priority: الاولويه
+        rank: مرتبة
+        roles: الأدوار
+        settings: إعدادات
+        specifier_text: نص المحدد
+        status: الحالة
+        uid: معرف الخاص
+        bet_type: نوع الرهان
+        play_type: نوع اللعب
+      match:
+        active_markets: الأسواق النشطة
+        actual_status: الوضع الفعلي
+        bets: الرهانات
+        booking_status: حالة الحجوزات
+        competitors: المنافسين
+        cricket_match_scores: نتائج مباراة كريكيت
+        enabled: مفعل
+        highlight: مميزات
+        inplay_subscribed: مشترك في اللعب
+        markets: الأسواق
+        match_outcomes: نتائج المباريات
+        name: الاسم
+        outcomes: النتائج
+        results: النتائج
+        roles: الأدوار
+        schedule_at: تمت الجدولة في
+        settings: إعدادات
+        soccer_match_scores: نتائج مباريات كرة القدم
+        status: الحالة
+        team_players: لاعبين الفريق
+        teams: فرق
+        tennis_match_scores: نتائج مباراة التنس
+        uid: معرف الخاص
+        users: المستخدمين
+      match_outcome:
+        bets: الرهانات
+        market_uid: رمز المستخدم السوق
+        match_uid: رمز معرف للمباراة
+        odd_type: نوع الاحتمال
+        odds: احتمالات
+        outcome: نتيجة
+        outcomeable_type: نوع قابل للنواتج
+        outcomeable_uid: رمز تعريف قابل للناتج
+        probabilities: الاحتمالات
+        roles: الأدوار
+        settings: إعدادات
+        specifier_text: نص المحدد
+        status: الحالة
+        team_players: لاعبين الفريق
+        teams: فرق
+      occupation:
+        name: الاسم
+        roles: الأدوار
+        users: المستخدمين
+      organization:
+        name: الاسم
+        roles: الأدوار
+        users: المستخدمين
+      outcome:
+        markets: الأسواق
+        matches: المباريات
+        name: الاسم
+        roles: الأدوار
+        status: الحالة
+        uid: معرف الخاص
+      participant:
+        roles: الأدوار
+      play_type:
+        bet_types: أنواع الرهان
+        name: الاسم
+        roles: الأدوار
+      role:
+        admin_users: المستخدمين مشرف
+        name: الاسم
+        resource_type: نوع المورد
+        roles: الأدوار
+      season:
+        acronym: اختصار
+        end_time: وقت النهاية
+        matches: المباريات
+        name: الاسم
+        roles: الأدوار
+        start_time: وقت البدء
+        uid: معرف الخاص
+      session_log:
+        roles: الأدوار
+      session_transaction:
+        amount: مبلغ
+        bet_type: نوع الرهان
+        currency: عملة
+        game_type: نوع اللعبة
+        game_uuid: معرفات اللعب
+        ledgers: سجل الجلسات
+        quantity: كمية
+        roles: الأدوار
+        status: الحالة
+        wallet_balance: رصيد المحفظة
+      soccer_match_score:
+        away_corners: زوايا الضيف
+        away_score: النتيجة الضيف
+        clock: ساعة
+        home_corners: زوايا المضيف
+        home_score: نتيجة المضيف
+        match_status: حالة مباراة
+        period_scores: نتائج فترة
+        roles: الأدوار
+        statistics: الإحصاء
+      sport:
+        acronym: اختصار
+        bets: الرهانات
+        countries: بلدان
+        enabled: مفعل
+        favourites: المفضلة
+        kind: نوع
+        markets: الأسواق
+        matches: المباريات
+        name: الاسم
+        number_of_matches: عدد المباريات
+        rank: مرتبة
+        roles: الأدوار
+        seasons: مواسم
+        sport_countries: بلدان الرياضة
+        sport_markets: الأسواق الرياضة
+        status: الحالة
+        teams: فرق
+        tournaments: البطولات
+        uid: معرف الخاص
+      sport_country:
+        number_of_matches: عدد المباريات
+        roles: الأدوار
+      sport_market:
+        priority: الاولويه
+        roles: الأدوار
+        visible: مرئي
+      team:
+        acronym: اختصار
+        competitors: المنافسين
+        country_name: اسم الدولة
+        favourites: المفضلة
+        matches: المباريات
+        name: الاسم
+        roles: الأدوار
+        team_players: لاعبين الفريق
+        team_tournaments: بطولات الفريق
+        tournaments: البطولات
+        uid: معرف الخاص
+      team_player:
+        age: عمر
+        country_code: رمز الدولي
+        dob: تاريخ الولادة
+        full_name: الاسم الكامل
+        gender: جنس
+        jersey_number: رقم قميص
+        match_outcomes: نتائج المباريات
+        name: الاسم
+        nationality: جنسية
+        player_type: نوع لاعب
+        roles: الأدوار
+        uid: معرف الخاص
+      team_tournament:
+        roles: الأدوار
+      tennis_match_score:
+        away_gamescore: نقاط اللعب للضيف
+        away_score: النتيجة الضيف
+        current_server: الخادم الحالي
+        home_gamescore: نقاط اللعبة للمضيف
+        home_score: نتيجة المضيف
+        match_status: حالة مباراة
+        period_scores: نتائج فترة
+        reporting: الابلاغ
+        roles: الأدوار
+        status: الحالة
+        tiebreak: كسر التعادل
+      topic:
+        enabled: مفعل
+        name: الاسم
+        roles: الأدوار
+        users: المستخدمين
+      tournament:
+        bets: الرهانات
+        category_name: اسم التصنيف
+        display_name: اسم العرض
+        enabled: مفعل
+        favourites: المفضلة
+        matches: المباريات
+        name: الاسم
+        number_of_matches: عدد المباريات
+        rank: مرتبة
+        roles: الأدوار
+        seasons: مواسم
+        settings: إعدادات
+        team_tournaments: بطولات الفريق
+        teams: فرق
+        tournament_type: نوع البطولة
+        uid: معرف الخاص
+      user:
+        access_grants: تم منح الدخول
+        access_tokens: رموز منح الدخول
+        bets: الرهانات
+        combo_bets: رهانات متعددة
+        confirmation_sent_at: تم أرسل تأكيد في
+        confirmation_token: رمز التأكيد
+        confirmed_at: تم عملية التأكد في
+        current_sign_in_at: جاري تسجيل الدخول في
+        current_sign_in_ip: رقم IP لتسجيل الدخول الحالي
+        date_of_birth: تاريخ الولادة
+        disabled_sport_ids: ارقام التعريفي للالعاب غير فعالة
+        email: البريد الإلكتروني
+        enabled: مفعل
+        enabled_by: مفعل عن طريق
+        encrypted_password: كلمة مرور مشفرة
+        exclusion_time: وقت الاستبعاد الذاتي
+        favourite_sports: العاب المفضلة
+        favourite_teams: الفرق المفضلة
+        favourite_tournaments: البطولات المفضلة
+        favourites: المفضلة
+        first_name: الاسم الاول
+        game_sessions: جلسات اللعبة
+        groups: مجموعات
+        invitation_accepted_at: تم قبول الدعوة في
+        invitation_created_at: تم إنشاء الدعوة في
+        invitation_limit: حد الدعوة
+        invitation_sent_at: الدعوة المرسلة في
+        invitation_token: رقم رمز الدعوة
+        invited_by_type: تمت الدعوة حسب النوع
+        is_betting_allowed: مسموح بالمراهنة
+        kyc_status: حالة KYC
+        languages: اللغات
+        last_activity_at: آخر نشاط في
+        last_name: اسم الاب او كنية
+        last_sign_in_at: آخر تسجيل دخول في
+        last_sign_in_ip: آخر تسجيل دخول بواسطة IP
+        ledgers: سجل الجلسات
+        occupations: المهن
+        organizations: المنظمات
+        participants: مشاركين
+        payees: المستفيدين
+        pending_friends: في انتظار أصدقاء
+        phone: هاتف
+        phone_number: رقم الهاتف
+        reality_check_timer: مؤقت التحقق من الواقع
+        remember_created_at: تذكر تم إنشاؤها في
+        reset_password_sent_at: إعادة تعيين كلمة المرور المرسلة في
+        reset_password_token: رمز إعادة تعيين كلمة المرور
+        roles: الأدوار
+        security_answers: إجابات الأمان
+        security_questions: المسائل الأمنية
+        session_logs: سجلات الدورة
+        session_transactions: المعاملات في الدورة
+        settings: إعدادات
+        state: حالة
+        topics: المواضيع
+        transfer_records: سجلات التحويل
+        unconfirmed_email: البريد الإلكتروني غير المؤكد
+        unverified_phone: رقم هاتف غير التحقق منه
+        user_number: رقم المستخدم
+        username: اسم المستخدم
+        wallets: محافظ
+        zone_name: اسم المنطقة
+        occupation: المهنه
+        organization: منظمة
+        password: كلمه السر
+        password_confirmation: تأكيد كلمة السر
+        selfie_picture: صورة شخصية مع هوية مرخصة من الدولة
+        govt_id_picture: هوية رسمية من الدولة
+      venue:
+        city_name: اسم المدينة
+        continent: قارة
+        country_code: رمز الدولي
+        country_name: اسم الدولة
+        name: الاسم
+        roles: الأدوار
+      wallet:
+        available_amount: المبلغ المتاح
+        currency: عملة
+        is_current: الحالي
+        ledgers: سجل الجلسات
+        roles: الأدوار
+        usable_type: نوع قابل للاستخدام
+        wallet_type: نوع المحفظة
+  active_interaction:
+    errors:
+      messages:
+        match:
+          not_valid: مباراة غير صحيحة
+          betting_timeout: مهلة الرهان المباراة
+          no_data: بيانات لهذه المباراة ليس موجودا
+          not_found: لم يتم العثور على المبارات
+          betting_disabled: الرهان على هذه المباراة معطل الآن
+          invalid_odds: الاحتمالات غير صحيحة
+          odds_changed: لقد تغيرت الاحتمالات
+        market:
+          not_found: لم يتم العثور على السوق
+          disabled: السوق معطل حالياً
+        specifier:
+          not_valid: محددات غير صحيحة
+        bet:
+          invalid: "الرهان هو %{status} لهذا السوق"
+          invalid_min_stake: مبلغ الحصة أكبر من الحد الأدنى
+          invalid_max_stake: لقد تجاوزت الحد الأقصى المسموح به للحصّة
+          stake_not_positive: يجب أن تكون حصة رهان أكبر من الصفر
+        base:
+          cashout_not_eligible: الرهان غير مؤهل للحصول على النقود
+          refund_not_cashoutable: المبلغ المسترد غير مؤهل للسحب
+          no_cashout_available: لا النقدية المتاحة لهذه المباراة / المجموعات
+          cashout_not_allowed: سحب غير مسموح به في هذه اللحظة، يرجى المحاولة مرة أخرى في وقت لاحق
+  devise:
+    confirmations:
+      confirmed: تم تأكيد عنوان بريدك الإلكتروني بنجاح.
+      send_instructions: >-
+        سوف تتلقى رسالة بريد إلكتروني مع تعليمات حول كيفية تأكيد عنوان البريد
+        الإلكتروني الخاص بك في غضون دقائق قليلة.
+      send_paranoid_instructions: >-
+        إذا كان عنوان بريدك الإلكتروني موجودًا في قاعدة بياناتنا، فستتلقى
+        رسالة بريد إلكتروني تتضمن إرشادات حول كيفية تأكيد عنوان بريدك
+        الإلكتروني في غضون دقائق قليلة.
+    failure:
+      already_authenticated: لقد قمت بتسجيل الدخول مسبقاً.
+      inactive: لم يتم تنشيط حسابك بعد.
+      exclusion_period: >-
+        عذراً، لا يمكنك تسجيل الدخول في فترة الاستبعاد، أي حتى %{time}. إذا تم
+        تعيين خطأ الرجاء الاتصال بالدعم.
+      invalid: "غير صالح %{authentication_keys} أو كلمة مرور."
+      locked: حسابك مغلق.
+      last_attempt: لديك محاولة أخرى قبل أن يتم تعليق حسابك.
+      not_found_in_database: "غير صالح %{authentication_keys} أو كلمة مرور."
+      timeout: انتهت صلاحية جلسة العمل. الرجاء تسجيل الدخول مرة أخرى للمتابعة.
+      unauthenticated: تحتاج إلى تسجيل الدخول أو التسجيل حساب جديد قبل المتابعة.
+      unconfirmed: عليك تأكيد عنوان بريدك الإلكتروني قبل المتابعة.
+      invited: لديك دعوة معلقة، قبولها لإنهاء إنشاء حسابك.
+    mailer:
+      confirmation_instructions:
+        subject: تعليمات التأكيد
+      reset_password_instructions:
+        subject: إرشادات إعادة تعيين كلمة المرور
+      unlock_instructions:
+        subject: تعليمات إلغاء تأمين
+      email_changed:
+        subject: تم تغيير البريد الإلكتروني
+      password_change:
+        subject: تم تغيير كلمة السر
+      invitation_instructions:
+        subject: تعليمات الدعوة
+        hello: "مرحبا %{email}"
+        someone_invited_you: "قام شخص ما بدعوتك إلى %{url}، يمكنك قبوله من خلال الارتباط أدناه."
+        accept: قبول دعوة
+        accept_until: "ستكون هذه الدعوة مستحقة في %{due_date}."
+        ignore: >-
+          إذا كنت لا تريد قبول الدعوة، يرجى تجاهل هذا البريد الإلكتروني.<br />
+
+          لن يتم إنشاء حسابك حتى تصل إلى الرابط أعلاه وتضبط كلمة المرور الخاصة
+          بك.
+    omniauth_callbacks:
+      failure: 'لم يتم المصادقة عليك في %{kind} بسبب "%{reason}".'
+      success: "تمت المصادقة بنجاح من حساب %{kind}."
+    passwords:
+      no_token: >-
+        لا يمكنك الوصول إلى هذه الصفحة دون أن تأتي من إعادة تعيين كلمة المرور
+        البريد الإلكتروني. إذا كنت لا تأتي من إعادة تعيين كلمة السر البريد
+        الإلكتروني، يرجى التأكد من أنك استخدمت عنوان URL الكامل المقدمة.
+      send_instructions: >-
+        سوف تتلقى رسالة بريد إلكتروني مع تعليمات حول كيفية إعادة تعيين كلمة
+        المرور الخاصة بك في بضع دقائق.
+      send_paranoid_instructions: >-
+        إذا كان عنوان بريدك الإلكتروني موجودًا في قاعدة بياناتنا، فستتلقى رابط
+        استرداد كلمة المرور على عنوان بريدك الإلكتروني في غضون دقائق قليلة.
+      updated: تم تغيير كلمة المرور بنجاح. لقد سجلت الدخول الآن.
+      updated_not_active: تم تغيير كلمة المرور بنجاح.
+    registrations:
+      destroyed: وداعًا! تم إلغاء حسابك بنجاح. نأمل أن نراكم مرة أخرى قريبا.
+      signed_up: أهلًا وسهلًا! لقد قمت بالتسجيل بنجاح.
+      signed_up_but_inactive: >-
+        لقد قمت بالتسجيل بنجاح. ومع ذلك، لم نتمكن من تسجيل دخولك لأن حسابك لم
+        يتم تنشيطه بعد.
+      signed_up_but_locked: لقد قمت بالتسجيل بنجاح. ومع ذلك، لم نتمكن من تسجيل الدخول لأنك مقفل.
+      signed_up_but_unconfirmed: >-
+        تم إرسال رسالة مع رابط تأكيد إلى عنوان البريد الإلكتروني الخاص بك.
+        يرجى اتباع الرابط لتفعيل حسابك.
+      update_needs_confirmation: >-
+        لقد قمت بتحديث حسابك بنجاح، ولكننا بحاجة إلى التحقق من عنوان بريدك
+        الإلكتروني الجديد. يرجى التحقق من بريدك الإلكتروني واتباع رابط تأكيد
+        لتأكيد عنوان البريد الإلكتروني الجديد.
+      updated: تم تحديث حسابك بنجاح.
+    sessions:
+      signed_in: تم تسجيل الدخول بنجاح.
+      signed_out: تم تسجيل الخروج بنجاح.
+      already_signed_out: تم تسجيل الخروج بنجاح.
+    unlocks:
+      send_instructions: >-
+        سوف تتلقى رسالة بريد إلكتروني مع تعليمات حول كيفية إلغاء تعليق حسابك
+        في بضع دقائق.
+      send_paranoid_instructions: >-
+        إذا كان حسابك موجودًا، فستتلقى رسالة بريد إلكتروني تتضمن تعليمات حول
+        كيفية إلغاء قفله في غضون دقائق قليلة.
+      unlocked: تم إلغاء تعليق حسابك بنجاح. الرجاء تسجيل الدخول للمتابعة.
+    invitations:
+      send_instructions: "تم إرسال رسالة بريد إلكتروني إلى %{email}."
+      invitation_token_invalid: الرمز المميز للدعوة المقدم غير صالح!
+      updated: تم تعيين كلمة المرور بنجاح. لقد سجلت الدخول الآن.
+      updated_not_active: تم تعيين كلمة المرور بنجاح.
+      no_invitations_remaining: لم يتبقى أي دعوات
+      invitation_removed: تمت إزالة دعوتك.
+      new:
+        header: إرسال دعوة
+        submit_button: ارسل دعوة
+      edit:
+        header: ضع كلمة مرور
+        submit_button: تعيين كلمة المرور الخاصة بي

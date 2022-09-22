@@ -1,0 +1,116 @@
+<table class="filter-table">
+  <tr>
+    <th>Min Wagered</th>
+    <th>Max Wagered</th>
+    <th>Percentage Commision(%)</th>
+    <th></th>
+  </tr>
+  <tr class="range_1">
+    <td>
+      <%= number_field_tag :initial_amount, Constants::RANGE_0, class: 'form-control editable only-numeric', min: 0, autocomplete: "off", disabled: true %>
+    </td>
+    <td>
+      <%= number_field_tag :amount, user.commision&.dig(:range_1, :amount), class: 'amount form-control editable only-numeric', min: 0, autocomplete: "off" %>
+    </td>
+    <td>
+      <%= number_field_tag :percentage, user.commision&.dig(:range_1, :percentage), class: 'percentage form-control editable only-numeric', min: 0, max: 100, autocomplete: "off" %>
+    </td>
+    <td></td>
+  </tr>
+  <tr class="range_2">
+    <td>
+      <%= number_field_tag :initial_amount, user.commision&.dig(:range_1, :amount), class: 'initial-amount form-control editable only-numeric', min: 0, autocomplete: "off", disabled: true %>
+    </td>
+    <td>
+      <%= number_field_tag :amount, user.commision&.dig(:range_2, :amount), class: 'amount form-control editable only-numeric', min: 0, autocomplete: "off" %>
+    </td>
+    <td>
+      <%= number_field_tag :percentage, user.commision&.dig(:range_2, :percentage), class: 'percentage form-control editable only-numeric', min: 0, max: 100, autocomplete: "off" %>
+    </td>
+    <td></td>
+  </tr>
+  <tr class="range_3">
+    <td>
+      <%= number_field_tag :initial_amount, user.commision&.dig(:range_2, :amount), class: 'initial-amount form-control editable only-numeric', min: 0, autocomplete: "off", disabled: true %>
+    </td>
+    <td>
+      <%= text_field_tag :amount, Float::INFINITY, class: 'amount form-control editable only-numeric', min: 0, autocomplete: "off", disabled: true %>
+    </td>
+    <td>
+      <%= number_field_tag :percentage, user.commision&.dig(:range_3, :percentage), class: 'percentage form-control editable only-numeric', min: 0, max: 100, autocomplete: "off" %>
+    </td>
+    <td></td>
+  </tr>
+  <%= hidden_field_tag :admin_id, user.id %>
+</table><br/>
+  <table>
+    <tr>
+      <th>Enable</th>
+      <td><%= check_box_tag :enabled, nil, user.commision&.dig(:enabled) == 'true' %></td>
+    </tr>
+  </table>
+  <br/>
+<div class="panel-footer-div">
+  <%# <a class="btn btn-sm btn-primary edit"><i class="fa fa-pencil"></i></a> %>
+  <a class= 'btn btn-sm btn-success range-save'><i class="fa fa-save"></i> Save</a>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.range_2 .initial-amount').val(parseFloat($('.range_1 .amount').val())+1);
+    $('.range_3 .initial-amount').val(parseFloat($('.range_2 .amount').val())+1);
+  });
+  
+  $('.range_1 input, .range_2 input, range_3 input').on('keyup', function() {
+    if($(this).hasClass('amount')) {
+      if($(this).closest('tr').hasClass('range_1'))
+        $('.range_2 .initial-amount').val(parseFloat($(this).val())+1)
+      if($(this).closest('tr').hasClass('range_2'))
+        $('.range_3 .initial-amount').val(parseFloat($(this).val())+1)
+    }
+  });
+
+  $('.range-save').on('click', function() {
+    var a1 = parseInt($('.range_1 .amount').val());
+    var a2 = parseInt($('.range_2 .amount').val());
+    var p1 = parseInt($('.range_1 .percentage').val());
+    var p2 = parseInt($('.range_2 .percentage').val());
+    var p3 = parseInt($('.range_3 .percentage').val());
+    var admin_id = parseInt($('#admin_id').val());
+
+    if(isNaN(a1) || isNaN(a2) || isNaN(p1) || isNaN(p2) || isNaN(p3)) {
+      toastr.error('Fields cant be empty')
+      return false;
+    }
+
+    if(a1 > a2) {
+      toastr.error('Min wagered amount cant be greater than max wagered amount')
+      return false
+    }
+    var data = {
+      id: admin_id,
+      commision: {
+        enabled: $('#enabled').is(':checked'),
+        range_1: {
+          amount: a1,
+          percentage: p1
+        },
+        range_2: {
+          amount: a2,
+          percentage: p2
+        },
+        range_3: {
+          amount: 'Infinity',
+          percentage: p3
+        }
+      }
+    }
+
+    $.ajax({
+      type: 'PATCH',
+      url: '/admin/admin_users/update_commision_settings',
+      dataType: 'script',
+      data: data
+    });
+  })
+</script>

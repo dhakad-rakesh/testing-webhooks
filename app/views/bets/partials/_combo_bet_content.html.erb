@@ -1,0 +1,124 @@
+<div id="combination" class="tab-pane fade in active">
+  <div class="data-list">
+    <div class="data-list-heading">
+      <% if @bets.present? %>
+        <ul>
+          <li class="date">DATE</li>
+          <li class="match">COMBO BET NO.</li>
+          <li class="amt">TIP</li>
+          <li class="odds-current-odds">ODDS/CURR ODDS</li>
+          <li class="amount">AMT</li>
+          <li class="amount-to-return">TO RETURN</li>
+          <% if kind == 'resolved' %>
+            <li class="score">FINAL SCORE</li>
+          <% else %>
+            <li class="score">LIVE SCORE</li>
+          <% end %>
+          <li class="match-status">
+            <div><%= image_tag 'spinner.gif', id: 'refresh-spinner' %></div>
+            STATUS
+          </li>
+        </ul>
+      <% end %>
+    </div>
+    <% if @bets.blank? %>
+      No combo bet placed
+    <% end %>
+    <% @bets.each do |combo| %>
+      <% bets = combo.bets %>
+      <div class="data-list-content" id="combo-<%= combo.id %>">
+        <ul class="dark-bg">
+          <li class="combo-bet-date date"><%#= current_time(combo.created_at) %><%= combo.created_at.strftime("%Y-%d-%m %H:%M:%S") %></li>
+          <li class="match"><%= combo.id %></li>
+          <li class="amt"><%#= number_with_precision(combo.stake, precision: 2) %></li>
+          <li class="odds-current-odds">
+            <%= number_with_precision(combo.available_odds, precision: 2) %>
+            /
+            <%= number_with_precision(combo.cashoutable[:odds], precision: 2) %>
+          </li>
+          <li class="amount">
+            <%= "#{number_with_precision(combo.stake, precision: 2)} #{Constants::CURRENCY}" %>
+          </li>
+          <li class="amount-to-return">   
+            <%= combo.to_return != 'NA' ? "#{combo.to_return} #{Constants::CURRENCY}" : 'NA'  %>
+          </li>
+          <li class="score"></li>
+          <li class="match-status">
+            <%= render 'cashout/combo_cashout_action', combo_bet: combo %>
+          </li>
+        </ul>
+        <% if bets.present? %>
+          <% bets.each do |bet| %>
+            <% running_time = {} %>
+            <% match = bet.match %>
+            <% if match.in_progress? %>
+              <% running_time = match.running_time %>
+            <% end %>
+            <ul class="light-bg">
+              <li class="date <%= "match-#{match.id}" %>">
+                <p><%= image_tag("sports_icon/#{match.sport.uid}") %></p>
+                <% if match.in_progress? %>
+                  <p class="running-time"><%= custom_running_time(match.running_time) %></p>
+                <% else %>
+                  <p><%= match.display_status %></p>
+                <% end %>  
+                <p class="bet-date"><%= match.schedule_at.strftime("%Y-%d-%m %H:%M:%S") rescue nil %></p>
+              </li>
+              <li class="match">
+                <%= match.title %>
+              </li>
+              <li class="amt">
+                <%= bet.market.name %>
+                  <span class="match_score">
+                    (<%= bet.sort_outcome_name_with_handicap %>)
+                  </span>
+              </li>
+              <li class="odds-current-odds"><%= number_with_precision(bet.odds, precision: 2) %></li>
+              <li class="out-come"></li>
+              <% if kind == 'resolved' %>
+                <li class="score">
+                  <span><%= bet.final_score %></span>
+                  <br>
+                  <span><%= bet.full_and_half_time_score %></span>
+                </li>
+              <% else %>
+                <li class="score"><%= bet.final_score %></li>
+              <% end %>
+              <li class="match-status">
+                <% if bet.status == 'won' %>
+                  <i class="fa fa-check fa-2x fa-right-check" aria-hidden="true" title='Won'></i>
+                <% elsif bet.status == 'lost' %>
+                  <i class="fa fa-times fa-2x fa-cancel-check" aria-hidden="true" title='Lost'></i>
+                <% elsif bet.status == 'pending' %>
+                  <i class="fa fa-clock-o fa-2x fa-clock-o-check" aria-hidden="true" title='Pending for Settlement'></i>
+                <% elsif bet.status == 'refunded' %>
+                  <i class="fa fa-exchange fa-2x fa-refund-check" aria-hidden="true" title='Refunded'></i>
+                <% else %>
+                  <i class="fa fa-info fa-2x fa-info-check" aria-hidden="true" title='<%= bet.status %>'></i>  
+                <% end %>  
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= will_paginate @bets %>
+
+<script type="text/javascript">
+  $('.pagination a').attr('data-remote', 'true');
+
+  $(document).ready( function () {
+    $('.combo-bet-date').each(function(i) {
+      var date = convertUtcInToLocalTime($(this).text(), "LLL");
+      $(this).html(date);
+    });
+
+    $('.bet-date').each(function(i) {
+      var local_time = moment.utc($(this).text(), "YYYY-DD-MM HH:mm:ss").local();
+      var date = local_time.format('MMM D, LT');
+      $(this).html(date);
+    });
+  });
+</script>

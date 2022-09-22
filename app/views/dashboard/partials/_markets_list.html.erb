@@ -1,0 +1,49 @@
+<ul class="border-none inner-detail">
+  <% if @markets.present? %>
+    <% bet_slips = Rails.cache.fetch(Utility::Cache.player_bet_slips_cache_key(current_user&.id)) { [] } %>
+    <% @markets.each do |market_id, market_data| %>
+      <% next if ['1'].include?(market_id) %>
+      <% market_name = market_data.first.last[:name] %>
+      <% market_uid = market_id %>
+      <% market_data.each do |identifier, value| %>
+        <% next unless value[:status].include?('open') %>
+        <div class="inner-detail-div">
+          <li class="pull-left inner-detail-text"><%= market_name %></li>
+          <li class="pull-right inner-detail-data">
+            <% value[:outcomes].each do |outcome_id, outcome| %>
+              <% next if outcome[:status] != 'open' %>
+              <span>
+                <%= match_outcome_name(outcome, market_uid) %>
+              </span>
+              <span class="outcome-row" li-data-outcome-id="<%= outcome_id %>">
+                <a href="JavaScript:Void(0)">
+                  <div class="outcomes" data-name="<%= outcome[:name] %>" data-odds="<%= outcome[:odds] %>" data-market-name="<%= value[:name] %>" data-market-uid="<%= market_uid %>" data-market-id="<%= market_id %>" data-match-name="<%= match.title %>" data-match-id="<%= match.id %>" data-outcome-id="<%= outcome_id %>" data-identifier="<%= outcome[:handicap].present? ? { handicap: outcome[:handicap] } : {} %>" data-identifier-id="<%= identifier %>">
+                    <%= number_with_precision(outcome[:odds], precision: 2) %>
+                  </div>
+                </a>
+              </span>
+            <% end %>
+          </li>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <center>No odds available for betting.</center>
+  <% end %>
+
+  <div class="inner-detail-div">
+    <li class="close-data pull-right">
+      <a href="#" class="close-markets">
+        Close
+      </a>
+    </li>
+  </div>
+</ul>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.close-markets').on('click', function() {
+      $("#match-<%= match.id %>-markets-list").html("");
+    });
+  });
+</script>

@@ -1,0 +1,971 @@
+@media screen and (max-width: 1499px) {
+  .width90 {
+    width: 98%;
+  }
+  li.amt,li.date, li.score,li.match, li.match-status,li.out-come {
+    width: 157px;
+  }
+  li.current-odds, li.odds,  {
+    width: 50px;
+  }
+  .data-list-heading ul li,
+  .data-list-content ul li {
+    font-size: 11px;
+  }
+  #single ul li.out-come {
+    width: 127px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+  .match-data ul li {
+    font-size: 12px;
+  }
+  .match-data ul li.number,
+  .match-data ul li.plus-number {
+    width: 45px;
+  }
+  .match-data ul li.team-name {
+    width: 257px;
+  }
+  .match-data ul li.time {
+    width: 120px;
+    padding-left: 10px;
+    text-align: left;
+  }
+  .match-data ul li.team-match {
+    width: 140px;
+  }
+  .main-section .center-section {
+    width: calc(100% - 42.1%);
+  }
+
+  .account-fields {
+    width: 100%;
+  }
+  li.date, li.match, li.current-odds, li.match-status,li.out-come {
+    width: 95px;
+  }
+  body .logo img {
+    max-width: 150px;
+  }
+  .account-detail img {
+    width: 30px;
+  }
+  .account-detail ul li button {
+    padding: 10px;
+  }
+  .account-detail ul li p span {
+    font-size: 10px;
+  }
+  .account-detail ul li p {
+    display: inline-block;
+    width: 100%;
+    font-size: 10px;
+  }
+}
+
+
+@media screen and (max-width: 992px) {
+  .inner-detail-div li.inner-detail-data span:nth-child(odd) {
+    width: 60px;
+  }
+
+  #demos .row {
+    max-width: 72rem;
+  }
+  .sign-in-form form ul li {
+    margin: 0 2px;
+    width: calc(100% / 3 - 7px);
+  }
+
+  header ul li a {
+    font-size: 13px;
+  }
+
+  .forgot-password ul li a {
+    font-size: 15px;
+  }
+
+  .sign-in-form form ul li input,
+  .sign-in-form form ul li button {
+    width: 100%;
+  }
+  .center-section {
+    width: 100% !important;
+    padding: 0 10px;
+  }
+  .main-section .left-section, .main-section .right-section {
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
+  }
+  .long-term-popup {
+    display: none;
+    position: fixed;
+    z-index: 9;
+    padding-top: 10px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+
+  /* The Close Button */
+  .close {
+    color: #002886;
+    float: right;
+    font-size: 28px;
+    padding-right: 20px;
+    font-weight: bold;
+    opacity: 1;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #002886;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 1;
+  }
+
+  .ipad-men-btn {
+    width: 100%;
+    display: inherit;
+  }
+
+  .ipad-men-btn ul li {
+    list-style: none;
+    text-align: center;
+    background: #2fdbfc;
+    padding: 5px 10px;
+    position: fixed;
+    bottom: 60px;
+    z-index: 9;
+    right: 10px;
+    border-radius: 5px;
+  }
+
+  .ipad-men-btn ul li a {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .close-btn {
+    display: block;
+  }
+  .bg-color {
+    background: #fff;
+    display: table;
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  .overflow-hidden {
+    overflow-y: hidden;
+  }
+  body .match-data ul li.team-name {
+    width: 370px;
+  }
+  .match-data ul li.time {
+    width: 150px;
+    padding-left: 10px;
+    text-align: left;
+  }
+  header ul li.active a, header ul li:hover a {
+    padding: 5px 13px;
+  }
+  .data-list-heading ul li,
+  .data-list-content ul li {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+  li.amt,li.date, li.match, li.match-status, li.out-come, li.score {
+    width: 102px;
+  }
+
+  #single li.amt, #single li.score,
+  #single li.date, #single li.match, 
+  #single li.match-status, #single li.out-come {
+    width: 90px;
+  }
+
+  #single ul li.out-come {
+    width: 85px;
+  }
+  
+  #single ul li.odds {
+    width: 77px;
+  }
+
+  li.current-odds, li.odds {
+    width: 50px;
+  }
+  .width90 {
+    width: 100%;
+  }
+}
+
+
+@media screen and (min-width: 850px) and (max-width: 992px){
+  body .match-data ul li.team-name {
+    width: 450px;
+  }
+  .match-data ul li.time {
+    width: 157px;
+    padding-left: 10px;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  
+  .divide, .divide-1 {
+    display: inline-block;
+    width: 100%;
+    /*border-top: 1px solid #fff;*/
+  }
+  
+  .divide .btn-logout button {
+    background-color: #0144de;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+  }
+
+  .divide .btn-logout {
+    line-height: normal;
+    padding: 10px 20px;
+  }
+
+  .match-data ul li.team-name span img {
+    width: 20px;
+    padding-top: 10px;
+    margin: 0 2px;
+  }  
+
+  .match-data ul {
+    line-height: 40px;    
+  }
+
+  .match-data ul li.time {
+    width: 100% !important;
+    padding-right: 0;
+    padding-left: 5px;
+  }
+
+  .match-data ul li.team-name {
+    width: 100% !important;
+    padding-left: 0;
+    padding-right: 5px;
+  }
+
+  .match-data ul li.number {
+    width: 27%;
+    text-align: right;
+  }
+
+  .match-data ul li.plus-number {
+    text-align: right;
+  }
+
+  .match-data ul li.team-name span:nth-child(2) {
+    width: 10%;
+  }
+
+  .match-data ul li.team-name span:nth-child(1),
+  .match-data ul li.team-name span:nth-child(3) {
+    width: 39%;
+  }
+
+  body .mobile-menu {
+    display: block;
+  }
+
+  .sidenav {
+    height: 100%;    
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0px;
+    transform: translateX(-770px);
+    background-color: #000725;
+    overflow-x: hidden;
+    transition: all 0.5s ease-in-out;
+    padding-top: 60px;
+  }
+
+  .sidenav nav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 36px;
+    color: #2fdbfc !important;  
+    cursor: pointer;
+  }
+
+  #demos {
+    display: none;
+  }
+
+  .games-tab {
+    padding-top: 0;
+  }
+
+  .closebtn:hover {
+    background-color: inherit;
+  }
+
+  body .sign-in-out-bnt {
+    display: inline-block;
+    width: 100%;
+  }
+
+  body .sign-in-out-bnt ul li:nth-child(2){border-left: 10px solid #000822;}
+
+  body .sign-in-out-bnt ul li {
+    list-style: none;
+    float: left;
+    width: calc(100% / 2);
+    text-align: center;
+    background: #2fdbfc;
+    padding: 10px 0;
+  }
+
+  body .sign-in-out-bnt ul li a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .align-left {
+    float: left;
+  }
+  #sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  #sidebar .bet-slip-content {
+    height: 100% !important;
+  }
+
+  /*fund transfer css start here*/
+  .transfer-heading-text ul{
+    display: none;
+  }
+
+  .ac-heading h2 {
+    margin-bottom: 20px;
+    word-break: break-all;
+    font-size: 20px;
+    padding: 0 10px;
+  }
+
+  .heading {
+    padding: 0 10px;
+  }
+
+  .verify{
+    margin-top: 10px;
+  }
+
+  .parent-bets {
+    padding: 0 10px;
+  }
+
+  .parent-bets ul.nav-tabs li a {
+    padding: 10px 0;
+  }
+
+  .close-bets-content select,
+  .date-select .start-date,
+  .close-bets-content input {
+    margin-top: 10px;
+  }
+
+  .date-select .start-date, .date-select .end-date{
+    width: 100%;
+  }
+
+  #transfer-history .close-bets-content .show-entry span {
+    width: 50px;
+  }
+
+  #transfer-history .close-bets-content .show-entry select {
+    width: calc(100% - 100px);
+  }
+
+  .align-center {
+    text-align: center !important;
+  }
+
+  .align-center .submit-btn {
+    text-align: center !important;
+    float: none !important;
+    margin-top: 20px;
+  }
+
+  ul.show-data {
+    display: flex;
+  }
+
+  .transfer-heading-content ul li {
+    width: 100%;
+    text-align: right;
+    position: relative;
+    display: inline-block !important;
+  }
+  .transfer-heading-content ul li::before {
+    position: absolute;
+    left: 0;
+  }
+  .transfer-heading-content ul li:nth-child(1):before {
+    content: 'Date';
+  }
+
+  .transfer-heading-content ul li:nth-child(2):before {
+    content: 'Transaction Type';
+  }
+
+  .transfer-heading-content ul li:nth-child(3):before {
+    content: 'Description ';
+  }
+
+  .transfer-heading-content ul li:nth-child(4):before {
+    content: 'Amount';
+  }
+
+  /*mybets css start here*/
+  body .parent-bets ul li a {
+    font-size: 16px !important;
+  }
+
+  .width90 {
+    width: 100%;
+  }
+
+  .border {
+    padding: 0;
+  }
+
+  .close-bets-content,
+  .close-bets-text {
+    width: 100%;
+  }
+
+  .close-bets-text p span {
+    font-size: 14px;
+  }
+
+  .account-detail{
+    width: 100%;
+  }
+
+  .account-detail ul, .security-alignment,
+   .account-detail ul li, .account-detail ul li p {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .transfer-heading-content ul {
+    display: inline-block !important;
+  }
+
+  .account-detail ul li {
+    margin-bottom: 10px;
+  }
+
+  .account-detail ul li,
+  .account-detail ul li p {
+    font-size: 14px;
+  }
+
+  #live-event-content li.live-match-name span.show-data-img {
+    float: left;    
+  }
+
+  body .upcoming-img {
+    padding: 0 5px;
+  }
+
+  .security-alignment  .security-img,
+  .create-account {
+    float: none !important;
+    width: 100%;
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .account-detail ul li p span {
+    font-size: 14px;
+  }
+
+  .account-detail ul li button {
+    float: none;
+  }
+
+  .sub-bets .child-bets{
+    width: 50%;
+  }
+  .sub-bets .child-bets li {
+    min-width: 100%;
+  }
+
+  .sub-bets .filter{
+    width: 46%;
+  }
+
+  .data-list-heading ul {
+    display: none !important;
+  }
+
+  .data-list-content ul li {
+    width: 100%;
+    text-align: right;
+    position: relative;
+    display: inline-block;
+    padding-right: 5px;
+  }
+  .data-list-content ul li:before {
+    position: absolute;
+    left: 5px;
+    color: #000;
+  }
+
+  .data-list-content ul li.date:before {
+    content: 'DATE:-';
+  }
+
+  .data-list-content ul li.match:before {
+    content: 'MATCH:-';
+  }
+
+  .data-list-content ul li.out-come:before {
+    content: 'OUT COME:-'
+  }
+
+  .data-list-content ul li.amt:before {
+    content: 'AMT:-'
+  }
+
+  .data-list-content ul li.odds:before {
+    content: 'ODDS:-'
+  }
+
+  .data-list-content ul li.current-odds:before {
+    content: 'CUREENT ODDS:-'
+  }
+
+  .data-list-content ul li.match-status:before {
+    content: 'MATCH STATUS:-'
+  }
+
+  .data-list-content ul.dark-bg li:before {
+    color: #fff;
+  }
+  .data-list-content ul.light-bg li:before {
+    color: #000;
+  }
+
+  /*.data-list-content ul.dark-bg li:before,
+  .data-list-content ul.light-bg li:before {
+    width: 67px;
+    text-align: left;
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }*/
+
+  .data-list-content ul.dark-bg li.date:before,
+  .data-list-content ul.light-bg li.date:before {
+    content: 'DATE:-';
+  }
+
+  .data-list-content ul.dark-bg li.match:before,
+  .data-list-content ul.light-bg li.match:before {
+    content: 'COMBO BET NO:-';
+  }
+
+  .data-list-content ul.light-bg li.out-come:before,
+  .data-list-content ul.dark-bg li.out-come:before {
+    content: 'CASEOUTABLE AMOUNT:-'
+  }
+
+  .data-list-content ul li.out-come:before {
+    content: 'OUT COME:-'
+  }
+
+  .data-list-content ul li.amt:before {
+    content: 'AMT:-'
+  }
+
+  .data-list-content ul li.odds:before {
+    content: 'ODDS:-'
+  }
+
+  .data-list-content ul li.current-odds:before {
+    content: 'CUREENT ODDS:-'
+  }
+
+  .data-list-content ul li.match-status:before {
+    content: 'MATCH STATUS:-'
+  }
+
+  .security-alignment  {
+    display: inline-block;
+  }
+
+  .security-alignment  .security-img,
+  .create-account {
+    float: none !important;
+    width: 100%;
+    text-align: center;
+  }
+
+  .match-data ul:last-child {
+    margin-bottom: 0;
+  }
+
+  .mob-menu-btn {
+    display: block;
+    width: 100%;
+  }
+  .inner-detail-data:before,
+  .correct-score-data:before,
+  .inner-detail-text:before {
+    display: none;
+  }
+  body .inner-detail-div .correct-score-data {
+    width: 100% !important;
+  }
+
+  body .inner-detail-div .correct-score-data span {
+    float: left;
+    width: 50%;
+  }
+
+  body .inner-detail-div li.inner-detail-text,
+  body .inner-detail-div li.inner-detail-data {
+    width: 100% !important;
+    text-align: left !important;
+  }
+  .inner-detail-data span {
+    padding: 5px 0;
+    width: 43px;
+    line-height: 25px;
+  }
+  .mob-menu-btn button {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    background: inherit;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .sign-in-form form ul li {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .ac-user-detail p {
+    color: #fff;
+  }
+
+  nav ul li {
+    display: inline-block;
+    width: 100% !important;
+    text-align: left;
+    padding-left: 20px;
+    border-bottom: 1px solid #fff;
+  }
+
+  .logo {
+    float: none;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 0;
+  }
+
+  .logo-input {
+    padding: 10px 0;
+  }
+
+  .sign-in-up {
+    float: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .main-section {
+    display: inline-block;
+    height: auto;
+    margin-bottom: 70px; 
+  }
+  .center-section {
+    width: 100%;
+  }
+  .games-tab ul li {
+    width: auto;
+  }
+  .games-tab ul li a{
+    padding: 10px 11px;
+  }
+  .sign-in-form form ul li button {
+    padding: 10px 25px;
+  }
+  .top-strip {
+    padding: 10px 0;
+    position: fixed;
+  }
+
+  body .top-strip .dots {
+    display: inline-block;
+    position: absolute;
+    left: 15px;
+    color: #fff;
+    font-size: 20px;
+    z-index: 9;
+  }
+
+  body .top-strip .dots span{
+    cursor: pointer;
+  }
+
+  .sign-in-up {
+    position: absolute;
+    z-index: 9;
+    padding: 10px 0;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    background-color: #fff;
+    display: none;    
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  .forgot-password ul li a {
+    color: #000;
+  }
+
+  .forgot-password ul li:after {
+    background-color: #000;
+  }
+
+  .sign-in-close {
+    color: #002886;
+    float: right;
+    font-size: 28px;
+    padding-right: 20px;
+    font-weight: bold;
+    opacity: 1;
+  }
+
+  .sign-in-up  .sign-in-form {
+    width: 95%;
+    margin: 0 auto;  
+    float: none;
+  }
+
+  .top-strip p {
+    font-size: 13px;
+    margin-left: 19px;
+  }
+  .top-strip form button{
+    font-size: 13px;
+  }
+  #demos .owl-carousel .item {
+    height: 12rem;
+  }
+
+  .match-data ul li.no-match-message {
+    display: inline-block;
+    width: 100% !important;
+  }
+  .match-data ul li {
+    display: inline-block;
+    float: left;
+    text-align: left;
+    position: relative;
+    padding-right: 5px;
+  }
+  .match-data ul.line-height {
+    display: none;
+  }
+  .match-data ul li:nth-child(3):before {
+    content: '1';
+    position: absolute;
+    left: 5px;
+    color: #000;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .match-data ul li:nth-child(4):before {
+    content: 'X';
+    position: absolute;
+    left: 5px;
+    color: #000;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .match-data ul li:nth-child(5):before {
+    content: '2';
+    position: absolute;
+    left: 5px;
+    color: #000;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .line-height-normal {
+    line-height: normal;
+  }
+  .overflow-scroll {
+    height: 415px;
+  }
+  body .scrollator {
+    overflow-y: visible !important;
+  }
+  .games-tab .nav-tabs{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .forgot-password,
+  .forgot-password .pull-right{
+    float: none !important;
+    text-align: center;
+  }
+
+  .forgot-password ul li a {
+    font-size: 18px;
+  }
+  .forgot-password ul {
+    padding-top: 0;
+  }
+  .forgot-password ul li {
+    padding: 0 5px;
+  }
+  .top-navigation {
+    display: none !important;
+  }
+  .plus-image span {
+    color: #fff;
+  }
+  .plus-image span img {
+    width: 20px;
+    margin-left: 15px;
+  }
+  .footer-navigation {
+    display: inline-block;
+    width: 100%;
+  }
+  .footer-navigation .account-detail li {
+    float: left;
+    width: calc(100% / 5);
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .footer-navigation .account-detail li a img.normal-img {
+    width: 30px;
+  }
+
+  footer {
+    padding: 15px 0 10px 0;
+    line-height: 11px;
+    position: fixed;
+    bottom: 0;
+  }
+  .user-name {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 15px;
+    color: #FFF356;
+  }
+  .user-balance {
+    font-size: 18px;
+    font-weight: bold;    
+    color: #FFF356; 
+  }
+  body .footer-navigation {
+    width: 100%;
+    display: inline-block !important;
+  }
+  .bet-slip-img {
+    position: relative;
+  }
+  /*.bet-slip-img .bet-slip-count {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background-color: #2fdbfc;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+  }*/
+  body .mobile-logo {
+    position: absolute;
+    left: 0;
+    right: 0;    
+    display: flex;
+    justify-content: center;
+  }
+
+  .top-strip .container {
+    position: relative;
+  }
+
+  body .mobile-logo img {
+    width: 100px;
+  } 
+}
+
+
+.top-strip .dots,
+.sign-in-out-bnt,
+.mobile-logo { 
+  display: none;
+}
+
+.footer-navigation {
+  width: 100%;
+  display: none;
+}

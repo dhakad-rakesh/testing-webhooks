@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      group:
+        name: 'Name'
+        

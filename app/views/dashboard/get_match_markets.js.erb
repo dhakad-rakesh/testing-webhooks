@@ -1,0 +1,2 @@
+$("#match-<%= @match.id %>-markets-list").html("<%= escape_javascript(render(:partial => 'dashboard/partials/markets_list', locals: { markets: @markets, match: @match })) %>");
+$('.market_count_<%= @match.id %>').html(<%= @match.market_counts(['1']) %>);

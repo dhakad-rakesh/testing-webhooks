@@ -1,0 +1,21 @@
+en:
+  admin:
+    betting_pools:
+      edit_pool: 'Edit pool'
+      delete_pool: 'Delete'
+      pool_name: 'Name'
+      entry_amount: 'Entry Amount'
+      points_per_user: 'Points Per User'
+      winnings_distribution_method: 'Winnings ditribution method'
+      users_joined: 'Total users joined'
+      points_collected: 'Total points collected'
+      leaderboard: 'Leaderboard'
+      pool_created: 'Pool Created at'
+      index:
+      new:
+        match_title: 'for %{title}'
+      show:
+        pool_matches_info: 'Pool Matches Information'
+        pool_participant_info: 'Pool Participant Information'
+        pool_balance: 'Pool Balance'
+        

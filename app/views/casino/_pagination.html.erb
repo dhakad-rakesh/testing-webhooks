@@ -1,0 +1,23 @@
+<nav class='pagination-nav' aria-label='Page navigation example'>
+  <ul class='pagination'>
+    <li class='page-item <%= paginate_active_first(meta) %>'>
+      <%= link_to 'First', casino_index_path(page: 1), class: 'page-link' %>
+    </li>
+    <li class='page-item <%= paginate_disabled_first(meta) %>' tabindex="-1">
+      <%= link_to 'Previous', casino_index_path(page: previous_page(meta)), class: 'page-link' %>
+    </li>
+
+    <% paginate_items(meta).each do |page| %>
+      <li class='page-item <%= paginate_active(page) %>'>
+        <%= link_to page, casino_index_path(page: page), class: 'page-link' %>
+      </li>
+    <% end %>
+
+    <li class='page-item <%= paginate_disabled_last(meta) %>'>
+      <%= link_to 'Next', casino_index_path(page: next_page(meta)), class: 'page-link' %>
+    </li>
+    <li class='page-item <%= paginate_active_last(meta) %>'>
+      <%= link_to 'Last', casino_index_path(page: meta['pageCount']), class: 'page-link' %>
+    </li>
+  </ul>
+</nav>

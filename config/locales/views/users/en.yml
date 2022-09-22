@@ -1,0 +1,13 @@
+en:
+  admin:
+    users:
+      index:
+      show:
+        no_of_users_betted: 'Number of Users that betted'
+        market_odd_info: 'Market odds Information'
+        personal: 'Personal'
+        available_balance: 'Available Balance'
+        add_amount: 'Add amount'
+        update_wallet: 'Update Wallet'
+        selfie_picture: 'Selfie with govt id'
+        govt_id_picture: 'Govt id proof'

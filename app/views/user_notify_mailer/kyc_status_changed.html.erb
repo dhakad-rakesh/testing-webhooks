@@ -1,0 +1,9 @@
+<h1 style="margin: 0px; padding: 0px;">Hi, <%= @user&.first_name&.titleize %></h1>
+<p style="margin-top: 10px; padding: 0px;">Your KYC verification has been <%= @user.kyc_status %>.
+</p>
+<% if @user.kyc_status == "Rejected" %>
+  <br>
+  <br>
+    Note: <%= @user.kyc_status_notes %><br>
+    Please re-upload required documents.
+<% end %>

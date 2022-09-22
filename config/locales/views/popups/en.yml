@@ -1,0 +1,17 @@
+en:
+  admin:
+    promo_codes:
+      created_at: 'Created at'
+      promo_id: 'Promo ID'
+      name: 'Name'
+      code: 'Promo Code'
+      status: 'Status'
+      kind: 'Kind'
+      percent: 'Percent'
+      valid_from: 'Valid from'
+      valid_till: 'Valid till'
+      limit_per_user: 'Limit (per user)'
+      usage_limit: 'Usage Limit'
+      threshold_amount: 'Threshold amount'
+      maximum_cashback: 'Max Cashback'
+      cashback: 'Cashback'

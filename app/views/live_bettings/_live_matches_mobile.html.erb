@@ -1,0 +1,131 @@
+<div id="live-events" class="tab-pane fade in active">
+  <div id="live-event-content" class="accordion">
+    <div class="card mb-0">
+      <% events.each do |name, s_matches| %>
+        <% s_matches.group_by { |m| m&.tournament&.name }.each do |league, matches| %>
+          <div class="games-heading league-heading" data-toggle="collapse" href="#<%= league.downcase.gsub(' ', '_') %>" aria-expanded="false">
+            <ul class="games-heading-ul">
+              <li class="live-match-name">
+                <span>
+                  <%= league.upcase %>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div id="<%= league.downcase.gsub(' ', '_') %>" class="card-body collapse in" data-parent="#live-event-content" aria-expanded="false">
+            <% if matches.any? %>
+              <div id="highlight_matches">
+                <div class="match-data">
+                  <div>
+                    <% if matches.any? %>
+                      <ul class="full-width line-height">
+                        <li class="time"></li>
+                        <li class="team-name"></li>
+                        <li class="number">1</li>
+                        <li class="number">X</li>
+                        <li class="number">2</li>
+                        <li class="plus-number"></li>
+                      </ul>
+                      <% matches.each do |match| %>
+                        <% teams = match.title.split('vs') %>
+                        <% result_market = get_1x2_market(match) %>
+                        <ul class="full-width">
+                          <li class="full-width line-height-normal">
+                            <% unless kind == 'upcoming' %>
+                              <span class="pull-left inch-number" id="running_time_<%= match.id %>"><%= match.running_time %></span>
+                              <span class="bold-color pull-right" id="running_score_<%= match.id %>"><%= match.score %> </span>
+                            <% else %>
+                              <span class="upcoming-match-time">
+                                <%= match.schedule_at.strftime("%Y-%d-%m %H:%M:%S") %>
+                              </span>
+                            <% end %>
+                            <% if kind == 'live' %>
+                              <span class="add_live_favorite_matches" data-match-id="<%= match.id %>">
+                                <img src="<%= image_url 'b-star.png' %>" style="float: left;width: 20px;" class="img-responsive">
+                                <div class="star-tool-tip">
+                                  <p class="tool-tip">
+                                    Add to your favourite
+                                  </p>
+                                  <p class="arrow"></p>
+                                </div>
+                              </span>
+                            <% elsif kind == 'favorite' %>
+                              <span class="show-data-img remove_live_favorite_matches" data-match-id="<%= match.id %>">
+                                <img src="<%= image_url 'star.png' %>" style="float: left;width: 20px;" class="img-responsive">
+                              </span>
+                            <% end %>
+                          </li>
+                          <li class="team-name font14">
+                            <span>
+                              <%= teams[0] %>
+                            </span>
+                            <span>
+                              <img src="<%= image_url "sports_icon/#{match.sport.uid}" %>" alt="f-ball" class="img-responsive">
+                            </span>
+                            <span>
+                              <%= teams[1] %>
+                            </span>
+                            <p class="tool-tip">
+                              <%= match.title %>
+                            </p>
+                            <p class="arrow"></p>
+                          </li>
+
+                          <% unless Market.markets_enable_ids.include?(result_market[:market_id]) %>
+                            <li class="number number-bg">NA</li>
+                            <li class="number number-bg">NA</li>
+                            <li class="number number-bg">NA</li>
+                          <% else %>
+                            <% if result_market.present? && result_market[:market_data].present? %>
+                              <% market_data = result_market[:market_data] %>
+                              <% market_id = result_market[:market_id] %>
+                              <% market_name = market_data&.first&.last[:name] %>
+                              <% market_uid = market_data&.first&.last[:uid] %>
+                              <% market_data.each do |identifier, value| %>
+                                <% value[:outcomes].each do |outcome| %>
+                                  <% next if outcome.last[:status] != 'open' %>
+                                  <li class="number number-bg outcome-row" li-data-outcome-id="<%= outcome.first %>">
+                                    <a href="JavaScript:Void(0)">
+                                      <div class="outcomes" data-name="<%= outcome.last[:name] %>" data-odds="<%= outcome.last[:odds] %>" data-market-name="<%= value[:name] %>" data-market-uid="<%= market_uid %>" data-market-id="<%= market_id %>" data-match-name="<%= match.title %>" data-match-id="<%= match.id %>" data-outcome-id="<%= outcome.first %>" data-identifier="<%= outcome.last[:handicap].present? ? { handicap: outcome.last[:handicap] } : {} %>" data-identifier-id="<%= identifier %>">
+                                        <%= number_with_precision(outcome.last[:odds], precision: 2) %>
+                                      </div>
+                                    </a>
+                                  </li>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <li class="number number-bg">NA</li>
+                              <li class="number number-bg">NA</li>
+                              <li class="number number-bg">NA</li>
+                            <% end %>
+                          <% end %>
+
+                          <li class="plus-number" >
+                            <a class="get-match-markets" data-match-id="<%= match.id %>" href="javascript:void(0)">
+                              +<span class="market_count_<%= match.id %>"><%= match.market_counts(['1']) %></span>
+                              <span class="left-arrow">></span>
+                            </a>
+                          </li>
+                          <div id="match-<%= match.id %>-markets-list"></div>
+                        </ul>
+                      <% end %>
+                    <% else %>
+                      <ul class="full-width">
+                        <li class="no-match-message">No matches available.</li>
+                      </ul>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready( function () {
+    getMatchMarkets();
+  });
+</script>

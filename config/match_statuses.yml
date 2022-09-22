@@ -1,0 +1,50 @@
+---
+- :not_started:
+  - not started
+  - 0
+  - start delayed
+  - 61
+  - postponed
+  - 60
+  - not_started
+- :started:
+  - started
+  - 20
+- :about_to_start:
+  - about to start
+  - 22
+- :cancelled:
+  - cancelled
+  - 70
+- :ended:
+  - suspended
+  - 81
+  - abandoned
+  - 90
+  - walkover
+  - 91
+  - walkover, player 1 won
+  - 93
+  - walkover, player 2 won
+  - 94
+  - player 1 retired, player 2 won
+  - 95
+  - player 2 retired, player 1 won
+  - 96
+  - ended
+  - 100
+  - closed
+  - Interrupted
+  - 80
+- :other:
+  - defaulted
+  - 97
+  - 98
+  - only result
+  - 99
+  - sudden death
+  - 440
+  - awaiting sudden death
+  - 443
+  - retired
+  - 92

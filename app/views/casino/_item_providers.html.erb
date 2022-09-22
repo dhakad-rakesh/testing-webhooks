@@ -1,0 +1,30 @@
+<div class="heading casino-heading casino-select-c">
+  <ul>
+    <% @item_providers.each do |provider| %>
+      <li class="provider active">
+        <input type="checkbox" name="" class="checkbox-click" <%= params[:provider]&.include?(provider) ? 'checked' : '' %>>
+        <%= link_to provider, "#-", class: "#{params[:provider]&.include?(provider) ? 'provider-select' : '' }" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  // On providers change
+  $('.provider').click(function() {
+    var item = $(this).children('a').text();
+    if (jQuery.inArray(item, $providers) !== -1) {
+      $(this).children('a').removeClass('provider-select');
+      $providers.pop(item);
+    } else {
+      $(this).children('a').addClass('provider-select');
+      $(this).children('input').attr('checked', true);
+      $providers.push(item);
+    }
+    doneTyping ();
+  });
+
+  $(".checkbox-click").click(function(){         
+    $(this).attr("checked", "checked");
+  });
+</script>

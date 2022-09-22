@@ -1,0 +1,60 @@
+<% url = @user.persisted? ? admin_admin_user_path(@user) : admin_admin_users_path %>
+<%= form_with model: @user, url: url, local: true, class: 'form' do |f| %>
+
+  <% %I[first_name last_name email].each do |column| %>
+    <div class="form-group col-lg-10">
+      <%= f.label column %>
+      <%= f.text_field column, class: 'form-control', style: 'width: 100%;', required: is_sub_admin?(params[:role]), autocomplete: "off" %>
+    </div>
+  <% end %>
+
+  <% if false %>
+    <div class="form-group col-lg-10">
+      <%= f.label :reseller_percentage %>
+      <%= f.number_field :reseller_percentage, placeholder: number_with_precision(@user.reseller_percentage, precision: 2), class: 'form-control', style: 'width: 100%;', required: true %>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <%= f.label :label %>
+      <%= f.select :label, label_options(admin_label: current_admin_user.label), { include_blank: false }, class: 'form-control', style: 'width: 100%;' %>
+    </div>
+  <% end %>
+
+  <div class="form-group col-lg-10">
+    <%= f.label "Status" %>
+    <%= f.check_box :status %> <br/>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :reciever_address %>
+    <%= f.text_field :reciever_address , class: 'form-control', style: 'width: 100%;', required: true, autocomplete: "off" %>
+  </div>
+
+  <% %I[password password_confirmation].each do |column| %>
+    <div class="form-group col-lg-10">
+      <%= f.label column %>
+      <%= f.password_field column, class: 'form-control', style: 'width: 100%;' %>
+    </div>
+  <% end %>
+
+  <% unless @user.persisted? %>
+    <%= hidden_field_tag :role, 'sub_admin' %>
+    <%= f.hidden_field :sub_admin_user_id, value: current_admin_user.id %>
+    <% if false %>
+      <% if is_sub_admin_tab?(params[:role]) %>
+        <%= hidden_field_tag :role, 'sub_admin' %>
+        <%= f.hidden_field :sub_admin_user_id, value: current_admin_user.id %>
+      <% else %>
+        <%= hidden_field_tag :role, 'reseller' %>
+        <%= f.hidden_field :admin_user_id, value: current_admin_user.id %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit t('save'), class: 'btn btn-primary' %>
+    <%= link_to :back, class: 'btn btn-primary' do %>
+      <span class="fa fa-arrow-circle-o-left"></span> Back
+    <% end %>
+  </div>
+<% end %>

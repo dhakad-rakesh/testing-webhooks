@@ -1,0 +1,35 @@
+<% @items.each_with_index do |item, index| %>
+  <div class='col-md-3'>
+    <div class='item-parent'>
+      <div class="casino-game">
+        <div class="info">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </div>
+        <%= link_to image_tag(item.image, border: 0), redirect_path(item), { class: 'item-image' } %>
+        <div class="game-stats">
+          <p class='item-type'><span>Item Type : </span><%= item.item_type %></p>
+          <p class='provider'><span>Provider : </span><%= item.provider %></p>
+          <p class='free-spins'><span>Free spins : </span>
+            <i class="fa <%= item.has_freespins ? 'fa-check' : 'fa-times' %>"aria-hidden="true"></i>
+          </p>
+          <p class='mobile'><span>Mobile : </span>
+            <i class="fa <%= item.is_mobile ? 'fa-check' : 'fa-times' %>"aria-hidden="true"></i>
+          </p>
+        </div>
+        <div class="play-options">
+          <button class="casino-play-button" onclick="launchCasinoModal('<%= redirect_path(item) %>', '<%= item.has_lobby %>')">Play Now</button>
+          <!-- <button class="casino-play-button demo" >Free Play</button> -->
+        </div>
+        <div class="game-data">
+        <div class="game-data-options">
+          <div class="name"><%= item.name %></div>
+          <div class="rating rating3 "></div> 
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if (index+1)%4 == 0 %>
+    <div class='clearfix'></div>
+  <% end %>
+<% end %>

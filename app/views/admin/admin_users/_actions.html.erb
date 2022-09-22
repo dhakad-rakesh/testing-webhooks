@@ -1,0 +1,20 @@
+<td>
+  <%= link_to edit_admin_admin_user_path(user), class: 'btn btn-primary' do %>
+    <span class="fa fa-pencil"></span>
+  <% end %>
+  <%= link_to admin_admin_user_path(user), class: 'btn btn-primary' do %>
+    <span class="fa fa-eye"></span>
+  <% end %>
+  <%= link_to admin_admin_user_users_path(admin_user_id: user), class: 'btn btn-primary' do %>
+    <span class="fa fa-user"></span>
+  <% end %>
+  <% if user.undiscarded?  %>
+    <%= link_to enable_disable_user_admin_admin_user_path(user), class: 'btn btn-danger', data: { confirm: 'Do you want to disable the affiliate?', method: :patch } do %>
+      <span class="fa fa-remove"></span>
+    <% end %>
+  <% else %>
+    <%= link_to enable_disable_user_admin_admin_user_path(user), class: 'btn btn-primary', data: { confirm: 'Do you want to enable the affiliate?', method: :patch }  do %>
+      <span class="fa fa-check"></span>
+    <% end %>
+  <% end %>
+</td>

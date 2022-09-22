@@ -1,0 +1,15 @@
+<div class="row border-bottom">
+  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <ul class="nav navbar-top-links navbar-right">
+      <li>Point:<%= current_user.wallets.find_by(wallet_type: 'point').available_amount %></li>&nbsp;
+      <li>
+        <span class="m-r-sm text-muted welcome-message" data-i18n="topnav.welcometext">Welcome to <%= Figaro.env.project_name %> User Dashboard.</span>
+      </li>
+      <% if  current_user %>
+        <li>
+          <i><%= link_to "Log out", destroy_user_session_path(gs_session: session[:gs_session]), class: 'fa fa-sign-out', method: :delete %></i>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>

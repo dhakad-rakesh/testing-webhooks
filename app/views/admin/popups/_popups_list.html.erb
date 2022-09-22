@@ -1,0 +1,60 @@
+<table class="dt-reports table table-hover promo-codes-list">
+  <thead>
+    <tr>
+      <th><%= t('admin.popups.id') %></th>
+      <th><%= t('admin.popups.updated_at') %></th>
+      <th><%= t('admin.popups.title') %></th>
+      <th><%= t('admin.popups.screen') %></th>
+      <th><%= t('admin.popups.platform') %></th>
+      <th><%= t('admin.popups.repeat_type') %></th>
+      <th><%= t('admin.popups.repeat_duration') %></th>
+      <th><%= t('admin.popups.link') %></th>
+      <th><%= t('admin.popups.new_window') %></th>
+      <th><%= t('admin.popups.start_date') %></th>
+      <th><%= t('admin.popups.end_date') %></th>
+      <th><%= t('admin.popups.status') %></th>
+      <th><%= t('actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if popups.present? %>
+      <% popups.each do |popup| %>
+        <tr class="gradeX">
+          <td><%= popup.id %></td>
+          <td><%= short_date(popup.updated_at) %></td>
+          <td><%= popup.title&.humanize %></td>
+          <td><%= popup.screen&.humanize %></td>
+          <td><%= popup.platform&.humanize %></td>
+          <td><%= popup.repeat_type&.humanize %></td>
+          <td><%= popup.repeat_duration %></td>
+          <td class="fixed-width-col"><%= popup.link %></td>
+          <td><%= popup.redirection.to_s&.humanize %></td>
+          <td><%= short_date(popup.start_date) || "-" %></td>
+          <td><%= short_date(popup.end_date) || "-" %></td>
+          <td>
+            <%= popup.status&.humanize %>
+            <% if popup.id.in? @live_popup_ids %>
+              <span class="label label-danger">
+                Live
+              </span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_admin_popup_path(popup), class: 'btn btn-sm btn-success' do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=12>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate popups, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>

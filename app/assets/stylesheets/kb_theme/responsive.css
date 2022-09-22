@@ -1,0 +1,515 @@
+@media only screen and (max-width: 1440px) { 
+.odd-filter table tbody tr.odds-row td ul li:nth-child(2) {
+    margin: 0px 5px;
+}
+
+.odd-filter table tbody tr.odds-row td ul {
+    padding-right: 10px;
+}
+
+.odd-filter table tbody tr.body-head td ul {
+    padding-right: 10px;
+}
+
+.odd-filter table thead td select {
+    width: 90%;
+    height: 32px;
+    border-radius: 5px;
+    padding: 0px 0px;
+    font-size: 12px;
+}
+
+.odd-filter table tbody tr.odds-row td:first-child {
+    padding-left: 20px;
+    padding-right: 35px;
+}
+
+.odd-filter table thead td:first-child {
+    padding-left: 20px;
+}
+
+.odds-cover ul.game-select {
+    padding-left: 20px;
+}
+
+.odds-cover h2 {
+    padding-left: 20px;    
+}
+
+.owl-carousel .item {
+    padding: 28px 15px;
+}
+
+.top-header {
+    padding-left: 50px;
+}
+
+.bottom-header {
+    padding-left: 50px;
+}
+
+.button-login button {
+    padding: 0px 15px;
+    height: 40px;
+    margin-right: 15px;
+    min-width: 100px;
+}
+
+.top-header .nav li {
+    margin-right: 25px;
+}
+
+.game-icons ul li {
+    margin-right: 0;
+}
+
+.middle-content .left-side {
+    padding-left: 40px;
+}
+
+.middle-content .left-side-nav ul li {
+        padding-left: 20px;
+}
+
+.odds-cover ul.game-select li a {
+    margin-right: 15px;
+}
+
+.top-footer {
+    padding-left: 50px;
+}
+
+footer .lang-drop {
+    padding-left: 50px;
+}
+
+footer .botton-footer {
+    padding-left: 50px;
+}
+
+footer .footer-content {
+    padding-left: 50px;
+}
+
+footer .pay-img {
+    padding-left: 50px;
+}
+
+.static-content {
+    background: #020C44;
+    margin-top: 35px;
+    margin-right: 20px;
+    padding: 30px 30px;
+    width: calc(100% - 370px);
+}
+
+.static-menu {
+    background: #020c44;
+    padding: 20px 0px 50px;
+    margin: 0px 25px 0px 25px;
+    min-width: 300px;
+    height: auto;
+    max-height: 250px;
+}
+
+}
+
+@media only screen and (max-width: 1199px) { 
+.middle-content .left-side-nav {
+    width: 200px;
+}
+
+.middle-content .odds-section {
+    width: calc(100% - 200px);
+    padding-left: 10px;
+}
+
+
+.middle-content .right-side {
+    width: 275px;
+    padding: 40px 10px;
+}
+
+.middle-content .left-side {
+    width: calc(100% - 275px);
+    padding-left: 15px;
+    margin-top: 40px;
+}
+
+.top-header {
+    padding-left: 15px;
+}
+
+.bottom-header {
+    padding-left: 15px;
+}
+
+.button-login button {
+    padding: 0px 15px;
+    height: 40px;
+    margin-right: 15px;
+    min-width: auto;
+}
+
+.top-header .nav li a {
+    font-size: 14px;
+}
+
+.odds-cover ul.game-select li a {
+    font-size: 12px;
+}
+}
+
+@media only screen and (max-width: 991px) {
+
+.res-betslip-btn {
+  display: block;
+}
+
+    .middle-content .left-side {
+    width: 100%;
+    padding-left: 15px;
+    margin-top: 40px;
+    padding-right: 15px;
+}
+
+.button-login button {
+    padding: 0px 10px;
+    height: 32px;
+    margin-right: 10px;
+    min-width: auto;
+}
+
+.top-header .nav li {
+    margin-right: 10px;
+}
+
+header .logo {
+    width: 120px;
+    margin-right: 30px;
+}
+
+.top-header .nav li a {
+    font-size: 12px;
+}
+
+footer .botton-footer ul {
+    margin-right: 15px;
+}
+
+footer .footer-content {
+    width: 80%;
+}
+
+.game-icons {
+    padding-left: 15px;
+    margin-left: 15px;
+}
+
+.res-betslip-btn {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.res-betslip-btn button {
+background: #fff;
+    border: 0px;
+    padding: 5px 25px;
+    border-radius: 5px 5px 0px 0px;
+    font-size: 16px;
+    color: #020c44;
+    font-weight: 800;
+    text-transform: uppercase;
+    box-shadow: 0px -2px 6px #fff;
+}
+
+.middle-content .right-side {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    display: none;
+    z-index: 99;
+    padding: 0px;
+    height: 100%;
+    background: #020c44;
+}
+
+.main-games {
+    display: none;
+}
+
+.betslip {
+    background: #020C44;
+    border-radius: 0;
+    overflow: hidden;
+    padding-top: 40px;
+}
+
+.close-betslip {
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    display: table;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    color: #020c44;
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.middle-content .left-side-nav {
+position: fixed;
+    display: none;
+    top: 0px;
+    width: 90%;
+    border-radius: 0px;
+    z-index: 9;
+    background: #020c44;
+    height: 100%;
+    left: 0;
+    box-shadow: 0px 0 19px -5px #000;
+    margin-top: 0;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+.close-left{
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    display: table;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    color: #020c44;
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.middle-content .odds-section {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.middle-content .left-side-nav ul.nav-ul-left li {
+    padding-left: 0px;
+    width: calc(100% / 5);
+    text-align: center;
+    border-bottom: 0.5px solid #414872;
+    border-right: 1px solid #fff;
+}
+
+.middle-content .left-side-nav ul.nav-ul-left li:last-child {
+    border-right: 0px;
+} 
+
+.middle-content .left-side-nav ul.nav-ul-left {
+    background: #2a4372;
+    padding: 0px;
+    border-radius: 0px;
+    margin-top: 20px;
+}
+
+.static-middle {
+flex-wrap: wrap;
+}
+
+.static-menu {
+    background: #020c44;
+    padding: 20px 0px 20px;
+    margin: 0;
+    min-width: 100%;
+    height: auto;
+    max-height: 250px;
+    margin-top: 20px;
+}
+.static-content {
+    background: #020C44;
+    margin-top: 35px;
+    margin-right: 10px;
+    padding: 30px 30px;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.static-content h1 {
+    font-size: 22px;
+    color: #33dd43;
+    padding-bottom: 20px;
+}
+
+}
+
+
+@media only screen and (max-width: 768px) {
+footer .botton-footer ul {
+    margin-right: 10px;
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+footer .botton-footer ul li a {
+    color: #fff;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+footer .footer-content {
+    padding-left: 15px;
+    padding-top: 0;
+}
+
+footer .pay-img {
+    padding-left: 15px;
+}
+    footer .botton-footer {
+    flex-wrap: wrap;
+    }
+
+    .odd-filter table tr td:nth-child(3), .odd-filter table tr td:nth-child(4) {
+        display: none;
+    }
+
+    .odd-filter table thead {
+        display: none;
+    }
+
+    .lang-drop {
+        display: none;
+    }
+
+    .game-select {
+        overflow-x: auto;
+    }
+
+    .odds-cover ul.game-select li a {
+        white-space: nowrap;
+    }
+
+    .odd-filter table tbody tr.odds-row td ul li {
+    height: 28px;
+    background: transparent;
+    line-height: 28px;
+    color: #2a4372;
+    border: none;
+    border-radius: 4px;
+    position: relative;
+    width: calc(100% / 3);
+        }
+
+        .odd-filter table tbody tr.odds-row td ul li span {
+            display: none;
+        }
+
+        .middle-content .odds-section .banner {
+            display: none;
+        }
+        .middle-content .left-side {
+    width: 100%;
+    padding-left: 0;
+    margin-top: 20px;
+    padding-right: 0;
+    border-radius: 0px;
+}
+
+.odds-cover {
+    border-radius: 0px;
+    margin-top: 0px;
+}
+
+.odd-filter table .odds-row span {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;   
+}
+
+.game-icons {
+    padding: 0px;
+    margin: 0px;
+    border:0px;
+}
+
+.bottom-header {
+    padding-left: 0;
+}
+
+.top-header {
+    padding-left: 0px;
+    padding: 10px 0px;
+    height: auto;
+}
+
+.top-header .button-login {
+    margin: 20px auto 10px;
+}
+
+.logo-cover {
+    width: 100%;
+}
+.button-login button {
+    border-radius: 0;
+}
+
+header {
+    height: auto;
+}
+
+.top-footer {
+    margin-top: 20px;
+    padding: 20px 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.app-download-btn {
+    margin-left: 0;
+    margin: 15px auto 0px;
+}
+
+.top-footer p {
+    width: 100%;
+}
+footer .botton-footer {
+    padding-left: 15px;
+}
+
+.owl-carousel .item {
+    border-radius: 0px;
+}
+
+.middle-content .left-side-nav ul.nav-ul-left li {
+    padding-left: 0px;
+    width: auto;
+    text-align: center;
+    border-bottom: 0.5px solid #414872;
+    border-right: 1px solid #fff;
+    padding: 0px 5px;
+}
+
+.middle-content .left-side-nav ul.nav-ul-left {
+    flex-wrap: nowrap;
+    overflow-y: auto;
+}
+
+.middle-content .left-side-nav ul.nav-ul-left li a  {
+    white-space: nowrap;
+}
+
+.game-slider .owl-carousel .owl-nav .owl-next {
+    background: #fff;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    font-size: 32px;
+    line-height: 0;
+}
+}

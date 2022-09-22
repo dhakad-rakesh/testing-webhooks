@@ -1,0 +1,54 @@
+<%= link_to bets_admin_reports_path(request.parameters.merge(format: "csv")), class: 'btn btn-sm btn-primary pull-right' do %>
+  <span>CSV <i class="fa fa-download"></i></span>
+<% end %>
+<table class="dt-reports table table-hover bet-report-list">
+  <thead>
+    <tr>
+      <th><%= t('admin.reports.bets.id') %></th>
+      <th><%= t('admin.reports.bets.created') %></th>
+      <th><%= t('admin.reports.bets.player_id') %></th>
+      <th><%= t('admin.reports.bets.tournament') %></th>
+      <th><%= t('admin.reports.bets.match') %></th>
+      <th><%= t('admin.reports.bets.currency') %></th>
+      <th><%= t('admin.reports.bets.stake') %></th>
+      <th><%= t('admin.reports.bets.odds') %></th>
+      <th><%= t('admin.reports.bets.market_id') %></th>
+      <th><%= t('admin.reports.bets.status') %></th>
+      <th><%= t('admin.reports.bets.winning') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if bets.present? %>
+      <% bets.each do |bet| %>
+        <tr class="gradeX">
+          <td><%= bet.id %></td>
+          <td><%= short_date_time(bet.created_at) %></td>
+          <td><%= link_to bet.user.user_number, admin_user_path(bet.user) %></td>
+          <td><%= link_to bet.tournament.name, admin_tournament_path(bet.tournament) %></td>
+          <td><%= link_to bet.match.name, admin_match_path(bet.match) %></td>
+          <td><%= bet.wallet.currency %></td>
+          <td><%= format_currency(amount: bet.stake) %></td>
+          <td><%= bet.odds.to_f %></td>
+          <td><%= bet.market_id %></td>
+          <td>
+            <span class="label label-<%= bet_label(bet.status) %>">
+              <%= bet.status.titleize %>
+            <span>
+          </td>
+          <td><%= format_currency(amount: bet.winnings) %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=9>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate bets, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>
+
+<%= javascript_include_tag 'admin/reports' %>

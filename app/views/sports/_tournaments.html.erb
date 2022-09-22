@@ -1,0 +1,50 @@
+<% if @tournaments.present? %>
+  <% results = [] %>
+
+  <% @tournaments.each_with_index do |tournament, index| %>
+    <% matches = tournament.matches %>
+    <% next if matches.blank? %>
+
+    <% searched_matches = searched_matches(matches, @searched_team_ids) if params[:search].present? %>
+
+    <% next if (params[:search].present? && searched_matches.blank? && !@searched_tournaments_ids.include?(tournament.id)) %>
+
+    <% results << searched_matches&.pluck(:id) %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tournament.id %>">
+            <span>
+              <%= highlight_search_string(tournament.name, params[:search]) %>
+              <span class="fa fa-angle-down pull-right"></span>
+            </span>
+          </a>
+        </h4>
+      </div>
+      <div id="collapse<%= tournament.id %>" class="panel-collapse collapse <%= 'in' if index.zero? %> sports-matches">
+        <div class="panel-body">
+          <ul>
+            <% if matches.present? %>
+              <% matches.each do |match| %>
+                <% next if (params[:search].present? && searched_teams(match, @searched_team_ids).blank?) && !@searched_tournaments_ids.include?(tournament.id) %>
+                <li>
+                  <div class="yellowgreen">
+                    <%= link_to schedule_time(match.schedule_at), sport_match_path(@sport.id, match.id) %>
+                  </div>
+                  <%# title = "#{truncate(match.title, length: 30)}" %>
+                  <%= link_to highlight_search_string(match.title,params[:search]), sport_match_path(@sport.id, match.id), class: "pad-bottom-10" %>
+                </li>
+              <% end %>
+            <% else %>
+              No upcoming matches found
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= 'No Results Found.' if results.blank? %>
+<% else %>
+  No Tournament Found.
+<% end %>

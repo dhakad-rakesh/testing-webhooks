@@ -1,0 +1,55 @@
+
+<div class="heading">
+  <ul>
+    <li>
+      Matches <%= ' (Live)' if params[:scope] == "live" %>
+    </li>
+  </ul>
+</div>
+<div class="col-md-9 col-sm-9 col-xs-12 padding-right0 padding-left0">
+  <div class="tab-content scrollator" id="middle-content">
+    <div id="menu" class="tab-pane fade active in">
+      <div class="panel-group" id="accordion">
+        <% if @matches.present? %>
+          <% @matches.each do |match| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= match.id %>">
+                    <span>
+                      <%= match.tournament.name %>
+                      <span class="fa fa-angle-down pull-right"></span>
+                    </span>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse<%= match.id %>" class="panel-collapse collapse in sports-matches">
+                <div class="panel-body">
+                  <% match.competitors.each do |competitor| %>
+                    <ul>
+                      <li>
+                        <%= link_to "#{competitor.qualifier.titleize} : #{competitor.name}", sport_match_path(match.sport.id, match.id) %>
+                      </li>
+                      <li>
+                        <%= link_to "Goals: #{competitor.goals}", sport_match_path(match.sport.id, match.id) %>
+                      </li>
+                    </ul>
+                  <% end %>                  
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          No Matches Found.
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-3 col-md-3 col-xs-12 padding-right0 padding-left0">
+  <div class="right-menu-bg">
+    <div class="right-tab-section">
+    </div>
+  </div>
+</div>
+<%= render 'layouts/offers'%>

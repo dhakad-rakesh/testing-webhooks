@@ -1,0 +1,107 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%#= @user.is_sub_admin? ? t('sub_admins.sub_admin') : t('resellers.reseller') %>Affiliate</h2>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to admin_admin_users_path, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-bottom: 0px;">
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+      <h5>Report</h5>
+      <%= render partial: 'admin/ledgers/admin_wallet_report' %>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Information</h5>
+          <div class="pull-right">
+            <% if current_admin_user.is_super_admin? %>
+              <%= link_to t('edit'), edit_admin_admin_user_path(@user) %>
+            <% end %>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <table class="table">
+            <tbody>
+              <% %w[email first_name last_name].each do |field| %>
+                <tr>
+                  <td><b><%= "#{t(field)}:" %></b></td>
+                  <td><%= @user[field] || '-' %></td>
+                </tr>
+              <% end %>
+              <%# unless @user.is_sub_admin? %>
+<!--                 <tr>
+                  <td><b><%#= t(".available_balance") %>:</b></td>
+                  <td>
+                    <b><%#= number_with_precision(@user.available_amount, precision: 2) %></b>
+                    <%#= link_to t('.update_wallet'), edit_admin_admin_user_wallet_path(@user.current_wallet, admin_user_id: @user.id), class: "btn btn-success" %>
+                  </td>
+                </tr> -->
+                <tr>
+                  <td><b><%= t("manager") %>:</b></td>
+                  <td><%= reselles_owner(@user) %></td>
+                </tr>
+                <tr>
+                  <td><b><%= t("reciever_address") %>:</b></td>
+                  <td><%= @user.reciever_address %></td>
+                </tr>
+                <tr>
+                  <td><b><%= "UTM Code" %>:</b></td>
+                  <td><%= @user.try(:code) %></td>
+                </tr>
+                <tr>
+                  <td><b><%= t("Link") %>:</b></td>
+                  <td><%= "#{Figaro.env.FRONTEND_URL}/af/#{@user.try(:code)}" %></td>
+                </tr>
+              <%# end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <%# unless @user.is_sub_admin? %>
+      <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5><%= t('details') %></h5>
+          </div>
+          <div class="ibox-content">
+            <table class="table">
+              <tbody>
+                <!-- <tr>
+                  <td><b><%#= t('.available_balance') %>: <%#= number_with_precision(@user.available_amount, precision: 2) %></b></td>
+                  <td><%#= link_to t('.add_amount'), edit_admin_admin_user_wallet_path(@user.point_wallet, admin_user_id: @user.id) %></td>
+                </tr> -->
+                <tr>
+                  <td><%= link_to t('view_title', name: 'All transactions'), admin_admin_user_ledgers_path(admin_user_id: @user.id) %></td>
+                </tr>
+                <%# if current_admin_user.is_super_admin? %>
+                  <!-- <tr>
+                    <td><%#= link_to t('view_title', name: 'Admin wallet transactions'), report_admin_admin_user_ledgers_path(admin_user_id: @user.id) %></td>
+                  </tr> -->
+           <!--        <tr>
+                    <td><%#= link_to t('view_title', name: 'Self wallet transactions'), report_admin_admin_user_ledgers_path(admin_user_id: @user.id, wallet_type: "self") %></td>
+                  </tr> -->
+                  <tr>
+                    <td><%= link_to t('view_title', name: 'Users'), admin_admin_user_users_path(admin_user_id: @user.id) %></td>
+                  </tr>
+                <%# end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <%# end %>
+  </div>
+</div>

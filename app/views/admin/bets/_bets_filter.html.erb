@@ -1,0 +1,115 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="panel-title">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseBetsFilter">Filter</a>
+    </h5>
+  </div>
+  <div id="collapseBetsFilter" class="panel-collapse collapse">
+    <div class="panel-body-custom">
+      <table class="filter-table">
+        <tr>
+          <th>Bet ID</th>
+          <th>Sport Kind</th>
+          <th>Sport Name</th>
+          <th>Date and Time</th>
+        </tr>
+        <tr>
+          <td>
+            <%= text_field_tag :bet_id, nil, class: 'form-control', placeholder: 'Bet ID', autocomplete: "off" %>
+          </td>
+          <td>
+            <%= select_tag :sport_kind, options_for_select(sport_kind_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+          <td>
+            <%= select_tag :sport_id, grouped_options_for_select(sports_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+          <td>
+            <%= text_field_tag :bet_created_at, nil, class: 'date-range form-control', placeholder: 'Select date range', data: { behavior: 'daterangepicker' }, autocomplete: "off" %>
+            <%= hidden_field_tag :bet_created_at_start_date, nil, class: 'start-date' %>
+            <%= hidden_field_tag :bet_created_at_end_date, nil, class: 'end-date' %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Min Amount</th>
+          <th>Max Amount</th>
+          <th>Bet Type</th>
+          <th>Bet Status</th>
+        </tr>
+        <tr>
+          <td>
+            <%= text_field_tag :bet_min_amt, nil, class: 'form-control only-numeric', placeholder: 'Min Amount', autocomplete: "off" %>
+          </td>
+          <td>
+            <%= text_field_tag :bet_max_amt, nil, class: 'form-control only-numeric', placeholder: 'Max Amount', autocomplete: "off" %>
+          </td>
+          <td>
+            <%= select_tag :bet_type, options_for_select([['Single', 'not_combo', data: {link: search_admin_user_bets_path(@user)}], ['Combo', 'combo_bets', data: {link: search_admin_user_combo_bets_path(@user)}]]), { class: "form-control" } %>
+          </td>
+          <td>
+            <%= select_tag :bet_status, options_for_select(bet_status_options), { class: "form-control", :prompt => "All" } %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="panel-footer">
+      <div class="col-sm-offset-10">
+        <button class="btn btn-sm btn-primary search">Apply</button>
+        <button class="btn btn-sm btn-danger reset">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'admin/list_filter' %>
+
+<script>
+  $(".only-numeric").bind("keypress", function (e) {
+    var keyCode = e.which ? e.which : e.keyCode
+    if (!(keyCode >= 48 && keyCode <= 57)) {
+      return false;
+    }       
+  });
+
+  $("#collapseBetsFilter .search").on("click", function() {
+    const bet_id = $("#bet_id").val();
+    const sport_kind = $("#sport_kind").val();
+    const sport_id = $("#sport_id").val();
+    const bet_created_at = $("#bet_created_at").val();
+    const bet_created_at_start_date = $("#bet_created_at_start_date").val();
+    const bet_created_at_end_date = $("#bet_created_at_end_date").val();
+    const bet_type = $("#bet_type").val();
+    const bet_min_amt = $("#bet_min_amt").val();
+    const bet_max_amt = $("#bet_max_amt").val();
+    const bet_status = $("#bet_status").val();
+    const address = $("#bet_type :selected").data('link');
+    const data = {
+      'bet_id': bet_id,
+      'sport_kind': sport_kind,
+      'sport_id': sport_id,
+      'bet_created_at': bet_created_at,
+      'bet_created_at_start_date': bet_created_at_start_date,
+      'bet_created_at_end_date': bet_created_at_end_date,
+      'bet_type': bet_type,
+      'bet_min_amt': bet_min_amt,
+      'bet_max_amt': bet_max_amt,
+      'bet_status': bet_status
+    }
+
+    getAjaxJs(address, data)
+  });
+
+  $('.reset').on('click', () => {
+    $("#bet_id").val('');
+    $("#sport_kind").val('');
+    $("#sport_id").val('');
+    $("#bet_created_at").val('');
+    $("#bet_created_at_start_date").val('');
+    $("#bet_created_at_end_date").val('');
+    $("#bet_type").val('not_combo');
+    $("#bet_min_amt").val('');
+    $("#bet_max_amt").val('');
+    $("#bet_status").val('');
+    $('.search').trigger('click');
+  });
+</script>

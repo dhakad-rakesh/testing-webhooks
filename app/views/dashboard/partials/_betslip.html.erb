@@ -1,0 +1,112 @@
+<div id="bet-slip-modal" class="long-term-popup">
+  <div class="bg-color">
+    <div class="close-btn">
+      <span class="close">&times;</span>
+    </div>
+    <div class="right-section">
+      <div id="sidebar">
+        <div>
+          <p class="bet-slip-head">
+            BET SLIP
+          </p>
+        </div>
+        <div>
+          <ul class="nav nav-tabs bet-slip-tabs">
+            <% bet_slips = Rails.cache.fetch(Utility::Cache.player_bet_slips_cache_key(current_user&.id)) { [] } %>
+          </ul>
+          <div class="tab-content bet-slip-content">
+            <%= hidden_field_tag 'max-bet-limit', user_wallet_limit %>
+            <%= hidden_field_tag 'slip-selecting-limit', Constants::SLIP_SELECTING_LIMIT %>
+            <div id="combo" class="tab-pane fade in active">
+              <% is_combo = bet_slips.count > 0 %>
+              <div class="betting-slip">
+                <%= render 'dashboard/partials/betslip_content', bet_slips: bet_slips, type: 'combo' %>
+              </div>
+
+              <div id='combo_bet_stake' class="first-content combo-bet-stake" style="display:<%= is_combo ? 'table;' : 'none;' %>">
+                <div class="stake-per-bet">
+                  <p>Stake per bet</p>
+                  <div class="stake-input">
+                    <input class="total-combo-bid-value only-numeric" name="stake"/>
+                  </div>
+                </div>
+                <div class="quick-bet">
+                  <p>Quick bet</p>
+                  <ul>
+                    <li><span>10</span></li>
+                    <li><span>50</span></li>
+                    <li><span>100</span></li>
+                    <li><span>250</span></li>
+                    <li><span>500</span></li>
+                    <li><span>750</span></li>
+                    <li><span>1000</span></li>
+                  </ul>
+                </div>
+              </div>
+              <% total_bets_count = bet_slips.count %>
+              <div id='combo_bet_info' class="first-content combo-bet-info" style="display:<%= is_combo ? 'table;' : 'none;' %>"> 
+                <div class="bets-total">
+                  <div>
+                    <p>
+                      <span class="pull-left">Number of Bets</span>
+                      <span class="pull-right number-of-bets"><%= total_bets_count %></span>
+                    </p>
+                    <p>
+                      <span class="pull-left">Odds</span>
+                      <span class="pull-right combo-odds"><%= combo_odds(bet_slips) %></span>
+                    </p>
+                    <p>
+                      <span class="pull-left"><b>Total Return</b></span>
+                      <span class="pull-right total-value"><b>0.00</b></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="place-bets">
+                <ul>
+                  <li>
+                    <button class="submit-button" data-total_winning="<%= total_betted_winning %>" <% if bet_slips.count < 1 %>disabled="true"<% end %>>Place bets</button>
+                  </li>
+                  <li>
+                    <button class="remove-bet-slip" <% if bet_slips.count < 1 %>disabled="true"<% end %>>Clear all</button>    
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bet-slip-entry" hidden="true">
+      <div class="first-content bet-data combo-bet-data" data-name="">
+        <input type='hidden' name='market_uid' class='market-uid'></input>
+        <input type='hidden' name='market_id' class='market-id'></input>
+        <input type='hidden' name='match_id' class='match-id'></input>
+        <input type='hidden' name='outcome_id' class='outcome-id'></input>
+        <input type='hidden' name='identifier' class='identifier'></input>
+        <div class="betslip-head">
+          <p>
+            <span class="market-name pull-left"></span> @
+            <span class="odds"></span>
+            <span class="pull-right close-button">X</span>
+          </p>
+        </div>
+        <p class="match-name"></p>
+        <p class="outcome-name"></p>
+        <div class="bottom-section">
+          <!-- <p class="match-price">
+            <span></span>
+            <span></span>
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    onlyNumeric();
+  });
+</script>

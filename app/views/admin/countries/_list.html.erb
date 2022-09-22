@@ -1,0 +1,26 @@
+<div class="table-responsive">
+  <table class="table table-hover sport_country_list">
+    <thead>
+      <tr>
+        <th><%= t('id') %></th>
+        <th><%= t('name') %></th>
+        <th><%= t('rank') %></th>
+      </tr>
+    </thead>
+    <tbody id="countries-sortable-body">
+      <% sport_countries.each_with_index do |sc, index| %>
+        <tr id="<%= sc.id %>" class="gradeX">
+          <td class="center"><%= sc.id %></td>
+          <td class="center"><%= sc.country.name %></td>
+          <td class="center" id="rank_<%= sc.id %>"><%= sc.rank || 'NA' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    sortableCountryJs();
+  });
+</script>

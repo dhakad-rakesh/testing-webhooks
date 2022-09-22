@@ -1,0 +1,45 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: 'invalid'
+            password:
+              bad_password: 'Complexity requirement not met. Length should be 6-14 characters and include: 1 letter, 1 digit, 1 special character except: <> : $ % '
+              common_password: 'Must not contain parts of name or email'
+            username:
+              invalid: 'must only contain alphanumeric characters and no special characters.'
+              blank: 'is required'
+              taken: 'already taken'
+            phone:
+              taken: 'is already registered with us. Please login instead of signup.'
+              not_available: 'is not available'
+            locale:
+              not_supported: 'not supported'
+            email: 
+              blank: 'is required'
+              taken: 'already taken'
+            metamask_address:
+              taken: 'already taken'
+              blank: 'is required'          
+    attributes:
+      user:
+        first_name: 'First name'
+        last_name: 'Last name'
+        username: 'Username'
+        email: 'Email'
+        occupation: 'Occupation'
+        organization: 'Organization'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        current_password: 'Current password'
+        reality_check_timer: 'Reality check timer'
+        exclusion_time: 'Self exclusion time'
+        selfie_picture: 'Selfie with govt id'
+        govt_id_picture: 'Govt id proof'
+        kyc_status: 'KYC status'
+        metamask_address: 'Metamask Address'
+
+        

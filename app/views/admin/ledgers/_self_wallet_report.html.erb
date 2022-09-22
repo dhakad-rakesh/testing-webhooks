@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <!-- <th><%#= t('transaction.date') %></th> -->
+      <th>Credit To Self Wallet</th>
+      <th>Deposit From Self Wallet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <!-- <td><input type="text" name="report_date_range" class='form-control' value='<%#= "#{@start_date.to_s} - #{@end_date.to_s}" %>' readonly></td> -->
+      <td><%= format_currency(amount: @credited_amount) %></td>
+      <td><%= format_currency(amount: @debited_amount) %></td>
+    </tr>
+  </tbody>
+</table>

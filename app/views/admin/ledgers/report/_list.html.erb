@@ -1,0 +1,36 @@
+<%# if params[:wallet_type] == 'self' %>
+  <%#= render partial: 'self_wallet_report' %>
+<%# else %>
+  <%#= render partial: 'admin_wallet_report' %>
+<%# end %>
+
+<h4>Transactions List</h4>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t('transaction.date') %></th>
+      <th><%= t('transaction_type') %></th>
+      <th><%= t('recipient') %></th>
+      <th><%= t('amount') %></th>
+      <th><%= t('remark') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @ledgers.present? %>
+      <% @ledgers.each do |ledger| %>
+        <tr>
+          <td><%= current_time(ledger.created_at) %></td>
+          <td><%= ledger.transaction_type&.humanize %></td>
+          <td><%= ledger.betable.try(:username) || ledger.betable.email %></td>
+          <td><%= format_currency(amount: ledger.amount&.abs) %></td>
+          <td><%= ledger.remark %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=10>No data found<td>
+      <tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @ledgers, renderer: BootstrapPagination::Rails %>

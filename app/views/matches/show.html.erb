@@ -1,0 +1,141 @@
+<div class="heading">
+  <div class="col-md-9 col-sm-9 col-xs-12">
+    <ul>
+      <li>
+        <% if @live_match.present? %>
+          Soccer <%= "/ #{@live_match&.tournament&.name} /  #{@live_match&.title}" %>
+          <% if @live_match.in_progress? %>
+            <span>
+              (Score: <span id='running_score'><%= @live_match.score %></span> | Time: <span id='running_time'><%= @live_match.running_time %></span>)
+            </span>
+          <% end %>
+        <% else %>
+          Soccer
+        <% end %>
+      </li>
+      <!--<li>
+        <%#= image_tag 'icons', class: "img-responsive", alt: "icons" %>
+      </li> -->
+      <li>
+        <% redirecting_path = get_path_for_back_button %>
+        <%= link_to redirecting_path, class: 'back-button' do %>
+          <i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Back
+        <% end %>
+      </li>
+    </ul>
+  </div>  
+</div>
+<div class="col-md-9 col-sm-9 col-xs-12 padding-right0 padding-left0">
+  <div class="tab-content scrollator" id="middle-content">
+    <div id="menu" class="tab-pane fade active in">
+      <div class="panel-group" id="accordion">
+        <% if @markets.present? %>
+          <% bet_slips = Rails.cache.fetch(Utility::Cache.player_bet_slips_cache_key(current_user&.id)) { [] } %>
+          <% @markets.each do |market_id, market_data| %>
+            <% market_name = market_data.first.last[:name] %>
+            <% market_uid = market_data.first.last[:uid] %>
+            <% next unless enabled_market? market_uid.to_s %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= market_id %>">
+                    <span>
+                      <%= market_name %><span class='bet-stopped'></span>
+                      <span class="fa fa-angle-down pull-right"></span>
+                    </span>
+                  </a>
+                </h4>
+              </div>
+              <div id="cover-spin">
+                <p>Loading....</p>
+              </div>
+              <% market_data.each do |identifier, value| %>
+                <div class="panel panel-default">
+                  <div id="collapse<%= market_id %>-<%= identifier %>" class="panel-collapse collapse in">
+                    <div class="panel-body outcome-rows">
+                      <% if value[:status] == "0" %>
+                        <div id="collapse<%= market_id %>-<%= identifier %>" class="panel-collapse collapse in">
+                          <div class="panel-body">
+                            <ul class="nav">
+                              <!--<li>
+                                <%#= identifier.gsub('total=', '') %>
+                              </li>-->
+                              <li class='nav-item'>
+                                Bet stopped!!
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      <% else %>
+                        <ul class="nav">
+                          <%# outcome_count = value[:outcomes].count+1 %>
+                          <% value[:outcomes].each do |outcome| %>
+                            <% is_active = active_outcome?(bet_slips, market_id: market_id, match_id: @live_match.id, outcome_id: outcome.first) %>
+                            <li class="nav-item <%= is_active ? 'outcome-active' : '' %>" style="width: calc(100% / 3);" li-data-outcome-id="<%= outcome.first %>">
+                              <a href="JavaScript:Void(0)">
+                                <div class="outcomes" data-name="<%= outcome.last[:name] %>" data-odds="<%= outcome.last[:odds] %>" data-market-name="<%= value[:name] %>" data-market-uid="<%= market_uid %>" data-market-id="<%= market_id %>" data-match-name="<%= @live_match.title %>" data-match-id="<%= @live_match.id %>" data-outcome-id="<%= outcome.first %>" data-identifier="<%= outcome.last[:handicap].present? ? { handicap: outcome.last[:handicap] } : {} %>" data-identifier-id="<%= identifier %>"><%= match_outcome_name(outcome.last, market_uid) %>
+                                  <span class="currency">
+                                    <span class="outcome-odd"><%= number_with_precision(outcome.last[:odds], precision: 2) %></span>
+                                  </span>
+                                </div>
+                              </a>
+                            </li>
+                          <% end %>
+                        </ul>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <center>No odds available for betting.</center>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="heading">
+    <ul class="pull-right">
+      <li>
+        <%= link_to redirecting_path, class: 'back-button' do %>
+          <i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Back
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class='bet_slip_partial'>
+  <%= render partial: 'bet_slip', locals: { bets: @bets } %>
+</div>
+
+<script type="text/javascript">
+  <% if @live_match.actual_status == 'in_progress' %>
+    var live_match_id = '<%= @live_match.id %>';
+    var interval = '<%= Figaro.env.ODDS_CHANGE_INTERVAL %>';
+    // var odds_change_channel = '<%#= Constants::ODDS_CHANGE_CHANNEL %>';
+    // var channel = databaseChannel(realtimeDb, `${odds_change_channel}/${live_match_id}`);
+
+    // Update odds data
+    // subscribeOddsChange(channel, live_match_id);
+    subscribeOddsChange(interval, live_match_id);
+  <% end %>  
+  // var realtime = new Ably.Realtime("<%#= Figaro.env.ably_key %>");
+  // var channel = realtime.channels.get("<%#= Constants::ODDS_CHANGE_CHANNEL %>");
+  // channel.subscribe(function(msg) {
+  //   // TODO : Remove this
+  //   console.log(msg);
+  //   for(var matchId in msg.data){
+  //     for(var marketId in msg.data[matchId].markets){
+  //       for(var identifier in msg.data[matchId].markets[marketId]){
+  //         for(var outcomeId in msg.data[matchId].markets[marketId][identifier].outcomes){
+  //           outcomeName = msg.data[matchId].markets[marketId][identifier].outcomes[outcomeId].name;
+  //           outcomeOdd = msg.data[matchId].markets[marketId][identifier].outcomes[outcomeId].odds;
+  //           $(`.outcomes[data-outcome-id='${outcomeId}'][data-market-id='${marketId}'][data-identifier='${identifier}']`).attr('data-odds', outcomeOdd);
+  //           $(`.outcomes[data-outcome-id='${outcomeId}'][data-market-id='${marketId}'][data-identifier='${identifier}']`).text(`${outcomeName}  ${outcomeOdd}`);
+  //         }
+  //       }
+  //     }
+  //   }
+  // });
+</script>

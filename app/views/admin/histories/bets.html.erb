@@ -1,0 +1,36 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('admin.histories.payment_history') %></h2>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('payments')%></h5>
+        </div>
+        <div class="ibox-content">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><b><%= t('total_text', name: t('payments')) %></b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5><%= t('admin.histories.transaction_list')%></h5>
+        </div>
+        <div class="ibox-content">
+          <%= render 'ledgers', ledgers: @ledgers %>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

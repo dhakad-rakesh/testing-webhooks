@@ -1,0 +1,5 @@
+<% unless combo.pending? %>
+  <span class="badge badge-<%= combo.lost? ? 'danger' : 'success' %>">
+    <%= combo.amount.round(8) %>
+  </span>
+<% end %>

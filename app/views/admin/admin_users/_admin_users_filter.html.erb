@@ -1,0 +1,67 @@
+<div class="col-lg-12">
+  <div class="ibox float-e-margins listing-filter">
+    <div class="ibox-title">
+      <h5>Filter</h5>
+      <div class="ibox-tools">
+        <a class="collapse-link">
+          <i class="fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+    <div class="ibox-content" style="display: block;">
+      <table class="filter-table">
+        <tr>
+          <th>Name / Email</th>
+          <% unless is_sub_admin_tab?(params[:role]) %>
+            <!-- <th>Min Amount</th> -->
+            <!-- <th>Max Amount</th> -->
+            <!-- <th>Credit Type</th> -->
+          <% else %>
+            <th></th>
+            <th></th>
+            <th></th>
+          <% end %>
+        </tr>
+        <tr>
+          <td>
+            <input type="search" class="form-control query" placeholder="Name / Email" value="<%= params[:query] %>" style= "width: 30%; ">
+          </td>
+          <%if false %>
+          <% unless is_sub_admin_tab?(params[:role]) %>
+            <td>
+              <input type="search" name="min_amt" class='form-control min_amt only-numeric' placeholder="Search for min amount" value="<%= params[:min_amt] %>">
+            </td>
+            <td>
+              <input type="search" name="max_amt" class='form-control max_amt only-numeric' placeholder="Search for max amount" value="<%= params[:max_amt] %>">
+            </td>
+     <!--        <td>
+              <%#= select_tag 'amt_type', options_for_select([['Self Credit', 'reseller'], ['Admin Credit', 'currency']], params[:amt_type]), { class: "form-control" } %>
+            </td> -->
+          <% else %>
+            <td></td>
+            <td></td>
+            <td></td>
+          <% end %>
+        <% end %>
+        </tr>
+      </table>
+      <br/>
+      <div class="ibox-footer">
+        <div class="pull-right">
+          <button class="btn btn-sm btn-primary search_btn">Apply</button>
+          <button class="btn btn-sm btn-danger reset_btn">Reset</button>
+        </div><br/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    onlyNumeric();
+    search_url = "/admin/admin_users/search" + "<%= params[:role].present? ? '?role='+params[:role] : '' %>";
+    reset_url = "/admin/admin_users" + "<%= params[:role].present? ? '?role='+params[:role] : '' %>";
+    searchContent(search_url);
+    resetSearch(reset_url);
+  });
+</script>

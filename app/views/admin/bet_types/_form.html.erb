@@ -1,0 +1,32 @@
+<% url, method_type = bet_type.persisted? ? [admin_bet_type_path(bet_type), :patch] :  [admin_bet_types_path, :post] %>
+<%= form_for(bet_type, url: url, method: method_type) do |f| %>
+  <% if bet_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bet_type.errors.count, "error") %> <%= t('error_in_save', type: 'bet_type') %></h2>
+
+      <ul>
+      <% bet_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', style: 'width: 100%;' %>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :play_types, t('admin.bet_types.bet_types') %>
+    <%= f.collection_select(:play_types, PlayType.all, :id, :name, { selected: bet_type.play_types.collect(&:id)}, { multiple: true, class: 'form-control'}) %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit t('forms.submit'), class: 'btn btn-default' %>
+    <%= link_to :back, class: 'btn btn-primary' do %>
+      <span class="fa fa-arrow-circle-o-left"></span> Back
+    <% end %>
+  </div>
+<% end %>

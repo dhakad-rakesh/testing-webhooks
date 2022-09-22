@@ -1,0 +1,98 @@
+<div class="col-lg-12">
+  <div class="ibox float-e-margins listing-filter">
+    <div class="ibox-title">
+      <h5>Filter</h5>
+      <div class="ibox-tools">
+        <a class="collapse-link">
+          <i class="fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+    <div class="ibox-content" style="display: block;">
+      <%= form_with(url: search_admin_matches_path, method: "get") do %>
+        <table class="filter-table">
+          <tr>
+            <th>Sport</th>
+            <th>Tournament</th>
+            <th>Participants</th>
+            <th>Status</th>
+          </tr>
+          <tr>
+            <td>
+              <%= select_tag 'sport_id', grouped_options_for_select(sports_options, params[:sport_id]), { id: 'sport_id', class: "form-control", id: "sports", prompt: "All" } %>
+            </td>
+            <td>
+              <%= select_tag 'tournament', options_for_select(tournament_options, params[:tournament] || params[:tournament_id]), { prompt: 'All', id: 'tournament', class: "form-control select-2"} %>
+            </td>
+            <td>
+              <%= text_field_tag :participants, params[:participants] ,class: "form-control form-control-sm search", placeholder: 'Participant Name' %>
+            </td>
+            <td>
+              <%= select_tag 'match_status', options_for_select(match_status_options, params[:match_status]), { id: 'match_status', class: "form-control", prompt: "All" } %>
+            </td>
+          </tr>
+
+          <tr>
+            <!-- <th>Highlighted</th> -->
+            <th>Enabled</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+<!--             <td>
+              <%#= select_tag 'highlight', options_for_select(highlighted_options, params[:highlight]), { id: 'highlight', class: "form-control" } %>
+            </td> -->
+            <td>
+              <%= select_tag 'enabled', options_for_select(enabled_options, params[:enabled]), { id: 'enabled', class: "form-control" } %>
+            </td>
+          </tr>
+        </table>
+        <br/>
+        <div class="ibox-footer">
+          <div class="pull-right">
+            <button type="submit" class="btn btn-primary btn-search" tabindex="0" aria-controls="DataTables_Table_0"><span>Apply</span></button>
+            <a href="#-" class="btn btn-default btn-reset" tabindex="0" aria-controls="DataTables_Table_0"><span>Reset</span></a>
+          </div><br/>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".select-2").select2({
+    placeholder: "Select a tournament"
+  });
+
+  $('.btn-reset').click(function(){
+    $('select').prop('selectedIndex',0);
+    $('#participants').val('');
+    $('.select-2').trigger('change');
+    $('.btn-search').trigger('click');
+  });
+
+  $("#sports").on('change', function(){
+    var id = $(this).val();
+    getAjax('/admin/matches/fetch_tournaments', { sport_id: id });
+  });
+
+  $("#sports").on("change", function() {
+    id = this.value;
+    $.ajax({
+      url: "/admin/matches/fetch_tournaments",
+      type: "GET",
+      data: {'sport_id': id },
+      dataType: 'json',
+      error: function (xhr, ajaxOptions, thrownError){
+        toastr.error('Invalid request');
+      },
+      success: function(data) {
+        $("#tournament option").remove();
+        data['tournaments'].forEach((tournament) => {
+          option = `<option value="${tournament.id}">${tournament.title}</option>`
+          $(option).appendTo("#tournament");
+        })
+      }
+    });
+  });
+</script>

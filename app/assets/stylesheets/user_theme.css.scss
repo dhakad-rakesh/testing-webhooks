@@ -1,0 +1,49 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require toastr
+ *= require ./user/docs.theme.min.css
+ *= require ./user/style
+ *= require ./user/live-betting.css
+ *= require fm.scrollator
+ *= require casino
+ *= require ./user/flags
+ *= require ./user/owl.carousel.min
+ *= require ./user/owl.theme.default.min.css
+ *= require ./user/signup
+ *= require ./user/funds_transfer
+ *= require ./admin/daterangepicker
+ *= require ./user/responsive
+ */
+
+
+// Basic Colors
+$navy: #1ab394;       // Primary color
+$dark-gray: #c2c2c2;  // Default color
+$blue: #1c84c6;       // Success color
+$lazur: #23c6c8;      // Info color
+$yellow: #f8ac59;     // Warning color
+$red: #ED5565;        // Danger color
+// Various colors
+$text-color: #676a6c;   // Body text
+$gray: #f3f3f4;         // Background wrapper color
+$light-gray: #D1DADE;   // Default label, badge
+$label-badge-color: #5E5E5E;
+$light-blue:#f3f6fb;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'bootstrap/theme';
+@import "admin/base/badges_labels";
+
+.form-control {
+  color: #555;
+}

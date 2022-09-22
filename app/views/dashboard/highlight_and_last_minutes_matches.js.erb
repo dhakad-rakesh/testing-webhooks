@@ -1,0 +1,2 @@
+$("#highlight_matches").html("<%= escape_javascript(render(:partial => 'dashboard/partials/match_list', locals: { matches: @highlighted_matches })) %>");
+$("#last_minutes_matches").html("<%= escape_javascript(render(:partial => 'dashboard/partials/match_list', locals: { matches: @last_minutes_matches })) %>");

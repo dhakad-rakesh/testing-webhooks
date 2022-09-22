@@ -1,0 +1,24 @@
+Hi <%= @email %>,
+<br>
+<br>
+Congratulations, you have won your bet for <%= @match_title %> match on '<%= @bet.market_name %>' market. Please find the details below:
+<br>
+<br>
+Match : <%= @match_title %>
+<br>
+Market : '<%= @bet.market_name %>'
+<br>
+Outcome : '<%= @bet.outcome_name %>'
+<br>
+Stake : <%= @bet.stake %>
+<br>
+Odds: <%= @bet.odds %>
+<br>
+Winning Amount: <%= @winning_amount %>
+<br>
+Status: Won
+<br>
+<br>
+Regards,
+<br>
+<%= Figaro.env.project_name %> Team.

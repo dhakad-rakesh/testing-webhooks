@@ -1,0 +1,5 @@
+
+<% ad_images('Right').each do |ad| %>
+  <br>
+  <div><%= link_to image_tag(ad.ad_image.variant(resize: '275x158')), ad.ad_url, class: 'img-responsive', target: '_blank' %></div>
+<% end %>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% unless session[:gs_session] %>
+      <link rel="icon" href="<%= image_url 'favicon.png' %>" type="image/x-icon" sizes="16x16">
+    <% else %>
+      <link rel="icon" href="<%= image_url 'gs_favicon.png' %>" type="image/x-icon" sizes="16x16">
+    <% end %>
+    <title><%= Figaro.env.project_name %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body>
+    <header>
+    <nav class="navbar navabr-bg">
+      <div class="container-fluid">
+        <div>
+          <div class="navbar-header">
+            <a class="" href="#">
+              <% unless session[:gs_session] %>
+                <%= image_tag 'logo', class: "img-responsive logo-img", alt: "logo" %>
+              <% else %>
+                <%= image_tag 'gs_logo', class: "img-responsive logo-img", alt: "logo" %>
+              <% end %>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
+    </div>
+    <%= yield %>
+  </body>
+</html>

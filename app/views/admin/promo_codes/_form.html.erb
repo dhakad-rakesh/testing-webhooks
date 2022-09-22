@@ -1,0 +1,108 @@
+<% url = @promo_code.persisted? ? admin_promo_code_path(@promo_code) : admin_promo_codes_path %>
+<%= form_with model: @promo_code, url: url, local: true, class: 'form' do |f| %>
+ 
+  <div class="form-group col-lg-10">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', style: 'width: 100%;', required: true %>
+  </div>
+  
+  <div class="form-group col-lg-10">
+    <%= f.label :code %>
+    <%= f.text_field :code, class: 'form-control', required: true %>
+    <%# <a class='btn btn-sm btn-primary generate_promo'>Generate Code</a> %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :promo_type %>
+    <%= f.select :promo_type, promo_type_options(selected: f.object.promo_type), {}, class: 'form-control', style: 'width: 100%;' %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :kind %>
+    <%= f.select :kind, promo_kind_options(selected: f.object.kind), {}, class: 'form-control', style: 'width: 100%;' %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :percent %>
+    <%= f.number_field :percent, min: 0, max: 100, class: 'form-control', style: 'width: 100%;', required: true, step: 0.01 %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :maximum_cashback %>
+    <%= f.number_field :maximum_cashback, value: @promo_code.maximum_cashback&.dig(:IQD), min: 0, class: 'form-control', style: 'width: 100%;', required: true, step: 0.01 %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :threshold_amount %>
+    <%= f.number_field :threshold_amount, value: @promo_code.threshold_amount&.dig(:IQD), min: 0, class: 'form-control', style: 'width: 100%;', required: true, step: 0.01 %>
+  </div>
+
+
+  <div class="form-group col-lg-10">
+    <%= f.label :status %>
+    <%= f.select :status, promo_status_options(selected: f.object.status), {}, class: 'form-control', style: 'width: 100%;' %>
+  </div>
+  
+  <% if false %>
+    <div class="form-group col-lg-10">
+      <%= f.label :valid_from %>
+      <%= f.date_field :valid_from, class: 'form-control', style: 'width: 100%;' %>
+    </div>
+  <% end %>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :valid_till %>
+    <%= f.date_field :valid_till, class: 'form-control', style: 'width: 100%;', max: "9999-12-31" %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :limit_per_user %>
+    <%= f.number_field :limit_per_user, min: 0, class: 'form-control', style: 'width: 100%;' %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :usage_limit %>
+    <%= f.number_field :usage_limit, min: 0, class: 'form-control', style: 'width: 100%;' %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit (f.object.new_record? ? t('create') : t('update')), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    nowDate = new Date();
+    mm = nowDate.getMonth()+1;
+    mm = mm < 10 ? `0${mm}` : mm;
+    dd = nowDate.getDate();
+    dd = dd < 10 ? `0${dd}` : dd;
+    date = `${nowDate.getFullYear()}-${mm}-${dd}`;
+    $("#promo_code_valid_from").attr('min', date);
+    $("#promo_code_valid_till").attr('min', date);
+
+    $('.generate_promo').click(() => {
+      $('#promo_code_code').val(Math.random().toString(36).toUpperCase().slice(5));
+    });
+
+    toggleInputs();
+    
+    $('#promo_code_kind').on('change', function() {
+      toggleInputs();
+    });
+
+    function toggleInputs() {
+      if($('#promo_code_kind').val() == "percentage") {
+        $("#promo_code_percent").parent().show();
+        $("#promo_code_percent").prop('disabled', false);
+        // $("#promo_code_maximum_cashback").prop('disabled', true);
+        // $("#promo_code_maximum_cashback").parent().hide();
+      } else {
+        $("#promo_code_percent").parent().hide();
+        $("#promo_code_percent").prop('disabled', true);
+        // $("#promo_code_maximum_cashback").prop('disabled', false);
+        // $("#promo_code_maximum_cashback").parent().show();
+      }
+    }
+  });
+</script>

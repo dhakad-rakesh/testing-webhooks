@@ -1,0 +1,39 @@
+<table class="dt-reports table table-hover bet-report-list">
+  <thead>
+    <tr>
+      <th><%= t('admin.reports.casino.created_at') %></th>
+      <th><%= t('admin.reports.casino.player_name') %></th>
+      <th><%= t('admin.reports.casino.game') %></th>
+      <th><%= t('admin.reports.casino.provider') %></th>
+      <th><%= t('admin.reports.casino.bet_type') %></th>
+      <th><%= t('admin.reports.casino.amount') %></th>
+      <th><%= t('admin.reports.casino.transaction_type') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @transactions.present? %>
+      <% @transactions.each do |transaction| %>
+        <tr class="gradeX">
+          <td><%= transaction.created_at %></td>
+          <td><%= link_to "#{transaction.first_name&.humanize} #{transaction.last_name&.humanize}", admin_user_path(transaction.user_id) %></td>
+          <td><%= transaction.game&.humanize %></td>
+          <td><%= transaction.provider&.humanize %></td>
+          <td><%= transaction.bet_type&.humanize %></td>
+          <td><%= format_currency(amount: transaction.amount) %></td>
+          <td><%= transaction_type(transaction.transaction_type) %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=9>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @transactions, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>
+
+<%= javascript_include_tag 'admin/reports' %>

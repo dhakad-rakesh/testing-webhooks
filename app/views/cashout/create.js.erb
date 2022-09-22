@@ -1,0 +1,25 @@
+<% if @status %>
+  combo_id = "<%= @combo_bet&.id %>";
+  single_id = "<%= @bet&.first&.id %>";
+  if (single_id) $(`#single-${single_id}`).remove();
+  if (combo_id) $(`#combo-${combo_id}`).remove();
+  $('.account-balance').html("<%= number_with_precision(current_user.available_amount, precision: 2) %>");
+  toastr.success("<%= I18n.t('bets.cashout.success') %>");
+<% elsif @cashout_error %>
+  toastr.error("<%= I18n.t('bets.cashout.validation_failed') %>");
+<% elsif @cashoutable_mismatch_error %>
+  alert("<%= I18n.t('bets.cashout.mistmatch_error') %>");
+  <% if params[:combo_id].present? %>
+    cashout({ combo_id: '<%= @combo_bet.id %>', cashoutable: JSON.parse('<%= @combo_bet.cashoutable.to_json.html_safe %>'), mismatch: true });
+  <% else %>
+    cashout({ id: '<%= @bet_data.first.id %>', cashoutable: JSON.parse('<%= @bet_data.first.cashoutable.to_json.html_safe %>'), mismatch: true });
+  <% end %>
+<% else %>
+  toastr.error('<%= @failed_bets.flatten.first[:errors].reverse.join(", ") rescue '' %>');
+<% end %>
+<% if params[:id] %>
+  $('#cashout_action_<%= @bet.first.id %>').html("<%= escape_javascript render(:partial => 'cashout/cashout_action', locals: { bet: @bet.first.reload }) %>");
+<% else %>
+  // $('#combo_amount_<%= @combo_bet.id %>').html("<%#= escape_javascript render(:partial => 'cashout/combo_amount', locals: { combo: @combo_bet.reload }) %>");
+  $('#combo_cashout_action_<%= @combo_bet.id %>').html("<%= escape_javascript render(:partial => 'cashout/combo_cashout_action', locals: { combo_bet: @combo_bet.reload }) %>");
+<% end %>  

@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="modal fade-scale casino-modal" id="launchCasinoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <iframe id='init_casino_game' src="" class='holds-the-iframe'>
+          <p>Please try again later...!</p>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#launchCasinoModal .close').click(function() {
+    if (confirm('Are you sure, you want to quit the game?')) {
+      $('#init_casino_game').attr('src', '');
+      $("#launchCasinoModal").modal('hide');
+    }
+  });
+
+</script>

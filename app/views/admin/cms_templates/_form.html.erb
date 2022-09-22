@@ -1,0 +1,61 @@
+<% url = @cms_template.persisted? ? admin_cms_template_path(@cms_template) : admin_cms_templates_path %>
+<%= form_with model: @cms_template, url: url, local: true, class: 'form' do |f| %>
+  <%# %I[ template_for].each do |column| %>
+    <div class="form-group col-lg-10">
+      <%= f.label :subject %>
+      <%= f.text_field :subject, class: 'form-control', style: 'width: 100%;', required: true %>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <%= f.label :content %>
+      <%= f.text_area :content, 'data-provider'=> :summernote, required: true %>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <%= f.label :schedule_at %>
+      <%= f.text_field :schedule_at, class: 'date-range form-control', placeholder: 'Select date range', data: { behavior: 'daterangepicker' }, autocomplete: "off" %>
+    </div>
+
+    <div class='form-group col-lg-10'>
+      <%= f.label :template_for %>
+      <%= f.select :template_for, CmsTemplate::template_fors.map{|key, _val| [key.humanize, key.to_sym]}, {}, class: 'form-control', style: 'width: 100%;', default: t('Header') %>
+    </div>
+
+
+  <div class="form-group col-lg-10">
+    <%= f.submit (f.object.new_record? ? t('create') : t('update')), class: 'btn btn-primary' %>
+    <%= link_to :back, class: 'btn btn-primary' do %>
+      <span class="fa fa-arrow-circle-o-left"></span> Back
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+  $('.date-range').datetimepicker({
+    useCurrent: false,
+    format:'DD/MM/YYYY HH:mm:ss',
+  });
+  <% unless  @cms_template.new_record? %>
+    $('.date-range').data("DateTimePicker").date(new Date('<%= @cms_template.schedule_at&.strftime("%Y/%m/%d %H:%M:%S")%>'))
+  <% end %>
+</script>
+<script type="text/javascript">
+
+  const block_schedule_at_templates = [ 'upcoming_event_notification',
+                                        'active_user_notification', 
+                                        'inactive_user_notification' ]
+
+  $("#cms_template_template_for").on('change', function(){
+    update_schedule_at_accessibility()
+  })
+
+  function update_schedule_at_accessibility(){
+    var template_choice = $("#cms_template_template_for").val()
+    if ( block_schedule_at_templates.includes(template_choice) )
+      { $("#cms_template_schedule_at").prop({"disabled": true, "required": false, "value": ""}) }
+    else
+      { $("#cms_template_schedule_at").prop({"disabled": false, "required": true }) }
+  }
+
+  update_schedule_at_accessibility()
+</script>

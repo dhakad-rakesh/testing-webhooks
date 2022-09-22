@@ -1,0 +1,67 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('casino.management') %></h2>
+    <h3><%= "#{@admin_user&.full_name} (#{@admin_user&.email})" if @admin_user.present? %></h3>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <%= link_to t('create_title', name: t('casino.menu')), new_admin_casino_menu_path, class: 'btn btn-default' %>
+          <%= link_to "List #{t('casino.menus')}", admin_casino_menus_path, class: 'btn btn-default' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h4>Menus</h4>
+          <%= link_to "All", admin_casino_index_path, class: "btn btn-default #{params[:menu].blank? ? 'active' : '' }" %>
+          <% @casino_menus.each do |menu| %>
+            <%= link_to menu.name, admin_casino_index_path(menu: menu.id), class: "btn btn-default #{params[:menu].to_i == menu.id ? 'active' : ''}" %>
+          <% end %>
+          <%= link_to "Un-Assigned", admin_casino_index_path(menu: 'un-assigned'), class: "btn btn-warning #{params[:menu] == 'un-assigned' ? 'active' : '' }" %>
+          <hr />
+
+          <h4>Item Types</h4>
+          <%= link_to 'All', admin_casino_index_path(menu: params[:menu], provider: params[:provider]), class: "btn btn-default  #{params[:item_type].blank? ? 'active' : '' }" %>
+          <% @item_types.each do |item_type| %>
+            <%= link_to item_type, admin_casino_index_path(item_type: item_type, menu: params[:menu], provider: params[:provider]), class: "btn btn-default  #{params[:item_type] ==  item_type ? 'active' : '' }" %>
+          <% end %>
+          <hr />
+
+ <!--          <h4>Providers</h4>
+          <%#= link_to 'All', admin_casino_index_path(menu: params[:menu], item_type: params[:item_type]), class: "btn btn-default #{params[:provider].blank? ? 'active' : '' }" %>
+          <%# @providers.each do |provider| %>
+            <%#= link_to provider, admin_casino_index_path(provider: provider, menu: params[:menu], item_type: params[:item_type]), class: "btn btn-default #{params[:provider] ==  provider ? 'active' : '' }" %>
+          <%# end %> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div>
+            <%= form_with(url: request.url, method: "get", html: { onsubmit: 'searchCasinoItem(event)' }) do %>
+              <%= text_field_tag(:query, nil ,class: "form-control query", value: params[:query], placeholder: 'Search casino items') %>
+              <%= submit_tag("Search", class: "btn btn-primary search_btn") %>
+            <% end %>
+          </div>
+          <br>
+          <div class="table-responsive" id="users_list">
+            <%= render partial: 'admin/casino/casino_items' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% if @status %>
+  submitBtn = $(`.submit-button`);
+  makeEnable(submitBtn);
+  submitBtn.data('total_winning', <%= @total_betted_winning %>);
+  $('.account-balance').html("<%= number_with_precision(@balance, precision: 2) %>");
+  removeBetslipContent();
+  toastr.success("<%= t('success_create', name: t('bet')) %> ");
+<% elsif @reload_bet_slips %>
+  $('.bet_slip_partial').html("<%= j render(partial: 'dashboard/partials/betslip') %>");
+  setScrollator($('.bet-slip-content'));
+  toastr.error("<%= t('odds_changed') %> ");
+<% end %>

@@ -1,0 +1,45 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('casino.management') %></h2>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <%= link_to t('create_title', name: t('casino.menu')), new_admin_casino_menu_path, class: 'btn btn-default' %>
+          <%= link_to "List Casino Items", admin_casino_index_path, class: 'btn btn-default' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="table-responsive" id="users_list">
+            <%= render partial: 'admin/casino_menus/casino_menus' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // $(document).ready(function() {
+  //   onlyNumeric();
+  //   address = '/admin/users/search';
+  //   searchContent(address);
+  //   resetSearch('/admin/users');
+  //   $('#arrange-items').on('change', function() {
+  //     commonSearchCode(address);
+  //   });
+  // });
+</script>

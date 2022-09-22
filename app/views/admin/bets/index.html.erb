@@ -1,0 +1,58 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('bets.bets') %></h2>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="table-responsive">
+            <%= will_paginate @bets, renderer: BootstrapPagination::Rails %>
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th><%= t('match') %></th>
+                  <th><%= t('period') %></th>
+                  <th><%= t('market') %></th>
+                  <th><%= t('outcome') %></th>
+                  <th><%= t('team') %></th>
+                  <th><%= t('bet_category') %></th>
+                  <th><%= t('bet_type')%></th>
+                  <th><%= t('status') %></th>
+                  <th><%= t('stake') %></th>
+                  <th><%= t('created') %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @bets.each do |bet| %>
+                  <tr>
+                    <td><%= bet.match.title %></td>
+                    <td><%= bet.period %></td>
+                    <td><%= bet.market_name %></td>
+                    <td><%= bet.outcome_name %></td>
+                    <td><%= bet.team_name %></td>
+                    <td><%= bet.bet_type %></td>
+                    <td><p class='green'><%= t('combo', combo_bet_id: bet.combo_bet_id) if bet.combo_bet_id.present? %></p></td>
+                    <td><%= bet.status %></td>
+                    <td><%= number_with_precision(bet.stake, precision: 2) %></td>
+                    <td><%= current_time(bet.created_at) %></td>
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+            <%= will_paginate @bets, renderer: BootstrapPagination::Rails %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

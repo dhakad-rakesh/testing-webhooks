@@ -1,0 +1,57 @@
+<%= form_for [:admin, match, betting_pool] do |f| %>
+
+  <% if betting_pool.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(betting_pool.errors.count, "error") %> <%= t('error_in_save', type: 'pool') %></h2>
+
+      <ul>
+      <% betting_pool.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', style: 'width: 100%;' %>
+    <div class="clearfix"></div>
+  </div>
+
+  <% if betting_pool.new_record? %>
+    <div class="form-group col-lg-10">
+      <%= f.label :match_id %>
+      <%= f.collection_select(:match_id, @matches, :id, :title, { selected: @betting_pool.matches&.collect(&:id)}, { multiple: true, class: 'form-control'}) %>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <%= f.label :entry_amount %>
+      <%= f.number_field :entry_amount, class: 'form-control', style: 'width: 100%;' %>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <%= f.label :points_per_user %>
+      <%= f.number_field :points_per_user, class: 'form-control', style: 'width: 100%;' %>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <%= f.label :minimum_participants %>
+      <%= f.number_field :minimum_participants, class: 'form-control', style: 'width: 100%;' %>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <%= f.label :winnings_distribution_method %>
+      <%= f.select :winnings_distribution_method, options_for_select(BettingPool.winnings_distribution_methods.map {|k, v| [k.humanize.capitalize, v]}, class: 'form-control') %>
+    </div>
+  <% end %>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit t('forms.submit'), class: 'btn btn-default' %>
+    <%= link_to :back, class: 'btn btn-primary' do %>
+      <span class="fa fa-arrow-circle-o-left"></span> Back
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+
+<%= form_with model: @wallet, url: update_currency_admin_user_wallet_path(@user, @wallet), local: true, class: 'form' do |f| %>
+  <div class="form-group col-lg-10">
+    <%= t('wallets.available_amount') %>: <b><%= number_to_currency(@user.available_amount, precision: 6, unit: @wallet.currency, format: "%n %u") %></b><br/><br/>
+    <%= link_to t('.update_wallet_funds'), edit_admin_user_wallet_path(@user, @user.current_wallet), class: "btn btn-success" %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.label :currency %>
+    <%= f.select :currency, ["IQD"], {}, class: 'form-control', style: 'width: 100%;' %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit t('update'), class: 'btn btn-primary' %>
+  </div>
+<% end %>

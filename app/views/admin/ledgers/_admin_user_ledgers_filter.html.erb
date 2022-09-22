@@ -1,0 +1,72 @@
+<div class="col-lg-12">
+  <div class="ibox float-e-margins listing-filter">
+    <div class="ibox-title">
+      <h5>Filter</h5>
+      <div class="ibox-tools">
+        <a class="collapse-link">
+          <i class="fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+    <div class="ibox-content" style="display: block;">
+      <table class="filter-table">
+        <tr>
+          <th>Search by date</th>
+          <th>Transaction Type</th>
+          <th>Min Amount</th>
+          <th>Max Amount</th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" name="report_date_range" class='form-control date-range'>
+          </td>
+          <td>
+            <%= select_tag 'transaction_type', options_for_select([['All', 'all'],['Credit', 'credit'], ['Debit', 'debit'], ['Refund', 'refund']], params[:query]), { class: "form-control transaction_type" } %>
+          </td>
+          <td>
+            <input type="search" name="min_amt" class='form-control min_amt only-numeric' placeholder="Search for min amount" value="<%= params[:min_amt] %>">
+          </td>
+          <td>
+            <input type="search" name="max_amt" class='form-control max_amt only-numeric' placeholder="Search for max amount" value="<%= params[:max_amt] %>">
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <div class="ibox-footer">
+        <div class="pull-right">
+          <button class="btn btn-sm btn-primary search_btn">Apply</button>
+          <button class="btn btn-sm btn-danger reset_btn">Reset</button>
+        </div><br/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    onlyNumeric();
+    page_title = (window.location.href.indexOf('admin_users') > -1) ? 'admin_users' : 'users';
+    action_name = (window.location.href.indexOf('affiliate_ledgers') > -1) ? 'search_affiliate' : 'search_admin';
+    let url = "/admin/"+page_title+"/<%= @user.id %>/ledgers";
+    searchContent(url + "/"+ action_name);
+    resetSearch(url);
+
+    $('input[name="report_date_range"]').daterangepicker({
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment()],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      },
+      locale: {
+        format: 'YYYY/MM/DD'
+      }
+    }, function(start, end, label) {
+      startDate = start.format('YYYY-MM-DD');
+      endDate = end.format('YYYY-MM-DD');
+      commonSearchCode(url + "/"+ action_name, startDate, endDate);
+    });
+  });
+</script>

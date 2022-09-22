@@ -1,0 +1,60 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t('transaction.id') %></th>
+      <th><%= t('transaction.date') %></th>
+      <th><%= t('transaction_type') %></th>
+      <th><%= t('reciever_address') %></th>
+      <th><%= t('transaction_id') %></th>
+      <!-- <th><%#= t('wallet_type') %></th> -->
+      <th><%= t('amount') %></th>
+      <th><%= t('remark') %></th>
+      <th><%= t('status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @ledgers.present? %>
+      <% @ledgers.each do |ledger| %>
+        <tr>
+          <td><%= ledger.id %></td>
+          <td><%= current_time(ledger.created_at) %></td>
+          <td><%= ledger.transaction_type&.humanize %></td>
+          <!-- <td><%#= ledger.wallet.wallet_type&.humanize %></td> -->
+          <td><%= ledger.account_details%></td>
+          <td><%= ledger.tracking_id %></td>
+          <td><%= format_currency(amount: ledger.amount) %></td>
+          <td><%= ledger.remark %></td>
+          <% if ledger.pending? %>
+            <td class="status">
+            <% if current_admin_user.is_super_admin? %>
+              <%= link_to retry_request_admin_transfer_funds_path(ledger_id: ledger.id ), method: :post, class: 'btn btn-success' do %>
+              Retry
+              <% end %>
+            <% else %>
+              Failed
+            <% end %>
+          </td>
+          <% else %>
+            <td class="status"><%= ledger&.status&.humanize %></td>
+          <% end %>
+          <% if false %>
+            <td>
+              <% if current_admin_user.is_super_admin? && !ledger.approved %>
+                <%= link_to approve_refund_admin_user_ledger_path(user_id: ledger.wallet&.usable&.id, id: ledger.id, page: params[:page]), class: 'btn btn-primary', data: { confirm: 'Do you want to approve this refund?', method: :patch } do %>
+                  Approve
+                <% end %>
+              <% else %>
+                <%= ledger.approved %>
+              <% end %> 
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=10>No data found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @ledgers, renderer: BootstrapPagination::Rails %>

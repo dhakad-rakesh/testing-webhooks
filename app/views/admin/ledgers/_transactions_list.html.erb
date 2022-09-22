@@ -1,0 +1,34 @@
+<%= link_to params[:action].eql?('search') ? search_admin_user_ledgers_path(request.parameters.merge(user_id: @user.id, format: "csv")) : admin_user_ledgers_path(user_id: @user.id, format: "csv"), class: 'btn btn-sm btn-primary pull-right' do %>
+  <span>CSV <i class="fa fa-download"></i></span>
+<% end %>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('date_and_time') %></th>
+      <th><%= t('amount') %></th>
+      <th><%= t('type') %></th>
+      <th><%= t('remark') %></th>
+      <th><%= t('payment_system') %></th>
+      <th><%= t('processed_by') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ledgers.each do |ledger| %>
+      <tr>
+        <td><%= ledger.id %></td>
+        <td><%= current_time(ledger.created_at) %></td>
+        <td><%= format_currency(amount: ledger.amount.abs) %></td>
+        <td><%= ledger.transaction_type&.humanize %></td>
+        <td><%= ledger.remark %></td>
+        <td><%= ledger.mode&.humanize || "-" %></td>
+        <td><%= ledger.admin_user&.full_name&.titleize || "-" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @ledgers, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>

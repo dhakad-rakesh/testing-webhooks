@@ -1,0 +1,121 @@
+<div class="col-md-12">
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5><%= "Top 5 Casino Games" %></h5>
+    </div>
+    <div class="ibox-content">
+      <div class="row">
+      <% unless filter.stats.blank? %>
+        <% filter.stats.each_with_index do |game, index|%>
+          <div class="col-md-2 dash-widget">
+            <div class="text-center">
+              <div class="">
+                <h3 class="font-bold no-margins">
+                  <%= game.name %>
+                </h3>
+                <small><%= t('admin.dashboard.profit.percent') %></small>
+              </div>
+              <div class="gauge-container-custom">
+                <div class="gauge-<%= "casino-#{index}" %>" data-profit="<%= number_with_precision(game.profit_percentage, precision: 2) %>"></div>
+              </div>
+              <!--<h1 class="font-bold"><%#= "#{sport.win_percentage}" %></h1>-->
+              <table class="top-sport-stats">
+                <tr>
+                  <th><%= t('admin.dashboard.top_sports.bets_amount') %>:</th>
+                  <td><%= format_currency(amount: game.total_stake_amount) %></td>
+                </tr>
+                <tr>
+                  <th><%= t('admin.dashboard.top_sports.total_winnings') %>:</th>
+                  <td><%= format_currency(amount: game.total_winnings) %></td>
+                </tr>
+                <tr>
+                  <th><%= t('admin.dashboard.top_sports.profit') %>:</th>
+                  <td><%= format_currency(amount: game.profit) %></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h5 class="text-center"><%= t('no_data_available') %></h5>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+$( document ).ready(function() {
+  const casino_0 = $('.gauge-casino-0').data('profit') || 0;
+  const casino_1 = $('.gauge-casino-1').data('profit') || 0;
+  const casino_2 = $('.gauge-casino-2').data('profit') || 0;
+  const casino_3 = $('.gauge-casino-3').data('profit') || 0;
+  const casino_4 = $('.gauge-casino-4').data('profit') || 0;
+  
+  c3.generate({
+    bindto: '.gauge-casino-0',
+    data:{
+      columns: [
+          ['Profit', casino_0]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#3cccdd', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-casino-1',
+    data:{
+      columns: [
+          ['Profit', casino_1]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#f8454c', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-casino-2',
+    data:{
+      columns: [
+          ['Profit', casino_2]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#feca3c', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-casino-3',
+    data:{
+      columns: [
+          ['Profit', casino_3]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#b9cd25', '#BABABA']
+    }
+  });
+
+  c3.generate({
+    bindto: '.gauge-casino-4',
+    data:{
+      columns: [
+          ['Profit', casino_4]
+      ],
+      type: 'gauge'
+    },
+    color:{
+      pattern: ['#47b450', '#BABABA']
+    }
+  });
+});
+</script>

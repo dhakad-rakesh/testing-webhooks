@@ -1,0 +1,35 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('cms') %></h2>
+  </div>
+  <div class="col-lg-2">
+    <div class="back-btn">
+      <%= link_to :back, class: 'btn btn-primary' do %>
+        <span class="fa fa-arrow-circle-o-left"></span> Back
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <%#= render "user_filter" %>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>CMS Template</h5>
+          <div class="ibox-tools">
+            <%= link_to "Add Template", new_admin_cms_template_path, class: "btn btn-primary btn-sm" %>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="table-responsive" id="cms-list">
+            <%= render 'list', cms_templates: @cms_templates %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th><%= t('id') %></th>
+      <th><%= t('category') %></th>
+      <th><%= t('subject') %></th>
+      <th><%= t('schedule_at') %></th>
+      <th><%= t('actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if cms_templates.present? %>
+      <% cms_templates.each do |cms_template| %>
+        <tr class="gradeX">
+          <td><%= cms_template.id %></td>
+          <td><%= cms_template.template_for.humanize %></td>
+          <td><%= cms_template.subject %></td>
+          <td><%= cms_template.schedule_at %></td>
+          <td>
+            <%= link_to admin_cms_template_path(cms_template), class: 'btn btn-primary' do %>
+              <span class="fa fa-eye"></span>
+            <% end %>
+            <%= link_to edit_admin_cms_template_path(cms_template), class: 'btn btn-primary' do %>
+              <span class="fa fa-pencil"></span>
+            <% end %>
+            <% if cms_template.allowed_send_now? %>
+              <%= link_to send_now_admin_cms_template_path(cms_template), method: :post, data: { confirm: 'Are you sure?'}, class: 'btn btn-primary' do %>
+                <span class="fa fa-paper-plane"></span>
+              <% end %>
+            <% end %>
+            <%= link_to admin_cms_template_path(cms_template), method: :delete, data: { confirm: 'Are you sure?'} , class: 'btn btn-danger' do %>
+              <span class="fa fa-trash"></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=5>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate cms_templates, renderer: BootstrapPagination::Rails %>
+
+<%#= javascript_include_tag 'admin/cms_templates/actions' %>

@@ -1,0 +1,70 @@
+<% url = @ad.persisted? ? admin_advertisement_path(@ad) : admin_advertisements_path %>
+<%= form_with model: @ad, url: url, local: true, class: 'form' do |f| %>
+
+  <%# %I[name ad_url].each do |column| %>
+    <div class="form-group col-lg-10">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', style: 'width: 100%;', required: true %>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <%= f.label :ad_url %><h5 style="color: grey;">Please provide the complete url with http or https and / in the end eg: https://www.betdefi.com/</h5>
+      <%= f.text_field :ad_url, class: 'form-control', style: 'width: 100%;' %>
+    </div>
+
+    <% if @ad.persisted? && !@ad&.per_click_cost.zero? %>
+    <% else %>
+      <div class="form-group col-lg-10">
+        <%= f.label :per_click_cost %>
+        <%= f.number_field :per_click_cost, class: 'form-control editable only-numeric', min: 0, style: 'width: 100%;', autocomplete: "off", step: 0.000001 %>
+      </div>
+    <% end %>
+  <%# end %>
+  <% if false %>
+    <div class='form-group col-lg-10'>
+      <%= f.label :position %>
+      <%= f.select :position, Advertisement::POSITIONS, {}, class: 'form-control', style: 'width: 100%;', default: t('Header') %>
+    </div>
+  <% end %>
+  <%= hidden_field_tag :position, 'right' %>
+
+  <div class='form-group col-lg-10'>
+    <%= f.label :web_ad_image %> <h5 style="color: grey;">Image dimentions: (250 x 300) px </h5>
+    <%= f.file_field :web_ad_image, class: 'form-control',  style: 'width: 100%;', accept: 'image/png,image/jpg,image/jpeg' %>
+    <% if @ad&.persisted? && @ad&.web_ad_image&.attached? %>
+      <%= image_tag @ad&.web_ad_image, class: 'ad-image' %>
+    <% end %>
+  </div>
+
+  <div class='form-group col-lg-10'>
+    <%= f.label :app_ad_image %><h5 style="color: grey;">Image dimentions: (375 x 100) px </h5>
+    <%= f.file_field :app_ad_image, class: 'form-control', style: 'width: 100%;', accept: 'image/png,image/jpg,image/jpeg' %>
+    <% if @ad&.persisted? && @ad&.app_ad_image&.attached? %>
+      <%= image_tag @ad&.app_ad_image, class: 'ad-image' %>
+    <% end %>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <div class="i-checks">
+      <%= f.label :enabled %>
+      <label>
+        <%= f.check_box :enabled %>
+        <i></i>
+      </label>
+      <h5 style="color: grey;">Note: Please upload image in the specified dimentions</h5>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-10">
+    <%= f.submit t('save'), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+
+<%# Home screen
+per
+top me
+size dhawal se puch le
+
+563*221
+size %>

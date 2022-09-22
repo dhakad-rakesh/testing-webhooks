@@ -1,0 +1,144 @@
+<header class="<%= params[:controller] == 'casino' ? 'casino-header-top' : '' %>">
+  <nav class="navbar navabr-bg">
+    <div class="container-fluid">
+      <div>
+        <div class="navbar-header">
+          <a class="" href="#">
+            <% unless session[:gs_session] %>
+              <%= image_tag 'logo', class: "img-responsive logo-img", alt: "logo" %>
+            <% else %>
+              <%= image_tag 'gs_logo', class: "img-responsive logo-img", alt: "logo" %>
+            <% end %>
+          </a>
+        </div>     
+        <div class="navigation">
+          <ul class="nav navbar-nav text-center links">
+            <li class=<%= active_sports %>><%= link_to 'SPORT', root_path %></li>      
+            <li class=<%= active_inplay %>><%= link_to 'IN-PLAY', sport_path(id: main_sport, scope: 'live') %></li>
+
+            <li class=<%= active_today %>><%= link_to 'TODAY`S', sport_path(id: main_sport, scope: 'today') %></li>
+
+            <li class=<%= active_my_bets %>><%= link_to 'MY BETS', my_bets_bets_path(match_id: @live_match&.id) %></li>
+            <li class=<%= casino_active_class %>>
+              <%= link_to "CASINO", casino_index_path %>
+            </li>
+            <li class=<%= casino_lobby_active_class %>>
+              <%= link_to "LIVE CASINO", casino_index_path(live_casino: 'true') %>
+            </li>
+            <li class=<%= fund_transfer_active_class %>>
+              <%= link_to "FUND TRANSFER", fund_transfers_path(transfers: 'true') %>
+            </li>
+          </ul>
+        </div>
+        <div class="right-menu">
+          <ul class="right-user">
+            <li>
+              <a href="#">              
+                <span class="pull-left user-text" >
+                  <% if current_user %>
+                    <%= current_user.username %>
+                    <br>
+                    <span id='user_wallet_amount'>
+                      <%= number_with_precision(current_user.available_amount, precision: 2) %>
+                    </span>
+                  <% end %>
+                </span>
+              </a>  
+            </li>
+            <% if current_user %>
+              <li>
+                <div class="dropdown">
+                  <%= image_tag 'icon', class: "img-responsive user-img dropdown-toggle", data: { toggle: "dropdown" }, alt: "user" %>
+                    <div class="dropdown-menu" style="background-color: slategrey;">
+                      <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+                      <% if url_present_for_mobile? %>
+                        <a href=<%= url_for_apk %>>Download APK</a>
+                      <% end %>
+                      <% if mobile_device? %>
+                        <%= link_to t('privacy_policy'), privacy_policy_path %>
+                        <%= link_to t('rules_link'), rules_path %>
+                        <%= link_to t('terms'), terms_path %>
+                      <% end %>
+                      <%= link_to 'Logout', users_sign_out_path(gs_session: session[:gs_session]) %>
+                    </div>
+                </div>
+              </li>
+            <% else %>
+              <li class='sign-out'>
+                <% if params[:controller] == 'casino' %>
+                  <% if mobile_device? %>
+                    <div class="dropdown menu-dropdown-top">
+                    <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      Menu
+                      <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                      <li><%= link_to 'Sign In', users_sign_in_path(page: 'casino') %></li>
+                      li>
+                        <% if url_present_for_mobile? %>
+                          <a href=<%= url_for_apk %>>Download APK</a>
+                        <% end %>
+                        <% if mobile_device? %>
+                          <%= link_to t('privacy_policy'), privacy_policy_path %>
+                          <%= link_to t('rules_link'), rules_path %>
+                          <%= link_to t('terms'), terms_path %>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                  <% else %>
+                    <%= link_to 'Sign In', users_sign_in_path(page: 'casino') %></li>
+                  <% end %>
+                <% else %>
+                  <% if mobile_device? %>
+                  <div class="dropdown menu-dropdown-top">
+                    <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      Menu
+                      <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                      <li><%= link_to 'Sign In', users_sign_in_path %> </li>
+                      <li>
+                        <% if url_present_for_mobile? %>
+                          <a href=<%= url_for_apk %>>Download APK</a>
+                        <% end %>
+                        <% if mobile_device? %>
+                          <%= link_to t('privacy_policy'), privacy_policy_path %>
+                          <%= link_to t('rules_link'), rules_path %>
+                          <%= link_to t('terms'), terms_path %>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                   
+                  <% else %>
+                    <%= link_to 'Sign In', users_sign_in_path %>
+                  <% end %>
+                <% end %>
+              </li>
+            <% end %>  
+            </li>
+          </ul>
+        </div>
+        <div class="r-m-icon">
+          <a href="#">
+            <%= image_tag 'menu-icon' %>
+          </a> 
+        </div> 
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="text/javascript">
+  <% if current_user %>
+    var user_id = '<%= current_user.id %>';
+    var wallet_update_channel = '<%= Constants::WALLET_UPDATE_CHANNEL %>';
+    var channel = databaseChannel(realtimeDb, `${wallet_update_channel}/${user_id}`);
+
+    // Update wallet data
+    subscribeWalletUpdate(channel, user_id);
+  <% end %>
+</script>

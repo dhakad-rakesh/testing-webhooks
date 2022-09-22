@@ -1,0 +1,10 @@
+---
+:timeout: 30
+
+:dynamic: false
+:enabled: true
+:concurrency: <%= ENV['WRITE_ODDS_MAX_THREADS'] || 100 %>
+
+:queues:
+  - update_single_market
+  

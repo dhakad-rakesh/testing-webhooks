@@ -1,0 +1,221 @@
+<div class="col-sm-3 col-md-3 col-xs-12 padding-right0 padding-left0">
+  <div class="right-menu-bg">
+    <div class="right-tab-section">
+      <ul class="nav nav-tabs right-tabs">
+        <% bet_slips = Rails.cache.fetch(Utility::Cache.player_bet_slips_cache_key(current_user&.id)) { [] } %>
+        <li class="active"><a data-toggle="tab" href="#betslip">Bet Slip <span class="badge badge-light bet-slip-count"><%= bet_slips.count %></span></a></li>
+        <li><a data-toggle="tab" href="#mybet">My Bet</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <%#= hidden_field_tag 'max-bet-limit', Constants::MAX_PER_DAY_WINNING %>
+        <%= hidden_field_tag 'slip-selecting-limit', Constants::SLIP_SELECTING_LIMIT %>
+        <p class="remove-bet-slip">
+            Remove all
+        </p>
+        <div id="betslip" class="tab-pane fade in active scrollator">
+          <div class="bet-slip">
+            <% is_combo = bet_slips.count > 1 %>
+            <% bet_slips.each_with_index do |slip, index| %>
+              <div class="bet-data">
+                <input type="hidden" name="market_uid" class="market-uid" value="<%= slip[:market_uid] %>">
+                <input type="hidden" name="market_id" class="market-id" value="<%= slip[:market_id] %>">
+                <input type="hidden" name="match_id" class="match-id" value="<%= slip[:match_id] %>">
+                <input type="hidden" name="outcome_id" class="outcome-id" value="<%= slip[:outcome_id] %>">
+                <input type="hidden" name="identifier" class="identifier" value="<%= slip[:identifier] %>">
+                <ul>
+                  <li class="barcelona team-name">
+                    <span class="market-name"><%= slip[:market_name] %></span>
+                    <span class="outcome-name"><%= slip[:outcome_name] %></span>
+                    <span class="pull-right odds <%= get_odds_status(slip[:odds_changed]) %>"><%= slip[:odds] %></span>
+                  </li>
+                  <li class="match-name"> <%= slip[:match_name] %></li>
+                  <li class="currency">
+                    <div class="col-xs-5">
+                      <input class="bid-value" name="stake" value="<%= slip[:stake] %>" <%= is_combo ? 'disabled' : '' %>/>
+                    </div>
+                    <div class="col-xs-7">
+                      <span class="total-parent pull-left">
+                        <b>To Return</b> <span class="total-value"><%= slip[:total_value] %></span>
+                      </span>
+                    </div>
+                  </li>
+                  <li class="bet-max">
+                    <span class="pull-left">
+                      Bet Max
+                    </span>
+                    <span class="pull-right close-button">
+                      X
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+          <% today_bets_winning = current_user.bets.today.sum('CAST(odds as decimal)*stake') rescue 0 %>
+          <% total_betted_matches = bet_slips.pluck(:match_id).uniq.count %>
+          <div class="combo-bet-data aaa" style="display:<%= bet_slips.count > 1 ? 'block;' : 'none;' %>">
+            <ul>
+              <li>
+                <div class="row">
+                  <div class="col-xs-4"><span id="total-betted-matches"><%= total_betted_matches %></span> Folds </div>
+                  <div class="col-xs-4">
+                    Odds: <div class="combo-odds"><%= combo_odds(bet_slips) %></div>
+                  </div>
+                  <div class="col-xs-4">
+                    Bet Max: 
+                    <input class="total-combo-bid-value" name="stake"/>
+                    To Return <div class="total-value"></div>
+                  </div>
+                </div>
+              </li>
+            </ul>            
+          </div>
+          <div class="submit-btn">
+            <%= submit_tag 'Submit', class: 'submit-button', 'data-total_winning' => today_bets_winning %>
+          </div>
+          <%#= render 'layouts/offers'%>
+        </div>
+        <div id="mybet" class="tab-pane fade">
+          <% if bets.present? %>  
+            <% bets.each do |bet| %>
+              <div>
+                <ul>
+                  <% unless bet.combo_bet_id.present? %>
+                    <li class="barcelona">
+                      <%= bet.market_name %>
+                      <span><%= bet.outcome_name %> </span>
+                      <span class="pull-right"><%= bet.odds.to_f %></span>
+                    </li>
+                    <li class="livepool">
+                      <%= bet.match.title %>
+                    </li>
+                    <li class="currency">
+                      <span>
+                        <%= bet.stake %>
+                      </span>
+                      <span>
+                        To Return <%= number_with_precision(bet.to_win,  precision: 2) %>
+                      </span>
+                    </li>
+                    <li class="bet-max">
+                      <span class="pull-left">
+                        Bet Max
+                      </span>
+                      <span class="pull-right <%= bet.status %>">
+                        <%= 'Won' if bet.won? %>
+                        <%= 'Lost' if bet.lost? %>
+                        <%= 'Pending' if bet.pending? %>
+                        <%= 'Hold' if bet.hold? %>
+                      </span>
+                    </li>
+                  <% else %>
+                    <li class="barcelona">
+                      <%= bet.market_name %>
+                      <span><%= bet.outcome_name %> </span>
+                      <span class="pull-right"><%= bet.odds.to_f %></span>
+                    </li>
+                    <li class="livepool">
+                      <%= bet.match.title %>
+                    </li>
+                    <li class="currency">
+                      <span>
+                        <%= bet.combo_bet.stake %>
+                      </span>
+                      <span>
+                        Combo To Return <%= number_with_precision(bet.combo_bet.to_win,  precision: 2) %>
+                      </span>
+                    </li>
+                    <li class="bet-max">
+                      <span class="pull-left">
+                        Combo Stake
+                      </span>
+                      <span>
+                        <div class="combo">Combo bet # <%= bet.combo_bet_id %></div>
+                      </span>
+                      <span class="pull-right <%= bet.status %>">
+                        <%= 'Won' if bet.combo_bet.won? %>
+                        <%= 'Lost' if bet.combo_bet.lost? %>
+                        <%= 'Pending' if bet.combo_bet.pending? %>
+                        <%= 'Hold' if bet.combo_bet.hold? %>
+                      </span>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          <% else %>
+            <center class='white'>No bets yet placed.</center>
+          <% end %>
+          <p class="show-more-bet-slip">
+            <%= link_to 'Show more', my_bets_bets_path %>
+          </p>
+          <%= render 'layouts/offers'%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/offers'%>
+<div class="bet-slip-entry" hidden="true">
+
+  <div class="bet-data">
+    <input type='hidden' name='market_uid' class='market-uid'></input>
+    <input type='hidden' name='market_id' class='market-id'></input>
+    <input type='hidden' name='match_id' class='match-id'></input>
+    <input type='hidden' name='outcome_id' class='outcome-id'></input>
+    <input type='hidden' name='identifier' class='identifier'></input>
+    <ul>
+      <li class="barcelona team-name">
+        <span class="market-name"></span>
+        <span class="outcome-name"></span>
+        <span class="pull-right odds"></span>
+      </li>
+      <li class="match-name"></li>
+      <li class="currency">
+        <div class="col-xs-5">
+          <input class="bid-value" name="stake"/>
+        </div>
+        <div class="col-xs-7">
+          <span class="total-parent pull-left">
+            <b>To Return</b> <span class="total-value">0.00</span>
+          </span>
+        </div>
+      </li>
+      <li class="bet-max">
+        <span class="pull-left">
+          Bet Max
+        </span>
+        <span class="pull-right close-button">
+          X
+        </span>
+      </li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  // var channel = databaseChannel(realtimeDb, "<%#= Constants::ODDS_CHANGE_CHANNEL %>");
+  // var subscribe = subscribeOddsChange(channel);
+
+  // var realtime = new Ably.Realtime("<%#= Figaro.env.ably_key %>");
+  // var channel = realtime.channels.get("<%#= Constants::ODDS_CHANGE_CHANNEL %>");
+  // channel.subscribe(function(msg) {
+  //   // TODO : Remove this
+  //   console.log(msg);
+  //   for(var matchId in msg.data){
+  //     for(var marketId in msg.data[matchId].markets){
+  //       for(var identifier in msg.data[matchId].markets[marketId]){
+  //         for(var outcomeId in msg.data[matchId].markets[marketId][identifier].outcomes){
+  //           outcomeName = msg.data[matchId].markets[marketId][identifier].outcomes[outcomeId].name;
+  //           outcomeOdd = msg.data[matchId].markets[marketId][identifier].outcomes[outcomeId].odds;
+  //           $(`.outcomes[data-outcome-id='${outcomeId}'][data-market-id='${marketId}'][data-identifier='${identifier}']`).attr('data-odds', outcomeOdd);
+  //           $(`.outcomes[data-outcome-id='${outcomeId}'][data-market-id='${marketId}'][data-identifier='${identifier}']`).text(`${outcomeName}  ${outcomeOdd}`);
+  //         }
+  //       }
+  //     }
+  //   }
+  // });
+</script>

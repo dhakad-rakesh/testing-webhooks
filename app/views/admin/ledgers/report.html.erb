@@ -1,0 +1,32 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= t('report') %></h2>
+    <% unless current_admin_user.is_reseller? %>
+      <h5><%= t('reseller') %>: <%= @user.email %></h5>
+    <% end %>
+  </div>
+  <div class="col-lg-2">
+    <% unless current_admin_user.is_reseller? %>
+      <%= link_to admin_admin_user_path(@user), class: 'btn btn-primary pull-right backBtn' do %>
+        <span class="fa fa-arrow-circle-left"></span> <%= t('back') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <%= render 'report_filter' %>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="table-responsive" id="report_list">
+            <%= render 'admin/ledgers/report/list' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<table class="table table-mail">
+  <tr>
+    <th>Last Bet</th>
+    <th>Total Stakes</th>
+    <th>Total Winnings</th>
+    <th>Total Unsettled Stakes</th>
+  </tr>
+  <tr>
+    <td><%= current_time(stats.betting.last_bet) || "NA" %></td>
+    <td><%= format_currency(amount: stats.betting.total_stakes) %></td>
+    <td><%= format_currency(amount: stats.betting.winnings) %></td>
+    <td><%= format_currency(amount: stats.betting.unsettled_stakes) %></td>
+  </tr>
+  <tr>
+    <th>P/L</th>
+    <th>Profitability</th>
+    <th>Total Bets</th>
+    <th>Total Unsettled Bets</th>
+  </tr>
+  <tr>
+    <td>
+      <%= format_currency(amount: stats.betting.pl) %>&nbsp;
+      <span class="label label-<%= stats.betting.pl.negative? ? 'danger' : 'success' %>">
+        <%= stats.betting.pl.negative? ? "L" : "P" %>
+      </span>
+    </td>
+    <td><%= format_currency(amount: stats.betting.profitability) %></td>
+    <td><%= stats.betting.total_bets %></td>
+    <td><%= stats.betting.total_unsettled_bets %></td>
+  </tr>
+  <tr>
+    <th>Deposit</th>
+    <th>Withdraw Amount</th>
+    <th>Withdraw Count</th>
+    <th>Last Withdraw Date</th>
+  </tr>
+  <tr>
+    <td><%= format_currency(amount: stats.finance.total_deposits_amount) %></td>
+    <td><%= format_currency(amount: stats.finance.total_withdrawals_amount) %></td>
+    <td><%= stats.finance.withdrawals_count %></td>
+    <td><%= current_time(stats.finance.last_withdrawals_date) || "NA" %></td>
+  </tr>
+</table>

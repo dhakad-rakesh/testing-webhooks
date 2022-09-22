@@ -1,0 +1,31 @@
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js');
+
+var config = {
+    apiKey: "<%= ENV.fetch('FIREBASE_API_KEY', 'AIzaSyBg8filP9pbMMYC07XvPp0fA2A7WTL8PUQ') %>",
+    authDomain: "<%= ENV.fetch('FIREBASE_AUTH_DOMAIN', 'koorabet-75ef9.firebaseapp.com') %>",
+    databaseURL: "<%= ENV.fetch('FIREBASE_DATABASE_URL', 'https://koorabet-75ef9.firebaseio.com') %>",
+    projectId: "<%= ENV.fetch('FIREBASE_PROJECT_ID', 'koorabet-75ef9') %>",
+    storageBucket: "<%= ENV.fetch('FIREBASE_STORAGE_BUCKET', 'koorabet-75ef9.appspot.com') %>",
+    messagingSenderId: "<%= ENV.fetch('FIREBASE_MESSAGING_SENDER_ID', '87591408182') %>",
+    appId: "<%= ENV.fetch('FIREBASE_APP_ID', '1:87591408182:web:64dbe4f61e873edfc0be97') %>",
+    measurementId: "<%= ENV.fetch('FIREBASE_MEASUREMENT_ID', 'G-TPWEE5RQ2G') %>"
+  }
+// Initialize firebase
+firebase.initializeApp(config);
+
+const messaging = firebase.messaging();
+
+// messaging.setBackgroundMessageHandler(function(payload) {
+//     console.log('[firebase-messaging-sw.js] Received background message ', payload);
+//     // Customize notification here
+//     const notificationTitle = 'Background Message Title';
+//     const notificationOptions = {
+//       body: 'Background Message body.',
+//       icon: '/firebase-logo.png'
+//     };
+//   
+//     return self.registration.showNotification(notificationTitle,
+//       notificationOptions);
+//   });
+  // [END background_handler]

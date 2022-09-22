@@ -1,0 +1,25 @@
+<tr class="gradeX">
+  <td><%= casino_item.id %></td>
+  <td><%= image_tag(casino_item.image, class: 'casino-item-image')%></td>
+  <td><%= casino_item.name %></td>
+  <td>
+    <div class='form-group col-lg-10'>
+      <%= select_tag "casino_menu", options_from_collection_for_select(@casino_menus, "id", "name_with_type", casino_item.casino_menu_id), include_blank: 'Please select.', id: "casino_menu_#{casino_item.id}", class: 'form-control', onChange: 'updateMenuForCasinoItem(this)' %>
+    </div>
+  </td>
+  <td><%= casino_item.item_type&.humanize %></td>
+  <!-- <td><%#= casino_item.provider %></td> -->
+  <!-- <td><%#= "#{casino_item.has_freespins}".humanize %></td> -->
+  <td><%= short_date(casino_item.created_at) %></td>
+<!--   <td><%#= "#{casino_item.is_mobile}".humanize %></td>
+  <td><%#= "#{casino_item.has_lobby}".humanize %></td> -->
+
+  <td class="center">
+    <div class="i-checks">
+      <label>
+        <input class='enabled_casino_item' type="checkbox" value="" <%= "checked" if casino_item.active %> data="casino_item_<%= casino_item.id %>">
+        <i></i>
+      </label>
+    </div>
+  </td>
+</tr>

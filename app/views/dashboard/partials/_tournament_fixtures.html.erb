@@ -1,0 +1,18 @@
+<div>
+  <div class="highlight">
+    <p>
+      <span class="pull-left">
+        <%= tournament.sport.name %> - <%= tournament.country.name %>
+      </span>
+    </p>
+  </div>
+  <div class="tournament-heading">
+    <p>
+      <span class="pull-left">
+        <%= tournament.name %>
+      </span>
+    </p>
+  </div>
+</div>
+
+<%= render 'dashboard/partials/match_list', matches: @matches %>

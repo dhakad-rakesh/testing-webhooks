@@ -1,0 +1,6 @@
+set :application_name, 'bwinner'
+set :domain, '3.35.37.33'
+set :deploy_to, '/var/www/bwinner.bet'
+set :repository, 'https://gitlab.com/pedmax/backend.git'
+set :branch, 'pedmax'
+set :rails_env, 'staging'

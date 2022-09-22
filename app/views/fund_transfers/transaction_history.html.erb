@@ -1,0 +1,42 @@
+<section class="main-section fund-transfer">
+  <div class="width90">
+    <div class="heading">
+      <h3>TRANSACTION HISTORY</h3>
+    </div>
+    <div class="open-close-bets">
+      <div class="both-bets">
+        <div id="transfer-history" class="tab-pane fade in">
+          <div class="border">
+            <div class="close-bets-content">
+              <%= render 'fund_transfers/partials/history_filter' %>
+            </div>
+          </div>
+          <div class="transfer-detail">
+            <div class="transfer-heading-text">
+              <ul>
+                <li>
+                  Date
+                </li>
+
+                <li>
+                  Transaction Type
+                </li>
+
+                <li>
+                  Description  
+                </li>
+
+                <li>
+                  Amount  
+                </li>
+              </ul>
+            </div>
+            <div class="transfer-heading-content" id="transfer-heading-content">
+              <%= render 'fund_transfers/partials/transaction_history_data', transaction_history: @transaction_history %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

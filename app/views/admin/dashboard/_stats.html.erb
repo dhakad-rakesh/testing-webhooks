@@ -1,0 +1,126 @@
+<table class="dash-stats">
+  <tbody>
+    <tr>
+      <td>
+        <span class="m-r-sm left-extra sky-bg">
+          <%= image_tag "admin/ic_dol_down.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.total_deposits') %></p>
+          <h5><%= format_currency(amount: filter.deposit.total) %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm left-extra red-bg">
+          <%= image_tag "admin/ic_dol_up.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.total_withdrawals') %></p>
+          <h5><%= format_currency(amount: filter.withdrawal.total) %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm yellow-bg">
+          <%= image_tag "admin/ic_users.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.players_logged_in') %></p>
+          <h5><%= filter.user.online %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm parrot-bg">
+          <%= image_tag "admin/ic_right.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.total_login_count') %></p>
+          <h5><%= filter.user.login_count %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm left-extra green-bg">
+          <%= image_tag "admin/ic_users_plus.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.players_registered') %></p>
+          <h5><%= filter.user.total_registered %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm violet-bg">
+          <%= image_tag "admin/ic_money.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.players_balance') %></p>
+          <h5><%= format_currency(amount: filter.total_players_balance) %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm teal-bg">
+          <%= image_tag "admin/ic_profit.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.profit') %></p>
+          <h5><%= format_currency(amount: filter.total_profit) %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm lblue-bg left-extra">
+          <%= image_tag "admin/ic_user_down.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.players_making_deposit') %></p>
+          <h5><%= filter.deposit.player_count %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm orange-bg left-extra">
+          <%= image_tag "admin/ic_user_up.svg" %>
+        </span>
+        <span>
+          <p><%= t('admin.dashboard.summaries.players_making_withdrawals') %></p>
+          <h5><%= filter.withdrawal.player_count %></h5>
+        </span>
+      </td>
+      <td>
+        <span class="m-r-sm left-extra dblue-bg">
+          <%= image_tag "admin/ic_bonus.svg" %>
+        </span>
+        <span>
+          <p><%= "TOTAL BETTING BONUS" %></p>
+          <h5><%= format_currency(amount: filter.total_betting_bonus) %></h5>
+        </span>
+      </td>
+<!--       <td>
+        <span class="m-r-sm left-extra dblue-bg">
+          <%#= image_tag "admin/ic_bonus.svg" %>
+        </span>
+        <span>
+          <p><%#= "TOTAL CASINO BONUS" %></p>
+          <h5><%#= format_currency(amount: filter.total_casino_bonus) %></h5>
+        </span>
+      </td> -->
+    </tr>
+  <tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

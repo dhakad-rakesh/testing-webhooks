@@ -1,0 +1,654 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  show: Show
+  create: Create
+  currency: Currency
+  cms: CMS
+  edit: Edit
+  save: Save
+  update: Update
+  delete: Delete
+  back: Back
+  amount: 'Amount'
+  bet: 'Bet'
+  bet_type: 'Bet type'
+  bet_types: 'Bet types'
+  big_image: 'Please upload image size less than 1MB'
+  combo: 'Combo bet # %{combo_bet_id}'
+  combo_bet: 'Combo bet'
+  dialect: 'Dialect'
+  group: 'Group'
+  groups: 'Groups'
+  language: 'Language'
+  market: 'Market'
+  markets: 'Markets'
+  match: 'Match'
+  play_type: 'Play type'
+  play_types: 'Play types'
+  pool: 'Pool'
+  pools: 'Pools'
+  phone: 'Phone'
+  promo_code: 'Promo Code'
+  question: 'Question'
+  security_ques: 'Security question'
+  security_quess: 'Security questions'
+  settings: 'Settings'
+  sport: 'Sport'
+  sports: 'Sports'
+  success: 'Success'
+  success_create: '%{name} successfully created.'
+  success_update: '%{name} successfully updated.'
+  success_destroy: '%{name} successfully deleted.'
+  odds_changed: 'Odds has been changed, please review the bet slips before placing the bet.'
+  topic: 'Topic'
+  tournament: 'Tournament'
+  tournaments: 'Tournaments'
+  user: 'Player'
+  rank: 'Rank'
+  record: 'Record'
+  dispute_stats: 'Dispute Statistics'
+  not_found: '%{name} not found.'
+  went_wrong: 'Something went wrong'
+  wallet: 'Wallet'
+  deposit: 'Deposit'
+  withdraw: 'Withdraw'
+  report: 'Report'
+  recipient: 'Recipient'
+  wrong_img_format: 'Please upload image in jpg/jpeg/png/pdf format'
+  url_update_success: 'URL updated successfully'
+  reseller_percentage: "Reseller Percentage(%)"
+  user_number: "User number"
+  not_valid: 'not valid'
+  betting_timeout: 'betting timeout'
+  no_data: 'Data for this match do not exist'
+  not_found_msg: 'not found'
+  betting_disabled: 'Betting for this match is disabled right now'
+  invalid_odds: 'Odds not valid'
+  disabled: 'is currently disabled'
+  invalid: 'is %{status} for this Market'
+  odds_suspended: 'is %{status} for this Odds'
+  invalid_min_stake: 'Stake amount greater than minimum limit'
+  invalid_max_stake: 'You have exceeded your maximum stake limit'
+  betting_stopped: 'Betting has been stopped for this match'
+  stake_not_positive: 'stake should be greater than zero'
+  cashout_not_eligible: 'Bet is not eligible for cashout'
+  refund_not_cashoutable: 'Refunded amount is not eligible for cashout'
+  no_cashout_available: 'NO CASH OUT AVAILABLE FOR THIS MATCH / COMBOS'
+  cashout_not_allowed: 'Cashout not allowed at this moment, Please try again later'
+  single_bet_limit_exceeded: 'Single bet limit exceeded'
+  daily_bet_limit_exceeded: 'Daily bet limit exceeded'
+  weekly_bet_limit_exceeded: 'Weekly bet limit exceeded'
+  monthly_bet_limit_exceeded: 'Monthly bet limit exceeded'
+  max_amount_limit_exceeded: 'Max amount limit exceeded'
+  single_deposit_limit_exceeded: 'Single deposit limit exceeded'
+  daily_deposit_limit_exceeded: 'Daily deposit limit exceeded'
+  weekly_deposit_limit_exceeded: 'Weekly deposit limit exceeded'
+  monthly_deposit_limit_exceeded: 'Monthly deposit limit exceeded'
+  should_be_greater_eq: '%{current} should be greater than or equal to %{comparator}'
+  cant_exceed_global: 'User %{attribute} can not be greater than Global %{attribute}'
+  max_monthly_bet_amount: 'Max monthly bet amount'
+  max_weekly_bet_amount: 'Max weekly bet amount'
+  max_daily_bet_amount: 'Max daily bet amount'
+  max_one_bet_amount: 'Max one bet amount'
+  max_monthly_deposit_amount: 'Max monthly deposit amount'
+  max_weekly_deposit_amount: 'Max weekly deposit amount'
+  max_day_deposit_amount: 'Max day deposit amount'
+  max_single_amount: 'Max single deposit amount'
+  balance_amount_limit: 'Balance amount limit'
+  confirmation_mail_sent: 'Confirmation mail is sent to your email'
+  upgrade_apk: 'Please upgrade the APK. You can uninstall the current APK and download the new one from our website'
+  country_betting_disabled: 'Your country does not allow betting'
+  invalid_country: 'Invalid Country'
+  bet_limit_message: "You can't place more than %{limit} bets at a time"
+  invalid_time_period: 'not valid time period'
+  currency_cant_change: 'is not empty, currency cannot be changed'
+  currency_not_valid: 'Currency is not valid'
+  invalid_state_transition: 'Invalid state transition'
+  cant_verify_otp: 'OTP could not be verified'
+  popup: 'Popup'
+
+  preferences:
+    notification: 'Application setting updated'
+    password: 'Password updated successfully'
+    address: 'Address updated successfully'
+  navigation:
+    sportsbook_admin: "Sportsbook Admin"
+    sports: "Sports"
+    tournaments: "Tournaments"
+    matches: "Matches"
+    players: "Players"
+    markets: "Markets"
+    cms: "CMS"
+    countries: "Countries"
+  lang:
+    en: 'English'
+    ar: 'Arabic'
+    ku: 'Kurdish'
+    tr: 'Turkish'
+  admin:
+    bet_types:
+      create:
+        # success: 'Bet type was successfully created.'
+      update:
+        # success: 'Bet type was successfully updated.'
+      destroy:
+        # success: 'Bet type was successfully destroyed.'
+    betting_pools:
+      create:
+        # successful: 'Pool created successfully.'
+        # error: 'Pool could not be created.'
+      update:
+        # successful: 'Pool was successfully updated.'
+        # error: 'WalletPool could not be updated.'
+      destroy:
+        # successful: 'Pool was successfully deleted.'
+        # error: 'Pool could not be deleted.'
+      enter:
+        success: 'Congrats! You have joined the pool successfully.'
+      # not_found: 'Pool not found.'
+    dashboard:
+      index:
+        sign_up: 'sign_up'
+        login: 'login'
+        day: 'day'
+    dialects:
+      update:
+        # not_found: 'Dialect not found'
+        dialect_enabled: '%{name} Dialect is Enabled'
+        dialect_disabled: '%{name} Dialect is Disabled'
+    groups:
+      create:
+        # success: 'Group created successfuly.'
+        # failed: 'Failed to create group.'
+      update:
+        # success: 'Group updated successfuly.'
+        # failed: 'Failed to update group.'
+      # not_found: 'Group not found.'
+    languages:
+      update:
+        # not_found: 'Language not found'
+        language_enabled: '%{name} Language is Enabled'
+        language_disabled: '%{name} Language is Disabled'
+    markets:
+      # not_found: 'Market not found'
+      update:
+        # failed: 'Unable to update the market'
+        # success: 'Successfully Updated the market'
+    matches:
+      update:
+        match_enabled: 'Match with uid %{uid} is Enabled'
+        match_disabled: 'Match with uid %{uid} is Disabled'
+        match_highlighted: 'Match with uid %{uid} is Highlighted'
+        match_unhighlighted: 'Match with uid %{uid} is Unhighlighted'
+      change_market_status:
+        market_enabled: 'Market is Enabled for Match with uid %{uid}'
+        market_disabled: 'Market is Disabled for Match with uid %{uid}'
+    note_password: 'Please keep this password for future reference'
+    play_types:
+      create:
+        # success: 'Play type was successfully created.'
+      update:
+        # success: 'Play type was successfully updated.'
+      destroy:
+        # success: 'Play type was successfully destroyed.'
+    security_questions:
+      # not_found: 'Question not found'
+      create:
+        # success: 'Question created'
+        # error: 'Something went wrong'
+      update:
+        message_enabled: 'Security question with id %{question_id} is Enabled'
+        message_disabled: 'Security question with id %{question_id} is Disabled'
+      destroy:
+        success: 'Question deleted'
+        error: 'Something went wrong'
+    sports:
+      # not_found: 'Sport not found'
+      update:
+        message_enabled: 'Sport %{name} is Enabled'
+        message_disabled: 'Sport %{name} is Disabled'
+        message_rank: "Sport rank updated"
+    casino:
+      # not_found: 'Sport not found'
+      update_casino_item:
+        message_enabled: 'Casino item %{name} is Enabled'
+        message_disabled: 'Casino Item %{name} is Disabled'    
+    slot_games:
+      # not_found: 'Sport not found'
+      update:
+        message_enabled: 'Slot game %{name} is Enabled'
+        message_disabled: 'Slot game %{name} is Disabled'
+        message_featured: 'Slot game %{name} is Featured'
+        message_unfeatured: 'Slot game %{name} is Unfeatured'        
+    topics:
+      # not_found: 'Topic not found'
+      update:
+        message_enabled: 'Topic %{name} is Enabled'
+        message_disabled: 'Topic %{name} is Disabled'
+    tournaments:
+      # not_found: 'Tournament not found'
+      show:
+        number_of_tournaments: 'Number of Tournaments'
+        number_of_matches: 'Number of Matches'
+        number_of_markets: 'Number of Markets'
+      update:
+        success: 'Updated tournaments successfully'
+      change_status:
+        message_enabled: 'Tournament %{name} is Enabled'
+        message_disabled: 'Tournament %{name} is Disabled'
+    countries:
+      change_status:
+        message_enabled: 'Country %{name} is Enabled'
+        message_disabled: 'Country %{name} is Disabled'
+  bets:
+    bets: 'Bets'
+    slips_required: 'Bet slips required'
+    combo_bets: 'Combo Bets'
+    not_found: 'Bet not found'
+    suspend:
+      invalid: "Bet can't be suspended"
+    errors:
+      bet_limit_exceeded: 'Winning limit exceeded. Per day winning limit is %{max_win_limit}. Remaining winning is %{remaining_wining} for today.'
+    status:
+      won: "Won"
+      lost: "Lost"
+      pending: "Pending"
+      refunded: "Refunded"
+      hold: "Hold"
+      cancelled: "Cancelled"
+      cashed_out: "Cashed out"
+      half_lost: "Half lost"
+      half_win: "Half win"
+    remarks:
+      won: 'Won amount: %{amount} In match: %{match} on market : %{market}'
+      lost: 'Lost amount: %{amount} In match: %{match} on market : %{market}'
+      refunded: 'Refunded amount: %{amount} In match: %{match} on market : %{market}'
+      cancelled: 'Refunded amount: %{amount} In match: %{match} on market : %{market}'
+      half_lost: 'Refunded half amount: %{amount} In match: %{match} on market : %{market}'
+      half_won: 'Refunded half amount: %{amount} In match: %{match} on market : %{market}'
+      resettlement: 'Debit amount %{amount} for resettlement In match: %{match} on market : %{market}'
+    index:
+      my_bets: 'My Bets'
+      created_at: 'Date'
+      type: 'Type'
+      stake: 'Stake'
+      odds: 'Odds'
+      status: 'Status'
+    show:
+      title: 'Bet Information'
+      id: 'ID'
+      type: 'Type'
+      tournament: 'Tournament'
+      market: 'Market'
+      outcome: 'Outcome'
+      odds: 'Odds'
+      stake: 'Stake'
+      status: 'Status'
+    create:
+      # success: 'Bet is successfully created!'
+      matches_response: 'Match not found. Please remove the bets of unavailable matches.'
+    cashout:
+      success: 'Bets cashed out successfully.'
+      failed: 'Some bets could not be cashed out.'
+      validation_failed: 'Bets can not be cashed out.'
+      mistmatch_error: 'Cashoutable odds has been changed, please try agian with updated odds.'
+  combo_bets:
+    won: 'Won amount: %{amount} In Combo-bet # %{combo_bet_id}'
+    lost: 'Lost amount: %{amount} In Combo-bet # %{combo_bet_id}'
+    refunded: 'Refunded amount: %{amount} In Combo-bet # %{combo_bet_id}'
+    resettlement: 'Resettlement : Debit amount %{amount} for resettlement In Combo-bet # %{combo_bet_id}'
+    errors:
+      stake: 'Enter a valid stake.'
+  matches:
+    name: 'Matches'
+    add_favourite: 'Successfully added as a favorite'
+    remove_favourite: 'Match removed from favorite list'
+    not_found: 'Match not found'
+    not_found_count: '%{count} matches not found'
+  user_transaction:
+    create:
+      success: 'Transaction created successfully.'
+  accumulator_bets:
+    confirm:
+      success: 'Accumulator Bet is confirmed!'
+      failure: 'Some bet can not be confirmed.'
+    create:
+      success: 'Accumulator created successfully.'
+    invalid: 'Invalid bet'
+    delete:
+      success: 'Accumulator bets are deleted.'
+      error: 'Some accumulator bets could not be deleted'
+    not_found: 'Accumulator bet could not be found.'
+    bets:
+      delete:
+        success: 'Bets in accumulator bet deleted successfully.'
+        error: 'Some bets in accumulator bet could not be deleted'
+    update:
+      success: 'Accumulator bets updated successfully.'
+      failed: 'Some accumulator bets could not be updated.'
+    cashout:
+      success: 'Accumulator bets cashed out successfully.'
+      failed: 'Some accumulator bets could not be cashed out.'
+  friend:
+    not_found: 'Friend not found.'
+    remove:
+      success: 'Successfully removed friend.'
+      fail: 'Unable to removed friend.'
+  friend_request:
+    not_found: 'No request found.'
+    sent:
+      success: 'Friend request successfuly sent.'
+      fail: 'Friend request could not be sent because %{message}.'
+    accept:
+      success: 'Friend request accepted successfuly.'
+      fail: 'Friend request could not be accepted because %{message}'
+    decline:
+      success: 'Friend request declined successfuly.'
+      fail: 'Friend request could not be declined because %{message}'
+  resellers:
+    reseller: 'Agent'
+    create_new: 'Create New Agent'
+  sub_admins:
+    sub_admin: 'Agent'
+    create_new: 'Create New Agent'
+  affiliates:
+    create_new: 'Create New Affiliate'
+  users:
+    users: 'Players'
+    # not_found: 'User not found.'
+    create:
+      # success: 'User created successfuly.'
+      # failed: 'Failed to create user.'
+    update:
+      # success: 'User updated successfuly.'
+      # failed: 'Failed to update user.'
+    delete:
+      success: 'User deleted successfully'
+    invitations:
+      create:
+        success: 'Invitation Sent!'
+        exists: 'User already exists.'
+    email:
+      not_confirmed: 'Please confirm you email first'
+      email_confirmed: 'Email Confirmed.'
+      email_advantage: 'This email will help you to reset password and bet notifications'
+      not_found: 'No account is registered with this email'
+      email_already_used: 'This email is already been used.'
+      email_required: 'Email Required'
+      no_email_to_verify: 'No email present to verify'
+    phone:
+      invalid: 'Phone is invalid'
+      not_confirmed: 'Please confirm your phone number first'
+      registered: 'Phone is already registered with us.'
+      available: 'Phone is available'
+      verification:
+        success: 'Successfully verified otp'
+        failed: 'Otp could not be verified'
+    password:
+      edit:
+        success: 'Password updated successfully.'
+      confirmation_mismatch: 'does not match password confirmation'
+      required_password_and_confirmation: 'Required Password and Password Confirmation'
+      instructions_sent: 'Reset password instructions have been sent to %{email}.'
+      reset_success: 'Password has been reset successfully'
+      invalid: 'Invalid password'
+      otp_sent: 
+        success: 'OTP sent to email.'
+        failed: 'Error occured while sending OTP.'
+      otp: 
+        invalid: 'OTP is invalid or has expired.'
+        required: 'OTP is required'
+    device_id:
+      update:
+        failed: 'Device id cannot be added'
+    provider:
+      error: 'Due to privacy settings not able to fetch your required information.'
+      message: 'Your username is %{username}, you can change it in user profile section'
+    referral_code:
+      invalid: 'Invalid referral code'
+      inactive: 'Referral code is inactive'
+    agent:
+      invalid: 'Invalid agent code'
+    sign_in: 'Successfully signed in.'
+    sign_out: 'Successfully sign out'
+    not_found: 'User not found'
+    unverified: 'Please complete your verification'
+  wallets:
+    # not_found: 'Wallet not found'
+    not_enough_amount: 'Not enough balance.'
+    id: 'ID'
+    available_amount: 'Available Amount'
+    add: 'Add'
+    point: 'Point'
+    update:
+      # success: 'Updated the amount'
+      # error: 'Problem in Updating amount'
+      by_admin: 'Wallet updated - from admin to %{user} %{user_email}.'
+      by_reseller: 'Wallet updated - form reseller %{reseller} to %{user} %{user_email}.'
+    errors:
+      insufficient_amount: 'Insufficient amount in your wallets.'
+      debit_limit: "You can't debit more than %{amount}"
+      invalid_amount: 'Amount must be greater than 0.'
+    transaction:
+      transactions: 'Transactions'
+      bet_id: 'Bet ID'
+      type: 'Type'
+      amount: 'Amount'
+      remark: 'Remark'
+      date: 'Date'
+  favourite:
+    marked: 'Marked favourite'
+    resource_not_found: 'Resource not found'
+    not_found: 'Favourite not found'
+    destroy: 'Succesfully destroy favourite'
+    not_found_key: 'Favourite %{key} not found'
+  betting:
+    suspended: 'Betting is currently suspended please try again after some time.'
+    invalid_status: 'status is invalid'
+    approve_kyc: 'Please get your KYC approved before bet placing by uploading required images in profile section & contact admin to get it approved'
+  something_went_wrong: 'Something went wrong'
+  casino:
+    menu: 'Casino Menu'
+    menus: 'Casino Menus'
+    management: 'Casino Management'
+    item: 'Casino Item'  
+  slot_game:
+    management: 'Slot Game Management'
+    game: 'Slot Game'
+  game: 
+    not_found: 'Game not found'
+  hold:
+    confirm:
+      success: 'Bet is confirmed!'
+      failure: 'This bet can not be confirmed.'
+    create:
+      failure: 'This bet can not be created.'
+    delete:
+      success: 'Bets are deleted.'
+      error: 'Some bets can not be deleted'
+    current_odds:
+      no_odds_found: 'Could not find odds for this bet.'
+    invalid: 'Invalid bet'
+    odds:
+      not_found: 'Odds not found.'
+  account:
+    disabled: 'Your account is temporary disabled.'
+  participant:
+    not_found: 'User has not joined pool.'
+  user_limit:
+    not_set: 'Sorry, no user limit exists'
+    success: 'Limit is successfully updated'
+
+  methods:
+    deposit:
+      not_found: 'No availale methods'
+    withdrawal:
+      not_found: 'No availale methods'
+
+  messages:
+    deposit:
+      success: 'Deposit was processed successfully'
+    payout:
+      pending: 'Payout request has been accepted, you will be notified after approval'
+      success: 'Payout has been processed successfully'
+    notifications:
+      bet:
+        title: 'Bet %{status}'
+        body: 'Bet %{status} for match %{match_name}'
+      combobet:
+        title: 'Combo Bet %{status}'
+        body: 'Combo Bet %{status}'
+      withdrawal_settlement:
+        title: 'Withdrawal request %{status}'
+        body: 'Withdrawal request of amount %{amount} is %{status}'
+      referral_reward:
+        title: 'Referral reward | %{user_name}'
+        body: 'Referral reward of %{amount} is received for referring %{user_name}'
+      promo_code:
+        title: 'Promo code | %{promo_code}'
+        body:
+          fixed_value: 'Hey, use this promo code on your next deposit to get flat cashback of %{amount}'
+          percentage: 'Hey, use this promo code on your next deposit to get %{percentage}% cashback upto %{amount}'
+      favourite_match:
+        title: 'Match started | %{match_name}'
+        body: '%{match_name} started'
+      deposit_request:
+        title: 'New deposit request | %{user_number}'
+        body: 'New deposit request %{status} for user number %{user_number} with ledger id %{ledger_id}'
+      withdrawal_request:
+        title: 'New withdrawal request | %{user_number}'
+        body: 'New withdrawal request %{status} for user number %{user_number}'
+      big_win:
+        title: 'Big win detected | %{bet_id} | %{amount}'
+        body: 'Big win detected with bet id %{bet_id} & amount %{amount}'
+      liability_exceeded:
+        title: 'Liability exceeded | %{match_id}'
+        body: 'Liability exceeded for match %{match_name} with id %{match_id}'
+    promo_code:
+      display_message:
+        fixed_value: 'You will get a flat cashback of %{maximum_cashback} on applying this coupon'
+        percentage: 'You will get %{percent} cashback upto %{maximum_cashback} on applying this coupon' 
+  errors:
+    messages:
+      combo_bets:
+        select_multiple_matches: 'Please select odds from multiple matches'
+      currency_not_supported: 'Your currency is not supported for this payment method'
+      transaction_not_completed: 'Transaction could not be completed'
+      failed_to_acquire_lock: 'Failed to acquire transaction lock'
+      deposit:
+        cancelled: 'Deposit was cancelled'
+        failed: 'The transaction was declined by your financial institution.
+        Please try using another deposit method'
+        malformed: 'request is malformed'
+        not_found: 'transaction not found'
+        processed: 'transaction is already processed'
+        minimum_amount: 'Minimum deposit amount required is %{amount}'
+      payout:
+        failed: 'Payout request failed'
+        insufficient_amount: 'Wallet does not have sufficient amount'
+        minimum_amount: 'Minimum payout amount required is %{amount}'
+        maximum_amount: 'Maximum payout amount is %{amount}'
+      promo_code:
+        expired: 'Promo code is expired'
+        invalid: 'Promo code is invalid'
+        invalid_deposit_amount: 'Deposit amount should be atleast %{amount} to use this code'
+        limit_exhausted: 'Maximum number of users reached for this code'
+        not_available: 'Promo code is not available'
+      notifications:
+        invalid_receiver: 'User should be present or broadcasting should be set to true'
+      device_id:
+        presence: 'Device id or old device id must be present'
+      technical_error_happened: 'Technical error happened'
+      sports:
+        not_found: 'Sport not found'
+        not_available: 'Sport not available. Please contact support for more details'
+      matches:
+        scheduled_time_passed: "Match's scheduled time has been passed"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "too short (minimum is %{count} characters)"
+            phone:
+              invalid_for_country: 'Phone is not valid for country'
+        combo_bet:
+          attributes:
+            base:
+              duplicate_matches: 'Please select odds from multiple matches'
+        address:
+          attributes:
+            country:
+              not_valid: 'Country is not valid'
+        gammabet_setting:
+          attributes:
+            fund_transfer_commision:
+              invalid_range: 'Funds transfer commision must be between 0-100'
+              must_be_present: 'Funds transfer commision must be present'
+            cashout_commision:
+              invalid_range: 'Cashout commision must be between 0-100'
+              must_be_present: 'Cashout commision must be present'
+            api_version:
+              must_be_positive: 'API version must be a positive number'
+        wallet:
+          attributes:
+            base:
+              wallet_not_empty: 'Wallet is not empty, currency cannot be changed'
+
+  # active_interaction:
+  #   errors:
+  #     messages:
+  #       match:
+  #         not_valid: 'Match not valid'
+  #         betting_timeout: 'Match betting timeout'
+  #         no_data: 'Data for this match do not exist'
+  #         not_found: 'Match not found'
+  #         betting_disabled: 'Betting for this match is disabled right now'
+  #         invalid_odds: 'Odds not valid'
+  #         odds_changed: 'Odds haave been changed'
+  #       market:
+  #         not_found: 'Market not found'
+  #         disabled: 'Market is currently disabled'
+  #       specifier:
+  #         not_valid: 'Specifiers not valid'
+  #       bet:
+  #         invalid: 'Bet is %{status} for this Market'
+  #         invalid_min_stake: 'Stake amount greater than minimum limit'
+  #         invalid_max_stake: 'You have exceeded your maximum stake limit'
+  #         stake_not_positive: 'Bet stake should be greater than zero'
+  #       base:
+  #         cashout_not_eligible: 'Bet is not eligible for cashout'
+  #         refund_not_cashoutable: 'Refunded amount is not eligible for cashout'
+  #         no_cashout_available: 'NO CASH OUT AVAILABLE FOR THIS MATCH / COMBOS'
+  #         cashout_not_allowed: 'Cashout not allowed at this moment, Please try again later'

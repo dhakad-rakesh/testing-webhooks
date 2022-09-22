@@ -1,0 +1,989 @@
+tr:
+  show: Göstermek
+  create: Oluşturmak
+  currency: Para birimi
+  edit: Düzenle
+  save: Kayıt etmek
+  update: Güncelleme
+  delete: Sil
+  back: Geri
+  amount: Miktar
+  bet: Bahis
+  bet_type: Bahis türü
+  bet_types: Bahis türleri
+  big_image: Lütfen yükleme görüntü boyutu az 8MB daha
+  combo: "Combo bahis #% {combo_bet_id}"
+  group: grup
+  groups: Gruplar
+  language: Dil
+  market: Market
+  markets: Piyasalar
+  match: Eşleşme
+  play_type: Çal tipi
+  play_types: Oyun türleri
+  phone: Telefon
+  settings: Ayarlar
+  sport: Spor
+  sports: Spor Dalları
+  success_create: "% {Name} başarıyla oluşturuldu."
+  success_update: "% {Name} başarıyla güncellendi."
+  success_destroy: "% {Name} başarıyla silindi."
+  odds_changed: "Oran değiştirildi, bahis yerleştirmeden önce bahis makbuzları inceleyin."
+  tournament: Turnuva
+  tournaments: Turnuvalar
+  user: kullanıcı
+  record: Kayıt
+  not_found: "% {Adı} bulunamadı."
+  went_wrong: Bir şeyler yanlış gitti
+  wallet: Cüzdan
+  deposit: Depozito
+  withdraw: Çekil
+  report: Bildiri
+  recipient: alıcı
+  wrong_img_format: / jpeg / png / pdf formatında resim yükleyin
+  url_update_success: URL başarıyla güncellendi
+  user_number: Kullanıcı sayısı
+  single_bet_limit_exceeded: "Tek bahis sınırı aşıldı"
+  daily_bet_limit_exceeded: "Günlük bahis limiti aşıldı"
+  weekly_bet_limit_exceeded: "Haftalık bahis limiti aşıldı"
+  monthly_bet_limit_exceeded: "Aylık bahis limiti aşıldı"
+  max_amount_limit_exceeded: "Maksimum tutar sınırı aşıldı"
+  single_deposit_limit_exceeded: "Tek mevduat sınırı aşıldı"
+  daily_deposit_limit_exceeded: "Günlük mevduat limiti aşıldı"
+  weekly_deposit_limit_exceeded: "Haftalık mevduat limiti aşıldı"
+  monthly_deposit_limit_exceeded: "Aylık mevduat limiti aşıldı"
+  should_be_greater_eq: "%{current} %{comparator} den büyük veya eşit olmalıdır"
+  cant_exceed_global: "Kullanıcı %{attribute} Genel %{attribute} daha büyük olamaz"
+  max_monthly_bet_amount: "Maksimum aylık bahis tutarı"
+  max_weekly_bet_amount: "Maksimum haftalık bahis miktarı"
+  max_daily_bet_amount: "Maksimum günlük bahis miktarı"
+  max_one_bet_amount: "Maksimum bir bahis miktarı"
+  max_monthly_deposit_amount: "Maksimum aylık depozito tutarı"
+  max_weekly_deposit_amount: "maksimum haftalık depozito tutarı"
+  max_day_deposit_amount: "maksimum gün depozito miktarı"
+  max_single_amount: "maksimum tek depozito tutarı"
+  balance_amount_limit: "Bakiye tutarı sınırı"
+  confirmation_mail_sent: "Onay postası e-postanıza gönderilir"
+  upgrade_apk: "Lütfen APK'yi yükseltin. Geçerli APK'yi kaldırabilir ve yenisini web sitemizden indirebilirsiniz"
+  country_betting_disabled: "Ülkeniz bahis eizin vermez"
+  invalid_country: "Geçersiz Ülke"
+  bet_limit_message: "Aynı anda %{limit} bahislerden fazlasını koyamazsınız"
+  invalid_time_period: "geçerli olmayan süre"
+  currency_cant_change: "boş değildir, para birimi değiştirilemez"
+  currency_not_valid: "Para birimi geçerli değil"
+  invalid_state_transition: "Geçersiz durum geçiş"
+  cant_verify_otp: "OTP doğrulanamadı"
+  success: "başarı"
+  rank: "rütbe"
+  dispute_stats: "Uyuşmazlık İstatistikler"
+  not_found_msg: "bulunamadı"
+  betting_stopped: "Bahis bu maç için durduruldu"
+  maximum_amount: "Maksimum bir ödeme miktarı% olduğu {miktarı}"
+  preferences: 
+    notification: "Uygulama ayarı güncellendi"
+    password: "şifre başarıyla güncellendi"
+    address: "Adres başarıyla güncellendi"
+  bets:
+    bets: Bahisler
+    combo_bets: Combo bahis
+    not_found: Bet bulunamadı
+    slips_required: "Bahis slipleri gerekli"
+    suspend: 
+      invalid: "Bahis askıya alınamaz"
+    errors:
+      bet_limit_exceeded: >-
+        limitini Kazanma aştı. limitini kazanan Günlük% {max_win_limit}
+        şeklindedir. Kazanan Kalan bugün için% {remaining_wining} şeklindedir.
+    remarks:
+      won: "Won miktarı:% maçında {miktar}:% {maç} piyasada:% {pazar}"
+      lost: "Kayıp miktarı:% maçında {miktar}:% {maç} piyasada:% {pazar}"
+      refunded: "Geri Ödenen miktar:% maçında {miktar}:% {maç} piyasada:% {pazar}"
+      half_lost: >-
+        Geri Ödenen yarım miktarı:% maçında {miktar}:% {maç} piyasada:%
+        {pazar}
+      half_won: >-
+        Geri Ödenen yarım miktarı:% maçında {miktar}:% {maç} piyasada:%
+        {pazar}
+    index:
+      my_bets: Benim bahis
+      created_at: tarih
+      type: tip
+      stake: kazık
+      odds: olasılık
+      status: durum
+    show:
+      title: Bahis Bilgisi
+      id: İD
+      type: tip
+      tournament: Turnuva
+      market: Market
+      outcome: Sonuç
+      odds: olasılık
+      stake: kazık
+      status: durum
+    create:
+      message: Bahis yarattı!
+      matches_response: Eşleşme bulunamadı. kullanılamayan maçların bahisleri kaldırın.
+    cashout:
+      success: Bahisler başarıyla paraya.
+      failed: Bazı bahisler dışarı paraya edilemedi.
+      validation_failed: Bahis dışarı paraya edilemez.
+      mistmatch_error: "Cashoutable oran değişmiştir, güncellenmiş oranlarla Agian deneyin."
+  combo_bets:
+    create:
+      message: Combo oluşturulan bahis!
+    won: "Won miktarı:% Combo-bahis #% {combo_bet_id} ayında {miktar}"
+    lost: "Kayıp miktarı: Combo-bahis #% {combo_bet_id} ayında% {miktar}"
+    refunded: "Geri Ödenen tutar: Combo-bahis #% {combo_bet_id} ayında% {miktar}"
+    errors:
+      stake: Geçerli bir hissesini girin.
+  users:
+    users: Kullanıcılar
+    invitations:
+      create:
+        success: Davet gönderildi!
+        exists: Kullanıcı zaten var.
+    email:
+      not_confirmed: İlk e-posta teyit edin
+      email_advantage: >-
+        Bu e-posta şifrenizi ve bahis bildirimlerini sıfırlamak için yardımcı
+        olacaktır
+      not_found: Hiçbir hesap bu e kayıtlıdır
+    phone:
+      invalid: Telefon geçersiz
+      not_confirmed: İlk telefon numaranızı teyit edin
+      registered: Telefon bizde zaten kayıtlı.
+      available: Telefon kullanılabilir
+      verification:
+        success: Başarıyla otp doğrulandı
+        failed: OTP doğrulanamadı
+    password:
+      edit:
+        success: Şifre başarıyla güncellendi.
+      confirmation_mismatch: şifre onayı eşleşmiyor
+      instructions_sent: "Şifreyi sıfırla talimatları% {email} gönderilmiştir."
+      reset_success: Şifre başarıyla reset vardır
+    provider:
+      error: >-
+        sizin gerekli bilgileri almak için yapabiliyor gizlilik ayarları değil
+        nedeniyle.
+      message: >-
+        Kullanıcı adınız% {username}, kullanıcı profili bölümünde
+        değiştirebilirsiniz olduğunu
+    confirmation_sent: Onay posta e-postanıza gönderilir
+    sign_in: Başarıyla oturum açtı.
+    sign_out: Başarıyla oturumu
+    not_found: Kullanıcı bulunamadı
+    unverified: Doğrulamayla doldurunuz
+    invalid_action: Geçersiz kullanıcı eylemi
+    delete: 
+      success: "Kullanıcı başarıyla silindi"
+  wallets:
+    not_enough_amount: Yeterli denge.
+    id: İD
+    available_amount: Mevcut Tutar
+    add: Ekle
+    point: Nokta
+    update:
+      by_admin: "Cüzdan güncellendi - yöneticiden a% {kullanıcı}% {user_email}."
+      by_reseller: "Cüzdan güncellendi -% form bayi% {bayi} {kullanıcı}% {user_email}."
+    errors:
+      insufficient_amount: senin cüzdanında Yetersiz miktarı.
+      debit_limit: "Sen% daha borçlandıramıyoruz {miktar}"
+      invalid_amount: Tutar 0'dan büyük olmalıdır.
+    transaction:
+      transactions: işlemler
+      bet_id: Bahis kimliği
+      type: tip
+      amount: Miktar
+      remark: düşünce
+      date: tarih
+  favourite:
+    marked: İşaretli favori
+    resource_not_found: Kaynak bulunamadı
+    not_found: Favori bulunamadı
+    destroy: Başarıyla favori yok
+    not_found_key: "bulunamadı Favori% {anahtar}"
+  betting:
+    suspended: Bahis şu anda bir süre sonra tekrar deneyin askıya alınır.
+    invalid_status: durumu geçersiz
+    approve_kyc: >-
+      senin KYC onaylanma profili bölümünde ve kişi admin yükleme gerekli
+      görüntülerle bahis yerleştirme önce onaylanmış olsun lütfen
+  something_went_wrong: Bir şeyler yanlış gitti
+  hold:
+    confirm:
+      success: Bahis onaylanır!
+      failure: Bu bahis teyit edilemez.
+    create:
+      failure: Bu bahis oluşturulamaz.
+    delete:
+      success: Bahisler silinir.
+      error: Bazı bahisler silinemez
+    current_odds:
+      no_odds_found: Bu bahis oranlarına bulunamadı.
+    invalid: Geçersiz bahis
+    odds:
+      not_found: Oran bulunamadı.
+  account:
+    disabled: Hesabınız devre dışı geçicidir.
+  user_limit:
+    not_set: "Maalesef, herhangi bir kullanıcı sınırı vardır"
+    success: Sınır başarıyla güncellendi
+  methods:
+    deposit:
+      not_found: Hiçbir availale yöntemleri
+    withdrawal:
+      not_found: Hiçbir availale yöntemleri
+  messages:
+    deposit:
+      success: Mevduat başarıyla işlendi
+    payout:
+      pending: "Ödeme isteği onaylandıktan sonra bildirilecektir, kabul edilmiş"
+      success: Ödeme başarıyla işlendikten
+  errors:
+    messages:
+      betting_not_allowed: Ülken bahis izin vermez.
+      upgrade_api: >-
+        APK yükseltin. Geçerli APK'yi kaldırmak ve web sitemizden yenisini
+        indirebilirsiniz.
+      currency_not_supported: Para birimi Bu ödeme yöntemi için desteklenmez
+      deposit:
+        cancelled: Mevduat iptal edildi
+        failed: |-
+          işlem, mali kuruluş tarafından reddedildi.
+          Başka bir depozito yöntemini kullanarak deneyin
+        malformed: istek yanlış biçimlendirilmiş
+        not_found: işlem bulunamadı
+        processed: işlem zaten işlenir
+        minimum_amount: "gerekli minimum depozito miktarı% olduğu {miktarı}"
+      payout:
+        failed: Ödeme isteği başarısız oldu
+        insufficient_amount: Cüzdan yeterli miktarda yok
+        minimum_amount: "gerekli minimum bir ödeme miktarı% olduğu {miktarı}"
+      technical_error_happened: Teknik hata oldu
+      sports:
+        not_found: Sport bulunamadı
+        not_available: mevcut değil Sport. Daha fazla detay için lütfen iletişim desteği
+      bets:
+        slip_limit: "Bir defada% {sınır} bahisler daha koyamaz"
+        slips_required: Bahis slipleri gerekli
+      matches:
+        no_live_matches: Hiçbir canlı maçlar
+        scores:
+          not_found: mevcut değil Skoru
+        not_found: Eşleşme bulunamadı
+        not_found_count: "% {Count} bulunamadı maçlarının"
+        already_favourite: Maç zaten favori
+        not_favourite: favori listesinden silinir eşleşecek
+      countries:
+        invalid: Geçersiz ülke
+        not_found: Ülke bulunamadı
+      tournaments:
+        not_found: Turnuvasında bulunamadı
+      not_authorized: Sen böyle bir hareketi gerçekleştirmek için yetkiniz yok.
+      invalid_timeout_limit: "Zaman aşımı sınırı: geçerli değil süresi"
+      already_confirmed: "Zaten doğrulandı, oturum açmayı deneyin"
+      confirmation_period_expired: "% {dönem} içinde teyit edilmesi ihtiyacı, yeni bir tane isteyin"
+      expired: Yeni bir tane süresi dolmuş isteyin etti
+      not_found: bulunamadı
+      not_locked: kilitli değildi
+      not_saved:
+        one: "1 hata kaydedilmesini bu% {kaynak} yasak:"
+        other: "% {Count} hatalar kaydedilmesini bu% {kaynak} yasak:"
+      reseller_disable: >-
+        Geçici olarak başka activities.Kindly kişisinin onay için yönetici
+        devre dışıdır
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            age:
+              must_be_greater: Yaş den büyük 18 olmalıdır
+              must_be_lesser: Yaş 100 veya daha az olmalıdır
+            password:
+              too_short: "çok kısa (en az% {count} karakterdir)"
+              bad_password: >-
+                Karmaşıklık şart yerine. Uzunluğu 6-14 karakter olmalı ve
+                içermelidir: 1 harf, 1 rakamı, 1 özel karakter hariç: <>: $%
+              common_password: adı veya e-posta parçalarını içermemelidir
+            phone:
+              invalid_for_country: Telefon ülke için geçerli değil
+              taken: bizde zaten kayıtlı. yerine kayıt ait giriş yapınız.
+              not_available: mevcut değil
+            username:
+              invalid: yalnızca harf ve özel karakter içermelidir.
+            locale:
+              not_supported: desteklenmiyor
+        combo_bet:
+          attributes:
+            base:
+              duplicate_matches: Birden maçlarından oran seçiniz
+        address:
+          attributes:
+            country:
+              not_valid: Ülke geçerli değil
+        gammabet_setting:
+          attributes:
+            cashout_commision:
+              invalid_range: Cashout komisyon 0-100 arasında olmalıdır
+              must_be_present: Cashout komisyon mevcut olmalıdır
+            api_version:
+              must_be_positive: API sürümü pozitif bir sayı olmalıdır
+        wallet:
+          attributes:
+            base:
+              wallet_not_empty: "Cüzdan boş değil, para birimi değiştirilemez"
+        sport:
+          attributes:
+            rank:
+              inclusion: 1-100 aralığında olmalıdır
+    models:
+      address: Adres
+      admin_user: Yönetici kullanıcı
+      advertisement: İlan
+      amqp_audit_log: AMQP denetim günlüğü
+      bet: Bahis
+      bet_type: Bahis türü
+      casino_item: Casino öğesi
+      casino_menu: Casino menüsü
+      category: Kategori
+      category_join: Kategori katılmak
+      combo_bet: Combo bahis
+      competitor: Yarışmacı
+      country: ülke
+      favourite: Favori
+      game_session: Oyun oturumu
+      gammabet_setting: Gammabet ayarı
+      language: Dil
+      ledger: defteri kebir
+      market: Market
+      match: Eşleşme
+      match_outcome: Maç sonucu
+      outcome: Sonuç
+      participant: Katılımcı
+      play_type: Çal tipi
+      role: rol
+      session_log: Oturum günlüğü
+      session_transaction: Oturum işlem
+      sport: Spor
+      sport_country: Spor ülke
+      sport_market: Spor pazarı
+      team: Takım
+      team_player: Takım oyuncusu
+      team_tournament: Takım turnuvası
+      tennis_match_score: Tenis maçı skor
+      topic: konu
+      tournament: Turnuva
+      transfer_record: aktarım rekor
+      user: kullanıcı
+      venue: mekan
+      wallet: Cüzdan
+    attributes:
+      address:
+        city: Kent
+        country: ülke
+        roles: Roller
+        state: Durum
+        street_address: Açık adres
+        zip_code: Posta kodu
+      admin_user:
+        current_sign_in_at: En Güncel işareti
+        current_sign_in_ip: ip Mevcut işareti
+        email: E-posta
+        enable: etkinleştirme
+        encrypted_password: şifreli parola
+        first_name: İsim
+        last_name: Soyadı
+        last_sign_in_at: En Son oturum açma
+        last_sign_in_ip: ip Son oturum açma
+        ledgers: Defterler
+        remember_created_at: oluşturulan Hatırla
+        reseller_percentage: Bayi yüzdesi
+        resellers: Bayiler
+        reset_password_sent_at: Şifreyi gönderilen
+        reset_password_token: Şifreyi belirteci
+        roles: Roller
+        status: durum
+        sub_admins: Alt yöneticileri
+        users: Kullanıcılar
+        users_ledger: Kullanıcılar defter
+        wallets: cüzdan
+      advertisement:
+        ad_url: Reklam url
+        enabled: Etkin
+        name: ad
+        roles: Roller
+        settings: Ayarlar
+        ad_image: Reklam görüntü
+        position: Durum
+      amqp_audit_log:
+        log_type: Giriş tipi
+        roles: Roller
+        routing_key: Yönlendirme anahtar
+        routing_type: Yönlendirme tipi
+        timestamp_in_ms: ms Zaman Damgası
+        xml_data: xML veri
+      bet:
+        bet_type: Bahis türü
+        cashed_out_amount: paraya miktarı
+        continent: kıta
+        country: ülke
+        information: Bilgi
+        ledgers: Defterler
+        odds: olasılık
+        period: dönem
+        play_number: Çal numarası
+        play_type: Çal tipi
+        player_name: Oyuncu ismi
+        rake: tırmık
+        roles: Roller
+        specifier_text: Specifier metin
+        stake: kazık
+        status: durum
+        team_name: Takım adı
+        total: Toplam
+      bet_type:
+        market_type: Piyasa tipi
+        name: ad
+        play_types: Bahis çeşitleri
+        roles: Roller
+      category:
+        category_joins: Kategori katıldı
+        kind: tür
+        markets: Piyasalar
+        name: ad
+        roles: Roller
+      category_join:
+        categorizable_type: categorizable tip
+        roles: Roller
+      combo_bet:
+        bets: Bahisler
+        cashout_amount: Cashout tutarı
+        ledgers: Defterler
+        odds: olasılık
+        roles: Roller
+        stake: kazık
+        status: durum
+      competitor:
+        qualifier: Elemeleri
+        roles: Roller
+      country:
+        enabled: Etkin
+        name: ad
+        rank: rütbe
+        roles: Roller
+        sport_countries: Spor ülkeler
+        sports: Spor Dalları
+        tournaments: Turnuvalar
+        uid: uid
+      doorkeeper:
+        access_grant:
+          expires_in: İçinde sona eriyor
+          redirect_uri: Yönlendirme uri
+          revoked_at: en İptal edilen
+          scopes: kapsamları
+          token: Jeton
+        access_token:
+          expires_in: İçinde sona eriyor
+          previous_refresh_token: Önceki yenileme jetonu
+          refresh_token: Yenile belirteç
+          revoked_at: en İptal edilen
+          scopes: kapsamları
+          token: Jeton
+        application:
+          access_grants: Erişim hibe
+          access_tokens: Erişim belirteçleri
+          authorized_applications: Yetkilendirilmiş uygulamalar
+          authorized_tokens: yetkili jetonlar
+          name: ad
+          redirect_uri: Yönlendirme URI
+          scopes: kapsamları
+          secret: Gizli
+          uid: uid
+      favourite:
+        favouriteable_type: Favouriteable tip
+        is_default: varsayılan mı
+      game_session:
+        balance: Denge
+        bet: Bahis
+        currency: Para birimi
+        end_time: Bitiş zamanı
+        game_type: Oyun tipi
+        game_uuid: Oyun uuid
+        refund: Geri ödeme
+        return_url: İade url
+        roles: Roller
+        session_transactions: Oturum işlemleri
+        start_time: Başlangıç ​​saati
+        status: durum
+        wallet_amount: Cüzdan miktarı
+        win: kazanmak
+      gammabet_setting:
+        allow_betting: bahis izin ver
+        balance_amount_limit: Bakiye miktar limiti
+        max_daily_bet_amount: Maksimum günlük bahis miktarı
+        max_day_deposit_amount: Maksimum günlük para yatırma tutarı
+        max_monthly_bet_amount: Maksimum aylık bahis miktarı
+        max_monthly_deposit_amount: Maksimum aylık para yatırma tutarı
+        max_one_bet_amount: Maksimum bir bahis miktarı
+        max_single_amount: Maksimum tek miktarı
+        max_weekly_bet_amount: Maksimum haftalık bahis miktarı
+        max_weekly_deposit_amount: Maksimum haftalık para yatırma tutarı
+        reseller_withdrawal_limit: Bayi çekme limiti
+        roles: Roller
+        setting_of: arasında ayarlama
+        settings: Ayarlar
+        url: URL
+        user_wallet_limit: Kullanıcı cüzdan sınırı
+      group:
+        name: ad
+        roles: Roller
+        users: Kullanıcılar
+      language:
+        enabled: Etkin
+        name: ad
+        roles: Roller
+        users: Kullanıcılar
+      ledger:
+        account_details: Hesap detayları
+        amount: Miktar
+        approved: Onaylandı
+        betable_type: Betable tip
+        mode: kip
+        remark: düşünce
+        roles: Roller
+        status: durum
+        transaction_type: İşlem tipi
+        users_ledger: Kullanıcılar defter
+      market:
+        bets: Bahisler
+        categories: Kategoriler
+        category: Kategori
+        category_joins: Kategori katıldı
+        display_name: Ekran adı
+        enabled: Etkin
+        is_specifier_market: belirteci pazar mı
+        match_outcomes: çıktıları eşleştir
+        name: ad
+        outcomes: Çıktıları
+        priority: öncelik
+        rank: rütbe
+        roles: Roller
+        settings: Ayarlar
+        specifier_text: Specifier metin
+        status: durum
+        uid: uid
+        bet_type: Bahis türü
+        play_type: Çal tipi
+      match:
+        active_markets: Aktif piyasalar
+        actual_status: Gerçekteki durum
+        bets: Bahisler
+        booking_status: Rezervasyon durumu
+        competitors: Yarışmacılar
+        cricket_match_scores: puanları maçı kriket
+        enabled: Etkin
+        highlight: Vurgulamak
+        inplay_subscribed: Inplay abone
+        markets: Piyasalar
+        match_outcomes: çıktıları eşleştir
+        name: ad
+        outcomes: Çıktıları
+        results: Sonuçlar
+        roles: Roller
+        schedule_at: en Programı
+        settings: Ayarlar
+        soccer_match_scores: Futbol maçı skorları
+        status: durum
+        team_players: Takım oyuncuları
+        teams: Takımlar
+        tennis_match_scores: Tenis maçı skorları
+        uid: uid
+        users: Kullanıcılar
+      match_outcome:
+        bets: Bahisler
+        market_uid: Pazar uid
+        match_uid: uid eşleştir
+        odd_type: Tek tip
+        odds: olasılık
+        outcome: Sonuç
+        outcomeable_type: Outcomeable tip
+        outcomeable_uid: Outcomeable uid
+        probabilities: olasılıklar
+        roles: Roller
+        settings: Ayarlar
+        specifier_text: Specifier metin
+        status: durum
+        team_players: Takım oyuncuları
+        teams: Takımlar
+      occupation:
+        name: ad
+        roles: Roller
+        users: Kullanıcılar
+      organization:
+        name: ad
+        roles: Roller
+        users: Kullanıcılar
+      outcome:
+        markets: Piyasalar
+        matches: Maçlar
+        name: ad
+        roles: Roller
+        status: durum
+        uid: uid
+      participant:
+        roles: Roller
+      play_type:
+        bet_types: Bahis türleri
+        name: ad
+        roles: Roller
+      role:
+        admin_users: Yönetici kullanıcılar
+        name: ad
+        resource_type: Kaynak tipi
+        roles: Roller
+      season:
+        acronym: Kısaltma
+        end_time: Bitiş zamanı
+        matches: Maçlar
+        name: ad
+        roles: Roller
+        start_time: Başlangıç ​​saati
+        uid: uid
+      session_log:
+        roles: Roller
+      session_transaction:
+        amount: Miktar
+        bet_type: Bahis türü
+        currency: Para birimi
+        game_type: Oyun tipi
+        game_uuid: Oyun uuid
+        ledgers: Defterler
+        quantity: miktar
+        roles: Roller
+        status: durum
+        wallet_balance: Cüzdan bakiyesi
+      soccer_match_score:
+        away_corners: Deplasman köşeler
+        away_score: Deplasman skor
+        clock: Saat
+        home_corners: Ev köşeleri
+        home_score: Ev puanı
+        match_status: Maç durumu
+        period_scores: Dönem puanlarının
+        roles: Roller
+        statistics: İstatistik
+      sport:
+        acronym: Kısaltma
+        bets: Bahisler
+        countries: Ülkeler
+        enabled: Etkin
+        favourites: Favoriler
+        kind: tür
+        markets: Piyasalar
+        matches: Maçlar
+        name: ad
+        number_of_matches: Eşleşme sayısı
+        rank: rütbe
+        roles: Roller
+        seasons: Mevsimler
+        sport_countries: Spor ülkeler
+        sport_markets: Spor piyasalar
+        status: durum
+        teams: Takımlar
+        tournaments: Turnuvalar
+        uid: uid
+      sport_country:
+        number_of_matches: Eşleşme sayısı
+        roles: Roller
+      sport_market:
+        priority: öncelik
+        roles: Roller
+        visible: Gözle görülür
+      team:
+        acronym: Kısaltma
+        competitors: Yarışmacılar
+        country_name: Ülke adı
+        favourites: Favoriler
+        matches: Maçlar
+        name: ad
+        roles: Roller
+        team_players: Takım oyuncuları
+        team_tournaments: Takım Turnuvaları
+        tournaments: Turnuvalar
+        uid: uid
+      team_player:
+        age: Yaş
+        country_code: Ülke kodu
+        dob: Dob
+        full_name: Ad Soyad
+        gender: Cinsiyet
+        jersey_number: forma numarası
+        match_outcomes: çıktıları eşleştir
+        name: ad
+        nationality: milliyet
+        player_type: Oyuncu tipi
+        roles: Roller
+        uid: uid
+      team_tournament:
+        roles: Roller
+      tennis_match_score:
+        away_gamescore: Deplasman GameScore
+        away_score: Deplasman skor
+        current_server: Güncel sunucu
+        home_gamescore: Ev GameScore
+        home_score: Ev puanı
+        match_status: Maç durumu
+        period_scores: Dönem puanlarının
+        reporting: Raporlama
+        roles: Roller
+        status: durum
+        tiebreak: "Mola, tenis terimi"
+      topic:
+        enabled: Etkin
+        name: ad
+        roles: Roller
+        users: Kullanıcılar
+      tournament:
+        bets: Bahisler
+        category_name: Kategori adı
+        display_name: Ekran adı
+        enabled: Etkin
+        favourites: Favoriler
+        matches: Maçlar
+        name: ad
+        number_of_matches: Eşleşme sayısı
+        rank: rütbe
+        roles: Roller
+        seasons: Mevsimler
+        settings: Ayarlar
+        team_tournaments: Takım Turnuvaları
+        teams: Takımlar
+        tournament_type: Turnuva tipi
+        uid: uid
+      user:
+        access_grants: Erişim hibe
+        access_tokens: Erişim belirteçleri
+        bets: Bahisler
+        combo_bets: Combo bahisler
+        confirmation_sent_at: Onay gönderilen
+        confirmation_token: Onay jetonu
+        confirmed_at: teyit
+        current_sign_in_at: En Güncel işareti
+        current_sign_in_ip: ip Mevcut işareti
+        date_of_birth: Doğum tarihi
+        disabled_sport_ids: Engelli spor kimlikleri
+        email: E-posta
+        enabled: Etkin
+        enabled_by: Etkin
+        encrypted_password: şifreli parola
+        exclusion_time: Kendinden dışlama zamanı
+        favourite_sports: Sevdiği spor
+        favourite_teams: Favori takımlar
+        favourite_tournaments: Sevdiği turnuvalar
+        favourites: Favoriler
+        first_name: İsim
+        game_sessions: Oyun oturumları
+        groups: Gruplar
+        invitation_accepted_at: Davet kabul
+        invitation_created_at: Davet oluşturulan
+        invitation_limit: Davet sınırı
+        invitation_sent_at: Davet gönderilen
+        invitation_token: Davet kodu
+        invited_by_type: Türe göre Davetli
+        is_betting_allowed: izin bahisleri mı
+        kyc_status: KYC durumu
+        languages: Diller
+        last_activity_at: En Son etkinlik
+        last_name: Soyadı
+        last_sign_in_at: En Son oturum açma
+        last_sign_in_ip: ip Son oturum açma
+        ledgers: Defterler
+        occupations: Meslekler
+        organizations: Organizasyonlar
+        participants: Katılımcılar
+        payees: Payees
+        pending_friends: arkadaşlar Bekleyen
+        phone: Telefon
+        phone_number: Telefon numarası
+        reality_check_timer: Gerçeklik kontrolü zamanlayıcı
+        remember_created_at: oluşturulan Hatırla
+        reset_password_sent_at: Şifreyi gönderilen
+        reset_password_token: Şifreyi belirteci
+        roles: Roller
+        security_answers: Güvenlik cevaplar
+        security_questions: Güvenlik SORULARI
+        session_logs: Oturum günlükleri
+        session_transactions: Oturum işlemleri
+        settings: Ayarlar
+        state: Durum
+        topics: Başlıklar
+        transfer_records: Transfer rekorları
+        unconfirmed_email: Onaylanmamış e-posta
+        unverified_phone: doğrulanmamış telefon
+        user_number: Kullanıcı sayısı
+        username: Kullanıcı adı
+        wallets: cüzdan
+        zone_name: Bölge adı
+        occupation: Meslek
+        organization: organizasyon
+        password: Parola
+        password_confirmation: Şifre onayı
+        selfie_picture: hazine kimliği ile Selfie'nin
+        govt_id_picture: Govt kimliği geçirmez
+      venue:
+        city_name: Şehir İsmi
+        continent: kıta
+        country_code: Ülke kodu
+        country_name: Ülke adı
+        name: ad
+        roles: Roller
+      wallet:
+        available_amount: Mevcut miktar
+        currency: Para birimi
+        is_current: geçerli mi
+        ledgers: Defterler
+        roles: Roller
+        usable_type: kullanılabilir tip
+        wallet_type: Cüzdan tipi
+  active_interaction:
+    errors:
+      messages:
+        match:
+          not_valid: geçerli değil eşleştir
+          betting_timeout: Maç bahis zaman aşımı
+          no_data: Veriler bu maç için var olmayan yapmak
+          not_found: Eşleşme bulunamadı
+          betting_disabled: Bu maç için bahis şu anda devre dışı
+          invalid_odds: geçerli değil Odds
+          odds_changed: Oran değiştirildi haave
+        market:
+          not_found: Pazar bulunamadı
+          disabled: Pazar şu anda devre dışı
+        specifier:
+          not_valid: geçerli değil Specifiers
+        bet:
+          invalid: "Bahis Bu Market için% {status} olduğunu"
+          invalid_min_stake: alt sınırdan Bahis miktarı daha
+          invalid_max_stake: Eğer azami meblağ limitini aştınız
+          stake_not_positive: Bahis hissesini sıfırdan büyük olmalı
+        base:
+          cashout_not_eligible: Bahis ödeme almada uygun değil
+          refund_not_cashoutable: Geri Ödenen miktar ödeme almada uygun değil
+          no_cashout_available: BU MAÇ / tarak için MEVCUT YOK NAKİT OUT
+          cashout_not_allowed: "şu anda izin verilmez Cashout, daha sonra tekrar deneyin"
+  devise:
+    confirmations:
+      confirmed: E-posta adresiniz başarıyla onaylandı.
+      send_instructions: >-
+        Bir kaç dakika içinde e-posta adresinizi onaylamak için nasıl
+        talimatlarını içeren bir e-posta alacaksınız.
+      send_paranoid_instructions: >-
+        E-posta adresiniz oluşturulmadı varsa, birkaç dakika içinde e-posta
+        adresinizi onaylamak için nasıl talimatlarını içeren bir e-posta
+        alacaksınız.
+    failure:
+      already_authenticated: Zaten oturum açtınız.
+      inactive: Hesabınız henüz aktifleştirilmedi.
+      exclusion_period: >-
+        Maalesef,% {zaman} kadar dışlama dönemi yani giriş olamaz. o yanlış
+        lütfen iletişim desteği ayarlanırsa.
+      invalid: "Geçersiz% {authentication_keys} veya şifre."
+      locked: Hesabınız kilitli.
+      last_attempt: Hesabınız kilitlenmeden önce tek bir deneme var.
+      not_found_in_database: "Geçersiz% {authentication_keys} veya şifre."
+      timeout: Kişisel oturumu sona erdi. Devam etmek için lütfen tekrar oturum açın.
+      unauthenticated: Burada oturum veya devam etmeden önce kaydolmak gerekiyor.
+      unconfirmed: Devam etmeden önce e-posta adresinizi teyit etmeniz gerekecek.
+      invited: >-
+        Sen, bekleyen bir davetiniz var Hesap oluşturma işlemini tamamlamak
+        için kabul edin.
+    mailer:
+      confirmation_instructions:
+        subject: Onay talimatları
+      reset_password_instructions:
+        subject: Şifreyi talimatları
+      unlock_instructions:
+        subject: Kilit Açma talimatları
+      email_changed:
+        subject: E-posta değiştirildi
+      password_change:
+        subject: Şifre değişti
+      invitation_instructions:
+        subject: Davet talimatları
+        hello: "Merhaba% {email}"
+        someone_invited_you: >-
+          Birisi% {url} davet etti, aşağıdaki bağlantı yoluyla kabul
+          edebilirsiniz.
+        accept: Daveti kabul etmek
+        accept_until: "Bu davet% {DUE_DATE} nedeniyle olacaktır."
+        ignore: >-
+          Daveti kabul etmek istemiyorsanız, bu e-postayı dikkate ediniz. <br
+          />
+
+          Yukarıdaki bağlantıya ulaşmak ve şifrenizi ayarlamak kadar Hesabınız
+          oluşturuldu edilmeyecektir.
+    omniauth_callbacks:
+      failure: '% {Tür} sizi kimlik doğrulaması çünkü olamazdı "% {nedeni}".'
+      success: "Başarıyla% {tür} hesap gerçeklenmiş."
+    passwords:
+      no_token: >-
+        Bir parola sıfırlama e-posta gelen bu sayfadan erişemez. Parola
+        sıfırlama e-posta geliyor yoksa, emin olun size sağlanan tam URL
+        kullanılan ediniz.
+      send_instructions: >-
+        Bir kaç dakika içinde şifrenizi sıfırlama talimatlarını içeren bir
+        e-posta alacaksınız.
+      send_paranoid_instructions: >-
+        E-posta adresiniz oluşturulmadı varsa, birkaç dakika içinde e-posta
+        adresinize bir şifre kurtarma bağlantısı gönderilecektir.
+      updated: Parolanız başarıyla değiştirildi. Artık içinde imzalanır.
+      updated_not_active: Parolanız başarıyla değiştirildi.
+    registrations:
+      destroyed: >-
+        Hoşçakal! Hesabınız başarıyla iptal edildi. Kısa süre sonra tekrar
+        görmeyi umuyoruz.
+      signed_up: Hoşgeldiniz! Başarıyla kayıt oldu.
+      signed_up_but_inactive: >-
+        Başarıyla kayıt oldu. Hesabınız henüz aktif olmamasından dolayı, sizi
+        oturum olamazdı.
+      signed_up_but_locked: >-
+        Başarıyla kayıt oldu. Hesabınız kilitli olduğundan Ancak, sizi oturum
+        olamazdı.
+      signed_up_but_unconfirmed: >-
+        Bir onay linki ile bir mesaj e-posta adresinize gönderildi. Hesabınızı
+        etkinleştirmek için bağlantıyı takip ediniz.
+      update_needs_confirmation: >-
+        Hesabınızı başarıyla güncellenmiştir, ancak yeni e-posta adresini
+        doğrulamak için gereklidir. E-postanızı kontrol edin ve yeni e-posta
+        adresinizi onaylamak için onaylama linki takip ediniz.
+      updated: Hesabınız başarıyla güncellendi.
+    sessions:
+      signed_in: Başarıyla oturum açıldı.
+      signed_out: başarıyla oturum açıldı.
+      already_signed_out: başarıyla oturum açıldı.
+    unlocks:
+      send_instructions: >-
+        Bir kaç dakika içinde hesabınızı kilidini nasıl talimatlarını içeren
+        bir e-posta alacaksınız.
+      send_paranoid_instructions: >-
+        Hesabınız varsa, birkaç dakika içinde kilidini nasıl talimatlarını
+        içeren bir e-posta alacaksınız.
+      unlocked: >-
+        Hesabınız başarıyla kilidi kaldırılmıştır. Devam etmek için giriş
+        yapın.
+    invitations:
+      send_instructions: "Bir davet e-% {email} adresine gönderildi."
+      invitation_token_invalid: sağlanan davetiye jetonu geçerli değil!
+      updated: Şifreniz başarıyla kuruldu. Artık içinde imzalanır.
+      updated_not_active: Şifreniz başarıyla kuruldu.
+      no_invitations_remaining: Kalan Davetiye
+      invitation_removed: Davetiyeniz çıkarıldı.
+      new:
+        header: Davetiye gönder
+        submit_button: Bir davet yolla
+      edit:
+        header: Şifrenizi ayarlayın
+        submit_button: Benim şifre belirleyin

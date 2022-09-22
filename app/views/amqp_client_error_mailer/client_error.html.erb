@@ -1,0 +1,15 @@
+Hello
+<br>
+<br>
+<b>An error occured in amqp client.</b>
+<br>
+<br>
+Exception class : <%= @exception_class %>
+<br>Exception Cause : <%= @exception_cause %>
+<br>Exception Time : <%= @exception_occured_at %>
+<br>Domain URL : <%= Figaro.env.DOMAIN_URL %>
+<br>Environment : <%= Rails.env %>
+<br>
+<br>
+Regards
+<br><%= Figaro.env.project_name %>

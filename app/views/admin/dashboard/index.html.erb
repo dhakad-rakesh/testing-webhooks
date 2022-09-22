@@ -1,0 +1,93 @@
+<%= render 'admin/dashboard/filter' %>
+
+<div class="row">
+  <div id="summaries_filter">
+  </div>
+</div>
+
+<%= render 'admin/dashboard/profit' %>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="tabs-container">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tab-10"><%= t('admin.dashboard.sports_overview.sports') %></a></li>
+        <!-- <li class=""><a data-toggle="tab" href="#tab-11"><%#= t('admin.dashboard.sports_overview.esports') %></a></li> -->
+      </ul>
+      <div class="tab-content">
+        <div id="tab-10" class="tab-pane active">
+          <div class="">
+            <div class="ibox-content" style="height: 32.4pc">
+              <div class="sk-spinner sk-spinner-double-bounce">
+                <div class="sk-double-bounce1"></div>
+                <div class="sk-double-bounce2"></div>
+              </div>
+              <div class="table-responsive" id="bet_overview_filter"></div>
+            </div>
+          </div>
+        </div>
+<!--         <div id="tab-11" class="tab-pane">
+          <div class="">
+            <div class="ibox-content">
+              <div class="sk-spinner sk-spinner-double-bounce">
+                <div class="sk-double-bounce1"></div>
+                <div class="sk-double-bounce2"></div>
+              </div>
+              <div class="table-responsive" id="combo_bet_overview_filter"></div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="tabs-container">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tab-12"><%= t('admin.dashboard.sports_overview.casino_overview') %></a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="tab-12" class="tab-pane active">
+          <div class="">
+            <div class="ibox-content" style="height: 14.6pc">
+              <div class="sk-spinner sk-spinner-double-bounce">
+                <div class="sk-double-bounce1"></div>
+                <div class="sk-double-bounce2"></div>
+              </div>
+              <div class="table-responsive" id="casino_overview_filter">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-6" style="margin-top: 10px;">
+    <div class="tabs-container">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tab-12"><%= t('admin.dashboard.sports_overview.slot_game_overview') %></a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="tab-12" class="tab-pane active">
+          <div class="">
+            <div class="ibox-content" style="height: 14.6pc">
+              <div class="sk-spinner sk-spinner-double-bounce">
+                <div class="sk-double-bounce1"></div>
+                <div class="sk-double-bounce2"></div>
+              </div>
+              <div class="table-responsive" id="slot_game_overview_filter">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><br/>
+
+<!-- Top 5 Component-->
+<div class="row" id="top_sports"></div>
+
+<div class="row" id="top_casinos"></div>
+
+<div class="row" id="top_slot_games"></div>

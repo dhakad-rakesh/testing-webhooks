@@ -1,0 +1,19 @@
+.row {
+  margin: 0 auto;
+  max-width: 75.5rem;
+  width: 100%
+}
+
+#demos .owl-carousel .item {
+  height: 25rem;
+}
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+  background: #002886 !important;
+}
+
+@media screen and (min-width: 1500px) {
+  .row {
+    max-width: 82.5rem;
+  }
+}

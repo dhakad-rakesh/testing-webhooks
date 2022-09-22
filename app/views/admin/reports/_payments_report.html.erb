@@ -1,0 +1,51 @@
+<%= link_to payments_admin_reports_path(request.parameters.merge(format: "csv")), class: 'btn btn-sm btn-primary pull-right' do %>
+  <span>CSV <i class="fa fa-download"></i></span>
+<% end %>
+
+<table class="dt-reports table table-hover payments-report">
+  <thead> 
+    <tr>
+      <th><%= t('admin.reports.payments.id') %></th>
+      <th><%= t('admin.reports.payments.player_id') %></th>
+      <th><%= t('admin.reports.payments.date_time') %></th>
+      <th><%= t('admin.reports.payments.currency') %></th>
+      <th><%= t('admin.reports.payments.amount') %></th>
+      <th><%= t('admin.reports.payments.transaction_type') %></th>
+      <th><%= t('admin.reports.payments.payment_mode') %></th>
+      <!-- <th><%#= t('admin.reports.payments.region') %></th> -->
+      <th><%= t('admin.reports.payments.remarks') %></th>
+      <th><%= t('admin.reports.payments.status') %></th>
+      <th><%= t('admin.reports.payments.processed_by') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if ledgers.present? %>
+      <% ledgers.each do |ledger| %>
+        <tr class="gradeX">
+          <td><%= ledger.id %></td>
+          <td><%= link_to ledger.user_number, admin_user_path(ledger.user_id) %></td>
+          <td><%= short_date_time(ledger.created_at) %></td>
+          <td><%= ledger.wallet.currency %></td>
+          <td><%= ledger.amount&.abs&.round(8) %></td>
+          <td><%= ledger.transaction_type.humanize %></td>
+          <td><%= ledger.mode&.titleize || "NA" %></td>
+          <!-- <td><%#= ledger.region %></td> -->
+          <td><%= ledger.remark %></td>
+          <td><%= ledger.status.humanize %></td>
+          <td><%= ledger.admin_user&.full_name&.titleize || "-" %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=5>No Data Found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate ledgers, renderer: BootstrapPagination::Rails %>
+
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+</script>
+
+<%= javascript_include_tag 'admin/reports' %>
